@@ -6,13 +6,25 @@
     android:layout_height="match_parent">
 
 
+    <!--        android:id="@+id/infoParent"-->
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bc_wea"
+        android:paddingTop="-64dp"
+        app:layout_constraintBottom_toTopOf="@id/searchParent"
+        app:layout_constraintEnd_toEndOf="@+id/searchParent"
+        app:layout_constraintStart_toStartOf="@+id/searchParent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/infoParent"
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/med_dp"
-        app:cardBackgroundColor="@color/teal_700"
-        app:cardCornerRadius="@dimen/med_dp"
+        android:layout_height="140dp"
+        app:cardBackgroundColor="@color/Back_white"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/searchParent"
         app:layout_constraintStart_toStartOf="@+id/searchParent"
@@ -23,9 +35,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
-            android:background="@drawable/weatherback"
+            android:background="@drawable/bc_wea"
             android:gravity="center_vertical"
-            android:padding="@dimen/med_dp">
+            android:paddingLeft="@dimen/med_dp"
+            android:paddingRight="@dimen/med_dp"
+            android:paddingTop="@dimen/med_dp"
+            android:paddingBottom="@dimen/high_dp">
 
 
             <androidx.appcompat.widget.AppCompatImageView

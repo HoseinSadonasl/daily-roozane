@@ -23,7 +23,7 @@
             android:theme="@style/Theme.DailyNoActionbar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.DailyNoActionbar"
+            android:theme="@style/Theme.DailyNoActionbarMain"
             android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

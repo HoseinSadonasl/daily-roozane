@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
-                    android:textColor="@color/Second_black"
+                    android:textColor="@color/Gray_c"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="@dimen/med_dp"
                     android:layout_marginRight="@dimen/med_dp"
@@ -52,8 +52,9 @@
                 android:layout_marginLeft="@dimen/med_dp"
                 android:layout_marginRight="@dimen/med_dp"
                 android:layout_marginBottom="@dimen/med_dp"
-                android:hint="City name"
+                android:hint="@string/city_name"
                 android:background="@null"
+                android:maxLines="1"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:descendantFocusability="blocksDescendants"
@@ -84,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/negativeBtnTxt"
-                    android:textColor="@color/Color_primary_dark"
+                    android:textColor="@color/teal_500"
                     android:background="?selectableItemBackgroundBorderless"/>
 
 
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/positiveBtnTxt"
-                    android:textColor="@color/Color_primary_dark"
+                    android:textColor="@color/teal_500"
                     android:background="?selectableItemBackgroundBorderless" />
 
 
