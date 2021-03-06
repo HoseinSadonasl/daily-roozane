@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="low_dp">8dp</dimen>
+    <dimen name="med_dp">16dp</dimen>
+    <dimen name="high_dp">32dp</dimen>
+
+    <dimen name="low_TextSize">12sp</dimen>
+    <dimen name="med_TextSize">16sp</dimen>
+    <dimen name="high_TextSize">24sp</dimen>
+    <dimen name="hugh_TextSize">32sp</dimen>
+
+
+    <dimen name="low_elevation">4dp</dimen>
+    <dimen name="med_elevation">8dp</dimen>
+    <dimen name="high_elevation">400dp</dimen>
+</resources>

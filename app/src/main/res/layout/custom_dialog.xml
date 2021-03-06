@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <com.abc.daily.ui.CustomView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/med_dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/alertTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/med_TextSize"
+                    android:text="@string/app_name"
+                    android:textStyle="bold"
+                    android:layout_margin="@dimen/med_dp"
+                    android:textColor="@color/black"
+                    android:gravity="center_vertical"/>
+
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/alertSubtitle"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/Second_black"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/med_dp"
+                    android:layout_marginRight="@dimen/med_dp"
+                    android:layout_marginBottom="@dimen/med_dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/med_dp"
+                android:layout_marginRight="@dimen/med_dp"
+                android:layout_marginBottom="@dimen/med_dp"
+                android:hint="City name"
+                android:background="@null"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:descendantFocusability="blocksDescendants"
+                android:gravity="center"
+                android:id="@+id/textInput"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+                android:background="@color/Second_black"
+                android:layout_marginRight="@dimen/med_dp"
+                android:layout_marginLeft="@dimen/med_dp"/>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/negative"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/negativeBtnTxt"
+                    android:textColor="@color/Color_primary_dark"
+                    android:background="?selectableItemBackgroundBorderless"/>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/positive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/positiveBtnTxt"
+                    android:textColor="@color/Color_primary_dark"
+                    android:background="?selectableItemBackgroundBorderless" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.abc.daily.ui.CustomView>
+
+
+
+</FrameLayout>

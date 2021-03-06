@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title=""
+        android:icon="@drawable/ic_write"
+        android:id="@+id/createNote"/>
+
+    <item android:title=""
+        android:icon="@drawable/ic_options"
+        android:id="@+id/settings"/>
+
+    <item android:title=""
+        android:icon="@drawable/ic_info"
+        android:id="@+id/about"/>
+
+</menu>

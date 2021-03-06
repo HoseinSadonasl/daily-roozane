@@ -1,0 +1,230 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/infoParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/med_dp"
+        app:cardBackgroundColor="@color/teal_700"
+        app:cardCornerRadius="@dimen/med_dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/searchParent"
+        app:layout_constraintStart_toStartOf="@+id/searchParent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:background="@drawable/weatherback"
+            android:gravity="center_vertical"
+            android:padding="@dimen/med_dp">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/weatherImage"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temp"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:layout_toEndOf="@id/weatherImage"
+                android:firstBaselineToTopHeight="0dp"
+                android:fontFamily="sans-serif-light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="0dp"
+                android:lineSpacingMultiplier="0"
+                android:textColor="@android:color/white"
+                android:textSize="42sp"
+                app:firstBaselineToTopHeight="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
+                app:layout_constraintStart_toEndOf="@+id/weatherImage"
+                app:layout_constraintTop_toTopOf="@+id/weatherImage"
+                tools:targetApi="p" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:text="26/12/1399"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/med_TextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/weekDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/med_TextSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="@dimen/med_dp"
+                android:layout_height="@dimen/med_dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@id/temp"
+                app:layout_constraintStart_toEndOf="@+id/temp"
+                app:layout_constraintTop_toTopOf="@+id/temp"
+                app:srcCompat="@drawable/ic_weather_clecius"
+                app:tint="@android:color/white" />
+
+
+            <LinearLayout
+                android:id="@+id/locationParent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/temp"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/locationImg"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_baseline_location_on_24"
+                    app:tint="@android:color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/locationName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="0dp"
+                    android:lineSpacingMultiplier="0"
+                    android:text="@string/location"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/low_TextSize" />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="1.5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@android:color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cloudy"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/low_TextSize" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchParent" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:elevation="0dp"
+        app:srcCompat="@drawable/ic_write"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/ShapeAppearance.MaterialComponents.SmallComponent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/med_dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignTop="@id/search_ic"
+                android:layout_alignBottom="@id/search_ic"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/med_dp"
+                android:layout_toStartOf="@id/search_ic"
+                android:background="@null"
+                android:hint="@string/search_note_hint"
+                android:textColorHint="@color/Gray_c"
+                android:textSize="@dimen/med_TextSize" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/search_ic"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:rotation="270"
+                app:srcCompat="@drawable/ic_search"
+                app:tint="@color/Gray_c" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

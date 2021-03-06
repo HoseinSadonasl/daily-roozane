@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/med_dp">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/timePicker"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="6dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/timeTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/timeTxt"
+        app:srcCompat="@drawable/ic_baseline_timer_24" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/timeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/at"
+        android:textColor="@color/black"
+        android:textSize="@dimen/med_TextSize"
+        app:layout_constraintEnd_toEndOf="@+id/dateTxt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dateTxt"
+        app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/reminderSheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/med_TextSize"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/reminder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dateTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        android:text="@string/today"
+        android:textSize="@dimen/med_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/datepicker"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="10dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/dateTxt"
+        app:layout_constraintTop_toTopOf="@+id/dateTxt"
+        app:srcCompat="@drawable/ic_calendar"
+        app:tint="@color/Second_black" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/setReminderBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?selectableItemBackground"
+        android:text="@string/ok"
+        android:textColor="@color/Color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/closeSheetBtn"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:padding="@dimen/low_dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/reminderSheet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/reminderSheet"
+        app:layout_constraintTop_toTopOf="@+id/reminderSheet"
+        app:srcCompat="@drawable/ic_close"
+        app:tint="@color/Color_primary" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="0.25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/Gray_c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminderSheet" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
