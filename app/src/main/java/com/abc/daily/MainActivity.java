@@ -134,30 +134,25 @@ public class MainActivity extends AppCompatActivity implements
 
     private void getDateTime() {
         Calendar cal = Calendar.getInstance();
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        int minute = cal.get(Calendar.MINUTE);
-        int dayPart = cal.get(Calendar.AM_PM);
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-        String ampm = dayPart == 0 ? "am" : "pm";
-        String calendar = ShamsiCalendar.getCurrentShamsidate();
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1;
         String dayOfWeekStr = "";
-        app.l(dayOfWeekStr);
         switch (dayOfWeek) {
-            case 0 : dayOfWeekStr = "Saturday";
+            case 1 : dayOfWeekStr = "Monday";
                 break;
-            case 1 : dayOfWeekStr = "Sunday";
+            case 2 : dayOfWeekStr = "Tuesday";
                 break;
-            case 2 : dayOfWeekStr = "Monday";
+            case 3 : dayOfWeekStr = "Wednesday";
                 break;
-            case 3 : dayOfWeekStr = "Tuesday";
+            case 4 : dayOfWeekStr = "Thursday";
                 break;
-            case 4 : dayOfWeekStr = "Wednesday";
+            case 5 : dayOfWeekStr = "Friday";
                 break;
-            case 5 : dayOfWeekStr = "Thursday";
+            case 6 : dayOfWeekStr = "Saturday";
                 break;
-            case 6 : dayOfWeekStr = "Friday";
+            case 7 : dayOfWeekStr = "Sunday";
                 break;
         }
+        String calendar = ShamsiCalendar.getCurrentShamsidate();
         date.setText(calendar);
         weekDay.setText(dayOfWeekStr);
 
