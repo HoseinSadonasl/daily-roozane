@@ -202,7 +202,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-        app.l("Time milis: " + c.getTimeInMillis());
 
     }
 

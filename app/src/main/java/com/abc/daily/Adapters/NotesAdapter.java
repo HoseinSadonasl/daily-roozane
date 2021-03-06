@@ -30,7 +30,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public NotesAdapter(Context context, List<NoteObjects> objects) {
         this.context = context;
         this.objects = objects;
-        app.l(objects.size()+"SSS");
     }
 
     @NonNull
@@ -75,7 +74,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                     Intent intent = new Intent(context, AddReadNote.class);
                     intent.putExtra(db.Note.NOTE_ID, object.getId());
                     context.startActivity(intent);
-                    app.l("POSITION " + object.getId());
                 }
             });
         }

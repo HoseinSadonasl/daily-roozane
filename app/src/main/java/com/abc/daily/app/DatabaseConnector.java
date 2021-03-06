@@ -34,7 +34,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 + db.Note.NOTE_DATE        + " VARCHAR,      "
                 + db.Note.NOTE_LAST_MODIFY + " VARCHAR       )";
         database.execSQL(query);
-        app.l("onCreate");
     }
 
     @Override
@@ -53,7 +52,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         values.put(db.Note.NOTE_DATE, noteObjects.noteDate);
         addDb.insert(db.Tables.DAILY_NOTE_TABLE, null, values);
         addDb.close();
-        app.l("Add note to Database");
 
     }
 
@@ -74,17 +72,10 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         SQLiteDatabase getDb = getReadableDatabase();
         List<NoteObjects>  list = new ArrayList<>();
         Cursor cursor = getDb.rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE, null);
-        app.l(cursor.getCount() + "get Count");
         if (cursor.moveToFirst()) {
-            app.l("get Count A");
             for (int i = 0 ; i < cursor.getCount() ; i++) {
-                app.l("get Count B");
                 NoteObjects noteObjects = new NoteObjects();
                 noteObjects.setId(cursor.getInt(0));
-                app.l("get Count"+(cursor.getString(0) + "get Count"));
-
-                app.l(cursor.getString(1) + "get Count");
-                app.l(cursor.getString(2) + "get Count");
                 noteObjects.setNoteTitle(cursor.getString(1));
                 noteObjects.setNoteContent(cursor.getString(2));
                 noteObjects.setNoteDate(cursor.getString(3));
@@ -106,7 +97,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         SQLiteDatabase ddb = getWritableDatabase();
         ddb.delete(db.Tables.DAILY_NOTE_TABLE, db.Note.NOTE_ID + "=?" , new String[] {String.valueOf(id)});
         ddb.close();
-        app.l(id + " Deleted");
     }
 
 

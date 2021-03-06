@@ -172,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             }
             case R.id.locationName : {
-                //new CityListDialog(this,new String[]{"a","b"}).show();
                 getCityName();
                 break;
             }
