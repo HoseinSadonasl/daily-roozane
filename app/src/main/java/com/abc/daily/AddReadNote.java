@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.abc.daily.Objects.NoteObjects;
-import com.abc.daily.app.AlertReceiver;
 import com.abc.daily.fragments.BottomSheetFragment;
 import com.abc.daily.interfaces.DialogInterface;
-import com.abc.daily.interfaces.NotificationTitle;
+import com.abc.daily.interfaces.ModifyObject;
+import com.abc.daily.interfaces.NotificationObject;
 import com.abc.daily.ui.MyDailyDialog;
 
 import com.abc.daily.app.DatabaseConnector;
@@ -32,7 +32,7 @@ public class AddReadNote extends AppCompatActivity implements
     NoteObjects objects = new NoteObjects();
     int id;
     MyDailyDialog dialog;
-    String notificationTitle = "";
+    long notificationId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class AddReadNote extends AppCompatActivity implements
         fab = findViewById(R.id.fab);
 
         dbm = new DatabaseConnector(this);
-
 
         back.setOnClickListener(this);
         share.setOnClickListener(this);
@@ -88,10 +87,8 @@ public class AddReadNote extends AppCompatActivity implements
 
     }
 
-    private void showNote() {
+    public void showNote() {
         if (getIntent().hasExtra(db.Note.NOTE_ID)) {
-            delete.setVisibility(View.VISIBLE);
-            share.setVisibility(View.VISIBLE);
             id = getIntent().getIntExtra(db.Note.NOTE_ID, 0);
             Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
                     + db.Note.NOTE_ID + " = " + id, null);
@@ -102,13 +99,30 @@ public class AddReadNote extends AppCompatActivity implements
                 modifiedDate.setText(cursor.getString(cursor.getColumnIndex(db.Note.NOTE_LAST_MODIFY)));
             }
             cursor.close();
-
-
         }
 
     }
 
+    public ModifyObject modifyObject;
+    String rDate = "";
+    String rTime = "";
     private void saveNote() {
+        if(modifyObject != null) {
+            objects = modifyObject.get();
+            rDate = objects.getReminderDate();
+            rTime = objects.getReminderTime();
+            app.l("AAAA" + rDate + "---" + rTime);
+            app.l("AA"+objects.toString());
+        }
+        else {
+            addToDb(false);
+        }
+        addToDb(true);
+        app.l("6546"+objects.toString());
+        finish();
+    }
+
+    private void addToDb(boolean applyAdding) {
         int id = getIntent().getIntExtra(db.Note.NOTE_ID, 0);
         String title = titleEdtTxt.getText().toString();
         String content = contentEdtTxt.getText().toString();
@@ -118,18 +132,32 @@ public class AddReadNote extends AppCompatActivity implements
             objects.id = id;
             objects.noteTitle = title;
             objects.noteContent = content;
-            objects.noteDate = app.getDateTime(false);
+            if(modifyObject != null) {
+                objects = modifyObject.get();
+                objects.reminderDate = rDate;
+                objects.reminderTime = rTime;
+            } else {
+
+                objects.reminderDate = ("Today");
+                objects.reminderTime = ("At: ");
+            }
+            objects.noteDate = createdDate.getText().toString();
             objects.noteModifyDate = app.getDateTime(false);
-            dbm.updateNote(objects);
-            finish();
+            if (applyAdding)
+                dbm.updateNote(objects);
+            notificationId = (long) id;
         } else {
             objects.noteTitle = title;
             objects.noteContent = content;
+            objects.reminderDate = ("Today");
+            objects.reminderTime = ("At: ");
             objects.noteDate = app.getDateTime(false);
-            dbm.addNote(objects);
-            finish();
+            objects.noteModifyDate = app.getDateTime(false);
+            if (!applyAdding)
+            notificationId = dbm.addNote(objects);
+            app.l("notificationId" + notificationId);
         }
-
+        app.l(objects.toString());
     }
 
 
@@ -141,28 +169,32 @@ public class AddReadNote extends AppCompatActivity implements
         dialog.show();
     }
 
+    NotificationObject notificationObject;
+
     private void noteReminder() {
-
-        notificationTitle = titleEdtTxt.getText().toString();
-
+        if (titleEdtTxt.getText().toString().isEmpty()) {
+            app.l("Empty note!");
+            return;
+        }
+        addToDb(false);
+        app.l("notificationId" + notificationId);
         BottomSheetFragment fragment = new BottomSheetFragment();
-        fragment.notificationTitle = new NotificationTitle() {
+        fragment.notificationExteras = new NotificationObject() {
             @Override
-            public String onNotificationTitle() {
-                return notificationTitle;
+            public NoteObjects getObject() {
+                return objects;
             }
         };
-        fragment.show(getSupportFragmentManager(), "TAG");
+        fragment.show(getSupportFragmentManager(), app.TAG);
     }
 
 
     @Override
     public void onPositiveClick() {
-
         dialog.dismiss();
-//        dbm.deleteNote(id);
-//        app.t("Deleted successfully");هم
-//        finish();
+        dbm.deleteNote(id);
+        app.t("Deleted successfully");
+        finish();
     }
 
     @Override

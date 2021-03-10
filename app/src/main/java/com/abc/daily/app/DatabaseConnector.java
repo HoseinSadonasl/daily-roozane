@@ -28,10 +28,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
         String query = "CREATE TABLE IF NOT EXISTS "
                 + db.Tables.DAILY_NOTE_TABLE + "("
-                + db.Note.NOTE_ID          + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + db.Note.NOTE_TITLE       + " VARCHAR(100), "
-                + db.Note.NOTE_CONTENT     + " VARCHAR,      "
-                + db.Note.NOTE_DATE        + " VARCHAR,      "
+                + db.Note.NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + db.Note.NOTE_TITLE + " VARCHAR(100), "
+                + db.Note.NOTE_CONTENT + " VARCHAR,      "
+                + db.Note.REMINDER_DATE + " VARCHAR,      "
+                + db.Note.REMINDER_TIME + " VARCHAR,      "
+                + db.Note.NOTE_DATE + " VARCHAR,      "
                 + db.Note.NOTE_LAST_MODIFY + " VARCHAR       )";
         database.execSQL(query);
     }
@@ -43,42 +45,50 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     }
 
 
-    public void addNote(NoteObjects noteObjects) {
+    public long addNote(NoteObjects noteObjects) {
 
         SQLiteDatabase addDb = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(db.Note.NOTE_TITLE, noteObjects.noteTitle);
         values.put(db.Note.NOTE_CONTENT, noteObjects.noteContent);
+        values.put(db.Note.REMINDER_DATE, noteObjects.reminderDate);
+        values.put(db.Note.REMINDER_TIME, noteObjects.reminderTime);
         values.put(db.Note.NOTE_DATE, noteObjects.noteDate);
-        addDb.insert(db.Tables.DAILY_NOTE_TABLE, null, values);
+        long id = addDb.insert(db.Tables.DAILY_NOTE_TABLE, null, values);
         addDb.close();
-
+        app.l("note called");
+        return id;
     }
 
-    public void updateNote(NoteObjects noteObjects) {
+    public long updateNote(NoteObjects noteObjects) {
 
         SQLiteDatabase addDb = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(db.Note.NOTE_TITLE, noteObjects.noteTitle);
         values.put(db.Note.NOTE_CONTENT, noteObjects.noteContent);
+        values.put(db.Note.REMINDER_DATE, noteObjects.reminderDate);
+        values.put(db.Note.REMINDER_TIME, noteObjects.reminderTime);
         values.put(db.Note.NOTE_DATE, noteObjects.noteDate);
         values.put(db.Note.NOTE_LAST_MODIFY, noteObjects.noteModifyDate);
-        addDb.update(db.Tables.DAILY_NOTE_TABLE, values, db.Note.NOTE_ID + " = ? ", new String[] {String.valueOf(noteObjects.id)});
+        addDb.update(db.Tables.DAILY_NOTE_TABLE, values, db.Note.NOTE_ID + " = ? ", new String[]{String.valueOf(noteObjects.id)});
+        return noteObjects.id;
 
     }
 
     public List<NoteObjects> getAllNotes() {
 
         SQLiteDatabase getDb = getReadableDatabase();
-        List<NoteObjects>  list = new ArrayList<>();
+        List<NoteObjects> list = new ArrayList<>();
         Cursor cursor = getDb.rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE, null);
         if (cursor.moveToFirst()) {
-            for (int i = 0 ; i < cursor.getCount() ; i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 NoteObjects noteObjects = new NoteObjects();
                 noteObjects.setId(cursor.getInt(0));
                 noteObjects.setNoteTitle(cursor.getString(1));
                 noteObjects.setNoteContent(cursor.getString(2));
-                noteObjects.setNoteDate(cursor.getString(3));
+                noteObjects.setNoteContent(cursor.getString(3));
+                noteObjects.setNoteContent(cursor.getString(4));
+                noteObjects.setNoteDate(cursor.getString(5));
                 list.add(noteObjects);
                 cursor.moveToNext();
             }
@@ -95,7 +105,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
 
     public void deleteNote(int id) {
         SQLiteDatabase ddb = getWritableDatabase();
-        ddb.delete(db.Tables.DAILY_NOTE_TABLE, db.Note.NOTE_ID + "=?" , new String[] {String.valueOf(id)});
+        ddb.delete(db.Tables.DAILY_NOTE_TABLE, db.Note.NOTE_ID + "=?", new String[]{String.valueOf(id)});
         ddb.close();
     }
 

@@ -4,11 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.core.app.NotificationCompat;
-
-import com.abc.daily.R;
-import com.abc.daily.interfaces.NotificationTitle;
-
 import java.util.Date;
 
 public class AlertReceiver extends BroadcastReceiver {

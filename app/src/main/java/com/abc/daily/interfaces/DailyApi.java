@@ -8,8 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
 public interface DailyApi {
-
     @GET("weather?appid=6c7b0789e344c8bdd8f0935ff4568e72")
     Call<WeatherModels> getCurrentWeather(@QueryMap Map<String,String> data);
-
 }

@@ -19,6 +19,7 @@
     <string name="today">Today</string>
     <string name="ok">Ok</string>
     <string name="city_name">City name</string>
+    <string name="cancel">cancel</string>
     <string-array name="city_list">
         <item>"Ḩeşār-e Sefīd"</item>
         <item>"‘\Ayn Ḩalāqīm"</item>

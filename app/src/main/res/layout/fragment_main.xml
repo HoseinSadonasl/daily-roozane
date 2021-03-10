@@ -6,19 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <!--        android:id="@+id/infoParent"-->
-
-    <ImageView
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/bc_wea"
-        android:paddingTop="-64dp"
-        app:layout_constraintBottom_toTopOf="@id/searchParent"
-        app:layout_constraintEnd_toEndOf="@+id/searchParent"
-        app:layout_constraintStart_toStartOf="@+id/searchParent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/infoParent"
         android:visibility="visible"
@@ -44,6 +31,7 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:visibility="gone"
                 android:id="@+id/weatherImage"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -51,7 +39,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.ThreeBounce"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:SpinKit_Color="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/locationParent"
+                app:layout_constraintEnd_toEndOf="@+id/locationParent"
+                app:layout_constraintStart_toStartOf="@+id/locationParent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="gone"
                 android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -81,7 +82,7 @@
                 android:textSize="@dimen/med_TextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                app:layout_constraintStart_toEndOf="@+id/tempDegree"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -99,7 +100,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/date" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
+                android:visibility="gone"
+                android:id="@+id/tempDegree"
                 android:layout_width="@dimen/med_dp"
                 android:layout_height="@dimen/med_dp"
                 android:layout_marginStart="4dp"
@@ -120,7 +122,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView">
+                app:layout_constraintTop_toBottomOf="@+id/tempDegree">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/locationImg"

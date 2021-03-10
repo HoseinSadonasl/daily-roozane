@@ -18,7 +18,7 @@ public class spref {
     public static class tags {
         public static final String WEATHER = "WEATHER";
         public static final String SETTINGS = "SETTINGS";
-        public static final String NOTIFICATIONS = "NOTIFICATIONS";
+        public static final String DT_PICKER = "DTPICKER";
     }
 
     public static class Weather {
@@ -27,9 +27,11 @@ public class spref {
     }
 
 
-    public static class notifications {
-        public static final String NOTIFICATION_TITLE = "NOTIFICATIONTITLE" ;
-        public static final String DEFAULT_NOTIFICATION_TITLE = "" ;
+    public static class DtPickera {
+        public static final String TIME_TEXT = "TIME_TEXT" ;
+        public static final String DEFAULT_TIME_TEXT = "" ;
+        public static final String DATE_TEXT = "DATE_TEXT" ;
+        public static final String DEFAULT_DATE_TEXT = "TODAY" ;
     }
 
 }

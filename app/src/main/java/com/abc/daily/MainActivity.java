@@ -32,6 +32,7 @@ import com.abc.daily.app.db;
 import com.abc.daily.interfaces.DialogInterface;
 import com.abc.daily.ui.MyDailyDialog;
 import com.bumptech.glide.Glide;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -55,13 +56,14 @@ public class MainActivity extends AppCompatActivity implements
     DatabaseConnector dbm=new DatabaseConnector(this);
     NavigationView navigationView;
     DrawerLayout drawerlayout;
-    AppCompatImageView weatherImage, search_ic;
+    AppCompatImageView weatherImage, search_ic, tempDgree;
     AppCompatTextView locationName, temp, status, date, weekDay;
     TextClock clock;
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
     Boolean updateList = false;
     Boolean backPressed = false;
+    SpinKitView spinKitView;
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable runnable = new Runnable() {
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements
 //        navigationView = findViewById(R.id.navigationView);
         recyclerView = findViewById(R.id.recyclerView);
         weatherImage = findViewById(R.id.weatherImage);
+        tempDgree = findViewById(R.id.tempDegree);
         locationName = findViewById(R.id.locationName);
         search_ic = findViewById(R.id.search_ic);
         searchInput = findViewById(R.id.searchInput);
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements
         date = findViewById(R.id.date);
         weekDay = findViewById(R.id.weekDay);
         fab = findViewById(R.id.fab);
+        spinKitView = findViewById(R.id.spin_kit);
 
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
@@ -134,22 +138,22 @@ public class MainActivity extends AppCompatActivity implements
 
     private void getDateTime() {
         Calendar cal = Calendar.getInstance();
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         String dayOfWeekStr = "";
         switch (dayOfWeek) {
-            case 1 : dayOfWeekStr = "Monday";
+            case 1 : dayOfWeekStr = "Sunday";
                 break;
-            case 2 : dayOfWeekStr = "Tuesday";
+            case 2 : dayOfWeekStr = "Monday";
                 break;
-            case 3 : dayOfWeekStr = "Wednesday";
+            case 3 : dayOfWeekStr = "Tuesday";
                 break;
-            case 4 : dayOfWeekStr = "Thursday";
+            case 4 : dayOfWeekStr = "Wednesday";
                 break;
-            case 5 : dayOfWeekStr = "Friday";
+            case 5 : dayOfWeekStr = "Thursday";
                 break;
-            case 6 : dayOfWeekStr = "Saturday";
+            case 6 : dayOfWeekStr = "Friday";
                 break;
-            case 7 : dayOfWeekStr = "Sunday";
+            case 7 : dayOfWeekStr = "Saturday";
                 break;
         }
         String calendar = ShamsiCalendar.getCurrentShamsidate();
@@ -261,6 +265,10 @@ public class MainActivity extends AppCompatActivity implements
             public void onResponse(Call<WeatherModels> call, Response<WeatherModels> response) {
 
                 if (response.code() == 200) {
+                    tempDgree.setVisibility(View.VISIBLE);
+                    temp.setVisibility(View.VISIBLE);
+                    weatherImage.setVisibility(View.VISIBLE);
+                    spinKitView.setVisibility(View.GONE);
                     locationName.setText(response.body().getName());
                     temp.setText(String.valueOf((int) (response.body().getMain().getTemp() - 273.15)));
                     status.setText(response.body().getWeather().get(0).getMain());
@@ -269,6 +277,11 @@ public class MainActivity extends AppCompatActivity implements
                             .load("https://openweathermap.org/img/wn/"+ imgUrl +"@2x.png")
                             .into(weatherImage);
                 } else {
+                    locationName.setText("Invalid Location");
+                    spinKitView.setVisibility(View.VISIBLE);
+                    tempDgree.setVisibility(View.GONE);
+                    temp.setVisibility(View.GONE);
+                    weatherImage.setVisibility(View.GONE);
                     app.t("Ops! Invalid city name");
                 }
 
