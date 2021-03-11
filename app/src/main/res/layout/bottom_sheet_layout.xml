@@ -11,7 +11,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/timePicker"
-        android:layout_width="40dp"
+        android:layout_width="24dp"
         android:layout_height="40dp"
         android:insetLeft="0dp"
         android:insetTop="0dp"

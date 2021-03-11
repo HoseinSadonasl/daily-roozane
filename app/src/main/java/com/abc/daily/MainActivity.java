@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements
 
         list = dbm.getAllNotes();
         adapter = new NotesAdapter(MainActivity.this, list);
+        adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -231,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements
             int id = cursor.getInt(cursor.getColumnIndex(db.Note.NOTE_ID));
             String title = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_TITLE));
             String content = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_CONTENT));
+            String reminderDate = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_DATE));
+            String reminderTime = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_TIME));
             String date  = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_DATE));
             String lastModify = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_LAST_MODIFY));
 
@@ -238,6 +241,8 @@ public class MainActivity extends AppCompatActivity implements
             objects.setId(id);
             objects.setNoteTitle(title);
             objects.setNoteContent(content);
+            objects.setReminderDate(reminderDate);
+            objects.setReminderTime(reminderTime);
             objects.setNoteDate(date);
             objects.setNoteModifyDate(lastModify);
             objList.add(objects);
