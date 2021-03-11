@@ -90,6 +90,7 @@ public class AddReadNote extends AppCompatActivity implements
     public void showNote() {
         if (getIntent().hasExtra(db.Note.NOTE_ID)) {
             id = getIntent().getIntExtra(db.Note.NOTE_ID, 0);
+            app.l("ADD READ NOTE ID: " + id);
             Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
                     + db.Note.NOTE_ID + " = " + id, null);
             while (cursor.moveToNext()) {
@@ -99,6 +100,8 @@ public class AddReadNote extends AppCompatActivity implements
                 modifiedDate.setText(cursor.getString(cursor.getColumnIndex(db.Note.NOTE_LAST_MODIFY)));
             }
             cursor.close();
+        } else {
+            delete.setVisibility(View.GONE);
         }
 
     }
@@ -179,7 +182,7 @@ public class AddReadNote extends AppCompatActivity implements
         addToDb(false);
         app.l("notificationId" + notificationId);
         BottomSheetFragment fragment = new BottomSheetFragment();
-        fragment.notificationExteras = new NotificationObject() {
+        fragment.notificationExtras = new NotificationObject() {
             @Override
             public NoteObjects getObject() {
                 return objects;

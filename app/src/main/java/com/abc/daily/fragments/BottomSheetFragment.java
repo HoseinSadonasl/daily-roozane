@@ -7,7 +7,6 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -44,7 +43,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     Calendar calendar;
     DatabaseConnector dbm;
     NoteObjects object;
-    public NotificationObject notificationExteras;
+    public NotificationObject notificationExtras;
     int hour;
     int minute;
     int year;
@@ -123,7 +122,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     }
 
     private void restoreData() {
-            int id = notificationExteras.getObject().getId();
+            int id = notificationExtras.getObject().getId();
             Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
                     + db.Note.NOTE_ID + " = " + id, null);
             while (cursor.moveToNext()) {
@@ -196,15 +195,10 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
 
     private void setReminder() {
-        dateTimeToDb();
         setAlarm(calendar);
         dismiss();
     }
 
-
-
-    private void dateTimeToDb() {
-    }
 
     private void setAlarm(Calendar c) {
         AlarmManager alarmManager = (AlarmManager) Application.getContext().getSystemService(Context.ALARM_SERVICE);
@@ -213,10 +207,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         dateStr = getDateString(c);
         timeStr = getTimeString(c);
 
-        if (notificationExteras != null) {
-            object = notificationExteras.getObject();
-            intent.putExtra("ntStr", object.getNoteTitle());
+        if (notificationExtras != null) {
+            object = notificationExtras.getObject();
             int id = object.getId();
+            intent.putExtra("ntId", object.getId());
+            intent.putExtra("ntStr", object.getNoteTitle());
             object.id = id;
             object.reminderDate = dateStr;
             object.reminderTime = timeStr;

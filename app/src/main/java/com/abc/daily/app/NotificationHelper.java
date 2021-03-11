@@ -3,16 +3,19 @@ package com.abc.daily.app;
 import android.annotation.TargetApi;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import com.abc.daily.AddReadNote;
 import com.abc.daily.R;
 
 public class NotificationHelper extends ContextWrapper {
@@ -21,6 +24,8 @@ public class NotificationHelper extends ContextWrapper {
     public static final String channelName = "Note reminder";
 
     private NotificationManager mManager;
+    PendingIntent mIntent;
+    int id = 0;
 
     public NotificationHelper(Context base) {
         super(base);
@@ -44,16 +49,31 @@ public class NotificationHelper extends ContextWrapper {
         return mManager;
     }
 
+    private PendingIntent pIntent(int id) {
+        Intent pIntent = new Intent(this, AddReadNote.class);
+        pIntent.putExtra(db.Note.NOTE_ID, id);
+        app.l("ID pIntent: >>>" + id);
+        mIntent = PendingIntent.getActivity(
+                this, 0, pIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return mIntent;
+    }
 
-    public NotificationCompat.Builder getChannelNotification(String notificationTitle) {
+
+    public NotificationCompat.Builder getChannelNotification(int notificationId , String notificationTitle) {
+        id = notificationId;
+        app.l("ID: >>>" + id);
         Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.daily_notification);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
                 .setSmallIcon(R.drawable.ic_baseline_timer_24)
+                .setContentIntent(pIntent(id))
+                .addAction(R.drawable.ic_bell, "Open it", pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
-                .setContentText("AlarmManager is working.");
+                .setContentText("Tap for more!");
         return builder;
     }
+
+
 
 }
 

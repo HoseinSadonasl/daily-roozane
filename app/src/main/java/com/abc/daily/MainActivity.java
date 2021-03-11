@@ -52,18 +52,19 @@ public class MainActivity extends AppCompatActivity implements
     RecyclerView recyclerView;
     FloatingActionButton fab;
     NotesAdapter adapter;
-    List<NoteObjects> list=new ArrayList<>();
-    DatabaseConnector dbm=new DatabaseConnector(this);
+    List<NoteObjects> list = new ArrayList<>();
+    DatabaseConnector dbm = new DatabaseConnector(this);
     NavigationView navigationView;
     DrawerLayout drawerlayout;
     AppCompatImageView weatherImage, search_ic, tempDgree;
     AppCompatTextView locationName, temp, status, date, weekDay;
-    TextClock clock;
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
     Boolean updateList = false;
     Boolean backPressed = false;
     SpinKitView spinKitView;
+    String cityNameString;
+
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable runnable = new Runnable() {
@@ -181,15 +182,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void getCityName() {
-        dialog = new MyDailyDialog(this,
-                "Ok", "Cancel",
-                "City name",
-                "Please enter city name", 1,
-                1,this, 0, 0);
-        dialog.show();
-
-    }
 
    @Override
     protected void onResume() {
@@ -255,9 +247,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void getWeather() {
+        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
+        if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
+            getCityName();
+        }
         Map<String ,String> data=new HashMap();
             data.put("appid","6c7b0789e344c8bdd8f0935ff4568e72");
-            data.put("q", spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName));
+            data.put("q", cityNameString);
 
 
         Application.getApi().getCurrentWeather(data).enqueue(new Callback<WeatherModels>() {
@@ -276,14 +272,15 @@ public class MainActivity extends AppCompatActivity implements
                     Glide.with(weatherImage)
                             .load("https://openweathermap.org/img/wn/"+ imgUrl +"@2x.png")
                             .into(weatherImage);
-                } else {
+                } else{
                     locationName.setText("Invalid Location");
                     spinKitView.setVisibility(View.VISIBLE);
                     tempDgree.setVisibility(View.GONE);
                     temp.setVisibility(View.GONE);
                     weatherImage.setVisibility(View.GONE);
-                    app.t("Ops! Invalid city name");
+                    app.t("Ops! Invalid city name, please enter a valid city name");
                 }
+
 
             }
 
@@ -291,6 +288,16 @@ public class MainActivity extends AppCompatActivity implements
             public void onFailure(Call<WeatherModels> call, Throwable t) {
             }
         });
+    }
+
+
+    private void getCityName() {
+        dialog = new MyDailyDialog(this,
+                "Ok", "Cancel",
+                "City name",
+                "Please enter city name", 1,
+                1,this, 0, 0);
+        dialog.show();
     }
 
     @Override

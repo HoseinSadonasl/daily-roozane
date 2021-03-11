@@ -221,6 +221,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/med_dp"
                 android:layout_toStartOf="@id/search_ic"
+                android:maxLines="1"
+                android:inputType="text"
                 android:background="@null"
                 android:hint="@string/search_note_hint"
                 android:textColorHint="@color/Gray_c"
