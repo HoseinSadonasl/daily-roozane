@@ -64,9 +64,9 @@ public class NotificationHelper extends ContextWrapper {
         app.l("ID: >>>" + id);
         Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.daily_notification);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
-                .setSmallIcon(R.drawable.ic_baseline_timer_24)
+                .setSmallIcon(R.drawable.ic_roozaneicldpi)
                 .setContentIntent(pIntent(id))
-                .addAction(R.drawable.ic_bell, "Open it", pIntent(id))
+                .addAction(R.mipmap.ic_launcher_foreground, "Open it", pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
                 .setContentText("Tap for more!");

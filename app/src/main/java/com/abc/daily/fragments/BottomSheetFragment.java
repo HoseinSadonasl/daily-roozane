@@ -210,10 +210,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
         if (notificationExtras != null) {
             object = notificationExtras.getObject();
-            int id = object.getId();
+            app.l(notificationExtras.getObject().toString());
             intent.putExtra("ntId", object.getId());
             intent.putExtra("ntStr", object.getNoteTitle());
-            object.id = id;
+            object.noteTitle = notificationExtras.getObject().getNoteTitle();
+            object.noteTitle = notificationExtras.getObject().getNoteTitle();
             object.reminderDate = dateStr;
             object.reminderTime = timeStr;
             dbm.updateNote(object);
@@ -259,6 +260,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
             case 7 : weekDay = "Sat";
                 break;
         }
+
         String monthOfYear = "";
         switch (c.get(Calendar.MONTH)) {
             case 1 : monthOfYear = "Jan";
@@ -286,6 +288,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
             case 12 : monthOfYear = "Dec";
                 break;
         }
+
         return weekDay + ", " + monthOfYear + ", " + c.get(Calendar.DAY_OF_MONTH);
     }
 

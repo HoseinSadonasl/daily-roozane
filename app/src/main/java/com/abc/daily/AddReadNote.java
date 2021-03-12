@@ -29,10 +29,11 @@ public class AddReadNote extends AppCompatActivity implements
     AppCompatTextView appbarTitle, createdDate, modifiedDate;
     FloatingActionButton fab;
     DatabaseConnector dbm;
-    NoteObjects objects = new NoteObjects();
+    NoteObjects objects;
     int id;
     MyDailyDialog dialog;
     long notificationId;
+    Object object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class AddReadNote extends AppCompatActivity implements
         fab = findViewById(R.id.fab);
 
         dbm = new DatabaseConnector(this);
+        objects = new NoteObjects();
 
         back.setOnClickListener(this);
         share.setOnClickListener(this);
@@ -121,7 +123,7 @@ public class AddReadNote extends AppCompatActivity implements
             addToDb(false);
         }
         addToDb(true);
-        app.l("6546"+objects.toString());
+        app.l("BB"+objects.toString());
         finish();
     }
 
@@ -157,10 +159,11 @@ public class AddReadNote extends AppCompatActivity implements
             objects.noteDate = app.getDateTime(false);
             objects.noteModifyDate = app.getDateTime(false);
             if (!applyAdding)
-            notificationId = dbm.addNote(objects);
-            app.l("notificationId" + notificationId);
+                notificationId = dbm.addNote(objects);
+                app.l("notificationId" + notificationId);
         }
-        app.l(objects.toString());
+        objects.id = (int) notificationId;
+        app.l("CC" + objects.toString());
     }
 
 
@@ -173,8 +176,8 @@ public class AddReadNote extends AppCompatActivity implements
     }
 
     NotificationObject notificationObject;
-
     private void noteReminder() {
+        app.l("notificationId" + objects.toString());
         if (titleEdtTxt.getText().toString().isEmpty()) {
             app.l("Empty note!");
             return;
@@ -185,6 +188,7 @@ public class AddReadNote extends AppCompatActivity implements
         fragment.notificationExtras = new NotificationObject() {
             @Override
             public NoteObjects getObject() {
+                app.l("DD" + objects.toString());
                 return objects;
             }
         };
