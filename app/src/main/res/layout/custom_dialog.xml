@@ -7,10 +7,13 @@
 
 
 
-    <com.abc.daily.ui.CustomView
+    <androidx.cardview.widget.CardView
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:cardCornerRadius="@dimen/med_dp"
+        app:cardElevation="0dp"
+        android:backgroundTint="@color/Back_white"
         android:padding="@dimen/med_dp">
 
         <LinearLayout
@@ -28,7 +31,7 @@
                     android:text="@string/app_name"
                     android:textStyle="bold"
                     android:layout_margin="@dimen/med_dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/Second_black"
                     android:gravity="center_vertical"/>
 
 
@@ -40,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
                     android:textColor="@color/Gray_c"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:layout_marginLeft="@dimen/med_dp"
                     android:layout_marginRight="@dimen/med_dp"
                     android:layout_marginBottom="@dimen/med_dp"/>
@@ -66,7 +69,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.25dp"
-                android:background="@color/Second_black"
+                android:background="@color/btn_grey"
                 android:layout_marginRight="@dimen/med_dp"
                 android:layout_marginLeft="@dimen/med_dp"/>
 
@@ -77,15 +80,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-
-
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/negative"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/negativeBtnTxt"
+                    android:textAllCaps="false"
                     android:textColor="@color/teal_500"
                     android:background="?selectableItemBackgroundBorderless"/>
 
@@ -96,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="@string/positiveBtnTxt"
+                    android:textAllCaps="false"
                     android:textColor="@color/teal_500"
                     android:background="?selectableItemBackgroundBorderless" />
 
@@ -104,7 +106,7 @@
 
         </LinearLayout>
 
-    </com.abc.daily.ui.CustomView>
+    </androidx.cardview.widget.CardView>
 
 
 

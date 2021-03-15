@@ -18,7 +18,14 @@ public class spref {
     public static class tags {
         public static final String WEATHER = "WEATHER";
         public static final String SETTINGS = "SETTINGS";
-        public static final String DT_PICKER = "DTPICKER";
+        public static final String SORT = "SORT";
+        public static final String SORT_TYPE = "SORT_TYPE";
+        public static final String SORT_BTN_TXT = "";
+        public static final String SORT_BTN_DEFAULT_TXT = "Date";
+        public static final int SORT_IC = 0;
+        public static final int SORT_DEFAULT_IC = 1;
+        public static final String SORT_ICON_ID = "SORT_ICON_ID";
+
     }
 
     public static class Weather {
@@ -26,12 +33,15 @@ public class spref {
         public static final String defaultCityName = "";
     }
 
-
-    public static class DtPickera {
-        public static final String TIME_TEXT = "TIME_TEXT" ;
-        public static final String DEFAULT_TIME_TEXT = "" ;
-        public static final String DATE_TEXT = "DATE_TEXT" ;
-        public static final String DEFAULT_DATE_TEXT = "TODAY" ;
+    public static class SortState {
+        public static final String SORT_BY_NAME = db.Note.NOTE_TITLE;
+        public static final String SORT_BY_DATE = db.Note.NOTE_ID;
+        public static final String SORT_DEFAULT = SORT_BY_DATE;
     }
 
+    public static class SortType {
+        public static final String ASC = "ASC";
+        public static final String DESC = "DESC";
+        public static final String DEFAULT_TYPE = ASC;
+    }
 }

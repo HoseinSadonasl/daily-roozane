@@ -1,5 +1,6 @@
 package com.abc.daily;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,20 +10,25 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextClock;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abc.daily.Adapters.NotesAdapter;
+import com.abc.daily.Adapters.SpinnerAdapter;
 import com.abc.daily.Objects.NoteObjects;
+import com.abc.daily.Objects.SpinnerObjects;
 import com.abc.daily.Objects.WeatherModels;
 import com.abc.daily.app.Application;
 import com.abc.daily.app.DatabaseConnector;
@@ -33,6 +39,7 @@ import com.abc.daily.interfaces.DialogInterface;
 import com.abc.daily.ui.MyDailyDialog;
 import com.bumptech.glide.Glide;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -47,7 +54,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, DialogInterface {
+        View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, DialogInterface, AdapterView.OnItemSelectedListener {
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
@@ -58,12 +65,18 @@ public class MainActivity extends AppCompatActivity implements
     DrawerLayout drawerlayout;
     AppCompatImageView weatherImage, search_ic, tempDgree;
     AppCompatTextView locationName, temp, status, date, weekDay;
+    MaterialButton sort;
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
     Boolean updateList = false;
     Boolean backPressed = false;
     SpinKitView spinKitView;
     String cityNameString;
+//    AppCompatSpinner sort;
+//    SpinnerAdapter spinnerAdapter;
+//    List<SpinnerObjects> spinnerObjects;
+    String orderState;
+    String orderType;
 
 
     private Handler handler = new Handler(Looper.getMainLooper());
@@ -99,10 +112,18 @@ public class MainActivity extends AppCompatActivity implements
         weekDay = findViewById(R.id.weekDay);
         fab = findViewById(R.id.fab);
         spinKitView = findViewById(R.id.spin_kit);
+        sort = findViewById(R.id.sort);
 
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
         search_ic.setOnClickListener(this);
+        sort.setOnClickListener(this);
+
+
+        spref spref = new spref();
+
+
+        //sort.setOnItemSelectedListener(this);
 
         updateList = true;
 
@@ -113,7 +134,13 @@ public class MainActivity extends AppCompatActivity implements
         recyclerView.setAdapter(adapter);
 
 
-
+//        spinnerObjects = new ArrayList<>();
+//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_az_sortldpi, "Name"));
+//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_az_sortldpi, "Name"));
+//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_date_sortldpi, "Date"));
+//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_date_sortldpi, "Date"));
+//        spinnerAdapter = new SpinnerAdapter(this, R.layout.spinner_layout, spinnerObjects);
+//        sort.setAdapter(spinnerAdapter);
 
         //navigationView.setNavigationItemSelectedListener(this);
 
@@ -134,8 +161,15 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
+        restoreDara();
         getWeather();
         getDateTime();
+    }
+
+    private void restoreDara() {
+        sort.setText(spref.get(spref.tags.SORT_BTN_TXT).getString(spref.tags.SORT_BTN_TXT, spref.tags.SORT_BTN_DEFAULT_TXT));
+        sort.setIcon(ContextCompat.getDrawable(this,spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID,R.drawable.ic_dateascldpi)));
+
     }
 
     private void getDateTime() {
@@ -180,11 +214,15 @@ public class MainActivity extends AppCompatActivity implements
                 readdata(searchInput.getText().toString());
                 break;
             }
+            case R.id.sort : {
+                sortData();
+                break;
+            }
         }
     }
 
 
-   @Override
+    @Override
     protected void onResume() {
             list.clear();
         if (searchInput.getText().toString() != null) {
@@ -216,16 +254,21 @@ public class MainActivity extends AppCompatActivity implements
 
     private List<NoteObjects> readdata(String inputText) {
 
-        List<NoteObjects> objList = new ArrayList<>();
+        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
+        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
+        app.l(orderState + "-" +  orderType);
 
+        List<NoteObjects> objList = new ArrayList<>();
         Cursor cursor = null;
         if (inputText.equals("")) {
-            cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE , null);
+            cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE +
+                    " ORDER BY " + orderState + " " + orderType , null);
 
         } else {
             cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE +
                     " WHERE " + db.Note.NOTE_TITLE + " LIKE '%" + inputText + "%'" +
-                    " OR " + db.Note.NOTE_CONTENT  + " LIKE '%" + inputText + "%'", null);
+                    " OR " + db.Note.NOTE_CONTENT  + " LIKE '%" + inputText + "%'"+
+                    " ORDER BY " + orderState + " " + orderType , null);
         }
 
         while (cursor.moveToNext()) {
@@ -249,6 +292,42 @@ public class MainActivity extends AppCompatActivity implements
         }
         cursor.close();
         return objList;
+    }
+
+    private void sortData() {
+        int iconId = 0;
+        if (orderState.equals(spref.SortState.SORT_BY_DATE) && orderType.equals(spref.SortType.ASC)) {
+            orderState = spref.SortState.SORT_BY_DATE;
+            orderType = spref.SortType.DESC;
+            sort.setText("Date");
+            sort.setIconResource(R.drawable.ic_datedescldpi);
+            iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_datedescldpi),"drawable","com.abc.daily");
+        } else if (orderState.equals(spref.SortState.SORT_BY_DATE) && orderType.equals(spref.SortType.DESC)) {
+            orderState = spref.SortState.SORT_BY_NAME;
+            orderType = spref.SortType.ASC;
+            sort.setText("Name");
+            sort.setIconResource(R.drawable.ic_titleascldpi);
+            iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_titleascldpi),"drawable","com.abc.daily");
+        } else if (orderState.equals(spref.SortState.SORT_BY_NAME) && orderType.equals(spref.SortType.ASC)) {
+            orderState = spref.SortState.SORT_BY_NAME;
+            orderType = spref.SortType.DESC;
+            sort.setText("Name");
+            sort.setIconResource(R.drawable.ic_titledescldpi);
+            iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_titledescldpi),"drawable","com.abc.daily");
+        } else if (orderState.equals(spref.SortState.SORT_BY_NAME) && orderType.equals(spref.SortType.DESC)) {
+            orderState = spref.SortState.SORT_BY_DATE;
+            orderType = spref.SortType.ASC;
+            sort.setText("Date");
+            sort.setIconResource(R.drawable.ic_dateascldpi);
+            iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_dateascldpi),"drawable","com.abc.daily");
+        }
+        spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT, orderState).apply();
+        spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT_TYPE, orderType).apply();
+        spref.get(spref.tags.SORT_BTN_TXT).edit().putString(spref.tags.SORT_BTN_TXT,sort.getText().toString()).apply();
+        spref.get(spref.tags.SORT).edit().putInt(spref.tags.SORT_ICON_ID, iconId).apply();
+        list.clear();
+        list.addAll(readdata(""));
+        adapter.notifyDataSetChanged();
     }
 
     private void getWeather() {
@@ -340,4 +419,15 @@ public class MainActivity extends AppCompatActivity implements
         dialog.dismiss();
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

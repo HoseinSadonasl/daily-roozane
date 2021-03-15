@@ -213,8 +213,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
             app.l(notificationExtras.getObject().toString());
             intent.putExtra("ntId", object.getId());
             intent.putExtra("ntStr", object.getNoteTitle());
-            object.noteTitle = notificationExtras.getObject().getNoteTitle();
-            object.noteTitle = notificationExtras.getObject().getNoteTitle();
             object.reminderDate = dateStr;
             object.reminderTime = timeStr;
             dbm.updateNote(object);

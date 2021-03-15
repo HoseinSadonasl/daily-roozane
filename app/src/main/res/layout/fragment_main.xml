@@ -1,16 +1,16 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/infoParent"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="140dp"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/Back_white"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="@+id/searchParent"
@@ -25,17 +25,17 @@
             android:background="@drawable/bc_wea"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/med_dp"
-            android:paddingRight="@dimen/med_dp"
             android:paddingTop="@dimen/med_dp"
+            android:paddingRight="@dimen/med_dp"
             android:paddingBottom="@dimen/high_dp">
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:visibility="gone"
                 android:id="@+id/weatherImage"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:visibility="gone"
                 android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -65,6 +64,7 @@
                 android:lineSpacingMultiplier="0"
                 android:textColor="@android:color/white"
                 android:textSize="42sp"
+                android:visibility="gone"
                 app:firstBaselineToTopHeight="0dp"
                 app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
                 app:layout_constraintStart_toEndOf="@+id/weatherImage"
@@ -100,13 +100,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/date" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:visibility="gone"
                 android:id="@+id/tempDegree"
                 android:layout_width="@dimen/med_dp"
                 android:layout_height="@dimen/med_dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/temp"
+                android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/temp"
                 app:layout_constraintTop_toTopOf="@+id/temp"
                 app:srcCompat="@drawable/ic_weather_clecius"
@@ -180,70 +180,148 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        style="@style/ShapeAppearance.MaterialComponents.SmallComponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:elevation="0dp"
-        app:srcCompat="@drawable/ic_write"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/ShapeAppearance.MaterialComponents.SmallComponent"/>
+        app:srcCompat="@drawable/ic_write" />
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/searchParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="@dimen/med_dp"
-        app:cardElevation="0dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoParent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_weight="6"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/med_dp"
+            app:cardElevation="0dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/searchInput"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_alignTop="@id/search_ic"
-                android:layout_alignBottom="@id/search_ic"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/med_dp"
-                android:layout_toStartOf="@id/search_ic"
-                android:maxLines="1"
-                android:inputType="text"
-                android:background="@null"
-                android:hint="@string/search_note_hint"
-                android:textColorHint="@color/Gray_c"
-                android:textSize="@dimen/med_TextSize" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/search_ic"
-                android:layout_width="16dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/med_dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:rotation="270"
-                app:srcCompat="@drawable/ic_search"
-                app:tint="@color/Gray_c" />
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/searchInput"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignTop="@id/search_ic"
+                    android:layout_alignBottom="@id/search_ic"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/med_dp"
+                    android:layout_toStartOf="@id/search_ic"
+                    android:background="@null"
+                    android:hint="@string/search_note_hint"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColorHint="@color/Gray_c"
+                    android:textSize="@dimen/med_TextSize" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_ic"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/med_dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:rotation="270"
+                    app:srcCompat="@drawable/ic_search"
+                    app:tint="@color/Gray_c" />
 
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sort"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="0dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="@dimen/low_dp"
+            android:text="@string/app_name"
+            android:textAllCaps="false"
+            android:textColor="@color/Gray_c"
+            android:gravity="center_horizontal"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="@dimen/high_dp"
+            android:includeFontPadding="false"
+            app:elevation="0dp"
+            app:icon="@drawable/ic_dateascldpi"
+            app:iconGravity="textStart"
+            app:iconTint="@color/Gray_c"
+            app:iconSize="@dimen/med_dp"
+            android:stateListAnimator="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/dateTxt"
+            app:layout_constraintTop_toTopOf="@+id/dateTxt" />
+
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/med_dp"
+            app:cardElevation="0dp" >
+
+
+
+<!--                <androidx.appcompat.widget.AppCompatSpinner-->
+<!--                    android:id="@+id/sort"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"/>-->
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/more"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="@dimen/low_dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_more"
+            android:tint="@color/Second_black" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
