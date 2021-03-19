@@ -88,7 +88,7 @@
                     android:text="@string/negativeBtnTxt"
                     android:textAllCaps="false"
                     android:textColor="@color/teal_500"
-                    android:background="?selectableItemBackgroundBorderless"/>
+                    android:background="?selectableItemBackground"/>
 
 
                 <com.google.android.material.button.MaterialButton
@@ -99,7 +99,7 @@
                     android:text="@string/positiveBtnTxt"
                     android:textAllCaps="false"
                     android:textColor="@color/teal_500"
-                    android:background="?selectableItemBackgroundBorderless" />
+                    android:background="?selectableItemBackground" />
 
 
             </LinearLayout>

@@ -49,7 +49,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, DialogInterface {
+        View.OnClickListener, DialogInterface, NavigationView.OnNavigationItemSelectedListener {
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements
     DrawerLayout drawerlayout;
     AppCompatImageView weatherImage, search_ic, tempDgree, more;
     AppCompatTextView locationName, temp, status, date, weekDay;
+    NavigationView navigationView;
     MaterialButton sort;
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements
         locationName = findViewById(R.id.locationName);
         search_ic = findViewById(R.id.search_ic);
         searchInput = findViewById(R.id.searchInput);
+        navigationView = findViewById(R.id.navigationView);
         temp = findViewById(R.id.temp);
         status = findViewById(R.id.status);
         date = findViewById(R.id.date);
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements
         locationName.setOnClickListener(this);
         search_ic.setOnClickListener(this);
         sort.setOnClickListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         updateList = true;
 
@@ -137,12 +140,12 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         restoreDara();
-        if (Application.isNetworkEnabled()) {
-            getWeather();
-        } else {
-            app.t("Network is unavailable");
-        }
+//        if (Application.isNetworkEnabled()) {
+//        } else {
+//            app.t("Network is unavailable");
+//        }
 
+        getWeather();
         getDateTime();
     }
 
@@ -312,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements
         adapter.notifyDataSetChanged();
     }
 
+    private static final String TAG = "MainActivity";
     private void getWeather() {
         if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
             getCityName();
@@ -319,12 +323,12 @@ public class MainActivity extends AppCompatActivity implements
         Map<String ,String> data=new HashMap();
             data.put("appid","6c7b0789e344c8bdd8f0935ff4568e72");
             data.put("q", cityNameString);
-
+        Log.d(TAG, "getWeather: getting data");
 
         Application.getApi().getCurrentWeather(data).enqueue(new Callback<WeatherModels>() {
             @Override
             public void onResponse(Call<WeatherModels> call, Response<WeatherModels> response) {
-
+                Log.d(TAG, "onResponse: "+response.body());
                 if (response.code() == 200) {
                     tempDgree.setVisibility(View.VISIBLE);
                     temp.setVisibility(View.VISIBLE);
@@ -351,18 +355,24 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onFailure(Call<WeatherModels> call, Throwable t) {
-                Log.e("ddssaa", "onFailure: aassv", t);
+                Log.e(TAG, "onFailure: ", t);
             }
         });
     }
 
 
     private void getCityName() {
-        dialog = new MyDailyDialog(this,
-                "Ok", "Cancel",
+        dialog = new MyDailyDialog(
+                this,
+                "Ok",
+                "Cancel",
                 "City name",
-                "Please enter city name", 1,
-                1,this, 0, 0);
+                "Please enter city name",
+                1,
+                1,
+                this,
+                0,
+                0);
         dialog.setCancelable(false);
         dialog.show();
     }
@@ -371,6 +381,8 @@ public class MainActivity extends AppCompatActivity implements
     public void onPositiveClick() {
         locationName.setText(dialog.getInputText());
         spref.get(spref.tags.WEATHER).edit().putString(spref.Weather.cityName, locationName.getText().toString()).apply();
+        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
+
         getWeather();
         dialog.dismiss();
     }
@@ -381,4 +393,25 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int mId = item.getItemId();
+
+        switch (mId) {
+            case R.id.createNote : {
+                startActivity(new Intent(MainActivity.this, AddReadNote.class));
+                break;
+            }
+            case R.id.settings : {
+                app.t("Setting pressed");
+                break;
+            }
+            case R.id.about : {
+                app.t("About pressed");
+                break;
+            }
+        }
+        drawerlayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

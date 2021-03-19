@@ -138,4 +138,22 @@ public class WeatherModels {
         mWind = wind;
     }
 
+    @Override
+    public String toString() {
+        return "WeatherModels{" +
+                "mBase='" + mBase + '\'' +
+                ", mClouds=" + mClouds +
+                ", mCod=" + mCod +
+                ", mCoord=" + mCoord +
+                ", mDt=" + mDt +
+                ", mId=" + mId +
+                ", mMain=" + mMain +
+                ", mName='" + mName + '\'' +
+                ", mSys=" + mSys +
+                ", mTimezone=" + mTimezone +
+                ", mVisibility=" + mVisibility +
+                ", mWeather=" + mWeather +
+                ", mWind=" + mWind +
+                '}';
+    }
 }

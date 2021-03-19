@@ -23,8 +23,6 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
     private String titleText    = "";
     private String subtitleText = "";
     private int textInputVisibility;
-    private int datePickerVisibility;
-    private int timePickerVisibility;
     private int alertSubtitleVisibility;
 
     MaterialButton positive, negative;
@@ -43,8 +41,6 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
         this.subtitleText = subtitleText;
         this.textInputVisibility = textInputVisibility;
         this.alertSubtitleVisibility = alertSubtitleVisibility;
-        this.datePickerVisibility = datePickerVisibility;
-        this.timePickerVisibility = timePickerVisibility;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.custom_dialog);
         init();
