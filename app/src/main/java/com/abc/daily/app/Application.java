@@ -3,6 +3,7 @@ package com.abc.daily.app;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Build;
 
 import com.google.gson.Gson;
@@ -54,6 +55,12 @@ public class Application extends android.app.Application {
     public void getDate() {
         Calendar cal = Calendar.getInstance();
         cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public static Boolean isNetworkEnabled() {
+        ConnectivityManager manager =
+                (ConnectivityManager) Application.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        return manager.getActiveNetworkInfo() != null && manager.getActiveNetworkInfo().isConnected();
     }
 
 

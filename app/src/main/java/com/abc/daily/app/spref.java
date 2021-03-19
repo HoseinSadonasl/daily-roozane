@@ -22,8 +22,6 @@ public class spref {
         public static final String SORT_TYPE = "SORT_TYPE";
         public static final String SORT_BTN_TXT = "";
         public static final String SORT_BTN_DEFAULT_TXT = "Date";
-        public static final int SORT_IC = 0;
-        public static final int SORT_DEFAULT_IC = 1;
         public static final String SORT_ICON_ID = "SORT_ICON_ID";
 
     }

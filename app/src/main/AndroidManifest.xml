@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.abc.daily">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".app.Application"
@@ -16,21 +16,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily"
         tools:replace="android:theme">
-        <activity android:name=".TestActivity"/>
-        <receiver android:name=".app.AlertReceiver"/>
+        <activity android:name=".SplashScreen"
+            android:theme="@style/Theme.DailyNoActionbarMain">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".TestActivity" />
+
+        <receiver android:name=".app.AlertReceiver" />
+
         <activity
             android:name=".AddReadNote"
             android:theme="@style/Theme.DailyNoActionbar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.DailyNoActionbarMain"
-            android:windowSoftInputMode="adjustPan|adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
     </application>
 
 </manifest>

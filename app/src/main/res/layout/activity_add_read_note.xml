@@ -67,10 +67,11 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="16dp"
@@ -91,36 +92,39 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="@string/title"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/contentEdtTxt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="start"
                 android:layout_below="@id/titleEdtTxt"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-                android:hint="@string/content" />
+                android:gravity="start"
+                android:hint="@string/content"
+                android:textColor="@color/Second_black" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/modifiedDate"
-                android:text="@string/modified"
-                android:textColor="@color/Second_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"/>
+                android:text="@string/modified"
+                android:textColor="@color/Gray_c"
+                android:textSize="@dimen/low_TextSize" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/createdDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/createdDate"
-                android:text="@string/created"
-                android:textColor="@color/Second_black"
                 android:layout_above="@id/modifiedDate"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:text="@string/created"
+                android:textColor="@color/Gray_c"
+                android:textSize="@dimen/low_TextSize" />
 
         </RelativeLayout>
 
@@ -132,12 +136,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="@string/todo"
         android:tint="@android:color/white"
         app:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_check" />
 

@@ -1,6 +1,4 @@
 package com.abc.daily;
-
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,16 +6,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextClock;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -26,9 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abc.daily.Adapters.NotesAdapter;
-import com.abc.daily.Adapters.SpinnerAdapter;
 import com.abc.daily.Objects.NoteObjects;
-import com.abc.daily.Objects.SpinnerObjects;
 import com.abc.daily.Objects.WeatherModels;
 import com.abc.daily.app.Application;
 import com.abc.daily.app.DatabaseConnector;
@@ -54,16 +49,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements
-        View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, DialogInterface, AdapterView.OnItemSelectedListener {
+        View.OnClickListener, DialogInterface {
 
     RecyclerView recyclerView;
     FloatingActionButton fab;
     NotesAdapter adapter;
     List<NoteObjects> list = new ArrayList<>();
     DatabaseConnector dbm = new DatabaseConnector(this);
-    NavigationView navigationView;
     DrawerLayout drawerlayout;
-    AppCompatImageView weatherImage, search_ic, tempDgree;
+    AppCompatImageView weatherImage, search_ic, tempDgree, more;
     AppCompatTextView locationName, temp, status, date, weekDay;
     MaterialButton sort;
     AppCompatEditText searchInput;
@@ -72,9 +66,6 @@ public class MainActivity extends AppCompatActivity implements
     Boolean backPressed = false;
     SpinKitView spinKitView;
     String cityNameString;
-//    AppCompatSpinner sort;
-//    SpinnerAdapter spinnerAdapter;
-//    List<SpinnerObjects> spinnerObjects;
     String orderState;
     String orderType;
 
@@ -99,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements
 
     private void init() {
         drawerlayout = findViewById(R.id.drawerlayout);
-//        navigationView = findViewById(R.id.navigationView);
         recyclerView = findViewById(R.id.recyclerView);
         weatherImage = findViewById(R.id.weatherImage);
         tempDgree = findViewById(R.id.tempDegree);
@@ -113,17 +103,12 @@ public class MainActivity extends AppCompatActivity implements
         fab = findViewById(R.id.fab);
         spinKitView = findViewById(R.id.spin_kit);
         sort = findViewById(R.id.sort);
+        more = findViewById(R.id.more);
 
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
         search_ic.setOnClickListener(this);
         sort.setOnClickListener(this);
-
-
-        spref spref = new spref();
-
-
-        //sort.setOnItemSelectedListener(this);
 
         updateList = true;
 
@@ -133,16 +118,6 @@ public class MainActivity extends AppCompatActivity implements
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-
-//        spinnerObjects = new ArrayList<>();
-//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_az_sortldpi, "Name"));
-//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_az_sortldpi, "Name"));
-//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_date_sortldpi, "Date"));
-//        spinnerObjects.add(new SpinnerObjects(R.drawable.ic_date_sortldpi, "Date"));
-//        spinnerAdapter = new SpinnerAdapter(this, R.layout.spinner_layout, spinnerObjects);
-//        sort.setAdapter(spinnerAdapter);
-
-        //navigationView.setNavigationItemSelectedListener(this);
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -162,14 +137,21 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         restoreDara();
-        getWeather();
+        if (Application.isNetworkEnabled()) {
+            getWeather();
+        } else {
+            app.t("Network is unavailable");
+        }
+
         getDateTime();
     }
 
     private void restoreDara() {
+        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
+        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
+        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
         sort.setText(spref.get(spref.tags.SORT_BTN_TXT).getString(spref.tags.SORT_BTN_TXT, spref.tags.SORT_BTN_DEFAULT_TXT));
         sort.setIcon(ContextCompat.getDrawable(this,spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID,R.drawable.ic_dateascldpi)));
-
     }
 
     private void getDateTime() {
@@ -236,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-
         if (!backPressed){
             backPressed = true;
             searchInput.clearFocus();
@@ -246,16 +227,17 @@ public class MainActivity extends AppCompatActivity implements
                 public void run() {
                     backPressed = false;
                 }
-            },1500);
+            },3000);
         } else {
-            super.onBackPressed();
+            Intent i = new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_HOME);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
         }
     }
 
     private List<NoteObjects> readdata(String inputText) {
 
-        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
-        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
         app.l(orderState + "-" +  orderType);
 
         List<NoteObjects> objList = new ArrayList<>();
@@ -331,7 +313,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void getWeather() {
-        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
         if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
             getCityName();
         }
@@ -370,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onFailure(Call<WeatherModels> call, Throwable t) {
+                Log.e("ddssaa", "onFailure: aassv", t);
             }
         });
     }
@@ -381,29 +363,8 @@ public class MainActivity extends AppCompatActivity implements
                 "City name",
                 "Please enter city name", 1,
                 1,this, 0, 0);
+        dialog.setCancelable(false);
         dialog.show();
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int mId = item.getItemId();
-
-        switch (mId) {
-            case R.id.createNote : {
-                startActivity(new Intent(MainActivity.this, AddReadNote.class));
-                break;
-            }
-            case R.id.settings : {
-                app.t("Setting pressed");
-                break;
-            }
-            case R.id.about : {
-                app.t("About pressed");
-                break;
-            }
-        }
-        drawerlayout.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override
@@ -419,15 +380,5 @@ public class MainActivity extends AppCompatActivity implements
         dialog.dismiss();
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

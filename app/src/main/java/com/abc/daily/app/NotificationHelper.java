@@ -69,7 +69,8 @@ public class NotificationHelper extends ContextWrapper {
                 .addAction(R.mipmap.ic_launcher_foreground, "Open it", pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
-                .setContentText("Tap for more!");
+                .setContentText("Tap for more!")
+                .setAutoCancel(true);
         return builder;
     }
 
