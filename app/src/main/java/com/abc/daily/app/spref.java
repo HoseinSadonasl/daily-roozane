@@ -3,6 +3,8 @@ package com.abc.daily.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.abc.daily.R;
+
 public class spref {
 
     private static SharedPreferences sharedPreferences;
@@ -23,6 +25,7 @@ public class spref {
         public static final String SORT_BTN_TXT = "";
         public static final String SORT_BTN_DEFAULT_TXT = "Date";
         public static final String SORT_ICON_ID = "SORT_ICON_ID";
+        public static final String THEME = "THEME";
 
     }
 
@@ -41,5 +44,9 @@ public class spref {
         public static final String ASC = "ASC";
         public static final String DESC = "DESC";
         public static final String DEFAULT_TYPE = ASC;
+    }
+    public static class Theme {
+        public static final String THEME_COLOR = "";
+        public static final String DEFAULT_THEME_COLOR = "teal";
     }
 }

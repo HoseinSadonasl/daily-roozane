@@ -17,13 +17,12 @@
         android:theme="@style/Theme.Daily"
         tools:replace="android:theme">
         <activity android:name=".SplashScreen"
-            android:theme="@style/Theme.DailyNoActionbarMain">
+            android:theme="@style/Theme.DailyNoActionbarMainTeal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".TestActivity" />
 
@@ -34,7 +33,7 @@
             android:theme="@style/Theme.DailyNoActionbar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.DailyNoActionbarMain"
+            android:theme="@style/Theme.DailyNoActionbarMainTeal"
             android:windowSoftInputMode="adjustPan|adjustResize"/>
     </application>
 

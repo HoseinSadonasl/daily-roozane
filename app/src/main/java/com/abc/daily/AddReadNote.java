@@ -21,7 +21,7 @@ import com.abc.daily.app.*;
 import com.abc.daily.app.db;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddReadNote extends AppCompatActivity implements
+public class AddReadNote extends MainActivity implements
         View.OnClickListener, DialogInterface {
 
     AppCompatImageView back, share, delete;
@@ -38,6 +38,7 @@ public class AddReadNote extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.Second_white));
         setContentView(R.layout.activity_add_read_note);
 
         init();
@@ -195,6 +196,11 @@ public class AddReadNote extends AppCompatActivity implements
         fragment.show(getSupportFragmentManager(), app.TAG);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     public void onPositiveClick() {

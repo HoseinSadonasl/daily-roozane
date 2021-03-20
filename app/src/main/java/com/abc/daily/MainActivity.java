@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -60,16 +61,16 @@ public class MainActivity extends AppCompatActivity implements
     AppCompatImageView weatherImage, search_ic, tempDgree, more;
     AppCompatTextView locationName, temp, status, date, weekDay;
     NavigationView navigationView;
-    MaterialButton sort;
+    MaterialButton sort, drawerAddNote_btn, info_btn, green_btn,  teal_btn, blue_btn, orange_btn, red_btn, purple_btn;
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
+    ConstraintLayout weatherParent;
     Boolean updateList = false;
     Boolean backPressed = false;
     SpinKitView spinKitView;
     String cityNameString;
     String orderState;
     String orderType;
-
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable runnable = new Runnable() {
@@ -85,19 +86,22 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restoreTheme();
         setContentView(R.layout.activity_main);
         init();
+        //weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
     }
 
     private void init() {
         drawerlayout = findViewById(R.id.drawerlayout);
+        navigationView = findViewById(R.id.navigationView);
         recyclerView = findViewById(R.id.recyclerView);
         weatherImage = findViewById(R.id.weatherImage);
         tempDgree = findViewById(R.id.tempDegree);
         locationName = findViewById(R.id.locationName);
         search_ic = findViewById(R.id.search_ic);
         searchInput = findViewById(R.id.searchInput);
-        navigationView = findViewById(R.id.navigationView);
+        weatherParent = findViewById(R.id.weatherParent);
         temp = findViewById(R.id.temp);
         status = findViewById(R.id.status);
         date = findViewById(R.id.date);
@@ -105,12 +109,30 @@ public class MainActivity extends AppCompatActivity implements
         fab = findViewById(R.id.fab);
         spinKitView = findViewById(R.id.spin_kit);
         sort = findViewById(R.id.sort);
-        more = findViewById(R.id.more);
+
+        View header = navigationView.getHeaderView(0);
+        drawerAddNote_btn = header.findViewById(R.id.drawerAddNote_btn);
+        info_btn = header.findViewById(R.id.info_btn);
+        green_btn = header.findViewById(R.id.green_btn);
+        teal_btn = header.findViewById(R.id.teal_btn);
+        blue_btn = header.findViewById(R.id.blue_btn);
+        orange_btn = header.findViewById(R.id.orange_btn);
+        red_btn = header.findViewById(R.id.red_btn);
+        purple_btn = header.findViewById(R.id.purple_btn);
+
 
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
         search_ic.setOnClickListener(this);
         sort.setOnClickListener(this);
+        drawerAddNote_btn.setOnClickListener(this);
+        info_btn.setOnClickListener(this);
+        green_btn.setOnClickListener(this);
+        teal_btn.setOnClickListener(this);
+        blue_btn.setOnClickListener(this);
+        orange_btn.setOnClickListener(this);
+        red_btn.setOnClickListener(this);
+        purple_btn.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
 
         updateList = true;
@@ -147,6 +169,36 @@ public class MainActivity extends AppCompatActivity implements
 
         getWeather();
         getDateTime();
+    }
+    private void restoreTheme() {
+        String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+        switch (color) {
+            case "purple" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainPurple);
+                break;
+            }
+            case "red" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainRed);
+                break;
+            }
+            case "orange" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainOrange);
+                break;
+            }
+            case "blue" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainBlue);
+                break;
+            }
+            case "green" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainGreen);
+                break;
+            }
+            case "teal" : {
+                setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+                break;
+            }
+            default:setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+        }
     }
 
     private void restoreDara() {
@@ -187,10 +239,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fab : {
-                startActivity(new Intent(MainActivity.this, AddReadNote.class));
-                break;
-            }
             case R.id.locationName : {
                 getCityName();
                 break;
@@ -203,7 +251,48 @@ public class MainActivity extends AppCompatActivity implements
                 sortData();
                 break;
             }
+            case R.id.fab : {
+                startActivity(new Intent(MainActivity.this, AddReadNote.class));
+                break;
+            }
+            case R.id.drawerAddNote_btn : {
+                startActivity(new Intent(MainActivity.this, AddReadNote.class));
+                break;
+            }
+            case R.id.green_btn : {
+                saveColorVal("green");
+                break;
+            }
+            case R.id.teal_btn : {
+                saveColorVal("teal");
+                break;
+            }
+            case R.id.blue_btn : {
+                saveColorVal("blue");
+                break;
+            }
+            case R.id.orange_btn : {
+                saveColorVal("orange");
+                break;
+            }
+            case R.id.red_btn : {
+                saveColorVal("red");
+                break;
+            }
+            case R.id.purple_btn : {
+                saveColorVal("purple");
+                break;
+            }
+            case R.id.info_btn : {
+
+                break;
+            }
         }
+    }
+
+    private void saveColorVal(String colorName) {
+        spref.get(spref.tags.THEME).edit().putString(spref.Theme.THEME_COLOR, colorName).apply();
+        recreate();
     }
 
 
