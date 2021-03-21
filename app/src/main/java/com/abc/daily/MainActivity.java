@@ -6,10 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements
     List<NoteObjects> list = new ArrayList<>();
     DatabaseConnector dbm = new DatabaseConnector(this);
     DrawerLayout drawerlayout;
-    AppCompatImageView weatherImage, search_ic, tempDgree, more;
+    AppCompatImageView weatherImage, search_ic, tempDgree;
     AppCompatTextView locationName, temp, status, date, weekDay;
     NavigationView navigationView;
     MaterialButton sort, drawerAddNote_btn, info_btn, green_btn,  teal_btn, blue_btn, orange_btn, red_btn, purple_btn;
@@ -71,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements
     String cityNameString;
     String orderState;
     String orderType;
+    String color ;
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable runnable = new Runnable() {
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements
         restoreTheme();
         setContentView(R.layout.activity_main);
         init();
-        //weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
     }
 
     private void init() {
@@ -120,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements
         red_btn = header.findViewById(R.id.red_btn);
         purple_btn = header.findViewById(R.id.purple_btn);
 
-
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
         search_ic.setOnClickListener(this);
@@ -143,6 +140,10 @@ public class MainActivity extends AppCompatActivity implements
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        restoreDara();
+        getWeather();
+        getDateTime();
+
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -161,17 +162,11 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        restoreDara();
-//        if (Application.isNetworkEnabled()) {
-//        } else {
-//            app.t("Network is unavailable");
-//        }
-
-        getWeather();
-        getDateTime();
     }
     private void restoreTheme() {
-        String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+
+
+        color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
         switch (color) {
             case "purple" : {
                 setTheme(R.style.Theme_DailyNoActionbarMainPurple);
@@ -205,8 +200,36 @@ public class MainActivity extends AppCompatActivity implements
         cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
         orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
         orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
-        sort.setText(spref.get(spref.tags.SORT_BTN_TXT).getString(spref.tags.SORT_BTN_TXT, spref.tags.SORT_BTN_DEFAULT_TXT));
+        sort.setText(spref.get(spref.tags.SORT_BTN).getString(spref.SortButtonText.SORT_BTN_TXT, spref.SortButtonText.SORT_BTN_DEFAULT_TXT));
         sort.setIcon(ContextCompat.getDrawable(this,spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID,R.drawable.ic_dateascldpi)));
+
+        switch (color) {
+            case "purple" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
+                break;
+            }
+            case "red" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_red));
+                break;
+            }
+            case "orange" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_orange));
+                break;
+            }
+            case "blue" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_blue));
+                break;
+            }
+            case "teal" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
+                break;
+            }
+            case "green" : {
+                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_green));
+                break;
+            }
+            default: weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
+        }
     }
 
     private void getDateTime() {
@@ -232,7 +255,6 @@ public class MainActivity extends AppCompatActivity implements
         String calendar = ShamsiCalendar.getCurrentShamsidate();
         date.setText(calendar);
         weekDay.setText(dayOfWeekStr);
-
     }
 
 
@@ -295,7 +317,6 @@ public class MainActivity extends AppCompatActivity implements
         recreate();
     }
 
-
     @Override
     protected void onResume() {
             list.clear();
@@ -329,8 +350,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private List<NoteObjects> readdata(String inputText) {
-
-        app.l(orderState + "-" +  orderType);
 
         List<NoteObjects> objList = new ArrayList<>();
         Cursor cursor = null;
@@ -397,14 +416,13 @@ public class MainActivity extends AppCompatActivity implements
         }
         spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT, orderState).apply();
         spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT_TYPE, orderType).apply();
-        spref.get(spref.tags.SORT_BTN_TXT).edit().putString(spref.tags.SORT_BTN_TXT,sort.getText().toString()).apply();
+        spref.get(spref.tags.SORT_BTN).edit().putString(spref.SortButtonText.SORT_BTN_TXT,sort.getText().toString()).apply();
         spref.get(spref.tags.SORT).edit().putInt(spref.tags.SORT_ICON_ID, iconId).apply();
         list.clear();
         list.addAll(readdata(""));
         adapter.notifyDataSetChanged();
     }
 
-    private static final String TAG = "MainActivity";
     private void getWeather() {
         if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
             getCityName();
@@ -412,12 +430,10 @@ public class MainActivity extends AppCompatActivity implements
         Map<String ,String> data=new HashMap();
             data.put("appid","6c7b0789e344c8bdd8f0935ff4568e72");
             data.put("q", cityNameString);
-        Log.d(TAG, "getWeather: getting data");
 
         Application.getApi().getCurrentWeather(data).enqueue(new Callback<WeatherModels>() {
             @Override
             public void onResponse(Call<WeatherModels> call, Response<WeatherModels> response) {
-                Log.d(TAG, "onResponse: "+response.body());
                 if (response.code() == 200) {
                     tempDgree.setVisibility(View.VISIBLE);
                     temp.setVisibility(View.VISIBLE);
@@ -444,7 +460,6 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onFailure(Call<WeatherModels> call, Throwable t) {
-                Log.e(TAG, "onFailure: ", t);
             }
         });
     }

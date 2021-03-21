@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="black">#FF000000</attr>
+    <attr name="Second_black">#757575</attr>
+    <attr name="Gray_c">#ACACAC</attr>
+    <attr name="white">#FFFFFF</attr>
+    <attr name="Second_white">#F8F8F8</attr>
+    <attr name="Back_white">#F8F8F8</attr>
 
+    <attr name="mdtp_accent_color">#FF9600</attr>
+    <attr name="mdtp_accent_color_dark">#FF8A00</attr>
+    <attr name="btn_grey">#DDDDDD</attr>
+
+    <attr name="deep_purple_400">#7E57C2</attr>
+    <attr name="red_500">#EF5350</attr>
+    <attr name="orange_400">#FFA726</attr>
+    <attr name="blue_500">#42A5F5</attr>
+    <attr name="teal_500">#26A69A</attr>
+    <attr name="green_500">#66BB6A</attr>
 
 </resources>

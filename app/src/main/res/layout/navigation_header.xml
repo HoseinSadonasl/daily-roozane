@@ -18,12 +18,12 @@
         android:layout_marginStart="@dimen/low_dp"
         android:layout_marginTop="@dimen/low_dp"
         android:stateListAnimator="@null"
-        app:backgroundTint="@color/white"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconSize="18dp"
         app:iconTint="@color/Second_black"
         app:cornerRadius="@dimen/low_dp"
+        app:backgroundTint="@color/white"
         app:icon="@drawable/ic_write"/>
 
     <com.google.android.material.button.MaterialButton
@@ -159,15 +159,5 @@
         app:iconTint="@color/Second_black"
         app:cornerRadius="@dimen/low_dp"
         app:icon="@drawable/ic_info"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:scaleType="center"
-        android:layout_marginEnd="@dimen/low_dp"
-        android:layout_marginStart="@dimen/low_dp"
-        android:layout_marginTop="@dimen/low_dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
 
 </LinearLayout>

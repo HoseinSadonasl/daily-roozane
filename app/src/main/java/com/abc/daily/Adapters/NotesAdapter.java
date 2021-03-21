@@ -1,8 +1,6 @@
 package com.abc.daily.Adapters;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +10,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abc.daily.AddReadNote;
@@ -23,12 +21,8 @@ import java.util.List;
 
 import com.abc.daily.Objects.NoteObjects;
 
-import com.abc.daily.app.app;
 import com.abc.daily.app.db;
-import com.abc.daily.fragments.BottomSheetFragment;
-import com.abc.daily.interfaces.ModifyObject;
-import com.abc.daily.interfaces.NotificationObject;
-import com.google.android.material.button.MaterialButton;
+import com.abc.daily.app.spref;
 import com.google.android.material.textview.MaterialTextView;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
@@ -61,12 +55,46 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             holder.reminder.setVisibility(View.VISIBLE);
             holder.reminderIc.setVisibility(View.VISIBLE);
             holder.reminderDateTime.setVisibility(View.VISIBLE);
+            String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);;
+            switch (color) {
+                case "purple" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_purple));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.deep_purple_400));
+                    break;
+                }
+                case "red" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_red));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.red_500));
+                    break;
+                }
+                case "orange" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_orange));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.orange_400));
+                    break;
+                }
+                case "blue" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_blue));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.blue_500));
+                    break;
+                }
+                case "teal" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_teal));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.teal_500));
+                    break;
+                }
+                case "green" : {
+                    holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_green));
+                    break;
+                }
+                default: holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_teal));
+            }
             holder.reminderDateTime.setText(objects.get(position).getReminderDate() + " " + objects.get(position).getReminderTime());
         } else {
             holder.reminder.setVisibility(View.GONE);
             holder.reminderIc.setVisibility(View.GONE);
             holder.reminderDateTime.setVisibility(View.GONE);
         }
+
 
     }
 
@@ -76,6 +104,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         ConstraintLayout parent;
         AppCompatImageView reminderIc;
         MaterialTextView title, content, date, reminderDateTime;
@@ -90,6 +119,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             reminder = itemView.findViewById(R.id.reminder);
             reminderIc = itemView.findViewById(R.id.reminderIc);
             reminderDateTime = itemView.findViewById(R.id.reminderDaeTime);
+
             parent.setOnClickListener(this);
         }
         @Override

@@ -33,7 +33,6 @@ public class AddReadNote extends MainActivity implements
     int id;
     MyDailyDialog dialog;
     long notificationId;
-    Object object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

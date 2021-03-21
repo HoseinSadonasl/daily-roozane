@@ -22,9 +22,8 @@ public class spref {
         public static final String SETTINGS = "SETTINGS";
         public static final String SORT = "SORT";
         public static final String SORT_TYPE = "SORT_TYPE";
-        public static final String SORT_BTN_TXT = "";
-        public static final String SORT_BTN_DEFAULT_TXT = "Date";
         public static final String SORT_ICON_ID = "SORT_ICON_ID";
+        public static final String SORT_BTN = "SORT_BTN";
         public static final String THEME = "THEME";
 
     }
@@ -45,6 +44,12 @@ public class spref {
         public static final String DESC = "DESC";
         public static final String DEFAULT_TYPE = ASC;
     }
+
+    public static class SortButtonText {
+        public static final String SORT_BTN_TXT = "";
+        public static final String SORT_BTN_DEFAULT_TXT = "Date";
+    }
+
     public static class Theme {
         public static final String THEME_COLOR = "";
         public static final String DEFAULT_THEME_COLOR = "teal";
