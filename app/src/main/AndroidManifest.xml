@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily"
         tools:replace="android:theme">
-        <activity android:name=".SplashScreen"
+        <activity
+            android:name=".SplashScreen"
             android:theme="@style/Theme.DailyNoActionbarMainTeal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +35,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.DailyNoActionbarMainTeal"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
     </application>
 
 </manifest>

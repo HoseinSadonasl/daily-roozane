@@ -57,32 +57,32 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             holder.reminderDateTime.setVisibility(View.VISIBLE);
             String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);;
             switch (color) {
-                case "purple" : {
+                case spref.Theme.PURPLE_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_purple));
                     holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.deep_purple_400));
                     break;
                 }
-                case "red" : {
+                case spref.Theme.RED_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_red));
                     holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.red_500));
                     break;
                 }
-                case "orange" : {
+                case spref.Theme.ORANGE_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_orange));
                     holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.orange_400));
                     break;
                 }
-                case "blue" : {
+                case spref.Theme.BLUE_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_blue));
                     holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.blue_500));
                     break;
                 }
-                case "teal" : {
+                case spref.Theme.TEAL_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_teal));
                     holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.teal_500));
                     break;
                 }
-                case "green" : {
+                case spref.Theme.GREEN_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_green));
                     break;
                 }
@@ -94,8 +94,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             holder.reminderIc.setVisibility(View.GONE);
             holder.reminderDateTime.setVisibility(View.GONE);
         }
-
-
     }
 
     @Override

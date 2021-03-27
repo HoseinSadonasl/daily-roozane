@@ -1,4 +1,5 @@
 package com.abc.daily;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -63,13 +64,9 @@ public class MainActivity extends AppCompatActivity implements
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
     ConstraintLayout weatherParent;
-    Boolean updateList = false;
-    Boolean backPressed = false;
+    Boolean updateList = false, backPressed = false;
     SpinKitView spinKitView;
-    String cityNameString;
-    String orderState;
-    String orderType;
-    String color ;
+    String cityNameString, orderState, orderType, color;
 
     private Handler handler = new Handler(Looper.getMainLooper());
     private Runnable runnable = new Runnable() {
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restoreTheme();
+        restoreTheme(false);
         setContentView(R.layout.activity_main);
         init();
     }
@@ -144,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements
         getWeather();
         getDateTime();
 
-
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -163,73 +159,75 @@ public class MainActivity extends AppCompatActivity implements
         });
 
     }
-    private void restoreTheme() {
 
+
+    private void restoreDara() {
+        restoreTheme(true);
+        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
+        sort.setText(spref.get(spref.tags.SORT_BTN_TXT).getString(spref.SortButtonText.SORT_BTN_TXT, spref.SortButtonText.SORT_BTN_DEFAULT_TXT));
+        sort.setIcon(ContextCompat.getDrawable(this, spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID, R.drawable.ic_dateascldpi)));
+        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
+        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
+
+    }
+
+    public void restoreTheme(Boolean setBackgroundImage) {
 
         color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
         switch (color) {
-            case "purple" : {
+            case  spref.Theme.PURPLE_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainPurple);
                 break;
             }
-            case "red" : {
+            case spref.Theme.RED_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_red));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainRed);
                 break;
             }
-            case "orange" : {
+            case spref.Theme.ORANGE_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_orange));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainOrange);
                 break;
             }
-            case "blue" : {
+            case spref.Theme.BLUE_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_blue));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainBlue);
                 break;
             }
-            case "green" : {
+            case spref.Theme.GREEN_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_green));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainGreen);
                 break;
             }
-            case "teal" : {
+            case spref.Theme.TEAL_COLOR : {
+                if (setBackgroundImage) {
+                    weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
+                }
                 setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+
                 break;
             }
-            default:setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+            default : defaultState(setBackgroundImage);
         }
     }
 
-    private void restoreDara() {
-        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
-        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
-        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
-        sort.setText(spref.get(spref.tags.SORT_BTN).getString(spref.SortButtonText.SORT_BTN_TXT, spref.SortButtonText.SORT_BTN_DEFAULT_TXT));
-        sort.setIcon(ContextCompat.getDrawable(this,spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID,R.drawable.ic_dateascldpi)));
 
-        switch (color) {
-            case "purple" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
-                break;
-            }
-            case "red" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_red));
-                break;
-            }
-            case "orange" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_orange));
-                break;
-            }
-            case "blue" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_blue));
-                break;
-            }
-            case "teal" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
-                break;
-            }
-            case "green" : {
-                weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_green));
-                break;
-            }
-            default: weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
+    private void defaultState (Boolean setBackgroundImage) {
+        if (setBackgroundImage) {
+            weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
         }
+        setTheme(R.style.Theme_DailyNoActionbarMainTeal);
     }
 
     private void getDateTime() {
@@ -258,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -282,27 +281,27 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             }
             case R.id.green_btn : {
-                saveColorVal("green");
+                saveColorVal(spref.Theme.GREEN_COLOR);
                 break;
             }
             case R.id.teal_btn : {
-                saveColorVal("teal");
+                saveColorVal(spref.Theme.TEAL_COLOR);
                 break;
             }
             case R.id.blue_btn : {
-                saveColorVal("blue");
+                saveColorVal(spref.Theme.BLUE_COLOR);
                 break;
             }
             case R.id.orange_btn : {
-                saveColorVal("orange");
+                saveColorVal(spref.Theme.ORANGE_COLOR);
                 break;
             }
             case R.id.red_btn : {
-                saveColorVal("red");
+                saveColorVal(spref.Theme.RED_COLOR);
                 break;
             }
             case R.id.purple_btn : {
-                saveColorVal("purple");
+                saveColorVal(spref.Theme.PURPLE_COLOR);
                 break;
             }
             case R.id.info_btn : {
@@ -392,31 +391,31 @@ public class MainActivity extends AppCompatActivity implements
         if (orderState.equals(spref.SortState.SORT_BY_DATE) && orderType.equals(spref.SortType.ASC)) {
             orderState = spref.SortState.SORT_BY_DATE;
             orderType = spref.SortType.DESC;
-            sort.setText("Date");
+            sort.setText(spref.SortButtonText.SORT_BTN_TXT_DATE);
             sort.setIconResource(R.drawable.ic_datedescldpi);
             iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_datedescldpi),"drawable","com.abc.daily");
         } else if (orderState.equals(spref.SortState.SORT_BY_DATE) && orderType.equals(spref.SortType.DESC)) {
             orderState = spref.SortState.SORT_BY_NAME;
             orderType = spref.SortType.ASC;
-            sort.setText("Name");
+            sort.setText(spref.SortButtonText.SORT_BTN_TXT_NAME);
             sort.setIconResource(R.drawable.ic_titleascldpi);
             iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_titleascldpi),"drawable","com.abc.daily");
         } else if (orderState.equals(spref.SortState.SORT_BY_NAME) && orderType.equals(spref.SortType.ASC)) {
             orderState = spref.SortState.SORT_BY_NAME;
             orderType = spref.SortType.DESC;
-            sort.setText("Name");
+            sort.setText(spref.SortButtonText.SORT_BTN_TXT_NAME);
             sort.setIconResource(R.drawable.ic_titledescldpi);
             iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_titledescldpi),"drawable","com.abc.daily");
         } else if (orderState.equals(spref.SortState.SORT_BY_NAME) && orderType.equals(spref.SortType.DESC)) {
             orderState = spref.SortState.SORT_BY_DATE;
             orderType = spref.SortType.ASC;
-            sort.setText("Date");
+            sort.setText(spref.SortButtonText.SORT_BTN_TXT_DATE);
             sort.setIconResource(R.drawable.ic_dateascldpi);
             iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_dateascldpi),"drawable","com.abc.daily");
         }
         spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT, orderState).apply();
         spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT_TYPE, orderType).apply();
-        spref.get(spref.tags.SORT_BTN).edit().putString(spref.SortButtonText.SORT_BTN_TXT,sort.getText().toString()).apply();
+        spref.get(spref.tags.SORT_BTN_TXT).edit().putString(spref.SortButtonText.SORT_BTN_TXT, sort.getText().toString()).apply();
         spref.get(spref.tags.SORT).edit().putInt(spref.tags.SORT_ICON_ID, iconId).apply();
         list.clear();
         list.addAll(readdata(""));
@@ -427,7 +426,7 @@ public class MainActivity extends AppCompatActivity implements
         if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
             getCityName();
         }
-        Map<String ,String> data=new HashMap();
+        Map<String ,String> data = new HashMap();
             data.put("appid","6c7b0789e344c8bdd8f0935ff4568e72");
             data.put("q", cityNameString);
 
@@ -497,6 +496,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int mId = item.getItemId();

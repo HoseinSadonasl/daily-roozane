@@ -37,6 +37,7 @@ public class AddReadNote extends MainActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restoreTheme(false);
         getWindow().setStatusBarColor(getResources().getColor(R.color.Second_white));
         setContentView(R.layout.activity_add_read_note);
 

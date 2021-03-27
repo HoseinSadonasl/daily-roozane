@@ -25,7 +25,7 @@ import com.abc.daily.R;
 import com.abc.daily.app.AlertReceiver;
 import com.abc.daily.app.Application;
 import com.abc.daily.app.DatabaseConnector;
-import com.abc.daily.app.app;
+import com.abc.daily.app.*;
 import com.abc.daily.app.db;
 import com.abc.daily.interfaces.ModifyObject;
 import com.abc.daily.interfaces.NotificationObject;
@@ -38,20 +38,13 @@ import java.util.Date;
 
 public class BottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
 
-    AppCompatTextView dateTxt, timeTxt;
-    MaterialButton datePicker, timePicker;
-    MaterialButton closeSheetBtn, setReminderBtn;
+    MaterialButton datePicker, timePicker, closeSheetBtn, setReminderBtn;
     Calendar calendar;
     DatabaseConnector dbm;
     NoteObjects object;
     public NotificationObject notificationExtras;
-    int hour;
-    int minute;
-    int year;
-    int month;
-    int dayOfMonth;
-    String dateStr;
-    String timeStr;
+    int hour, minute, year, month, dayOfMonth;
+    String dateStr, timeStr;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -103,8 +96,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     }
 
     private void init(View view) {
-        dateTxt = view.findViewById(R.id.dateTxt);
-        timeTxt = view.findViewById(R.id.timeTxt);
         closeSheetBtn = view.findViewById(R.id.closeSheetBtn);
         datePicker = view.findViewById(R.id.datepicker);
         timePicker = view.findViewById(R.id.timePicker);
@@ -119,10 +110,14 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
         object = new NoteObjects();
         dbm = new DatabaseConnector(getActivity());
-        restoreData();
+        restoreData("");
     }
 
-    private void restoreData() {
+    private void restoreData(String themeColor) {
+
+
+
+
             int id = notificationExtras.getObject().getId();
             Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
                     + db.Note.NOTE_ID + " = " + id, null);

@@ -19,13 +19,11 @@ public class spref {
 
     public static class tags {
         public static final String WEATHER = "WEATHER";
-        public static final String SETTINGS = "SETTINGS";
         public static final String SORT = "SORT";
         public static final String SORT_TYPE = "SORT_TYPE";
         public static final String SORT_ICON_ID = "SORT_ICON_ID";
-        public static final String SORT_BTN = "SORT_BTN";
+        public static final String SORT_BTN_TXT = "SORT_BTN";
         public static final String THEME = "THEME";
-
     }
 
     public static class Weather {
@@ -46,12 +44,22 @@ public class spref {
     }
 
     public static class SortButtonText {
+        public static final String SORT_BTN_TXT_DATE = "Date";
+        public static final String SORT_BTN_TXT_NAME = "Name";
         public static final String SORT_BTN_TXT = "";
         public static final String SORT_BTN_DEFAULT_TXT = "Date";
     }
 
     public static class Theme {
         public static final String THEME_COLOR = "";
-        public static final String DEFAULT_THEME_COLOR = "teal";
+        public static final String DEFAULT_THEME_COLOR = "TEAL";
+
+        public static final String PURPLE_COLOR = "PURPLE";
+        public static final String RED_COLOR = "RED";
+        public static final String ORANGE_COLOR = "ORANGE";
+        public static final String BLUE_COLOR = "BLUE";
+        public static final String TEAL_COLOR = "TEAL";
+        public static final String GREEN_COLOR = "GREEN";
+        public static final String DEFAULT_COLOR = TEAL_COLOR;
     }
 }
