@@ -198,7 +198,7 @@
         android:lineSpacingMultiplier="0"
         android:shadowDx="0"
         android:shadowDy="0"
-        android:text="21:36"
+        tools:text="21:36"
         android:textAllCaps="false"
         android:textColor="@color/Gray_c"
         android:textSize="@dimen/remindetText"
@@ -211,7 +211,8 @@
         android:stateListAnimator="@null"
         app:layout_constraintEnd_toEndOf="@+id/datepicker"
         app:layout_constraintStart_toStartOf="@+id/datepicker"
-        app:layout_constraintTop_toBottomOf="@+id/datepicker" />
+        app:layout_constraintTop_toBottomOf="@+id/datepicker"
+        tools:targetApi="p" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/datepicker"

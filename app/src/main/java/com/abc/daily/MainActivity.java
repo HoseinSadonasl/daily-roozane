@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements
         restoreTheme(false);
         setContentView(R.layout.activity_main);
         init();
+
     }
 
     private void init() {
@@ -305,10 +306,14 @@ public class MainActivity extends AppCompatActivity implements
                 break;
             }
             case R.id.info_btn : {
-
+                showInfo();
                 break;
             }
         }
+    }
+
+    private void showInfo() {
+
     }
 
     private void saveColorVal(String colorName) {
@@ -349,7 +354,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private List<NoteObjects> readdata(String inputText) {
-
         List<NoteObjects> objList = new ArrayList<>();
         Cursor cursor = null;
         if (inputText.equals("")) {

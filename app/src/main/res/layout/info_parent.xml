@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/weatherParent"
+        android:layout_width="match_parent"
+        android:background="@drawable/bc_wea_teal"
+        android:layout_height="135dp">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weatherImage"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.19999999"
+            tools:visibility="visible" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.ThreeBounce"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:SpinKit_Color="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
+            app:layout_constraintEnd_toEndOf="@+id/temp"
+            app:layout_constraintStart_toStartOf="@+id/weatherImage" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_toEndOf="@id/weatherImage"
+            android:fontFamily="sans-serif-light"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:lineSpacingMultiplier="0"
+            android:textColor="@android:color/white"
+            android:textSize="42sp"
+            android:visibility="gone"
+            app:firstBaselineToTopHeight="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
+            app:layout_constraintStart_toEndOf="@+id/weatherImage"
+            app:layout_constraintTop_toTopOf="@+id/weatherImage"
+            tools:text="26"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/low_TextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tempDegree"
+            app:layout_constraintTop_toTopOf="@+id/temp"
+            tools:text="26/12/1399" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weekDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/low_TextSize"
+            app:layout_constraintEnd_toEndOf="@+id/date"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/date"
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            tools:text="@string/app_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tempDegree"
+            android:layout_width="@dimen/med_dp"
+            android:layout_height="@dimen/med_dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/temp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/temp"
+            app:layout_constraintStart_toEndOf="@+id/temp"
+            app:layout_constraintTop_toTopOf="@+id/temp"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_weather_clecius"
+            app:tint="@android:color/white"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/locationImg"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
+            app:layout_constraintEnd_toEndOf="@+id/weekDay"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/weekDay"
+            app:layout_constraintTop_toBottomOf="@+id/weekDay"
+            app:tint="@android:color/white" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackgroundBorderless"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:lineSpacingMultiplier="0"
+            android:text="@string/location"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/low_TextSize"
+            app:layout_constraintBottom_toBottomOf="@+id/locationImg"
+            app:layout_constraintEnd_toStartOf="@+id/locationImg"
+            app:layout_constraintTop_toTopOf="@+id/locationImg" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="3dp"
+            android:layout_height="1.5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="4dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/locationName"
+            app:layout_constraintEnd_toStartOf="@+id/locationName"
+            app:layout_constraintTop_toTopOf="@+id/locationName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="Cloudy"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/low_TextSize"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>
