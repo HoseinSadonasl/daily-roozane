@@ -236,19 +236,19 @@ public class MainActivity extends AppCompatActivity implements
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         String dayOfWeekStr = "";
         switch (dayOfWeek) {
-            case 1 : dayOfWeekStr = "Sunday";
+            case 1 : dayOfWeekStr = getString(R.string.Sunday);
                 break;
-            case 2 : dayOfWeekStr = "Monday";
+            case 2 : dayOfWeekStr = getString(R.string.Monday);
                 break;
-            case 3 : dayOfWeekStr = "Tuesday";
+            case 3 : dayOfWeekStr = getString(R.string.Tuesday);
                 break;
-            case 4 : dayOfWeekStr = "Wednesday";
+            case 4 : dayOfWeekStr = getString(R.string.Wednesday);
                 break;
-            case 5 : dayOfWeekStr = "Thursday";
+            case 5 : dayOfWeekStr = getString(R.string.Thursday);
                 break;
-            case 6 : dayOfWeekStr = "Friday";
+            case 6 : dayOfWeekStr = getString(R.string.Friday);
                 break;
-            case 7 : dayOfWeekStr = "Saturday";
+            case 7 : dayOfWeekStr = getString(R.string.Saturday);
                 break;
         }
         String calendar = ShamsiCalendar.getCurrentShamsidate();
@@ -338,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements
         if (!backPressed){
             backPressed = true;
             searchInput.clearFocus();
-            app.t("Please press back button again to exit app");
+            app.t(getString(R.string.toast_exit_app));
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -427,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void getWeather() {
-        if (cityNameString.isEmpty() || locationName.getText().toString().equals("Invalid Location"))  {
+        if (cityNameString.isEmpty() || locationName.getText().toString().equals(getString(R.string.invalid_location)))  {
             getCityName();
         }
         Map<String ,String> data = new HashMap();
@@ -450,12 +450,12 @@ public class MainActivity extends AppCompatActivity implements
                             .load("https://openweathermap.org/img/wn/"+ imgUrl +"@2x.png")
                             .into(weatherImage);
                 } else{
-                    locationName.setText("Invalid Location");
+                    locationName.setText(getString(R.string.invalid_location));
                     spinKitView.setVisibility(View.VISIBLE);
                     tempDgree.setVisibility(View.GONE);
                     temp.setVisibility(View.GONE);
                     weatherImage.setVisibility(View.GONE);
-                    app.t("Ops! Invalid city name, please enter a valid city name");
+                    app.t(getString(R.string.invalid_name_toast));
                 }
 
 
@@ -471,10 +471,10 @@ public class MainActivity extends AppCompatActivity implements
     private void getCityName() {
         dialog = new MyDailyDialog(
                 this,
-                "Ok",
-                "Cancel",
-                "City name",
-                "Please enter city name",
+                getString(R.string.dialog_ok),
+                getString(R.string.cancel),
+                getString(R.string.city_name),
+                getString(R.string.enter_city_name),
                 1,
                 1,
                 this,

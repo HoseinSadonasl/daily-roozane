@@ -46,7 +46,9 @@
                     android:gravity="center"
                     android:layout_marginLeft="@dimen/med_dp"
                     android:layout_marginRight="@dimen/med_dp"
-                    android:layout_marginBottom="@dimen/med_dp"/>
+                    android:layout_marginBottom="@dimen/med_dp"
+                    android:layout_marginStart="@dimen/med_dp"
+                    android:layout_marginEnd="@dimen/med_dp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:visibility="gone"
@@ -63,7 +65,9 @@
                 android:focusableInTouchMode="true"
                 android:descendantFocusability="blocksDescendants"
                 android:gravity="center"
-                android:id="@+id/textInput"/>
+                android:id="@+id/textInput"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:layout_marginStart="@dimen/med_dp" />
 
 
             <View
@@ -71,7 +75,9 @@
                 android:layout_height="0.25dp"
                 android:background="@color/btn_grey"
                 android:layout_marginRight="@dimen/med_dp"
-                android:layout_marginLeft="@dimen/med_dp"/>
+                android:layout_marginLeft="@dimen/med_dp"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:layout_marginStart="@dimen/med_dp" />
 
 
             <LinearLayout

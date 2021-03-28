@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.abc.daily.Objects.NoteObjects;
 
+import com.abc.daily.app.Application;
 import com.abc.daily.app.db;
 import com.abc.daily.app.spref;
 import com.google.android.material.textview.MaterialTextView;
@@ -51,7 +52,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         holder.date.setText(objects.get(position).getNoteDate());
         String dateStr = objects.get(position).getReminderDate();
         String timeStr = objects.get(position).getReminderTime();
-        if (!dateStr.equals("Today") && !timeStr.equals("At:")){
+        if (!dateStr.equals(Application.getContext().getResources().getString(R.string.today)) && !timeStr.equals(Application.getContext().getResources().getString(R.string.at))){
             holder.reminder.setVisibility(View.VISIBLE);
             holder.reminderIc.setVisibility(View.VISIBLE);
             holder.reminderDateTime.setVisibility(View.VISIBLE);

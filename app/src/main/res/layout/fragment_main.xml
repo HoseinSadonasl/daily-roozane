@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:chainUseRtl="true"
     android:backgroundTint="#FFFFFF">
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layoutDirection="ltr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,7 +34,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -42,40 +44,37 @@
             app:cardCornerRadius="@dimen/med_dp"
             app:cardElevation="0dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:gravity="start|center_vertical">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/searchInput"
+                    android:layout_weight="9"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_alignTop="@id/search_ic"
-                    android:layout_alignBottom="@id/search_ic"
-                    android:layout_alignParentStart="true"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/med_dp"
-                    android:layout_toStartOf="@id/search_ic"
                     android:background="@null"
                     android:hint="@string/search_note_hint"
                     android:inputType="text"
+                    android:textDirection="rtl"
                     android:maxLines="1"
                     android:textColorHint="@color/Gray_c"
                     android:textSize="@dimen/med_TextSize" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/search_ic"
+                    android:layout_weight="1"
                     android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/med_dp"
+                    android:layout_height="16dp"
                     android:background="?selectableItemBackgroundBorderless"
-                    android:clickable="true"
                     android:rotation="270"
                     app:srcCompat="@drawable/ic_search"
                     app:tint="@color/Gray_c" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -85,7 +84,7 @@
             android:layout_height="32dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="@dimen/med_dp"
             android:layout_marginBottom="8dp"
             android:elevation="0dp"
             android:gravity="center_horizontal"
@@ -111,34 +110,6 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/dateTxt"
             app:layout_constraintTop_toTopOf="@+id/dateTxt" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="3"
-            android:visibility="gone"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="@dimen/med_dp"
-            app:cardElevation="0dp">
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/more"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:padding="@dimen/low_dp"
-            android:tint="@color/Second_black"
-            app:srcCompat="@drawable/ic_more" />
 
     </LinearLayout>
 

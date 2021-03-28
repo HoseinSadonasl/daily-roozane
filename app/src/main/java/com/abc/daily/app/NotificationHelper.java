@@ -52,7 +52,6 @@ public class NotificationHelper extends ContextWrapper {
     private PendingIntent pIntent(int id) {
         Intent pIntent = new Intent(this, AddReadNote.class);
         pIntent.putExtra(db.Note.NOTE_ID, id);
-        app.l("ID pIntent: >>>" + id);
         mIntent = PendingIntent.getActivity(
                 this, 0, pIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return mIntent;
@@ -61,15 +60,14 @@ public class NotificationHelper extends ContextWrapper {
 
     public NotificationCompat.Builder getChannelNotification(int notificationId , String notificationTitle) {
         id = notificationId;
-        app.l("ID: >>>" + id);
         Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.daily_notification);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
                 .setSmallIcon(R.drawable.ic_roozaneicldpi)
                 .setContentIntent(pIntent(id))
-                .addAction(R.mipmap.ic_launcher_foreground, "Open it", pIntent(id))
+                .addAction(R.mipmap.ic_launcher_foreground, getString(R.string.open_it), pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
-                .setContentText("Tap for more!")
+                .setContentText(getString(R.string.tap_for_more))
                 .setAutoCancel(true);
         return builder;
     }

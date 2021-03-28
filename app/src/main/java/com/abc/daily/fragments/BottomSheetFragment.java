@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 
 import com.abc.daily.AddReadNote;
 import com.abc.daily.Objects.NoteObjects;
@@ -114,18 +115,50 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     }
 
     private void restoreData(String themeColor) {
+        restoreTheme();
+        int id = notificationExtras.getObject().getId();
+        Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
+                + db.Note.NOTE_ID + " = " + id, null);
+        while (cursor.moveToNext()) {
+            datePicker.setText(cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_DATE)));
+            timePicker.setText(cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_TIME)));
+        }
+        cursor.close();
+    }
 
-
-
-
-            int id = notificationExtras.getObject().getId();
-            Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
-                    + db.Note.NOTE_ID + " = " + id, null);
-            while (cursor.moveToNext()) {
-                datePicker.setText(cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_DATE)));
-                timePicker.setText(cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_TIME)));
+    private void restoreTheme() {
+        String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+        switch (color) {
+            case spref.Theme.PURPLE_COLOR : {
+                setColor(R.color.deep_purple_400);
+                break;
             }
-            cursor.close();
+            case spref.Theme.RED_COLOR : {
+                setColor(R.color.red_500);
+                break;
+            }
+            case spref.Theme.ORANGE_COLOR : {
+                setColor(R.color.orange_400);
+                break;
+            }
+            case spref.Theme.BLUE_COLOR : {
+                setColor(R.color.blue_500);
+                break;
+            }
+            case spref.Theme.GREEN_COLOR : {
+                setColor(R.color.green_500);
+                break;
+            }
+            case spref.Theme.TEAL_COLOR: {
+                setColor(R.color.teal_500);
+                break;
+            }
+            default:setColor(R.color.teal_500);
+        }
+    }
+
+    private void setColor(int color) {
+        setReminderBtn.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), color));
     }
 
     @Override
@@ -232,53 +265,53 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     }
 
     private String getTimeString(Calendar c) {
-        return "At: " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE);
+        return getString(R.string.At) + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE);
     }
 
     private String getDateString(Calendar c) {
         String weekDay = "";
         switch (c.get(Calendar.DAY_OF_WEEK)) {
-            case 1 : weekDay = "Sun";
+            case 1 : weekDay = getString(R.string.sun);
                 break;
-            case 2 : weekDay = "Mon";
+            case 2 : weekDay = getString(R.string.mon);
                 break;
-            case 3 : weekDay = "Tue";
+            case 3 : weekDay = getString(R.string.tue);
                 break;
-            case 4 : weekDay = "Wed";
+            case 4 : weekDay = getString(R.string.wed);
                 break;
-            case 5 : weekDay = "Thu";
+            case 5 : weekDay = getString(R.string.thu);
                 break;
-            case 6 : weekDay = "Fri";
+            case 6 : weekDay = getString(R.string.fri);
                 break;
-            case 7 : weekDay = "Sat";
+            case 7 : weekDay = getString(R.string.sat);
                 break;
         }
 
         String monthOfYear = "";
         switch (c.get(Calendar.MONTH)) {
-            case 1 : monthOfYear = "Jan";
+            case 1 : monthOfYear = getString(R.string.jan);
                 break;
-            case 2 : monthOfYear = "Feb";
+            case 2 : monthOfYear = getString(R.string.feb);
                 break;
-            case 3 : monthOfYear = "Mar";
+            case 3 : monthOfYear = getString(R.string.mar);
                 break;
-            case 4 : monthOfYear = "Apr";
+            case 4 : monthOfYear = getString(R.string.apr);
                 break;
-            case 5 : monthOfYear = "May";
+            case 5 : monthOfYear = getString(R.string.may);
                 break;
-            case 6 : monthOfYear = "Jun";
+            case 6 : monthOfYear = getString(R.string.jun);
                 break;
-            case 7 : monthOfYear = "Jul";
+            case 7 : monthOfYear = getString(R.string.jul);
                 break;
-            case 8 : monthOfYear = "Aug";
+            case 8 : monthOfYear = getString(R.string.aug);
                 break;
-            case 9 : monthOfYear = "Sep";
+            case 9 : monthOfYear = getString(R.string.sep);
                 break;
-            case 10 : monthOfYear = "Oct";
+            case 10 : monthOfYear = getString(R.string.oct);
                 break;
-            case 11 : monthOfYear = "Nov";
+            case 11 : monthOfYear = getString(R.string.nov);
                 break;
-            case 12 : monthOfYear = "Dec";
+            case 12 : monthOfYear = getString(R.string.dec);
                 break;
         }
 

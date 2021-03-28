@@ -93,7 +93,6 @@ public class AddReadNote extends MainActivity implements
     public void showNote() {
         if (getIntent().hasExtra(db.Note.NOTE_ID)) {
             id = getIntent().getIntExtra(db.Note.NOTE_ID, 0);
-            app.l("ADD READ NOTE ID: " + id);
             Cursor cursor = dbm.getDb().rawQuery("SELECT * FROM " + db.Tables.DAILY_NOTE_TABLE + " WHERE "
                     + db.Note.NOTE_ID + " = " + id, null);
             while (cursor.moveToNext()) {
@@ -117,14 +116,11 @@ public class AddReadNote extends MainActivity implements
             objects = modifyObject.get();
             rDate = objects.getReminderDate();
             rTime = objects.getReminderTime();
-            app.l("AAAA" + rDate + "---" + rTime);
-            app.l("AA"+objects.toString());
         }
         else {
             addToDb(false);
         }
         addToDb(true);
-        app.l("BB"+objects.toString());
         finish();
     }
 
@@ -144,8 +140,8 @@ public class AddReadNote extends MainActivity implements
                 objects.reminderTime = rTime;
             } else {
 
-                objects.reminderDate = ("Today");
-                objects.reminderTime = ("At: ");
+                objects.reminderDate = (getString(R.string.today));
+                objects.reminderTime = (getString(R.string.At));
             }
             objects.noteDate = createdDate.getText().toString();
             objects.noteModifyDate = app.getDateTime(false);
@@ -155,22 +151,20 @@ public class AddReadNote extends MainActivity implements
         } else {
             objects.noteTitle = title;
             objects.noteContent = content;
-            objects.reminderDate = ("Today");
-            objects.reminderTime = ("At: ");
+            objects.reminderDate = (getString(R.string.today));
+            objects.reminderTime = (getString(R.string.At));
             objects.noteDate = app.getDateTime(false);
             objects.noteModifyDate = app.getDateTime(false);
             if (!applyAdding)
                 notificationId = dbm.addNote(objects);
-                app.l("notificationId" + notificationId);
         }
         objects.id = (int) notificationId;
-        app.l("CC" + objects.toString());
     }
 
 
     private void deleteNote() {
-        dialog = new MyDailyDialog(this, "Delete", "Cancel",
-                "Delete note?", "Do you  really  want to delete this note?", 1,
+        dialog = new MyDailyDialog(this, getString(R.string.dialog_delete), getString(R.string.Dialog_cancel),
+                getString(R.string.dialog_delete_note), getString(R.string.dialog_delete_note_desc), 1,
                 0, this, 0, 0);
         dialog.setCancelable(true);
         dialog.show();
@@ -178,18 +172,14 @@ public class AddReadNote extends MainActivity implements
 
     NotificationObject notificationObject;
     private void noteReminder() {
-        app.l("notificationId" + objects.toString());
         if (titleEdtTxt.getText().toString().isEmpty()) {
-            app.l("Empty note!");
             return;
         }
         addToDb(false);
-        app.l("notificationId" + notificationId);
         BottomSheetFragment fragment = new BottomSheetFragment();
         fragment.notificationExtras = new NotificationObject() {
             @Override
             public NoteObjects getObject() {
-                app.l("DD" + objects.toString());
                 return objects;
             }
         };
@@ -206,7 +196,7 @@ public class AddReadNote extends MainActivity implements
     public void onPositiveClick() {
         dialog.dismiss();
         dbm.deleteNote(id);
-        app.t("Deleted successfully");
+        app.t(getString(R.string.toast_delete_succes));
         finish();
     }
 
