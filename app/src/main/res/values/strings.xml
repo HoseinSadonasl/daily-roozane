@@ -58,5 +58,7 @@
     <string name="nov">Nov</string>
     <string name="dec">Dec</string>
     <string name="save">Done</string>
+    <string name="sort_date">Date</string>
+    <string name="sort_name">Name</string>
 
 </resources>

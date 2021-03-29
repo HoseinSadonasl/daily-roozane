@@ -44,8 +44,8 @@ public class spref {
     }
 
     public static class SortButtonText {
-        public static final String SORT_BTN_TXT_DATE = "Date";
-        public static final String SORT_BTN_TXT_NAME = "Name";
+        public static final String SORT_BTN_TXT_DATE = Application.getContext().getString(R.string.sort_date);
+        public static final String SORT_BTN_TXT_NAME = Application.getContext().getString(R.string.sort_name);
         public static final String SORT_BTN_TXT = "";
         public static final String SORT_BTN_DEFAULT_TXT = "Date";
     }

@@ -21,6 +21,20 @@
             layout="@layout/info_parent" />
 
     </LinearLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layoutDirection="ltr"
+        app:SpinKit_Color="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
     <LinearLayout
         android:id="@+id/searchParent"
         android:layout_width="match_parent"
@@ -86,24 +100,27 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/med_dp"
             android:layout_marginBottom="8dp"
+            android:lineSpacingExtra="0pt"
+            android:lineSpacingMultiplier="0"
+            android:includeFontPadding="false"
             android:elevation="0dp"
             android:gravity="center_horizontal"
-            android:includeFontPadding="false"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
             android:padding="@dimen/low_dp"
             android:stateListAnimator="@null"
-            android:text="@string/app_name"
             android:textAllCaps="false"
             android:textColor="@color/Gray_c"
+            tools:text="@string/app_name"
+            android:textSize="12sp"
             app:backgroundTint="@color/white"
             app:cornerRadius="@dimen/high_dp"
             app:elevation="0dp"
             app:icon="@drawable/ic_dateascldpi"
             app:iconGravity="textStart"
-            app:iconSize="@dimen/med_dp"
+            app:iconSize="@dimen/regulaar_sp"
             app:iconTint="@color/Gray_c"
             app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
             app:layout_constraintEnd_toEndOf="parent"

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements
     DatabaseConnector dbm = new DatabaseConnector(this);
     DrawerLayout drawerlayout;
     AppCompatImageView weatherImage, search_ic, tempDgree;
-    AppCompatTextView locationName, temp, status, date, weekDay;
+    AppCompatTextView locationName, temp, date, weekDay;
     NavigationView navigationView;
     MaterialButton sort, drawerAddNote_btn, info_btn, green_btn,  teal_btn, blue_btn, orange_btn, red_btn, purple_btn;
     AppCompatEditText searchInput;
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements
         searchInput = findViewById(R.id.searchInput);
         weatherParent = findViewById(R.id.weatherParent);
         temp = findViewById(R.id.temp);
-        status = findViewById(R.id.status);
         date = findViewById(R.id.date);
         weekDay = findViewById(R.id.weekDay);
         fab = findViewById(R.id.fab);
@@ -435,6 +434,7 @@ public class MainActivity extends AppCompatActivity implements
             data.put("q", cityNameString);
 
         Application.getApi().getCurrentWeather(data).enqueue(new Callback<WeatherModels>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<WeatherModels> call, Response<WeatherModels> response) {
                 if (response.code() == 200) {
@@ -442,9 +442,8 @@ public class MainActivity extends AppCompatActivity implements
                     temp.setVisibility(View.VISIBLE);
                     weatherImage.setVisibility(View.VISIBLE);
                     spinKitView.setVisibility(View.GONE);
-                    locationName.setText(response.body().getName());
                     temp.setText(String.valueOf((int) (response.body().getMain().getTemp() - 273.15)));
-                    status.setText(response.body().getWeather().get(0).getMain());
+                    locationName.setText(response.body().getName() + " - " +  response.body().getWeather().get(0).getMain());
                     String imgUrl = String.valueOf(response.body().getWeather().get(0).getIcon());
                     Glide.with(weatherImage)
                             .load("https://openweathermap.org/img/wn/"+ imgUrl +"@2x.png")

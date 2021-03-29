@@ -18,7 +18,7 @@
     <string name="ok">باشه</string>
     <string name="city_name">نام شهر</string>
     <string name="cancel">بی خیال</string>
-    <string name="At">در: </string>
+    <string name="At">ساعت: </string>
     <string name="dialog_delete">پاک شود</string>
     <string name="Dialog_cancel">بی خیال</string>
     <string name="dialog_delete_note">پاک کردن یادداشت</string>
@@ -58,5 +58,7 @@
     <string name="nov">نوامبر</string>
     <string name="dec">دسامبر</string>
     <string name="save">انجام شد</string>
+    <string name="sort_date">تاریخ</string>
+    <string name="sort_name">نام</string>
 
 </resources>

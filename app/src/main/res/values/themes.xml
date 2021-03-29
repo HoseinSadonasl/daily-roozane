@@ -45,6 +45,7 @@
         <item name="colorSecondaryVariant">@color/teal_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/teal_500</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -63,6 +64,7 @@
         <item name="colorSecondaryVariant">@color/deep_purple_400</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/deep_purple_400</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -81,6 +83,7 @@
         <item name="colorSecondaryVariant">@color/green_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/green_500</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -99,6 +102,7 @@
         <item name="colorSecondaryVariant">@color/orange_400</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/orange_400</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -117,6 +121,7 @@
         <item name="colorSecondaryVariant">@color/red_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/red_500</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -135,6 +140,7 @@
         <item name="colorSecondaryVariant">@color/blue_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
+        <item name="android:typeface">monospace</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/blue_500</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:navigationBarColor">@color/Back_white</item>
@@ -142,16 +148,6 @@
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
 
     </style>
-
-
-
-
-
-
-
-
-
-
 
 
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">

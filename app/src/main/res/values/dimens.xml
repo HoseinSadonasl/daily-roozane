@@ -14,4 +14,5 @@
     <dimen name="med_elevation">8dp</dimen>
     <dimen name="high_elevation">400dp</dimen>
     <dimen name="remindetText">20sp</dimen>
+    <dimen name="regulaar_sp">12dp</dimen>
 </resources>

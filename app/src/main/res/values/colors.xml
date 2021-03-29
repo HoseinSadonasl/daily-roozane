@@ -4,7 +4,7 @@
     <color name="Color_primary_dark">@color/teal_500</color>
     <color name="teal_700">@color/Color_primary</color>
     <color name="black">#FF000000</color>
-    <color name="Second_black">#757575</color>
+    <color name="Second_black">#626262</color>
     <color name="Gray_c">#ACACAC</color>
     <color name="white">#FFFFFF</color>
     <color name="Second_white">#F8F8F8</color>

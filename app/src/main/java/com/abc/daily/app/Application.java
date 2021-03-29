@@ -28,6 +28,10 @@ public class Application extends android.app.Application {
         super.onCreate();
         context = this;
 
+
+        String iranSans = "isans_light.ttf";
+        FontOverride.setDefaultFont(getContext(), "MONOSPACE", iranSans);
+
         Gson gson = new GsonBuilder().setLenient().create();
 
         OkHttpClient client = new OkHttpClient();
@@ -48,6 +52,8 @@ public class Application extends android.app.Application {
         return context;
 
     }
+
+
     public static DailyApi getApi(){
         return api;
     }
