@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.abc.daily.R;
@@ -24,15 +25,16 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
     private String subtitleText = "";
     private int textInputVisibility;
     private int alertSubtitleVisibility;
+    int imageVisibility;
 
     MaterialButton positive, negative;
     AppCompatTextView alertTitle, alertSubtitle;
     AppCompatEditText textInput;
+    AppCompatImageView image_view;
 
 
     public MyDailyDialog(@NonNull Context context, String positiveText, String negativeText, String titleText, String subtitleText,
-                         int alertSubtitleVisibility, int textInputVisibility, DialogInterface dialogInterface,
-                         int datePickerVisibility, int timePickerVisibility) {
+                         int alertSubtitleVisibility, int textInputVisibility, DialogInterface dialogInterface, int imageVisibility) {
         super(context);
         this.dialogInterface=dialogInterface;
         this.positiveText = positiveText;
@@ -41,6 +43,7 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
         this.subtitleText = subtitleText;
         this.textInputVisibility = textInputVisibility;
         this.alertSubtitleVisibility = alertSubtitleVisibility;
+        this.imageVisibility = imageVisibility;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.custom_dialog);
         init();
@@ -54,9 +57,11 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
         alertTitle = findViewById(R.id.alertTitle);
         alertSubtitle = findViewById(R.id.alertSubtitle);
         textInput = findViewById(R.id.textInput);
+        image_view = findViewById(R.id.image_view);
 
         textInput.setVisibility(textInputVisibility == 0 ? View.GONE : View.VISIBLE);
         alertSubtitle.setVisibility(alertSubtitleVisibility == 0 ? View.GONE : View.VISIBLE);
+        image_view.setVisibility(imageVisibility == 0 ? View.GONE : View.VISIBLE);
 
         positive.setOnClickListener(this);
         negative.setOnClickListener(this);
@@ -76,6 +81,12 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
         alertSubtitle.setVisibility(View.VISIBLE);
         textInput.requestFocus();
         return textInput.getText().toString().length() == 0 ? "" : textInput.getText().toString();
+    }
+
+    public void  setLogoImg(int image){
+        imageVisibility = 1;
+        image_view.setVisibility(View.VISIBLE);
+        image_view.setImageResource(image);
     }
 
 

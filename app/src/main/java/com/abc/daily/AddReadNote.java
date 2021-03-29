@@ -163,9 +163,16 @@ public class AddReadNote extends MainActivity implements
 
 
     private void deleteNote() {
-        dialog = new MyDailyDialog(this, getString(R.string.dialog_delete), getString(R.string.Dialog_cancel),
-                getString(R.string.dialog_delete_note), getString(R.string.dialog_delete_note_desc), 1,
-                0, this, 0, 0);
+        dialog = new MyDailyDialog(
+                this,
+                getString(R.string.dialog_delete),
+                getString(R.string.Dialog_cancel),
+                getString(R.string.dialog_delete_note),
+                getString(R.string.dialog_delete_note_desc),
+                1,
+                0,
+                this,
+                0);
         dialog.setCancelable(true);
         dialog.show();
     }

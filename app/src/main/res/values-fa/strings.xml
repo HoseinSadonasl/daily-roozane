@@ -60,5 +60,10 @@
     <string name="save">انجام شد</string>
     <string name="sort_date">تاریخ</string>
     <string name="sort_name">نام</string>
+    <string name="send_mail">ارسال ایمیل</string>
+    <string name="mail_feedback">ایمیل بازخورد</string>
+    <string name="call">تماس</string>
+    <string name="connect_dev">ارتباط با توسعه دهنده:</string>
+    <string name="about_daily">درباره روزانه</string>
 
 </resources>

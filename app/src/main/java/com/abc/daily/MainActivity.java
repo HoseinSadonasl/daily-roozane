@@ -2,6 +2,7 @@ package com.abc.daily;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements
     List<NoteObjects> list = new ArrayList<>();
     DatabaseConnector dbm = new DatabaseConnector(this);
     DrawerLayout drawerlayout;
-    AppCompatImageView weatherImage, search_ic, tempDgree;
+    AppCompatImageView weatherImage, search_ic, tempDgree, illustration;
     AppCompatTextView locationName, temp, date, weekDay;
     NavigationView navigationView;
     MaterialButton sort, drawerAddNote_btn, info_btn, green_btn,  teal_btn, blue_btn, orange_btn, red_btn, purple_btn;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements
         search_ic = findViewById(R.id.search_ic);
         searchInput = findViewById(R.id.searchInput);
         weatherParent = findViewById(R.id.weatherParent);
+        illustration = findViewById(R.id.illustration);
         temp = findViewById(R.id.temp);
         date = findViewById(R.id.date);
         weekDay = findViewById(R.id.weekDay);
@@ -129,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements
         purple_btn.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         updateList = true;
 
         list = dbm.getAllNotes();
@@ -136,6 +139,8 @@ public class MainActivity extends AppCompatActivity implements
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        illustration.setVisibility(list.size() >= 1 ? View.GONE : View.VISIBLE);
 
         restoreDara();
         getWeather();
@@ -313,6 +318,38 @@ public class MainActivity extends AppCompatActivity implements
 
     private void showInfo() {
 
+        MyDailyDialog dialog = new MyDailyDialog(
+                this,
+                getString(R.string.mail_feedback),
+                getString(R.string.call),
+                getString(R.string.about_daily),
+                "v1.0" + "\n" + "Hosein sadon asl" + "\n" +
+                        getString(R.string.connect_dev) + "\n" +
+                        "E-mail: hoseinsadonasl@gmail.com" + "\n" +
+                        "Tel: +989168398153",
+                1,
+                0,
+                new DialogInterface() {
+                    @Override
+                    public void onPositiveClick() {
+                        sendFeedbackMail();
+                    }
+
+                    @Override
+                    public void onNegativeClick() {
+                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+989168398153")));
+                    }
+                },
+                1);
+        dialog.setLogoImg(R.drawable.roozane_pic);
+        dialog.show();
+
+    }
+
+    private void sendFeedbackMail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:hoseinsadonasl@gmail.com"));
+        startActivity(Intent.createChooser(intent, getString(R.string.send_mail)));
     }
 
     private void saveColorVal(String colorName) {
@@ -329,6 +366,8 @@ public class MainActivity extends AppCompatActivity implements
             list.addAll(readdata(""));
         }
             adapter.notifyDataSetChanged();
+
+        illustration.setVisibility(list.size() >= 1 ? View.GONE : View.VISIBLE);
         super.onResume();
     }
 
@@ -477,7 +516,6 @@ public class MainActivity extends AppCompatActivity implements
                 1,
                 1,
                 this,
-                0,
                 0);
         dialog.setCancelable(false);
         dialog.show();

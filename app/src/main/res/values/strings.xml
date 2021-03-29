@@ -60,5 +60,10 @@
     <string name="save">Done</string>
     <string name="sort_date">Date</string>
     <string name="sort_name">Name</string>
+    <string name="send_mail">Send Email</string>
+    <string name="mail_feedback">Mail Feedback</string>
+    <string name="call">Call</string>
+    <string name="connect_dev">connecting with developer:</string>
+    <string name="about_daily">About Daily</string>
 
 </resources>
