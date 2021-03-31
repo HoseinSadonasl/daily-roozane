@@ -212,7 +212,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR, hourOfDay);
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
                 calendar.set(Calendar.SECOND, 0);
                 timePicker.setText(getTimeString(calendar));
@@ -238,7 +238,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
         if (notificationExtras != null) {
             object = notificationExtras.getObject();
-            app.l(notificationExtras.getObject().toString());
             intent.putExtra("ntId", object.getId());
             intent.putExtra("ntStr", object.getNoteTitle());
             object.reminderDate = dateStr;
@@ -289,29 +288,29 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
         String monthOfYear = "";
         switch (c.get(Calendar.MONTH)) {
-            case 1 : monthOfYear = getString(R.string.jan);
+            case 0 : monthOfYear = getString(R.string.jan);
                 break;
-            case 2 : monthOfYear = getString(R.string.feb);
+            case 1 : monthOfYear = getString(R.string.feb);
                 break;
-            case 3 : monthOfYear = getString(R.string.mar);
+            case 2 : monthOfYear = getString(R.string.mar);
                 break;
-            case 4 : monthOfYear = getString(R.string.apr);
+            case 3 : monthOfYear = getString(R.string.apr);
                 break;
-            case 5 : monthOfYear = getString(R.string.may);
+            case 4 : monthOfYear = getString(R.string.may);
                 break;
-            case 6 : monthOfYear = getString(R.string.jun);
+            case 5 : monthOfYear = getString(R.string.jun);
                 break;
-            case 7 : monthOfYear = getString(R.string.jul);
+            case 6 : monthOfYear = getString(R.string.jul);
                 break;
-            case 8 : monthOfYear = getString(R.string.aug);
+            case 7 : monthOfYear = getString(R.string.aug);
                 break;
-            case 9 : monthOfYear = getString(R.string.sep);
+            case 8 : monthOfYear = getString(R.string.sep);
                 break;
-            case 10 : monthOfYear = getString(R.string.oct);
+            case 9 : monthOfYear = getString(R.string.oct);
                 break;
-            case 11 : monthOfYear = getString(R.string.nov);
+            case 10 : monthOfYear = getString(R.string.nov);
                 break;
-            case 12 : monthOfYear = getString(R.string.dec);
+            case 11 : monthOfYear = getString(R.string.dec);
                 break;
         }
 

@@ -16,7 +16,9 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 import com.abc.daily.AddReadNote;
+import com.abc.daily.Objects.NoteObjects;
 import com.abc.daily.R;
+import com.abc.daily.interfaces.NotificationObject;
 
 public class NotificationHelper extends ContextWrapper {
 
@@ -44,7 +46,6 @@ public class NotificationHelper extends ContextWrapper {
     public NotificationManager getManager() {
         if (mManager == null) {
             mManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            //getChannelNotification();
         }
         return mManager;
     }
@@ -64,7 +65,7 @@ public class NotificationHelper extends ContextWrapper {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentIntent(pIntent(id))
-                .addAction(R.mipmap.ic_launcher_foreground, getString(R.string.open_it), pIntent(id))
+                //.addAction(R.mipmap.ic_launcher_foreground, getString(R.string.open_it), pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
                 .setContentText(getString(R.string.tap_for_more))
