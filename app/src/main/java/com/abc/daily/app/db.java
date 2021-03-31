@@ -10,13 +10,13 @@ public class db {
 
     public static class Note{
 
-        public static final String NOTE_ID = "note_id";
-        public static final String NOTE_TITLE = "note_title";
-        public static final String NOTE_CONTENT = "note_content";
-        public static final String NOTE_DATE = "note_date";
+        public static final String NOTE_ID = "NOTE_ID";
+        public static final String NOTE_TITLE = "NOTE_TITLE";
+        public static final String NOTE_CONTENT = "NOTE_CONTENT";
+        public static final String NOTE_DATE = "NOTE_DATE";
         public static final String NOTE_LAST_MODIFY = "note_last_modify";
-        public static final String REMINDER_TIME = "reminder_time";
-        public static final String REMINDER_DATE = "reminder_date";
+        public static final String REMINDER_TIME = "REMINDER_TIME";
+        public static final String REMINDER_DATE = "REMINDER_DATE";
 
     }
 

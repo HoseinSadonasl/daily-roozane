@@ -127,7 +127,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
     }
 
     private void restoreTheme() {
-        String color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+        String color = spref.get(spref.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
         switch (color) {
             case spref.Theme.PURPLE_COLOR : {
                 setColor(R.color.deep_purple_400);
@@ -212,7 +212,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.HOUR, hourOfDay);
                 calendar.set(Calendar.MINUTE, minute);
                 calendar.set(Calendar.SECOND, 0);
                 timePicker.setText(getTimeString(calendar));

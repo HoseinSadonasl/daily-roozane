@@ -62,7 +62,7 @@ public class NotificationHelper extends ContextWrapper {
         id = notificationId;
         Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.daily_notification);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
-                .setSmallIcon(R.drawable.ic_roozaneicldpi)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentIntent(pIntent(id))
                 .addAction(R.mipmap.ic_launcher_foreground, getString(R.string.open_it), pIntent(id))
                 .setSound(soundUri)

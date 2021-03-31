@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements
     AppCompatEditText searchInput;
     MyDailyDialog dialog;
     ConstraintLayout weatherParent;
-    Boolean updateList = false, backPressed = false;
+    Boolean updateList = false, backPressed = false, sprefBol;
     SpinKitView spinKitView;
     String cityNameString, orderState, orderType, color;
 
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements
 
         View header = navigationView.getHeaderView(0);
         drawerAddNote_btn = header.findViewById(R.id.drawerAddNote_btn);
+
         info_btn = header.findViewById(R.id.info_btn);
         green_btn = header.findViewById(R.id.green_btn);
         teal_btn = header.findViewById(R.id.teal_btn);
@@ -130,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements
         red_btn.setOnClickListener(this);
         purple_btn.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         updateList = true;
 
@@ -162,23 +162,23 @@ public class MainActivity extends AppCompatActivity implements
             public void afterTextChanged(Editable s) {
             }
         });
-
     }
-
 
     private void restoreDara() {
         restoreTheme(true);
-        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
-        sort.setText(spref.get(spref.tags.SORT_BTN_TXT).getString(spref.SortButtonText.SORT_BTN_TXT, spref.SortButtonText.SORT_BTN_DEFAULT_TXT));
-        sort.setIcon(ContextCompat.getDrawable(this, spref.get(spref.tags.SORT).getInt(spref.tags.SORT_ICON_ID, R.drawable.ic_dateascldpi)));
-        orderState = spref.get(spref.tags.SORT).getString(spref.tags.SORT, spref.SortState.SORT_DEFAULT);
-        orderType  = spref.get(spref.tags.SORT).getString(spref.tags.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
-
+        cityNameString = spref.get(spref.WEATHER).getString(spref.Weather.CITY_NAME, spref.Weather.DEFAULT_CITY_NAME);
+        orderState = spref.get(spref.SORT).getString(spref.SORT, spref.SortState.SORT_DEFAULT);
+        orderType  = spref.get(spref.SORT).getString(spref.SORT_TYPE, spref.SortType.DEFAULT_TYPE);
+        String sortBtnTxt = spref.get(spref.SORT).getString(spref.SORT, spref.SortState.SORT_DEFAULT);
+        if (sortBtnTxt.equals(spref.SortState.SORT_BY_DATE)) {
+            sort.setText(spref.SortButtonText.SORT_BTN_TXT_DATE);
+        } else sort.setText(spref.SortButtonText.SORT_BTN_TXT_NAME);
+        sort.setIcon(ContextCompat.getDrawable(this, spref.get(spref.SORT).getInt(spref.SORT_ICON_ID, R.drawable.ic_dateascldpi)));
     }
 
     public void restoreTheme(Boolean setBackgroundImage) {
 
-        color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+        color = spref.get(spref.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
         switch (color) {
             case  spref.Theme.PURPLE_COLOR : {
                 if (setBackgroundImage) {
@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void saveColorVal(String colorName) {
-        spref.get(spref.tags.THEME).edit().putString(spref.Theme.THEME_COLOR, colorName).apply();
+        spref.get(spref.THEME).edit().putString(spref.Theme.THEME_COLOR, colorName).apply();
         recreate();
     }
 
@@ -364,9 +364,7 @@ public class MainActivity extends AppCompatActivity implements
             list.addAll(readdata(searchInput.getText().toString()));
         } else {
             list.addAll(readdata(""));
-        }
-            adapter.notifyDataSetChanged();
-
+        }adapter.notifyDataSetChanged();
         illustration.setVisibility(list.size() >= 1 ? View.GONE : View.VISIBLE);
         super.onResume();
     }
@@ -404,7 +402,6 @@ public class MainActivity extends AppCompatActivity implements
                     " OR " + db.Note.NOTE_CONTENT  + " LIKE '%" + inputText + "%'"+
                     " ORDER BY " + orderState + " " + orderType , null);
         }
-
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(db.Note.NOTE_ID));
             String title = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_TITLE));
@@ -455,10 +452,9 @@ public class MainActivity extends AppCompatActivity implements
             sort.setIconResource(R.drawable.ic_dateascldpi);
             iconId=getResources().getIdentifier(getResources().getResourceEntryName(R.drawable.ic_dateascldpi),"drawable","com.abc.daily");
         }
-        spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT, orderState).apply();
-        spref.get(spref.tags.SORT).edit().putString(spref.tags.SORT_TYPE, orderType).apply();
-        spref.get(spref.tags.SORT_BTN_TXT).edit().putString(spref.SortButtonText.SORT_BTN_TXT, sort.getText().toString()).apply();
-        spref.get(spref.tags.SORT).edit().putInt(spref.tags.SORT_ICON_ID, iconId).apply();
+        spref.get(spref.SORT).edit().putString(spref.SORT, orderState).apply();
+        spref.get(spref.SORT).edit().putString(spref.SORT_TYPE, orderType).apply();
+        spref.get(spref.SORT).edit().putInt(spref.SORT_ICON_ID, iconId).apply();
         list.clear();
         list.addAll(readdata(""));
         adapter.notifyDataSetChanged();
@@ -495,8 +491,6 @@ public class MainActivity extends AppCompatActivity implements
                     weatherImage.setVisibility(View.GONE);
                     app.t(getString(R.string.invalid_name_toast));
                 }
-
-
             }
 
             @Override
@@ -524,9 +518,8 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPositiveClick() {
         locationName.setText(dialog.getInputText());
-        spref.get(spref.tags.WEATHER).edit().putString(spref.Weather.cityName, locationName.getText().toString()).apply();
-        cityNameString = spref.get(spref.tags.WEATHER).getString(spref.Weather.cityName, spref.Weather.defaultCityName);
-
+        spref.get(spref.WEATHER).edit().putString(spref.Weather.CITY_NAME, locationName.getText().toString()).apply();
+        cityNameString = spref.get(spref.WEATHER).getString(spref.Weather.CITY_NAME, spref.Weather.DEFAULT_CITY_NAME);
         getWeather();
         dialog.dismiss();
     }
@@ -535,7 +528,6 @@ public class MainActivity extends AppCompatActivity implements
     public void onNegativeClick() {
         dialog.dismiss();
     }
-
 
     @SuppressLint("NonConstantResourceId")
     @Override

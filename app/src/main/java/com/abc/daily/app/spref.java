@@ -7,6 +7,12 @@ import com.abc.daily.R;
 
 public class spref {
 
+    public static final String WEATHER = "WEATHER";
+    public static final String THEME = "THEME";
+    public static final String SORT = "SORT";
+    public static final String SORT_TYPE = "SORT_TYPE";
+    public static final String SORT_ICON_ID = "SORT_ICON_ID";
+
     private static SharedPreferences sharedPreferences;
 
     public static SharedPreferences get(String tag) {
@@ -17,18 +23,10 @@ public class spref {
         return sharedPreferences;
     }
 
-    public static class tags {
-        public static final String WEATHER = "WEATHER";
-        public static final String SORT = "SORT";
-        public static final String SORT_TYPE = "SORT_TYPE";
-        public static final String SORT_ICON_ID = "SORT_ICON_ID";
-        public static final String SORT_BTN_TXT = "SORT_BTN";
-        public static final String THEME = "THEME";
-    }
 
     public static class Weather {
-        public static final String cityName = "cityName";
-        public static final String defaultCityName = "";
+        public static final String CITY_NAME = "cityName";
+        public static final String DEFAULT_CITY_NAME = "";
     }
 
     public static class SortState {
@@ -46,8 +44,6 @@ public class spref {
     public static class SortButtonText {
         public static final String SORT_BTN_TXT_DATE = Application.getContext().getString(R.string.sort_date);
         public static final String SORT_BTN_TXT_NAME = Application.getContext().getString(R.string.sort_name);
-        public static final String SORT_BTN_TXT = "";
-        public static final String SORT_BTN_DEFAULT_TXT = "Date";
     }
 
     public static class Theme {
@@ -60,6 +56,5 @@ public class spref {
         public static final String BLUE_COLOR = "BLUE";
         public static final String TEAL_COLOR = "TEAL";
         public static final String GREEN_COLOR = "GREEN";
-        public static final String DEFAULT_COLOR = TEAL_COLOR;
     }
 }

@@ -62,7 +62,7 @@ public class SplashScreen extends AppCompatActivity {
 
     }
     private void restoreTheme() {
-        color = spref.get(spref.tags.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
+        color = spref.get(spref.THEME).getString(spref.Theme.THEME_COLOR, spref.Theme.DEFAULT_THEME_COLOR);
         switch (color) {
             case spref.Theme.PURPLE_COLOR : {
                 parent.setBackgroundColor(getResources().getColor(R.color.deep_purple_400));
