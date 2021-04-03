@@ -65,7 +65,6 @@ public class NotificationHelper extends ContextWrapper {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentIntent(pIntent(id))
-                //.addAction(R.mipmap.ic_launcher_foreground, getString(R.string.open_it), pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
                 .setContentText(getString(R.string.tap_for_more))

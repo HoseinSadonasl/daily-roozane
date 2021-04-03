@@ -203,6 +203,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
                 datePicker.setText(getDateString(calendar));
             }
         }, year, month, dayOfMonth);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
 

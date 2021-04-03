@@ -3,6 +3,8 @@ package com.abc.daily.interfaces;
 import java.util.Map;
 
 import com.abc.daily.Objects.WeatherModels;
+import com.abc.daily.R;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;

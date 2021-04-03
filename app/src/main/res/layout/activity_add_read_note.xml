@@ -29,7 +29,7 @@
                 android:layout_alignParentStart="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="20dp"
-                app:srcCompat="@drawable/ic_chevron_left"
+                app:srcCompat="@drawable/ic_chevron"
                 android:tint="@color/Second_black" />
 
 
@@ -37,7 +37,7 @@
                 android:id="@+id/appbarTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toStartOf="@+id/reminderBtn"
+                android:layout_toStartOf="@+id/delete"
                 android:layout_toEndOf="@+id/back"
                 android:gravity="start|center_vertical"
                 android:textDirection="rtl"

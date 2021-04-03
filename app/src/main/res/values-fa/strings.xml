@@ -65,5 +65,10 @@
     <string name="call">تماس</string>
     <string name="connect_dev">ارتباط با توسعه دهنده:</string>
     <string name="about_daily">درباره روزانه</string>
+    <string name="please_enter_city_name">لطفا نام یک شهر را وارد کنید</string>
+    <string name="weaLang">fa</string>
+
+
+
 
 </resources>

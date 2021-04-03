@@ -467,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements
         Map<String ,String> data = new HashMap();
             data.put("appid","6c7b0789e344c8bdd8f0935ff4568e72");
             data.put("q", cityNameString);
+            data.put("lang", getString(R.string.weaLang));
 
         Application.getApi().getCurrentWeather(data).enqueue(new Callback<WeatherModels>() {
             @SuppressLint("SetTextI18n")
@@ -517,6 +518,10 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onPositiveClick() {
+        if (dialog.getInputText().isEmpty()) {
+            app.t(getString(R.string.please_enter_city_name));
+            return;
+        }
         locationName.setText(dialog.getInputText());
         spref.get(spref.WEATHER).edit().putString(spref.Weather.CITY_NAME, locationName.getText().toString()).apply();
         cityNameString = spref.get(spref.WEATHER).getString(spref.Weather.CITY_NAME, spref.Weather.DEFAULT_CITY_NAME);

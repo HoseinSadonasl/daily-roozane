@@ -85,6 +85,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                 }
                 case spref.Theme.GREEN_COLOR : {
                     holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_green));
+                    holder.reminderIc.setColorFilter(context.getResources().getColor(R.color.green_500));
+
                     break;
                 }
                 default: holder.reminder.setBackground(ContextCompat.getDrawable(context, R.drawable.border_back_teal));
