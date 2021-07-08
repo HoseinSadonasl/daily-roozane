@@ -22,10 +22,10 @@ public class app {
     public static String getDateTime(Boolean clock){
         Calendar cal = Calendar.getInstance();
         if (clock) {
-            SimpleDateFormat currentTime = new SimpleDateFormat("H:mm");
+            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
             return currentTime.format(cal.getTime());
         } else {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyy hh:mm a");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm a");
             return dateFormat.format(cal.getTime());
         }
 
