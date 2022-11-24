@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Color_primary">@color/teal_500</color>
+    <color name="Color_primary_dark">@color/teal_500</color>
+    <color name="teal_700">@color/Color_primary</color>
+    <color name="black">#FF000000</color>
+    <color name="Second_black">#626262</color>
+    <color name="Gray_c">#ACACAC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="Second_white">#F8F8F8</color>
+    <color name="Back_white">#F8F8F8</color>
+
+    <color name="mdtp_accent_color">#FF9600</color>
+    <color name="mdtp_accent_color_dark">#FF8A00</color>
+    <color name="btn_grey">#DDDDDD</color>
+
+    <color name="deep_purple_400">#7E57C2</color>
+    <color name="red_500">#EF5350</color>
+    <color name="orange_400">#FFA726</color>
+    <color name="blue_500">#42A5F5</color>
+    <color name="teal_500">#26A69A</color>
+    <color name="green_500">#66BB6A</color>
+
+</resources>
