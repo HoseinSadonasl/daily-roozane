@@ -1,2 +1,4 @@
 include ':app'
 rootProject.name = "Daily"
+include ':data'
+include ':core'

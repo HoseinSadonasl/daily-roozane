@@ -67,5 +67,6 @@
     <string name="about_daily">About Daily</string>
     <string name="please_enter_city_name">Please enter a city name</string>
     <string name="weaLang">en</string>
+    <string name="title_dynamicfeature2">ModuleXX</string>
 
 </resources>

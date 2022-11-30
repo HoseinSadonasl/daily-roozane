@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.dailykotlin'
+    namespace 'com.abc.dailykotlin'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.dailykotlin"
+        applicationId 'com.abc.dailykotlin'
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -30,6 +30,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dynamicFeatures = []
 }
 
 dependencies {
