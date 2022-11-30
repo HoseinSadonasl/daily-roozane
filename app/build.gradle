@@ -30,7 +30,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.abc.daily'
-    dynamicFeatures = []
 }
 
 dependencies {
