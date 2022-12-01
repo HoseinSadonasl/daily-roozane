@@ -32,7 +32,6 @@ import com.abc.daily.app.ShamsiCalendar;
 import com.abc.daily.app.*;
 import com.abc.daily.app.db;
 import com.abc.daily.interfaces.DialogInterface;
-import com.abc.daily.ui.MyDailyDialog;
 import com.bumptech.glide.Glide;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.button.MaterialButton;
@@ -45,10 +44,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener, DialogInterface, NavigationView.OnNavigationItemSelectedListener {
 

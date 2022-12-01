@@ -1,4 +1,4 @@
-package com.abc.daily.ui;
+package com.abc.daily;
 
 import android.app.Dialog;
 import android.content.Context;

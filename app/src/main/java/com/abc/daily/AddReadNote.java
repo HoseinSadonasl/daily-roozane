@@ -1,6 +1,5 @@
 package com.abc.daily;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -14,7 +13,6 @@ import com.abc.daily.fragments.BottomSheetFragment;
 import com.abc.daily.interfaces.DialogInterface;
 import com.abc.daily.interfaces.ModifyObject;
 import com.abc.daily.interfaces.NotificationObject;
-import com.abc.daily.ui.MyDailyDialog;
 
 import com.abc.daily.app.DatabaseConnector;
 import com.abc.daily.app.*;

@@ -1,4 +1,4 @@
-package com.abc.core.data.local.note
+package com.abc.daily.domain.model.note
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

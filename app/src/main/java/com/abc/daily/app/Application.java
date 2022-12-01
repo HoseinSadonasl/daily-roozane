@@ -12,10 +12,13 @@ import com.google.gson.GsonBuilder;
 import java.util.Calendar;
 
 import com.abc.daily.interfaces.DailyApi;
+
+import dagger.hilt.android.HiltAndroidApp;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@HiltAndroidApp
 public class Application extends android.app.Application {
 
 

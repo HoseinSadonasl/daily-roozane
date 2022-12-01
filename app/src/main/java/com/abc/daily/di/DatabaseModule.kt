@@ -1,8 +1,8 @@
-package com.abc.core.di
+package com.abc.daily.di
 
 import android.content.Context
 import androidx.room.Room
-import com.abc.core.data.local.db.NoteDatabase
+import com.abc.daily.data.local.db.NoteDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
-package com.abc.core.data.local.db
+package com.abc.daily.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.abc.core.data.local.note.Note
+import com.abc.daily.domain.model.note.Note
 
 @Database(
     entities = [Note::class],
