@@ -5,4 +5,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NotesFragment: Fragment() {
+
+
+
 }

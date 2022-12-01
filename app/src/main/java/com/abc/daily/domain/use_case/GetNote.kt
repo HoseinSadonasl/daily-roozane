@@ -7,6 +7,6 @@ class GetNote(
     private val noteRepository: NoteRepository
 ) {
 
-    suspend fun invoke(id: Int): Note? = noteRepository.getNoteById(id)
+    suspend operator fun invoke(id: Int): Note? = noteRepository.getNoteById(id)
 
 }

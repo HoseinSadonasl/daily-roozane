@@ -8,6 +8,6 @@ class GetNotesList (
     private val noteRepository: NoteRepository
 ) {
 
-    fun invoke(): Flow<List<Note>> = noteRepository.getNotesList()
+    operator fun invoke(): Flow<List<Note>> = noteRepository.getNotesList()
 
 }
