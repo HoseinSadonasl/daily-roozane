@@ -8,8 +8,8 @@ import com.abc.core.util.NoteStateEnum
 data class Note(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var title: String? = null,
-    var description: String? = null,
+    var title: String,
+    var description: String,
     var createdAt: String? = null,
     var modifiedAt: String? = null,
     var type: String? = null,
