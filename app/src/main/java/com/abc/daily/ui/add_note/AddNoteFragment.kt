@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddNoteFragment: Fragment() {
 
     private lateinit var binding: LayoutAddNoteBinding
-    val addNoteViewModel: AddNoteViewModel by viewModels()
+    private val addNoteViewModel: AddNoteViewModel by viewModels()
     private lateinit var note: Note
 
     override fun onCreateView(

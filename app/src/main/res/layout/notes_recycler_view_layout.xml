@@ -30,7 +30,7 @@
             android:padding="@dimen/med_dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/date"
+                android:id="@+id/textView_date_notesFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/content"

@@ -3,16 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:chainUseRtl="true"
-    android:backgroundTint="#FFFFFF">
+    android:backgroundTint="#FFFFFF"
+    app:chainUseRtl="true">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:visibility="gone"
-        android:id="@+id/illustration"
+        android:id="@+id/imageView_illustration_notesFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_notesList_notesFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +26,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layoutDirection="ltr"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,7 +39,7 @@
     </LinearLayout>
 
     <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/spin_kit"
+        android:id="@+id/spinKit_weatherLoading_notesFragment"
         style="@style/SpinKitView.ThreeBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,28 +77,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
-                android:orientation="horizontal"
-                android:gravity="start|center_vertical">
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/searchInput"
-                    android:layout_weight="9"
+                    android:id="@+id/editText_searchNote_notesFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/med_dp"
+                    android:layout_weight="9"
                     android:background="@null"
                     android:hint="@string/search_note_hint"
                     android:inputType="text"
-                    android:textDirection="rtl"
                     android:maxLines="1"
                     android:textColorHint="@color/Gray_c"
+                    android:textDirection="rtl"
                     android:textSize="@dimen/med_TextSize" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/search_ic"
-                    android:layout_weight="1"
+                    android:id="@+id/imageView_searchIcon_notesFragment"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
+                    android:layout_weight="1"
                     android:background="?selectableItemBackgroundBorderless"
                     android:rotation="270"
                     app:srcCompat="@drawable/ic_search"
@@ -108,27 +109,26 @@
         </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/sort"
+            android:id="@+id/button_sortItems_notesFragment"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/med_dp"
             android:layout_marginBottom="8dp"
-            android:lineSpacingExtra="0pt"
-            android:lineSpacingMultiplier="0"
-            android:includeFontPadding="false"
             android:elevation="0dp"
             android:gravity="center_horizontal"
+            android:includeFontPadding="false"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
+            android:lineSpacingExtra="0pt"
+            android:lineSpacingMultiplier="0"
             android:padding="@dimen/low_dp"
             android:stateListAnimator="@null"
             android:textAllCaps="false"
             android:textColor="@color/Gray_c"
-            tools:text="@string/app_name"
             android:textSize="12sp"
             app:backgroundTint="@color/white"
             app:cornerRadius="@dimen/high_dp"
@@ -141,12 +141,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/dateTxt"
-            app:layout_constraintTop_toTopOf="@+id/dateTxt" />
+            app:layout_constraintTop_toTopOf="@+id/dateTxt"
+            tools:text="@string/app_name" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView_notesList_notesFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -156,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/searchParent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_addNote_save"
+        android:id="@+id/fab_addNote_notesFragment"
         style="@style/ShapeAppearance.MaterialComponents.SmallComponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

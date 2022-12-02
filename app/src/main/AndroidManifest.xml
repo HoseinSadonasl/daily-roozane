@@ -18,14 +18,17 @@
         android:theme="@style/Theme.Daily"
         tools:replace="android:theme">
         <activity
+            android:name=".MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".SplashScreen"
-            android:theme="@style/Theme.DailyNoActionbarMainTeal"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:theme="@style/Theme.DailyNoActionbarMainTeal">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <receiver android:name=".app.AlertReceiver" />
@@ -34,9 +37,16 @@
             android:name=".AddReadNote"
             android:theme="@style/Theme.DailyNoActionbar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
+            android:exported="true"
             android:theme="@style/Theme.DailyNoActionbarMainTeal"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -85,28 +85,28 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restoreTheme(false);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_notes_fragment);
         init();
 
     }
 
     private void init() {
-        drawerlayout = findViewById(R.id.drawerlayout);
-        navigationView = findViewById(R.id.navigationView);
-        recyclerView = findViewById(R.id.recyclerView);
-        weatherImage = findViewById(R.id.weatherImage);
-        tempDgree = findViewById(R.id.tempDegree);
-        locationName = findViewById(R.id.locationName);
-        search_ic = findViewById(R.id.search_ic);
-        searchInput = findViewById(R.id.searchInput);
-        weatherParent = findViewById(R.id.weatherParent);
-        illustration = findViewById(R.id.illustration);
-        temp = findViewById(R.id.temp);
-        date = findViewById(R.id.date);
-        weekDay = findViewById(R.id.weekDay);
-        fab = findViewById(R.id.fab_addNote_save);
-        spinKitView = findViewById(R.id.spin_kit);
-        sort = findViewById(R.id.sort);
+        drawerlayout = findViewById(R.id.themes_drawerLayout_notesFragment);
+        navigationView = findViewById(R.id.themes_navigationView_notesFragment);
+        recyclerView = findViewById(R.id.recyclerView_notesList_notesFragment);
+        weatherImage = findViewById(R.id.imageView_weatherImage_notesFragment);
+        tempDgree = findViewById(R.id.imageView_temp_notesFragment);
+        locationName = findViewById(R.id.textView_location_notesFragment);
+        search_ic = findViewById(R.id.imageView_searchIcon_notesFragment);
+        searchInput = findViewById(R.id.editText_searchNote_notesFragment);
+        weatherParent = findViewById(R.id.constraintLayout_weatherParent_notesFragment);
+        illustration = findViewById(R.id.imageView_illustration_notesFragment);
+        temp = findViewById(R.id.textView_temp_notesFragment);
+        date = findViewById(R.id.textView_date_notesFragment);
+        weekDay = findViewById(R.id.textView_weekDay_notesFragment);
+        fab = findViewById(R.id.fab_addNote_notesFragment);
+        spinKitView = findViewById(R.id.spinKit_weatherLoading_notesFragment);
+        sort = findViewById(R.id.button_sortItems_notesFragment);
 
         View header = navigationView.getHeaderView(0);
         drawerAddNote_btn = header.findViewById(R.id.drawerAddNote_btn);
@@ -266,15 +266,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.locationName : {
+            case R.id.textView_location_notesFragment: {
                 getCityName();
                 break;
             }
-            case R.id.search_ic : {
+            case R.id.imageView_searchIcon_notesFragment: {
                 readdata(searchInput.getText().toString());
                 break;
             }
-            case R.id.sort : {
+            case R.id.button_sortItems_notesFragment: {
                 sortData();
                 break;
             }
@@ -404,13 +404,13 @@ public class MainActivity extends AppCompatActivity implements
                     " ORDER BY " + orderState + " " + orderType , null);
         }
         while (cursor.moveToNext()) {
-            int id = cursor.getInt(cursor.getColumnIndex(db.Note.NOTE_ID));
-            String title = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_TITLE));
-            String content = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_CONTENT));
-            String reminderDate = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_DATE));
-            String reminderTime = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_TIME));
-            String date  = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_DATE));
-            String lastModify = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_LAST_MODIFY));
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(db.Note.NOTE_ID));
+            @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_TITLE));
+            @SuppressLint("Range") String content = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_CONTENT));
+            @SuppressLint("Range") String reminderDate = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_DATE));
+            @SuppressLint("Range") String reminderTime = cursor.getString(cursor.getColumnIndex(db.Note.REMINDER_TIME));
+            @SuppressLint("Range") String date  = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_DATE));
+            @SuppressLint("Range") String lastModify = cursor.getString(cursor.getColumnIndex(db.Note.NOTE_LAST_MODIFY));
 
             NoteObjects objects = new NoteObjects();
             objects.setId(id);

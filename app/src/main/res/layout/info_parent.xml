@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/weatherParent"
+        android:id="@+id/constraintLayout_weatherParent_notesFragment"
         android:layout_width="match_parent"
         android:layout_height="135dp"
         android:background="@drawable/bc_wea_teal">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/weatherImage"
+            android:id="@+id/imageView_weatherImage_notesFragment"
             android:layout_width="92dp"
             android:layout_height="92dp"
             android:layout_marginStart="@dimen/low_dp"
@@ -24,22 +24,22 @@
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp"
+            android:id="@+id/textView_temp_notesFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/weatherImage"
+            android:layout_toEndOf="@id/imageView_weatherImage_notesFragment"
             android:textColor="@android:color/white"
             android:textSize="56sp"
             android:visibility="gone"
             app:firstBaselineToTopHeight="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
-            app:layout_constraintStart_toEndOf="@+id/weatherImage"
-            app:layout_constraintTop_toTopOf="@+id/weatherImage"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_weatherImage_notesFragment"
+            app:layout_constraintStart_toEndOf="@+id/imageView_weatherImage_notesFragment"
+            app:layout_constraintTop_toTopOf="@+id/imageView_weatherImage_notesFragment"
             tools:text="26"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/date"
+            android:id="@+id/textView_date_notesFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -49,34 +49,34 @@
             android:textSize="@dimen/low_TextSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/tempDegree"
-            app:layout_constraintTop_toTopOf="@+id/temp"
+            app:layout_constraintStart_toEndOf="@+id/imageView_temp_notesFragment"
+            app:layout_constraintTop_toTopOf="@+id/textView_temp_notesFragment"
             tools:text="26/12/1399" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/weekDay"
+            android:id="@+id/textView_weekDay_notesFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/date"
+            android:layout_below="@id/textView_date_notesFragment"
             android:textColor="@android:color/white"
             android:textSize="@dimen/low_TextSize"
-            app:layout_constraintEnd_toEndOf="@+id/date"
+            app:layout_constraintEnd_toEndOf="@+id/textView_date_notesFragment"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/date"
+            app:layout_constraintStart_toStartOf="@+id/textView_date_notesFragment"
+            app:layout_constraintTop_toBottomOf="@+id/textView_date_notesFragment"
             tools:text="@string/app_name" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/tempDegree"
+            android:id="@+id/imageView_temp_notesFragment"
             android:layout_width="@dimen/high_dp"
             android:layout_height="@dimen/high_dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="12dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/temp"
-            app:layout_constraintStart_toEndOf="@+id/temp"
-            app:layout_constraintTop_toTopOf="@+id/temp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_temp_notesFragment"
+            app:layout_constraintStart_toEndOf="@+id/textView_temp_notesFragment"
+            app:layout_constraintTop_toTopOf="@+id/textView_temp_notesFragment"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_weather_clecius"
             app:tint="@android:color/white"
@@ -91,17 +91,17 @@
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:src="@drawable/ic_location"
-            app:layout_constraintBottom_toBottomOf="@+id/weatherImage"
-            app:layout_constraintEnd_toEndOf="@+id/weekDay"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView_weatherImage_notesFragment"
+            app:layout_constraintEnd_toEndOf="@+id/textView_weekDay_notesFragment"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/weekDay"
-            app:layout_constraintTop_toBottomOf="@+id/weekDay"
+            app:layout_constraintStart_toStartOf="@+id/textView_weekDay_notesFragment"
+            app:layout_constraintTop_toBottomOf="@+id/textView_weekDay_notesFragment"
             app:layout_constraintVertical_bias="0.0"
             app:tint="@android:color/white"
             tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/locationName"
+            android:id="@+id/textView_location_notesFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?selectableItemBackground"

@@ -115,8 +115,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             parent = itemView.findViewById(R.id.parent);
             title = itemView.findViewById(R.id.title);
             content = itemView.findViewById(R.id.content);
-            date = itemView.findViewById(R.id.date);
-            date = itemView.findViewById(R.id.date);
+            date = itemView.findViewById(R.id.textView_date_notesFragment);
+            date = itemView.findViewById(R.id.textView_date_notesFragment);
             reminder = itemView.findViewById(R.id.reminder);
             reminderIc = itemView.findViewById(R.id.reminderIc);
             reminderDateTime = itemView.findViewById(R.id.reminderDaeTime);
