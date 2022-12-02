@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements
         temp = findViewById(R.id.temp);
         date = findViewById(R.id.date);
         weekDay = findViewById(R.id.weekDay);
-        fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab_addNote_save);
         spinKitView = findViewById(R.id.spin_kit);
         sort = findViewById(R.id.sort);
 
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements
                 sortData();
                 break;
             }
-            case R.id.fab : {
+            case R.id.fab_addNote_save: {
                 startActivity(new Intent(MainActivity.this, AddReadNote.class));
                 break;
             }

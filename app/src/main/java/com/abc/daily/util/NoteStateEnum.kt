@@ -1,8 +1,8 @@
-package com.abc.core.util
+package com.abc.daily.util
 
-enum class NoteStateEnum {
-    DONE,
-    UNDONE,
-    AWAIT,
-    CANCELED
+enum class NoteStateEnum(value: String) {
+    DONE("done"),
+    UNDONE("undone"),
+    AWAIT("await"),
+    CANCELED("canceled")
 }

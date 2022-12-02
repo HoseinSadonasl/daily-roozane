@@ -4,6 +4,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -37,22 +38,22 @@ public class AddReadNote extends MainActivity implements
         super.onCreate(savedInstanceState);
         restoreTheme(false);
         getWindow().setStatusBarColor(getResources().getColor(R.color.Second_white));
-        setContentView(R.layout.activity_add_read_note);
+        setContentView(R.layout.layout_add_note);
 
         init();
         showNote();
     }
 
     private void init() {
-        back = findViewById(R.id.back);
-        share = findViewById(R.id.reminderBtn);
-        delete = findViewById(R.id.delete);
-        titleEdtTxt = findViewById(R.id.titleEdtTxt);
-        contentEdtTxt = findViewById(R.id.contentEdtTxt);
-        appbarTitle = findViewById(R.id.appbarTitle);
-        createdDate = findViewById(R.id.createdDate);
-        modifiedDate = findViewById(R.id.modifiedDate);
-        fab = findViewById(R.id.fab);
+        back = findViewById(R.id.button_addNote_backward);
+        share = findViewById(R.id.imageView_addNote_reminder);
+        delete = findViewById(R.id.imageView_addNote_delete);
+        titleEdtTxt = findViewById(R.id.editText_addNote_title);
+        contentEdtTxt = findViewById(R.id.editText_addNote_description);
+        appbarTitle = findViewById(R.id.textView_addNote_appbarTitle);
+        createdDate = findViewById(R.id.textView_addNote_createdDate);
+        modifiedDate = findViewById(R.id.textView_addNote_modifiedDate);
+        fab = findViewById(R.id.fab_addNote_save);
 
         dbm = new DatabaseConnector(this);
         objects = new NoteObjects();
@@ -68,19 +69,19 @@ public class AddReadNote extends MainActivity implements
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.back: {
+            case R.id.button_addNote_backward: {
                 finish();
                 break;
             }
-            case R.id.reminderBtn: {
+            case R.id.imageView_addNote_reminder: {
                 noteReminder();
                 break;
             }
-            case R.id.delete: {
+            case R.id.imageView_addNote_delete: {
                 deleteNote();
                 break;
             }
-            case R.id.fab: {
+            case R.id.fab_addNote_save: {
                 saveNote();
                 break;
             }
@@ -88,6 +89,7 @@ public class AddReadNote extends MainActivity implements
 
     }
 
+    @SuppressLint("Range")
     public void showNote() {
         if (getIntent().hasExtra(db.Note.NOTE_ID)) {
             id = getIntent().getIntExtra(db.Note.NOTE_ID, 0);
