@@ -24,13 +24,19 @@ class AddNoteFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate<LayoutAddNoteBinding?>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.layout_add_note,
             container,
             false
         )
 
+        initListeners()
+
+        return binding.root
+    }
+
+    private fun initListeners() {
         binding.fabAddNoteSave.setOnClickListener {
             saveNote()
         }
@@ -42,8 +48,6 @@ class AddNoteFragment: Fragment() {
         binding.imageViewAddNoteReminder.setOnClickListener {
             setNoteReminder()
         }
-
-        return binding.root
     }
 
     private fun saveNote() {

@@ -15,5 +15,5 @@ data class Note(
     var type: String? = null,
     var remindAt: String? = null,
     var state: NoteStateEnum? = null,
-    var items: List<Item>? = null
+    var items: List<Item>? = listOf()
 )

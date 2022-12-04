@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class NotesFragment : Fragment() {
 
     private lateinit var binding: LayoutNotesFragmentBinding
+    private val viewModel: NotesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +29,26 @@ class NotesFragment : Fragment() {
             container,
             false
         )
+
+        initListeners()
+        observeDData()
+
         return binding.root
     }
+
+    private fun initListeners() {
+        binding.fabAddNoteNotesFragment.setOnClickListener {
+            navigateToNoteFragment()
+        }
+    }
+
+    private fun observeDData() {
+        viewModel.notesList.observe(viewLifecycleOwner) { notes ->
+
+        }
+    }
+
+    private fun navigateToNoteFragment() =
+        findNavController().navigate(R.id.action_notesFragment_to_addNoteFragment)
 
 }
