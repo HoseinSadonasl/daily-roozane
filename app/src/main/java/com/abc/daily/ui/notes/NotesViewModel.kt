@@ -17,6 +17,10 @@ class NotesViewModel @Inject constructor(
 
     val notesList = MutableLiveData<List<Note>>()
 
+    init {
+        getNotes()
+    }
+
     fun getNotes() = notesDomain.getNotesList()
         .onEach {
             notesList.value = it

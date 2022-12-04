@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abc.daily.Adapters.NotesAdapter;
+import com.abc.daily.Adapters.NotesFragmentAdapter;
 import com.abc.daily.Objects.NoteObjects;
 import com.abc.daily.Objects.WeatherModels;
 import com.abc.daily.app.Application;
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements
         updateList = true;
 
         list = dbm.getAllNotes();
-        adapter = new NotesAdapter(MainActivity.this, list);
+        adapter = new NotesAdapter(this, list);
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
