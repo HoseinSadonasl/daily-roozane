@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements
     List<NoteObjects> list = new ArrayList<>();
     DatabaseConnector dbm = new DatabaseConnector(this);
     DrawerLayout drawerlayout;
-    AppCompatImageView weatherImage, search_ic, tempDgree, illustration;
+    AppCompatImageView weatherImage, tempDgree, illustration;
     AppCompatTextView locationName, temp, date, weekDay;
     NavigationView navigationView;
     MaterialButton sort, drawerAddNote_btn, info_btn, green_btn,  teal_btn, blue_btn, orange_btn, red_btn, purple_btn;
@@ -92,13 +92,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        drawerlayout = findViewById(R.id.themes_drawerLayout_notesFragment);
-        navigationView = findViewById(R.id.themes_navigationView_notesFragment);
+        // drawerlayout = findViewById(R.id.themes_drawerLayout_notesFragment);
+        // navigationView = findViewById(R.id.themes_navigationView_notesFragment);
         recyclerView = findViewById(R.id.recyclerView_notesList_notesFragment);
         weatherImage = findViewById(R.id.imageView_weatherImage_notesFragment);
-        tempDgree = findViewById(R.id.imageView_temp_notesFragment);
+      //tempDgree = findViewById(R.id.imageView_temp_notesFragment);
         locationName = findViewById(R.id.textView_location_notesFragment);
-        search_ic = findViewById(R.id.imageView_searchIcon_notesFragment);
+        //search_ic = findViewById(R.id.imageView_searchIcon_notesFragment);
         searchInput = findViewById(R.id.editText_searchNote_notesFragment);
         weatherParent = findViewById(R.id.constraintLayout_weatherParent_notesFragment);
         illustration = findViewById(R.id.imageView_illustration_notesFragment);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements
 
         fab.setOnClickListener(this);
         locationName.setOnClickListener(this);
-        search_ic.setOnClickListener(this);
+//        search_ic.setOnClickListener(this);
         sort.setOnClickListener(this);
         drawerAddNote_btn.setOnClickListener(this);
         info_btn.setOnClickListener(this);

@@ -27,9 +27,7 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.DailyNoActionbarMainTeal">
-
-        </activity>
+            android:theme="@style/Theme.DailyNoActionbarMainTeal" />
 
         <receiver android:name=".app.AlertReceiver" />
 
@@ -39,8 +37,8 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.DailyNoActionbarMainTeal"
-            android:windowSoftInputMode="adjustPan|adjustResize" >
+            android:theme="@style/Theme.DailyNoActionbar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

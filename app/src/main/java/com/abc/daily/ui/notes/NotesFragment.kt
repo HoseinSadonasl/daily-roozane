@@ -40,8 +40,12 @@ class NotesFragment : Fragment() {
     }
 
     private fun initUiComponents() {
+        binding.textViewScreenTitleNotesFragment.text = "Notes"
         notesAdapter = NotesFragmentAdapter()
-        binding.recyclerViewNotesListNotesFragment.adapter = notesAdapter
+        binding.recyclerViewNotesListNotesFragment.apply {
+            setNestedScrollingEnabled(true)
+            adapter = notesAdapter
+        }
     }
 
     private fun initListeners() {
