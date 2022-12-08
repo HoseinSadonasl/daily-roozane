@@ -1,6 +1,5 @@
 package com.abc.daily.ui.add_note
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abc.daily.domain.model.note.Note
@@ -25,5 +24,4 @@ class AddNoteViewModel @Inject constructor(
     fun deleteNote(note: Note) = viewModelScope.launch {
         notesDomain.deleteNote(note)
     }
-
 }

@@ -11,7 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
+import com.abc.daily.util.Constants
+import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class NotesFragment : Fragment() {
@@ -19,6 +22,9 @@ class NotesFragment : Fragment() {
     private lateinit var binding: LayoutNotesFragmentBinding
     private lateinit var notesAdapter: NotesFragmentAdapter
     private val viewModel: NotesViewModel by viewModels()
+
+    @Inject
+    lateinit var glide: RequestManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +61,25 @@ class NotesFragment : Fragment() {
     }
 
     private fun observeDData() {
+        observeNotes()
+        observeWeather()
+    }
+
+    private fun observeWeather() {
+        viewModel.weather.observe(viewLifecycleOwner) { currentWeather ->
+            currentWeather.let {
+                val temp = it.main.temp.toInt() - 273
+                binding.textViewTempNotesFragment.text =
+                    (getString(R.string.dgree_notesFragment, temp.toString()))
+                glide.load(
+                    Constants.ICON_URL + it.weather.get(0).icon + "@2x.png"
+                ).into(binding.imageViewWeatherImageNotesFragment)
+                binding.textViewLocationNotesFragment.text = it.name
+            }
+        }
+    }
+
+    private fun observeNotes() {
         viewModel.notesList.observe(viewLifecycleOwner) { notes ->
             notesAdapter.submitList(notes)
         }
