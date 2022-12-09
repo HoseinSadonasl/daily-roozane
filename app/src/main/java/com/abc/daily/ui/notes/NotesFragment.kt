@@ -11,14 +11,17 @@ import androidx.navigation.fragment.findNavController
 import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
+import com.abc.daily.interfaces.DialogInterface
 import com.abc.daily.util.Constants
+import com.abc.daily.util.DateTimePickerDialog
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), DialogInterface {
 
+    private lateinit var dialog: DateTimePickerDialog
     private lateinit var binding: LayoutNotesFragmentBinding
     private lateinit var notesAdapter: NotesFragmentAdapter
     private val viewModel: NotesViewModel by viewModels()
@@ -41,6 +44,20 @@ class NotesFragment : Fragment() {
         initUiComponents()
         initListeners()
         observeDData()
+
+        dialog = DateTimePickerDialog(
+            context =requireContext(),
+            positiveText = "Get Date",
+            negativeText = "",
+            titleText = "Date Picker",
+            subtitleText = "",
+            alertSubtitleVisibility = 0,
+            textInputVisibility = 0,
+            dialogInterface = this,
+            imageVisibility = 0
+        )
+
+        dialog.show()
 
         return binding.root
     }
@@ -87,5 +104,13 @@ class NotesFragment : Fragment() {
 
     private fun navigateToNoteFragment() =
         findNavController().navigate(R.id.action_notesFragment_to_addNoteFragment)
+
+    override fun onPositiveClick() {
+        dialog.getDate()
+    }
+
+    override fun onNegativeClick() {
+        TODO("Not yet implemented")
+    }
 
 }

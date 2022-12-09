@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/med_dp"
+        app:cardCornerRadius="@dimen/med_dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/alertTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/med_dp"
+                android:gravity="center_vertical"
+                android:text="@string/app_name"
+                android:textColor="@color/Second_black"
+                android:textSize="@dimen/med_TextSize"
+                android:textStyle="bold" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/alertSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/med_dp"
+                android:layout_marginLeft="@dimen/med_dp"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:layout_marginRight="@dimen/med_dp"
+                android:layout_marginBottom="@dimen/med_dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/Gray_c"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/med_dp"
+                android:layout_marginLeft="@dimen/med_dp"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:layout_marginRight="@dimen/med_dp"
+                android:layout_marginBottom="@dimen/med_dp"
+                android:background="@null"
+                android:descendantFocusability="blocksDescendants"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:hint="@string/city_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_date_dateTimePickerDialog"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="64dp"
+                android:orientation="horizontal">
+
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_year_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_month_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_day_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_time_dateTimePickerDialog"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_hour_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_minute_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/Second_white"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+                <NumberPicker
+                    android:id="@+id/numberPicker_amPm_addNotesFragment"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fadeScrollbars="true"
+                    android:solidColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+                android:layout_marginStart="@dimen/med_dp"
+                android:layout_marginLeft="@dimen/med_dp"
+                android:layout_marginEnd="@dimen/med_dp"
+                android:layout_marginRight="@dimen/med_dp"
+                android:background="@color/btn_grey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/negative"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="?selectableItemBackground"
+                    android:text="@string/negativeBtnTxt"
+                    android:textAllCaps="false"
+                    android:textColor="@color/Second_black" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/positive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="?selectableItemBackground"
+                    android:text="@string/positiveBtnTxt"
+                    android:textAllCaps="false"
+                    android:textColor="@color/Second_black" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

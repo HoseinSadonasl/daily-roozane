@@ -11,10 +11,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.abc.daily.R;
-import com.google.android.material.button.MaterialButton;
-
 import com.abc.daily.interfaces.DialogInterface;
+import com.google.android.material.button.MaterialButton;
 
 public class MyDailyDialog extends Dialog implements View.OnClickListener {
 
@@ -33,13 +31,21 @@ public class MyDailyDialog extends Dialog implements View.OnClickListener {
     AppCompatImageView image_view;
 
 
-    public MyDailyDialog(@NonNull Context context, String positiveText, String negativeText, String titleText, String subtitleText,
-                         int alertSubtitleVisibility, int textInputVisibility, DialogInterface dialogInterface, int imageVisibility) {
+    public MyDailyDialog(
+            @NonNull Context context,
+            String positiveText,
+            String negativeText,
+            String titleText,
+            String subtitleText,
+            int alertSubtitleVisibility,
+            int textInputVisibility,
+            DialogInterface dialogInterface,
+            int imageVisibility) {
         super(context);
-        this.dialogInterface=dialogInterface;
+        this.dialogInterface = dialogInterface;
         this.positiveText = positiveText;
         this.negativeText = negativeText;
-        this.titleText    = titleText;
+        this.titleText = titleText;
         this.subtitleText = subtitleText;
         this.textInputVisibility = textInputVisibility;
         this.alertSubtitleVisibility = alertSubtitleVisibility;
