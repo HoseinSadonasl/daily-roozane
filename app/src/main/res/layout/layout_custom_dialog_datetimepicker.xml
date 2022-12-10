@@ -75,7 +75,7 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout_date_dateTimePickerDialog"
-                tools:visibility="visible"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -111,16 +111,18 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout_time_dateTimePickerDialog"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingHorizontal="64dp"
                 android:orientation="horizontal">
 
                 <NumberPicker
                     android:id="@+id/numberPicker_hour_addNotesFragment"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fadeScrollbars="true"
                     android:solidColor="@color/white" />
 
@@ -128,19 +130,17 @@
                     android:id="@+id/numberPicker_minute_addNotesFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
                     android:layout_weight="1"
-                    android:background="@color/Second_white"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/white" />
+                    android:solidColor="@color/white"  />
 
                 <NumberPicker
                     android:id="@+id/numberPicker_amPm_addNotesFragment"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/white" />
+                    android:solidColor="@color/white"  />
 
             </LinearLayout>
 

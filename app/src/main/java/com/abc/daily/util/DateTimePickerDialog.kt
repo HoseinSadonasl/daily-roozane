@@ -14,6 +14,8 @@ import com.abc.daily.R
 import com.abc.daily.interfaces.DialogInterface
 import com.google.android.material.button.MaterialButton
 import java.util.*
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 class DateTimePickerDialog(
     context: Context,
@@ -27,6 +29,8 @@ class DateTimePickerDialog(
     var imageVisibility: Int
 ) : Dialog(context), View.OnClickListener {
 
+    private lateinit var now: PersianDate
+    private lateinit var calendar: Calendar
     lateinit var positive: MaterialButton
     lateinit var negative: MaterialButton
     lateinit var alertTitle: AppCompatTextView
@@ -78,26 +82,98 @@ class DateTimePickerDialog(
         alertTitle.setText(titleText)
         alertSubtitle.setText(subtitleText)
 
+        initTime()
         initTimePicker()
         initPersianDate()
     }
 
+    private fun initTime() {
+        initCalendar()
+        initHours()
+        initMinutes()
+        initAmPm()
+    }
+
+    private fun initCalendar() {
+        calendar = Calendar.getInstance()
+    }
+
+    private fun initHours() {
+        var hour = 0
+        var minute = 0
+        System.currentTimeMillis().let {
+            // hour = it.hours.toString().toInt()
+            // minute = it.minutes.toString().toInt()
+            Log.e("initMinutes", "initMinutes: ${it.hours} , ${it.minutes}")
+        }
+        val values = mutableListOf<String>()
+        for (i in 1..12) {
+            values.add(i.toString())
+        }
+        hourNumberPicker.apply {
+            maxValue = 12
+            minValue = 1
+            value = calendar.get(Calendar.HOUR)
+            displayedValues = values.toTypedArray()
+        }
+    }
+
+    private fun initMinutes() {
+        val values = mutableListOf<String>()
+        for (i in 0..60) {
+            values.add(i.toString())
+        }
+        minuteNumberPicker.apply {
+            maxValue = 60
+            minValue = 0
+            value = calendar.get(Calendar.MINUTE)
+            displayedValues = values.toTypedArray()
+        }
+    }
+
+    private fun initAmPm() {
+        val values = mutableListOf("AM", "PM")
+        amPmNumberPicker.apply {
+            maxValue = 1
+            minValue = 0
+            value = calendar.get(Calendar.AM_PM)
+            displayedValues = values.toTypedArray()
+        }
+    }
+
     private fun initPersianDate() {
-        PersianDate(System.currentTimeMillis()).apply {
+        now = PersianDate(System.currentTimeMillis()).apply {
             initYearNumberPicker(shYear)
             initMonthNumberPicker(shMonth)
             initDayNumberPicker(shDay, monthLength)
         }
     }
 
+    private fun initYearNumberPicker(shYear: Int) {
+        val values = mutableListOf<String>()
+        for (i in 0..9) {
+            if (i == 0) {
+                values.add(shYear.toString())
+            } else {
+                values.add((shYear.plus(i)).toString())
+            }
+        }
+        yearNumberPicker.apply {
+            maxValue = shYear + 9
+            minValue = shYear
+            value = shYear
+            displayedValues = values.toTypedArray()
+        }
+    }
+
     private fun initMonthNumberPicker(shMonth: Int) {
         val values = mutableListOf<String>()
-        for (i in 1..12) {
+        for (i in 0..11) {
             values.add(i.toString())
         }
         monthNumberPicker.apply {
-            maxValue = 12
-            minValue = 1
+            maxValue = 11
+            minValue = 0
             value = shMonth
             displayedValues = values.toTypedArray()
         }
@@ -117,24 +193,7 @@ class DateTimePickerDialog(
         }
     }
 
-    private fun initYearNumberPicker(shYear: Int) {
-        val values = mutableListOf<String>()
-        for (i in 0..9) {
-            if (i == 0) {
-                values.add(shYear.toString())
-            }
-            values.add((shYear.plus(i)).toString())
-        }
-        yearNumberPicker.apply {
-            maxValue = shYear + 9
-            minValue = shYear
-            value = shYear
-            displayedValues = values.toTypedArray()
-        }
-    }
-
     private fun initTimePicker() {
-
     }
 
     fun getInputText(): String? {
@@ -158,12 +217,18 @@ class DateTimePickerDialog(
             monthNumberPicker.value,
             dayNumberPicker.value
         )
-        val calendar = Calendar.getInstance().apply {
-            set(Calendar.YEAR, date[0]);
-            set(Calendar.MONTH, date[1]);
-            set(Calendar.DAY_OF_MONTH, date[2]);
+        calendar.apply {
+            set(Calendar.HOUR_OF_DAY, hourNumberPicker.value)
+            set(Calendar.MINUTE, minuteNumberPicker.value)
+            set(Calendar.AM_PM, amPmNumberPicker.value)
+            set(Calendar.YEAR, date[0])
+            set(Calendar.MONTH, date[1] - 1)
+            set(Calendar.DAY_OF_MONTH, date[2])
         }
-        Log.e("getDate", "getDate: ${calendar.timeInMillis}")
+        Log.e("getDate", "getDate: ${PersianDate(calendar.timeInMillis)}")
+        Log.e("getDate", "getDate: ${PersianDate(System.currentTimeMillis())}")
+        Log.e("getDate", "getDate: ${(calendar.timeInMillis)}")
+        Log.e("getDate", "getDate: ${(System.currentTimeMillis())}")
         return calendar.timeInMillis
     }
 
