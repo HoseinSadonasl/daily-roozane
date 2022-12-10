@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.View
 import android.widget.NumberPicker
 import androidx.appcompat.widget.AppCompatEditText
@@ -14,8 +13,6 @@ import com.abc.daily.R
 import com.abc.daily.interfaces.DialogInterface
 import com.google.android.material.button.MaterialButton
 import java.util.*
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
 
 class DateTimePickerDialog(
     context: Context,
@@ -46,16 +43,11 @@ class DateTimePickerDialog(
     lateinit var minuteNumberPicker: NumberPicker
     lateinit var amPmNumberPicker: NumberPicker
 
-    private var selectedYear: Int = 0
-    private var selectedMonth: Int = 0
-    private var selectedDay: Int = 0
-
     init {
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(R.layout.layout_custom_dialog_datetimepicker)
         init()
     }
-
 
     private fun init() {
         positive = findViewById(R.id.positive)
@@ -64,7 +56,6 @@ class DateTimePickerDialog(
         alertSubtitle = findViewById(R.id.alertSubtitle)
         textInput = findViewById(R.id.textInput)
         image_view = findViewById(R.id.image_view)
-
         yearNumberPicker = findViewById(R.id.numberPicker_year_addNotesFragment)
         monthNumberPicker = findViewById(R.id.numberPicker_month_addNotesFragment)
         dayNumberPicker = findViewById(R.id.numberPicker_day_addNotesFragment)
@@ -72,18 +63,17 @@ class DateTimePickerDialog(
         minuteNumberPicker = findViewById(R.id.numberPicker_minute_addNotesFragment)
         amPmNumberPicker = findViewById(R.id.numberPicker_amPm_addNotesFragment)
 
-        textInput.setVisibility(if (textInputVisibility == 0) View.GONE else View.VISIBLE)
-        alertSubtitle.setVisibility(if (alertSubtitleVisibility == 0) View.GONE else View.VISIBLE)
-        image_view.setVisibility(if (imageVisibility == 0) View.GONE else View.VISIBLE)
+        textInput.visibility = if (textInputVisibility == 0) View.GONE else View.VISIBLE
+        alertSubtitle.visibility = if (alertSubtitleVisibility == 0) View.GONE else View.VISIBLE
+        image_view.visibility = if (imageVisibility == 0) View.GONE else View.VISIBLE
         positive.setOnClickListener(this)
         negative.setOnClickListener(this)
-        positive.setText(positiveText)
-        negative.setText(negativeText)
-        alertTitle.setText(titleText)
-        alertSubtitle.setText(subtitleText)
+        positive.text = positiveText
+        negative.text = negativeText
+        alertTitle.text = titleText
+        alertSubtitle.text = subtitleText
 
         initTime()
-        initTimePicker()
         initPersianDate()
     }
 
@@ -99,13 +89,6 @@ class DateTimePickerDialog(
     }
 
     private fun initHours() {
-        var hour = 0
-        var minute = 0
-        System.currentTimeMillis().let {
-            // hour = it.hours.toString().toInt()
-            // minute = it.minutes.toString().toInt()
-            Log.e("initMinutes", "initMinutes: ${it.hours} , ${it.minutes}")
-        }
         val values = mutableListOf<String>()
         for (i in 1..12) {
             values.add(i.toString())
@@ -193,18 +176,6 @@ class DateTimePickerDialog(
         }
     }
 
-    private fun initTimePicker() {
-    }
-
-    fun getInputText(): String? {
-        textInputVisibility = 1
-        textInput.visibility = View.VISIBLE
-        alertSubtitleVisibility = 1
-        alertSubtitle.setVisibility(View.VISIBLE)
-        textInput.requestFocus()
-        return if (textInput.text.toString().length == 0) "" else textInput.text.toString()
-    }
-
     fun setLogoImg(image: Int) {
         imageVisibility = 1
         image_view.visibility = View.VISIBLE
@@ -225,14 +196,8 @@ class DateTimePickerDialog(
             set(Calendar.MONTH, date[1] - 1)
             set(Calendar.DAY_OF_MONTH, date[2])
         }
-        Log.e("getDate", "getDate: ${PersianDate(calendar.timeInMillis)}")
-        Log.e("getDate", "getDate: ${PersianDate(System.currentTimeMillis())}")
-        Log.e("getDate", "getDate: ${(calendar.timeInMillis)}")
-        Log.e("getDate", "getDate: ${(System.currentTimeMillis())}")
         return calendar.timeInMillis
     }
-
-
 
     override fun onClick(v: View) {
         if (v === positive) {

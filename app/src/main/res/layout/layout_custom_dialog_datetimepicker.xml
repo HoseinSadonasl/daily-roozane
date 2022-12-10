@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
@@ -12,7 +11,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/white"
         android:padding="@dimen/med_dp"
-        app:cardCornerRadius="@dimen/med_dp"
+        app:cardCornerRadius="@dimen/high_dp"
         app:cardElevation="0dp">
 
         <LinearLayout
@@ -20,7 +19,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/alertTitle"
@@ -32,7 +30,6 @@
                 android:textColor="@color/Second_black"
                 android:textSize="@dimen/med_TextSize"
                 android:textStyle="bold" />
-
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view"
@@ -81,7 +78,6 @@
                 android:gravity="center"
                 android:paddingHorizontal="64dp"
                 android:orientation="horizontal">
-
 
                 <NumberPicker
                     android:id="@+id/numberPicker_year_addNotesFragment"
@@ -144,17 +140,6 @@
 
             </LinearLayout>
 
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginStart="@dimen/med_dp"
-                android:layout_marginLeft="@dimen/med_dp"
-                android:layout_marginEnd="@dimen/med_dp"
-                android:layout_marginRight="@dimen/med_dp"
-                android:background="@color/btn_grey" />
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -182,12 +167,10 @@
                     android:textAllCaps="false"
                     android:textColor="@color/Second_black" />
 
-
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </FrameLayout>

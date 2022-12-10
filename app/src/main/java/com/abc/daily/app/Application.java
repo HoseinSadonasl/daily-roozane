@@ -32,8 +32,8 @@ public class Application extends android.app.Application {
         context = this;
 
 
-        String iranSans = "isans_light.ttf";
-        FontOverride.setDefaultFont(getContext(), "MONOSPACE", iranSans);
+        // String iranSans = "isans_light.ttf";
+        // FontOverride.setDefaultFont(getContext(), "MONOSPACE", iranSans);
 
         Gson gson = new GsonBuilder().setLenient().create();
 

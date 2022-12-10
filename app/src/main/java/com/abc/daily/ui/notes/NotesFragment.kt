@@ -45,20 +45,6 @@ class NotesFragment : Fragment(), DialogInterface {
         initListeners()
         observeDData()
 
-        dialog = DateTimePickerDialog(
-            context =requireContext(),
-            positiveText = "Get Date",
-            negativeText = "",
-            titleText = "Date Picker",
-            subtitleText = "",
-            alertSubtitleVisibility = 0,
-            textInputVisibility = 0,
-            dialogInterface = this,
-            imageVisibility = 0
-        )
-
-        dialog.show()
-
         return binding.root
     }
 
