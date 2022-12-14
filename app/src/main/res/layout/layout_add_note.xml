@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/Back_white">
@@ -32,6 +32,9 @@
                     android:layout_alignParentStart="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="20dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:tint="@color/Second_black"
                     app:srcCompat="@drawable/ic_chevron" />
 
@@ -45,29 +48,34 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/write_note"
                     android:textDirection="rtl"
+                    app:layout_constraintStart_toEndOf="@id/button_addNote_backward"
+                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
+                    app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imageView_addNote_delete"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_toStartOf="@+id/imageView_addNote_reminder"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="18dp"
                     android:tint="@color/Second_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
+                    app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:srcCompat="@drawable/ic_trash_remove" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView_addNote_reminder"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="18dp"
-                    android:tint="@color/Second_black"
-                    app:srcCompat="@drawable/ic_bell" />
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:id="@+id/imageView_addNote_reminder"-->
+<!--                    android:layout_width="56dp"-->
+<!--                    android:layout_height="56dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                    android:padding="18dp"-->
+<!--                    android:tint="@color/Second_black"-->
+<!--                    app:srcCompat="@drawable/ic_bell" />-->
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -77,7 +85,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
@@ -91,10 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="200dp"
+                    android:minHeight="300dp"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -105,7 +112,11 @@
                         android:background="@null"
                         android:hint="@string/title"
                         android:textColor="@color/Second_black"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/editText_addNote_description"
@@ -115,26 +126,45 @@
                         android:background="@null"
                         android:gravity="start"
                         android:hint="@string/content"
-                        android:textColor="@color/Second_black" />
+                        android:textColor="@color/Second_black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/editText_addNote_title"
+                        />
 
                     <LinearLayout
+                        android:id="@+id/itemParent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/editText_addNote_description"
+                        tools:visibility="visible">
 
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/checkbox_addNote_check"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/editText_addNote_itemTitle"
+                        <LinearLayout
+                            android:id="@+id/layout_itemList_addNoteFragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:hint="List item"
-                            android:textColor="@color/Second_black" />
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkbox_addNote_check"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/editText_addNote_itemTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:hint="List item"
+                                android:textColor="@color/Second_black" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -146,21 +176,81 @@
                         android:elevation="0dp"
                         android:shadowColor="@android:color/transparent"
                         android:text="Add Item"
+                        android:background="?attr/selectableItemBackground"
                         android:textColor="@color/black"
                         app:elevation="0dp"
                         app:icon="@drawable/ic_plus"
-                        app:iconTint="@color/black" />
+                        app:iconTint="@color/black"
+                        app:layout_constraintStart_toStartOf="@+id/itemParent"
+                        app:layout_constraintTop_toBottomOf="@+id/itemParent" />
 
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch_setReminder_addNoteFragment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Reminder"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/button_addNote_addItem" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/reminder_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="?attr/actionBarSize"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/switch_setReminder_addNoteFragment"
+                        tools:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:srcCompat="@drawable/ic_baseline_timer_24" />
+
+                        <TextView
+                            android:id="@+id/textView_date_addNoteFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4"
+                            android:textSize="16sp"
+                            android:layout_marginHorizontal="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2022 Jun 12" />
+
+                        <TextView
+                            android:id="@+id/textView_time_addNoteFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="7:25 PM" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textView_addNote_modifiedDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
-                        android:layout_marginTop="@dimen/low_dp"
                         android:text="@string/modified"
                         android:textColor="@color/Gray_c"
-                        android:textSize="@dimen/low_TextSize" />
+                        android:textSize="@dimen/low_TextSize"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/reminder_parent"
+                        app:layout_constraintTop_toBottomOf="@+id/reminder_parent" />
 
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -170,9 +260,13 @@
                         android:layout_gravity="end"
                         android:text="@string/created"
                         android:textColor="@color/Gray_c"
-                        android:textSize="@dimen/low_TextSize" />
+                        android:textSize="@dimen/low_TextSize"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/reminder_parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_addNote_modifiedDate" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </ScrollView>
 

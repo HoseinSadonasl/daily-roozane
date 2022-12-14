@@ -23,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class AddReadNote extends MainActivity implements
         View.OnClickListener, DialogInterface {
 
-    AppCompatImageView back, share, delete;
+    AppCompatImageView back, delete;
     AppCompatEditText titleEdtTxt, contentEdtTxt;
     AppCompatTextView appbarTitle, createdDate, modifiedDate;
     FloatingActionButton fab;
@@ -46,7 +46,7 @@ public class AddReadNote extends MainActivity implements
 
     private void init() {
         back = findViewById(R.id.button_addNote_backward);
-        share = findViewById(R.id.imageView_addNote_reminder);
+        // share = findViewById(R.id.imageView_addNote_reminder);
         delete = findViewById(R.id.imageView_addNote_delete);
         titleEdtTxt = findViewById(R.id.editText_addNote_title);
         contentEdtTxt = findViewById(R.id.editText_addNote_description);
@@ -59,7 +59,7 @@ public class AddReadNote extends MainActivity implements
         objects = new NoteObjects();
 
         back.setOnClickListener(this);
-        share.setOnClickListener(this);
+        // share.setOnClickListener(this);
         delete.setOnClickListener(this);
         fab.setOnClickListener(this);
 
@@ -73,10 +73,10 @@ public class AddReadNote extends MainActivity implements
                 finish();
                 break;
             }
-            case R.id.imageView_addNote_reminder: {
-                noteReminder();
-                break;
-            }
+//            case R.id.imageView_addNote_reminder: {
+//                noteReminder();
+//                break;
+//            }
             case R.id.imageView_addNote_delete: {
                 deleteNote();
                 break;

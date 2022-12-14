@@ -1,15 +1,21 @@
 package com.abc.daily.ui.add_note
 
+import android.app.ActionBar.LayoutParams
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
+import com.google.android.material.checkbox.MaterialCheckBox
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,17 +43,64 @@ class AddNoteFragment: Fragment() {
     }
 
     private fun initListeners() {
-        binding.fabAddNoteSave.setOnClickListener {
-            saveNote()
+        onNoteSaveListener()
+        onDeleteNoteListener()
+        onSwitchSetReminderListener()
+        onAddItemListListener()
+    }
+
+    private fun onAddItemListListener() {
+        binding.buttonAddNoteAddItem.setOnClickListener {
+            binding.itemParent.visibility = VISIBLE
+            binding.itemParent.addView(itemListVew() as View)
+        }
+    }
+
+    private fun itemListVew(): LinearLayout {
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        val layout = LinearLayout(requireContext()).apply {
+            layoutParams = params
+            orientation = LinearLayout.HORIZONTAL
+            addView(itemCheckBoxView(this.context))
+            addView(itemTextView(this.context))
+        }
+        return layout
+    }
+
+    private fun itemCheckBoxView(context: Context): View {
+        return MaterialCheckBox(context).apply {
+            setOneListener { compoundButton, isChecked ->
+
+            }
         }
 
-        binding.imageViewAddNoteDelete.setOnClickListener {
-            deleteNote(note)
-        }
+    }
 
-        binding.imageViewAddNoteReminder.setOnClickListener {
-            setNoteReminder()
+    private fun itemTextView(context: Context): View {
+        return AppCompatEditText(context).apply {
+            hint = "List item"
         }
+    }
+
+    private fun onSwitchSetReminderListener() {
+        binding.switchSetReminderAddNoteFragment.setOnCheckedChangeListener { compoundButton, isChecked ->
+            binding.reminderParent.apply {
+                if (isChecked) {
+                    this.visibility = View.VISIBLE
+                } else {
+                    this.visibility = View.GONE
+                }
+            }
+
+        }
+    }
+
+    private fun onDeleteNoteListener() {
+        binding.imageViewAddNoteDelete.setOnClickListener { deleteNote(note) }
+    }
+
+    private fun onNoteSaveListener() {
+        binding.fabAddNoteSave.setOnClickListener { saveNote() }
     }
 
     private fun saveNote() {
