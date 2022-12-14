@@ -1,5 +1,6 @@
 package com.abc.daily.ui.add_note
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.fragment.app.viewModels
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
+import com.abc.daily.interfaces.DialogInterface
+import com.abc.daily.util.CustomTimePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,6 +48,25 @@ class AddNoteFragment: Fragment() {
             deleteNote(note)
         }
 
+        binding.textViewReminderTimeAddNoteFragment.setOnClickListener {
+            setNoteReminder()
+        }
+
+        onSwitchSetReminderListener()
+
+    }
+
+    private fun onSwitchSetReminderListener() {
+        binding.switchSetReminderAddNoteFragment.setOnCheckedChangeListener { compoundButton, isChecked ->
+            binding.reminderParent.apply {
+                if (isChecked) {
+                    this.visibility = View.VISIBLE
+                } else {
+                    this.visibility = View.GONE
+                }
+            }
+
+        }
     }
 
     private fun saveNote() {
@@ -61,7 +83,19 @@ class AddNoteFragment: Fragment() {
     private fun deleteNote(note: Note) = addNoteViewModel.deleteNote(note)
 
     private fun setNoteReminder() {
+        CustomTimePickerDialog(
+            requireContext(),
+            dialogInterface = object : CustomTimePickerDialog.DialogInterface {
+                override fun onPositiveClick(timePickerDialog: CustomTimePickerDialog) {
+                    timePickerDialog.dismiss()
+                }
 
+                override fun onNegativeClick(timePickerDialog: CustomTimePickerDialog) {
+                    timePickerDialog.dismiss()
+                }
+
+            }
+        ).show()
     }
 
 }

@@ -46,7 +46,6 @@ public class AddReadNote extends MainActivity implements
 
     private void init() {
         back = findViewById(R.id.button_addNote_backward);
-        share = findViewById(R.id.imageView_addNote_reminder);
         delete = findViewById(R.id.imageView_addNote_delete);
         titleEdtTxt = findViewById(R.id.editText_addNote_title);
         contentEdtTxt = findViewById(R.id.editText_addNote_description);
@@ -71,10 +70,6 @@ public class AddReadNote extends MainActivity implements
         switch (v.getId()) {
             case R.id.button_addNote_backward: {
                 finish();
-                break;
-            }
-            case R.id.imageView_addNote_reminder: {
-                noteReminder();
                 break;
             }
             case R.id.imageView_addNote_delete: {
