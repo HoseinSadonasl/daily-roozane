@@ -68,5 +68,6 @@
     <string name="please_enter_city_name">Please enter a city name</string>
     <string name="weaLang">en</string>
     <string name="dgree_notesFragment" translatable="false">%1$s°</string>
+    <string name="reminder_btn_addNoteFragment">Reminder</string>
 
 </resources>

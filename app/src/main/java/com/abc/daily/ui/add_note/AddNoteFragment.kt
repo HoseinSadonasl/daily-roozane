@@ -45,9 +45,6 @@ class AddNoteFragment: Fragment() {
             deleteNote(note)
         }
 
-        binding.imageViewAddNoteReminder.setOnClickListener {
-            setNoteReminder()
-        }
     }
 
     private fun saveNote() {
