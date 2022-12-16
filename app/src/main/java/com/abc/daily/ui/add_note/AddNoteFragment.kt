@@ -1,6 +1,5 @@
 package com.abc.daily.ui.add_note
 
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
-import com.abc.daily.interfaces.DialogInterface
+import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +48,11 @@ class AddNoteFragment: Fragment() {
         }
 
         binding.textViewReminderTimeAddNoteFragment.setOnClickListener {
-            setNoteReminder()
+            getTimeForReminder()
+        }
+
+        binding.textViewReminderDateAddNoteFragment.setOnClickListener {
+            getDateForReminder()
         }
 
         onSwitchSetReminderListener()
@@ -65,7 +68,6 @@ class AddNoteFragment: Fragment() {
                     this.visibility = View.GONE
                 }
             }
-
         }
     }
 
@@ -82,7 +84,7 @@ class AddNoteFragment: Fragment() {
 
     private fun deleteNote(note: Note) = addNoteViewModel.deleteNote(note)
 
-    private fun setNoteReminder() {
+    private fun getTimeForReminder() {
         CustomTimePickerDialog(
             requireContext(),
             dialogInterface = object : CustomTimePickerDialog.DialogInterface {
@@ -92,6 +94,22 @@ class AddNoteFragment: Fragment() {
 
                 override fun onNegativeClick(timePickerDialog: CustomTimePickerDialog) {
                     timePickerDialog.dismiss()
+                }
+
+            }
+        ).show()
+    }
+
+    private fun getDateForReminder() {
+        CustomDatePickerDialog(
+            requireContext(),
+            dialogInterface = object : CustomDatePickerDialog.DialogInterface {
+                override fun onPositiveClick(datePickerDialog: CustomDatePickerDialog) {
+                    datePickerDialog.getDate()
+                }
+
+                override fun onNegativeClick(datePickerDialog: CustomDatePickerDialog) {
+                    datePickerDialog.dismiss()
                 }
 
             }

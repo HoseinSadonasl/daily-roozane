@@ -13,8 +13,6 @@ import java.util.*
 
 class CustomTimePickerDialog(
     context: Context,
-    private var positiveText: String? = null,
-    private var negativeText: String? = null,
     var dialogInterface: DialogInterface?,
 ) : Dialog(context), View.OnClickListener {
 
@@ -40,8 +38,6 @@ class CustomTimePickerDialog(
 
         positive.setOnClickListener(this)
         negative.setOnClickListener(this)
-        positive.text = positiveText
-        negative.text = negativeText
 
         initTime()
     }

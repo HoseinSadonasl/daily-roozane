@@ -46,7 +46,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/alertTitle">
 
                 <NumberPicker
-                    android:id="@+id/numberPicker_hour_addNotesFragment"
+                    android:id="@+id/numberPicker_year_addNotesFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                     android:solidColor="@color/white" />
 
                 <NumberPicker
-                    android:id="@+id/numberPicker_minute_addNotesFragment"
+                    android:id="@+id/numberPicker_month_addNotesFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -62,7 +62,7 @@
                     android:solidColor="@color/white" />
 
                 <NumberPicker
-                    android:id="@+id/numberPicker_amPm_addNotesFragment"
+                    android:id="@+id/numberPicker_day_addNotesFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -76,30 +76,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/white"
                 android:elevation="0dp"
                 android:shadowColor="@android:color/transparent"
+                android:text="@string/dialog_ok"
                 android:textColor="@color/black"
                 app:elevation="0dp"
+                app:iconTint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button_negative_timePicker"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog"
-                android:text="@string/dialog_ok" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_negative_timePicker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
+                android:backgroundTint="@color/white"
                 android:elevation="0dp"
                 android:shadowColor="@android:color/transparent"
+                android:text="@string/Dialog_cancel"
                 android:textColor="@color/black"
                 app:elevation="0dp"
+                app:iconTint="@color/black"
                 app:layout_constraintEnd_toStartOf="@+id/button_positive_timePicker"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog"
-                android:text="@string/Dialog_cancel" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
