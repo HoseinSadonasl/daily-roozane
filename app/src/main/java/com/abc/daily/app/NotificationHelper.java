@@ -4,21 +4,17 @@ import android.annotation.TargetApi;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
 import com.abc.daily.AddReadNote;
-import com.abc.daily.Objects.NoteObjects;
 import com.abc.daily.R;
-import com.abc.daily.interfaces.NotificationObject;
 
 public class NotificationHelper extends ContextWrapper {
 
@@ -42,7 +38,6 @@ public class NotificationHelper extends ContextWrapper {
         getManager().createNotificationChannel(channel);
     }
 
-
     public NotificationManager getManager() {
         if (mManager == null) {
             mManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -58,21 +53,16 @@ public class NotificationHelper extends ContextWrapper {
         return mIntent;
     }
 
-
     public NotificationCompat.Builder getChannelNotification(int notificationId , String notificationTitle) {
         id = notificationId;
         Uri soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"+ getApplicationContext().getPackageName() + "/" + R.raw.daily_notification);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.getContext(), channelID)
+        return new NotificationCompat.Builder(Application.getContext(), channelID)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentIntent(pIntent(id))
                 .setSound(soundUri)
                 .setContentTitle(notificationTitle)
                 .setContentText(getString(R.string.tap_for_more))
                 .setAutoCancel(true);
-        return builder;
     }
-
-
-
 }
 

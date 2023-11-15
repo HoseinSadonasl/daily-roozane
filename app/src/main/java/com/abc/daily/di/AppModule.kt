@@ -1,6 +1,7 @@
 package com.abc.daily.di
 
 import android.content.Context
+import com.abc.daily.app.Application
 import com.abc.daily.data.repository.WeatherRepositoryImpl
 import com.abc.daily.data.util.WeatherApi
 import com.abc.daily.domain.repository.WeatherRepository
@@ -21,7 +22,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
+    
     @Provides
     @Singleton
     fun provideRetrofit(

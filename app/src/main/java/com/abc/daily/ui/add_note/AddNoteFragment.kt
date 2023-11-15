@@ -1,5 +1,10 @@
 package com.abc.daily.ui.add_note
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +13,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.abc.daily.R
+import com.abc.daily.app.AlertReceiver
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
 import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
+import com.abc.daily.util.GlobalReceiver
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class AddNoteFragment: Fragment() {
@@ -20,6 +28,7 @@ class AddNoteFragment: Fragment() {
     private lateinit var binding: LayoutAddNoteBinding
     private val addNoteViewModel: AddNoteViewModel by viewModels()
     private lateinit var note: Note
+    private lateinit var calendar: Calendar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,9 +42,14 @@ class AddNoteFragment: Fragment() {
             false
         )
 
+        initComponents()
         initListeners()
 
         return binding.root
+    }
+
+    private fun initComponents() {
+        calendar = Calendar.getInstance()
     }
 
     private fun initListeners() {
@@ -80,6 +94,25 @@ class AddNoteFragment: Fragment() {
             modifiedAt = currentTime.toString()
         )
         addNoteViewModel.saveNote(note)
+        setReminderForNote()
+    }
+
+    private fun setReminderForNote() {
+        val alarm = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(requireContext(), GlobalReceiver::class.java)
+        val requestCode = System.currentTimeMillis().toInt()
+        val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getBroadcast(
+                requireContext(),
+                requestCode,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        } else {
+            PendingIntent.getBroadcast(requireContext(), requestCode, intent,
+                PendingIntent.FLAG_IMMUTABLE)
+        }
+        alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
     private fun deleteNote(note: Note) = addNoteViewModel.deleteNote(note)
@@ -89,7 +122,10 @@ class AddNoteFragment: Fragment() {
             requireContext(),
             dialogInterface = object : CustomTimePickerDialog.DialogInterface {
                 override fun onPositiveClick(timePickerDialog: CustomTimePickerDialog) {
-                    timePickerDialog.dismiss()
+                    timePickerDialog.let {
+                        calendar = it.getTime()
+                        it.dismiss()
+                    }
                 }
 
                 override fun onNegativeClick(timePickerDialog: CustomTimePickerDialog) {
@@ -105,7 +141,10 @@ class AddNoteFragment: Fragment() {
             requireContext(),
             dialogInterface = object : CustomDatePickerDialog.DialogInterface {
                 override fun onPositiveClick(datePickerDialog: CustomDatePickerDialog) {
-                    datePickerDialog.getDate()
+                    datePickerDialog.apply {
+                        calendar = getDate()
+                        dismiss()
+                    }
                 }
 
                 override fun onNegativeClick(datePickerDialog: CustomDatePickerDialog) {

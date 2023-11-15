@@ -89,13 +89,13 @@ class CustomTimePickerDialog(
         }
     }
 
-    fun getTime(): Long {
+    fun getTime(): Calendar {
         calendar.apply {
             set(Calendar.HOUR_OF_DAY, hourNumberPicker.value)
             set(Calendar.MINUTE, minuteNumberPicker.value)
             set(Calendar.AM_PM, amPmNumberPicker.value)
         }
-        return calendar.timeInMillis
+        return calendar
     }
 
     interface DialogInterface {
