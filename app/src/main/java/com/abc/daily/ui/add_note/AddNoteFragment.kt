@@ -13,14 +13,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.abc.daily.R
-import com.abc.daily.app.AlertReceiver
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
-import com.abc.daily.ui.notes.NotesViewModel
 import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
+import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
+import com.abc.daily.util.PersianDate
 import dagger.hilt.android.AndroidEntryPoint
+import java.sql.Date
 import java.util.*
 
 @AndroidEntryPoint
@@ -63,6 +64,11 @@ class AddNoteFragment : Fragment() {
                 binding.apply {
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)
+                    it.remindAt?.let {
+                        binding.switchSetReminderAddNoteFragment.isChecked = true
+                        this.textViewReminderTimeAddNoteFragment.text = DateUtil.toPersianTime(it)
+                        this.textViewReminderDateAddNoteFragment.text = DateUtil.toPersianDate(it)
+                    }
                 }
             }
         }
@@ -123,10 +129,13 @@ class AddNoteFragment : Fragment() {
             title = binding.editTextAddNoteTitle.text.toString(),
             description = binding.editTextAddNoteDescription.text.toString(),
             createdAt = currentTime.toString(),
-            modifiedAt = currentTime.toString()
+            modifiedAt = currentTime.toString(),
+            remindAt = calendar.timeInMillis.toString()
         )
         addNoteViewModel.saveNote(note)
-        setReminderForNote()
+        if (binding.switchSetReminderAddNoteFragment.isChecked) {
+            setReminderForNote()
+        }
     }
 
     private fun setReminderForNote() {
