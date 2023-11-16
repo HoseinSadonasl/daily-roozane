@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.abc.daily.databinding.NotesListItemBinding
 import com.abc.daily.domain.model.note.Note
 
-class NotesFragmentAdapter : ListAdapter<Note, NoteViewHolder>(AdapterUtils.diffUtil) {
+class NotesFragmentAdapter(val onItemClick: (id: Int) -> Unit) : ListAdapter<Note, NoteViewHolder>(AdapterUtils.diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = NotesListItemBinding.inflate(
@@ -14,7 +14,7 @@ class NotesFragmentAdapter : ListAdapter<Note, NoteViewHolder>(AdapterUtils.diff
             parent,
             false
         )
-        return NoteViewHolder(binding)
+        return NoteViewHolder(binding, onItemClick)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {

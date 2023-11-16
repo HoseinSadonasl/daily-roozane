@@ -16,6 +16,7 @@ import com.abc.daily.R
 import com.abc.daily.app.AlertReceiver
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
+import com.abc.daily.ui.notes.NotesViewModel
 import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.GlobalReceiver
@@ -23,12 +24,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 @AndroidEntryPoint
-class AddNoteFragment: Fragment() {
+class AddNoteFragment : Fragment() {
 
     private lateinit var binding: LayoutAddNoteBinding
     private val addNoteViewModel: AddNoteViewModel by viewModels()
     private lateinit var note: Note
     private lateinit var calendar: Calendar
+    private var noteId: Int? = null
+
+    companion object {
+        const val NOTE_ARGUMENT = "noteId"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +49,39 @@ class AddNoteFragment: Fragment() {
         )
 
         initComponents()
+        getArgs()
+        initNote()
+        observeData()
         initListeners()
 
         return binding.root
     }
 
+    private fun observeData() {
+        addNoteViewModel.noteLiveData.observe(viewLifecycleOwner) { note ->
+            note?.let {
+                binding.apply {
+                    editTextAddNoteTitle.setText(it.title)
+                    editTextAddNoteDescription.setText(it.description)
+                }
+            }
+        }
+    }
+
+    private fun getArgs() {
+        arguments?.let {
+            noteId = it.getInt(NOTE_ARGUMENT)
+        }
+    }
+
     private fun initComponents() {
         calendar = Calendar.getInstance()
+    }
+
+    private fun initNote() {
+        noteId?.let {
+            addNoteViewModel.getNote(it)
+        }
     }
 
     private fun initListeners() {
@@ -109,8 +141,10 @@ class AddNoteFragment: Fragment() {
                 PendingIntent.FLAG_IMMUTABLE
             )
         } else {
-            PendingIntent.getBroadcast(requireContext(), requestCode, intent,
-                PendingIntent.FLAG_IMMUTABLE)
+            PendingIntent.getBroadcast(
+                requireContext(), requestCode, intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
         }
         alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }

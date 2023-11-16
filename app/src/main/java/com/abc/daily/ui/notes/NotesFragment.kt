@@ -1,9 +1,11 @@
 package com.abc.daily.ui.notes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +14,7 @@ import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.interfaces.DialogInterface
+import com.abc.daily.ui.add_note.AddNoteFragment
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateTimePickerDialog
 import com.bumptech.glide.RequestManager
@@ -50,7 +53,9 @@ class NotesFragment : Fragment(), DialogInterface {
 
     private fun initUiComponents() {
         binding.textViewScreenTitleNotesFragment.text = "Notes"
-        notesAdapter = NotesFragmentAdapter()
+        notesAdapter = NotesFragmentAdapter(){
+            navigateToNoteFragment(it)
+        }
         binding.recyclerViewNotesListNotesFragment.apply {
             setNestedScrollingEnabled(true)
             adapter = notesAdapter
@@ -88,8 +93,8 @@ class NotesFragment : Fragment(), DialogInterface {
         }
     }
 
-    private fun navigateToNoteFragment() =
-        findNavController().navigate(R.id.action_notesFragment_to_addNoteFragment)
+    private fun navigateToNoteFragment(id: Int = 0) = findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
+
 
     override fun onPositiveClick() {
         dialog.getDate()
