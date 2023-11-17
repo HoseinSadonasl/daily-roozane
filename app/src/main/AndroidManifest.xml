@@ -28,7 +28,7 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.DailyNoActionbarMainTeal" />
+            android:theme="@style/Theme.DailyNoActionbar" />
 
         <receiver android:name=".app.AlertReceiver" />
         <receiver android:name=".util.GlobalReceiver"

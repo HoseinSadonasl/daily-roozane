@@ -1,11 +1,9 @@
 package com.abc.daily.ui.notes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +12,6 @@ import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.interfaces.DialogInterface
-import com.abc.daily.ui.add_note.AddNoteFragment
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateTimePickerDialog
 import com.bumptech.glide.RequestManager
@@ -52,7 +49,7 @@ class NotesFragment : Fragment(), DialogInterface {
     }
 
     private fun initUiComponents() {
-        binding.textViewScreenTitleNotesFragment.text = "Notes"
+        binding.textViewScreenTitleNotesFragment.text = getString(R.string.app_name)
         notesAdapter = NotesFragmentAdapter(){
             navigateToNoteFragment(it)
         }

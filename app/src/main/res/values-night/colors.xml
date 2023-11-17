@@ -21,21 +21,22 @@
     <color name="teal_500">#26A69A</color>
     <color name="green_500">#66BB6A</color>
 
-<!--  New Colors  -->
-    <color name="color_on_primary">#373737</color>
-    <color name="window_background">#F9F9F9</color>
-    <color name="view_background_primary">#FFFFFF</color>
-    <color name="view_background_secondary">#F9F9F9</color>
+    <!--  New Colors  -->
+    <color name="color_on_primary">#FFFFFF</color>
+    <color name="window_background">#0B2832</color>
+    <color name="view_background_primary">#0D313C</color>
+    <color name="view_background_secondary">#103946</color>
 
     <color name="btn_primary">#2FAAD1</color>
-    <color name="btn_secondary">#F4F4F4</color>
+    <color name="btn_secondary">#103946</color>
     <color name="btn_text_primary">#FFFFFF</color>
-    <color name="btn_text_secondary">#373737</color>
+    <color name="btn_text_secondary">#FFFFFF</color>
 
-    <color name="text_primary">#373737</color>
-    <color name="text_secondary">#838383</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#ACACAC</color>
 
-    <color name="searchCard_bg">#EDEDED</color>
+    <color name="searchCard_bg">#0D313C</color>
     <color name="divider_color">#ACACAC</color>
-    <color name="icon_color_primary">#838383</color>
+    <color name="icon_color_primary">#FFFFFF</color>
+
 </resources>

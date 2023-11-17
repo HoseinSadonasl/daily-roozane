@@ -6,13 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Back_white">
+        android:background="@color/window_background">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar_notesFragment"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/Back_white"
+            android:background="@color/window_background"
             app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +29,7 @@
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
                     android:textSize="24sp"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -37,9 +38,10 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_settings_notesFragment"
                     style="@style/iconButton_toolbar"
-                    app:backgroundTint="@android:color/transparent"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
                     app:icon="@drawable/ic_outline_settings"
-                    app:iconTint="@color/black"
+                    app:iconTint="@color/icon_color_primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -47,10 +49,11 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_sort_notesFragment"
                     style="@style/iconButton_toolbar"
-                    app:backgroundTint="@android:color/transparent"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
                     app:elevation="0dp"
                     app:icon="@drawable/ic_outline_sort"
-                    app:iconTint="@color/black"
+                    app:iconTint="@color/icon_color_primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/button_settings_notesFragment"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,20 +61,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
-
-        <!--        <androidx.appcompat.widget.AppCompatImageView-->
-        <!--            android:id="@+id/imageView_illustration_notesFragment"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:padding="64dp"-->
-        <!--            android:visibility="gone"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@+id/recyclerView_notesList_notesFragment"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.0"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintVertical_bias="0.0"-->
-        <!--            app:srcCompat="@drawable/roozaneillustration" />-->
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -107,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/imageView_weatherImage_notesFragment"
                     android:includeFontPadding="false"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/window_background"
                     android:textSize="56sp"
                     app:firstBaselineToTopHeight="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -120,7 +109,7 @@
                     android:id="@+id/textView_date_notesFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/window_background"
                     android:textSize="@dimen/low_TextSize"
                     app:layout_constraintBottom_toTopOf="@+id/textView_weekDay_notesFragment"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView_date_notesFragment"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/window_background"
                     android:textSize="@dimen/low_TextSize"
                     app:layout_constraintBottom_toTopOf="@+id/locationImg"
                     app:layout_constraintEnd_toEndOf="@+id/textView_date_notesFragment"
@@ -152,7 +141,6 @@
                     app:layout_constraintEnd_toEndOf="@+id/textView_weekDay_notesFragment"
                     app:layout_constraintTop_toBottomOf="@+id/textView_weekDay_notesFragment"
                     app:layout_constraintVertical_bias="0.0"
-                    app:tint="@android:color/white"
                     tools:ignore="RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -161,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
                     android:text="@string/location"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/window_background"
                     android:textSize="@dimen/low_TextSize"
                     app:layout_constraintBottom_toBottomOf="@+id/locationImg"
                     app:layout_constraintEnd_toStartOf="@+id/locationImg"
@@ -301,6 +289,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            app:boxBackgroundColor="@color/searchCard_bg"
             app:boxCornerRadiusBottomEnd="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusTopEnd="16dp"
@@ -317,7 +306,7 @@
             app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:startIconCheckable="true"
             app:startIconDrawable="@drawable/ic_baseline_search"
-            app:startIconTint="@color/Second_black">
+            app:startIconTint="@color/icon_color_primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

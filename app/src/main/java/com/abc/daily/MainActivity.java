@@ -186,42 +186,42 @@ public class MainActivity extends AppCompatActivity implements
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_purple));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainPurple);
+                setTheme(R.style.Theme_Daily);
                 break;
             }
             case spref.Theme.RED_COLOR : {
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_red));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainRed);
+                setTheme(R.style.Theme_Daily);
                 break;
             }
             case spref.Theme.ORANGE_COLOR : {
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_orange));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainOrange);
+                setTheme(R.style.Theme_Daily);
                 break;
             }
             case spref.Theme.BLUE_COLOR : {
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_blue));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainBlue);
+                setTheme(R.style.Theme_Daily);
                 break;
             }
             case spref.Theme.GREEN_COLOR : {
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_green));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainGreen);
+                setTheme(R.style.Theme_Daily);
                 break;
             }
             case spref.Theme.TEAL_COLOR : {
                 if (setBackgroundImage) {
                     weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
                 }
-                setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+                setTheme(R.style.Theme_Daily);
 
                 break;
             }
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements
         if (setBackgroundImage) {
             weatherParent.setBackground(ContextCompat.getDrawable(this, R.drawable.bc_wea_teal));
         }
-        setTheme(R.style.Theme_DailyNoActionbarMainTeal);
+        setTheme(R.style.Theme_Daily);
     }
 
     private void getDateTime() {

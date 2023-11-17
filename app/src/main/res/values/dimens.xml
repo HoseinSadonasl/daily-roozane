@@ -7,7 +7,12 @@
     <dimen name="low_TextSize">12sp</dimen>
     <dimen name="med_TextSize">16sp</dimen>
     <dimen name="high_TextSize">24sp</dimen>
-    <dimen name="hugh_TextSize">32sp</dimen>
+    <dimen name="_12sp">12sp</dimen>
+    <dimen name="_14sp">14sp</dimen>
+    <dimen name="_16sp">16sp</dimen>
+    <dimen name="_20sp">20sp</dimen>
+    <dimen name="_24sp">24sp</dimen>
+    <dimen name="_32sp">32sp</dimen>
 
 
     <dimen name="low_elevation">4dp</dimen>

@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:chainUseRtl="true"
+        android:background="@color/window_background"
         tools:context=".AddReadNote">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:elevation="0dp"
+            android:background="@color/view_background_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -22,20 +24,18 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white">
+                android:background="@color/window_background">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.google.android.material.button.MaterialButton
+                    style="@style/iconButton_toolbar"
                     android:id="@+id/button_addNote_backward"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_alignParentStart="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="20dp"
+                    app:icon="@drawable/ic_chevron"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:tint="@color/Second_black"
-                    app:srcCompat="@drawable/ic_chevron" />
+                    app:iconTint="@color/icon_color_primary" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -47,22 +47,23 @@
                     android:gravity="start|center_vertical"
                     android:text="@string/write_note"
                     android:textDirection="rtl"
+                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:layout_constraintStart_toEndOf="@id/button_addNote_backward"
                     app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
                     android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatImageView
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/iconButton_toolbar"
                     android:id="@+id/imageView_addNote_delete"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="18dp"
-                    android:tint="@color/Second_black"
+                    app:icon="@drawable/ic_trash_remove"
+                    app:iconTint="@color/icon_color_primary"
                     app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
-                    app:srcCompat="@drawable/ic_trash_remove" />
+                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +79,7 @@
             android:layout_marginEnd="@dimen/padding_32dp"
             android:background="@null"
             android:hint="@string/title"
-            android:textColor="@color/black"
+            android:textColor="@color/text_primary"
             android:textSize="@dimen/text_16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +95,7 @@
             android:background="@null"
             android:gravity="start"
             android:hint="@string/content"
-            android:textColor="@color/Second_black"
+            android:textColor="@color/text_primary"
             app:layout_constraintBottom_toTopOf="@+id/fab_addNote_save"
             app:layout_constraintEnd_toEndOf="@id/editText_addNote_title"
             app:layout_constraintStart_toStartOf="@+id/editText_addNote_title"
@@ -104,7 +105,7 @@
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/Second_black"
+            android:background="@color/divider_color"
             android:layout_marginVertical="@dimen/padding_8dp"
             app:layout_constraintTop_toBottomOf="@id/editText_addNote_description"
             app:layout_constraintBottom_toBottomOf="@+id/editText_addNote_description"
