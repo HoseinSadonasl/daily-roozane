@@ -31,7 +31,7 @@
                     android:id="@+id/button_addNote_backward"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    app:icon="@drawable/ic_chevron"
+                    app:icon="@drawable/all_back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
                     android:id="@+id/imageView_addNote_delete"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    app:icon="@drawable/ic_trash_remove"
+                    app:icon="@drawable/all_delete"
                     app:iconTint="@color/icon_color_primary"
                     app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -135,37 +135,51 @@
             app:layout_constraintVertical_bias="0.0"
             tools:visibility="visible">
 
-            <ImageView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_reminder_addNoteFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/padding_8dp"
+                android:layout_weight="4"
+                android:text="@string/textView_remindat"
+                android:textSize="@dimen/_12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:padding="@dimen/_4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView_reminderDate_addNoteFragment"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_baseline_timer_24" />
+                app:srcCompat="@drawable/all_alarm"
+                android:tint="@color/Color_primary" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_reminderDate_addNoteFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
                 android:layout_weight="4"
-                android:textSize="16sp"
+                android:text="2022 Jun 12"
+                android:textSize="@dimen/_12sp"
+                android:layout_marginEnd="@dimen/padding_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="2022 Jun 12" />
+                app:layout_constraintEnd_toStartOf="@+id/textView_reminderTime_addNoteFragment"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_reminderTime_addNoteFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:text="7:25 PM"
+                android:textSize="@dimen/_12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="7:25 PM" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
