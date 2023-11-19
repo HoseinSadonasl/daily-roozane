@@ -7,7 +7,7 @@ import com.abc.daily.util.NoteStateEnum
 @Entity
 data class Note(
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    var id: Int? = 0,
     var title: String,
     var description: String,
     var createdAt: String? = null,

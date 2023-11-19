@@ -11,7 +11,7 @@ class NoteViewHolder(
 
     fun bind(item: Note) {
         item.let {
-            binding.root.setOnClickListener { onItemClick(item.id) }
+            binding.root.setOnClickListener { item.id?.let { it1 -> onItemClick(it1) } }
             binding.title.text = item.title
             binding.content.text = item.description
             binding.textViewDateNotesFragment.text = "textViewDateNotesFragment"

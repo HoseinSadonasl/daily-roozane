@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
@@ -21,7 +22,6 @@ import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
-import com.abc.daily.util.PersianDate
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -30,9 +30,9 @@ class AddNoteFragment : Fragment() {
 
     private lateinit var binding: LayoutAddNoteBinding
     private val addNoteViewModel: AddNoteViewModel by viewModels()
-    private lateinit var note: Note
+    private var note: Note? = null
     private lateinit var calendar: Calendar
-    private var noteId: Int? = null
+    private var noteIdArg: Int? = null
     private var hasReminder: String? = null
 
     companion object {
@@ -78,6 +78,7 @@ class AddNoteFragment : Fragment() {
     private fun observeNoteData() {
         addNoteViewModel.noteLiveData.observe(viewLifecycleOwner) { note ->
             note?.let {
+                this@AddNoteFragment.note = note
                 binding.apply {
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)
@@ -107,7 +108,8 @@ class AddNoteFragment : Fragment() {
 
     private fun getArgs() {
         arguments?.let {
-            noteId = it.getInt(NOTE_ARGUMENT)
+           val noteId = it.getInt(NOTE_ARGUMENT)
+            if (id > noteId) noteIdArg = noteId
         }
     }
 
@@ -118,7 +120,7 @@ class AddNoteFragment : Fragment() {
     }
 
     private fun initNote() {
-        noteId?.let {
+        noteIdArg?.let {
             addNoteViewModel.getNote(it)
         }
     }
@@ -129,12 +131,14 @@ class AddNoteFragment : Fragment() {
         }
 
         binding.imageViewAddNoteDelete.setOnClickListener {
-            deleteNote(note)
+            note?.let { note -> deleteNote(note) }
         }
 
         binding.btnAddAlarmAddNoteFragment.setOnClickListener {
             handleReminder()
         }
+
+        binding.buttonAddNoteBackward.setOnClickListener { popFragmrnt() }
     }
 
     private fun handleReminder() {
@@ -144,7 +148,9 @@ class AddNoteFragment : Fragment() {
 
     private fun saveNote() {
         val currentTime = System.currentTimeMillis()
+
         val note = Note(
+            id = noteIdArg,
             title = binding.editTextAddNoteTitle.text.toString(),
             description = binding.editTextAddNoteDescription.text.toString(),
             createdAt = currentTime.toString(),
@@ -152,8 +158,13 @@ class AddNoteFragment : Fragment() {
             remindAt = hasReminder
         )
         addNoteViewModel.saveNote(note)
-
+        popFragmrnt()
     }
+
+    private fun popFragmrnt() {
+        findNavController().popBackStack()
+    }
+
 
     private fun setReminderForNote(timeInMillis: Long) {
         val alarm = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
