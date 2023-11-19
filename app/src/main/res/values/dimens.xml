@@ -35,4 +35,6 @@
     <dimen name="size_400dp">400dp</dimen>
     <dimen name="padding_38dp">38dp</dimen>
     <dimen name="_4dp">4dp</dimen>
+    <dimen name="_64dp">64dp</dimen>
+    <dimen name="_32dp">32dp</dimen>
 </resources>

@@ -4,11 +4,13 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,7 +23,6 @@ import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import com.abc.daily.util.PersianDate
 import dagger.hilt.android.AndroidEntryPoint
-import java.sql.Date
 import java.util.*
 
 @AndroidEntryPoint
@@ -32,6 +33,7 @@ class AddNoteFragment : Fragment() {
     private lateinit var note: Note
     private lateinit var calendar: Calendar
     private var noteId: Int? = null
+    private var hasReminder: String? = null
 
     companion object {
         const val NOTE_ARGUMENT = "noteId"
@@ -52,26 +54,55 @@ class AddNoteFragment : Fragment() {
         initComponents()
         getArgs()
         initNote()
-        observeData()
+        observeNoteData()
+        observeNoteReminderData()
         initListeners()
 
         return binding.root
     }
 
-    private fun observeData() {
+    private fun observeNoteReminderData() {
+        addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
+            hasReminder = it.second.toString()
+            if(it.first)  {
+                setReminderForNote(it.second)
+                setReminderButtonColorTint(R.color.btn_primary)
+            } else {
+                setReminderButtonColorTint(R.color.btn_secondary)
+                val color = ContextCompat.getColor(requireContext(), R.color.btn_text_secondary)
+                binding.btnAddAlarmAddNoteFragment.setTextColor(color)
+            }
+        }
+    }
+
+    private fun observeNoteData() {
         addNoteViewModel.noteLiveData.observe(viewLifecycleOwner) { note ->
             note?.let {
                 binding.apply {
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)
-                    it.remindAt?.let {
-                        binding.switchSetReminderAddNoteFragment.isChecked = true
-                        this.textViewReminderTimeAddNoteFragment.text = DateUtil.toPersianTime(it)
-                        this.textViewReminderDateAddNoteFragment.text = DateUtil.toPersianDate(it)
-                    }
+                    initializeReminderButton(it)
                 }
             }
         }
+    }
+
+    private fun initializeReminderButton(note: Note) {
+        if (note.remindAt.isNullOrBlank()) {
+            binding.btnAddAlarmAddNoteFragment.icon = ContextCompat.getDrawable(requireContext(), R.drawable.all_addalarm)
+            setReminderButtonColorTint(R.color.btn_secondary)
+        } else {
+            val formattedTime = DateUtil.toPersianDateAndTime(note.remindAt.toString())
+            binding.btnAddAlarmAddNoteFragment.text = formattedTime
+            setReminderButtonColorTint(R.color.btn_primary)
+            if (note.remindAt!!.toLong() <= calendar.timeInMillis)
+                addNoteViewModel.setReminderNoteLiveData(note.remindAt!!.toLong(), false)
+        }
+    }
+
+    private fun setReminderButtonColorTint(colorResourceId: Int) {
+        val color = ContextCompat.getColor(requireContext(),colorResourceId)
+        binding.btnAddAlarmAddNoteFragment.backgroundTintList = ColorStateList.valueOf(color)
     }
 
     private fun getArgs() {
@@ -81,6 +112,8 @@ class AddNoteFragment : Fragment() {
     }
 
     private fun initComponents() {
+        binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
+        setReminderButtonColorTint(R.color.btn_secondary)
         calendar = Calendar.getInstance()
     }
 
@@ -99,29 +132,15 @@ class AddNoteFragment : Fragment() {
             deleteNote(note)
         }
 
-        binding.textViewReminderTimeAddNoteFragment.setOnClickListener {
-            getTimeForReminder()
-        }
-
-        binding.textViewReminderDateAddNoteFragment.setOnClickListener {
-            getDateForReminder()
-        }
-
-        onSwitchSetReminderListener()
-
-    }
-
-    private fun onSwitchSetReminderListener() {
-        binding.switchSetReminderAddNoteFragment.setOnCheckedChangeListener { compoundButton, isChecked ->
-            binding.reminderParent.apply {
-                if (isChecked) {
-                    this.visibility = View.VISIBLE
-                } else {
-                    this.visibility = View.GONE
-                }
-            }
+        binding.btnAddAlarmAddNoteFragment.setOnClickListener {
+            handleReminder()
         }
     }
+
+    private fun handleReminder() {
+        getTimeForReminder()
+    }
+
 
     private fun saveNote() {
         val currentTime = System.currentTimeMillis()
@@ -130,15 +149,13 @@ class AddNoteFragment : Fragment() {
             description = binding.editTextAddNoteDescription.text.toString(),
             createdAt = currentTime.toString(),
             modifiedAt = currentTime.toString(),
-            remindAt = calendar.timeInMillis.toString()
+            remindAt = hasReminder
         )
         addNoteViewModel.saveNote(note)
-        if (binding.switchSetReminderAddNoteFragment.isChecked) {
-            setReminderForNote()
-        }
+
     }
 
-    private fun setReminderForNote() {
+    private fun setReminderForNote(timeInMillis: Long) {
         val alarm = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(requireContext(), GlobalReceiver::class.java)
         val requestCode = System.currentTimeMillis().toInt()
@@ -155,7 +172,7 @@ class AddNoteFragment : Fragment() {
                 PendingIntent.FLAG_IMMUTABLE
             )
         }
-        alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        alarm.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
     }
 
     private fun deleteNote(note: Note) = addNoteViewModel.deleteNote(note)
@@ -168,6 +185,7 @@ class AddNoteFragment : Fragment() {
                     timePickerDialog.let {
                         calendar = it.getTime()
                         it.dismiss()
+                        getDateForReminder()
                     }
                 }
 
@@ -186,6 +204,7 @@ class AddNoteFragment : Fragment() {
                 override fun onPositiveClick(datePickerDialog: CustomDatePickerDialog) {
                     datePickerDialog.apply {
                         calendar = getDate()
+                        addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
                         dismiss()
                     }
                 }

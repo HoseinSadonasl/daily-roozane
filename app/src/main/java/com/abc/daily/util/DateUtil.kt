@@ -20,7 +20,7 @@ object DateUtil {
 
     fun toPersianDateAndTime(timestamp: String): String {
         val persianDate = PersianDate(timestamp.toLong())
-        val formattedDate = PersianDateFormat(datePattern).format(persianDate)
+        val formattedDate = PersianDateFormat(fullDateTimePattern).format(persianDate)
         return formattedDate
     }
 

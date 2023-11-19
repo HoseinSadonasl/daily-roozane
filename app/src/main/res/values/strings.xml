@@ -70,5 +70,6 @@
     <string name="dgree_notesFragment" translatable="false">%1$s°</string>
     <string name="reminder_btn_addNoteFragment">Reminder</string>
     <string name="textView_remindat">Remind at</string>
+    <string name="addrReminder_addNoteFragment">Add reminder</string>
 
 </resources>

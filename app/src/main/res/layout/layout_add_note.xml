@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -78,6 +77,7 @@
             android:layout_marginTop="@dimen/padding_16dp"
             android:layout_marginEnd="@dimen/padding_32dp"
             android:background="@null"
+            android:minHeight="@dimen/_32dp"
             android:hint="@string/title"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_16sp"
@@ -101,101 +101,18 @@
             app:layout_constraintStart_toStartOf="@+id/editText_addNote_title"
             app:layout_constraintTop_toBottomOf="@id/editText_addNote_title" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/divider_color"
-            android:layout_marginVertical="@dimen/padding_8dp"
-            app:layout_constraintTop_toBottomOf="@id/editText_addNote_description"
-            app:layout_constraintBottom_toBottomOf="@+id/editText_addNote_description"
-            app:layout_constraintEnd_toEndOf="@+id/switch_setReminder_addNoteFragment"
-            app:layout_constraintStart_toStartOf="@+id/switch_setReminder_addNoteFragment" />
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_setReminder_addNoteFragment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/padding_16dp"
-            android:text="@string/reminder_btn_addNoteFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/reminder_parent"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/padding_38dp"
-            android:orientation="horizontal"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/textView_addNote_modifiedDate"
-            app:layout_constraintEnd_toEndOf="@+id/switch_setReminder_addNoteFragment"
-            app:layout_constraintStart_toStartOf="@+id/switch_setReminder_addNoteFragment"
-            app:layout_constraintTop_toBottomOf="@+id/switch_setReminder_addNoteFragment"
-            app:layout_constraintVertical_bias="0.0"
-            tools:visibility="visible">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_reminder_addNoteFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/padding_8dp"
-                android:layout_weight="4"
-                android:text="@string/textView_remindat"
-                android:textSize="@dimen/_12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="@dimen/_4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_reminderDate_addNoteFragment"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/all_alarm"
-                android:tint="@color/Color_primary" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_reminderDate_addNoteFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:text="2022 Jun 12"
-                android:textSize="@dimen/_12sp"
-                android:layout_marginEnd="@dimen/padding_8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView_reminderTime_addNoteFragment"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_reminderTime_addNoteFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="7:25 PM"
-                android:textSize="@dimen/_12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_addNote_modifiedDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/padding_16dp"
             android:text="@string/modified"
             android:textColor="@color/Gray_c"
             android:textSize="@dimen/low_TextSize"
             app:layout_constraintBottom_toTopOf="@+id/textView_addNote_createdDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/reminder_parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -209,8 +126,7 @@
             android:textSize="@dimen/low_TextSize"
             app:layout_constraintBottom_toTopOf="@+id/fab_addNote_save"
             app:layout_constraintEnd_toEndOf="@+id/textView_addNote_modifiedDate"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/reminder_parent" />
+            app:layout_constraintHorizontal_bias="1.0" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_addNote_save"
@@ -229,6 +145,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_check" />
 
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_addAlarm_addNoteFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_64dp"
+            tools:text="add alarm"
+            app:icon="@drawable/all_alarm"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            android:layout_marginStart="@dimen/padding_16dp"
+            app:backgroundTint="@color/btn_secondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/fab_addNote_save"
+            app:layout_constraintTop_toTopOf="@+id/fab_addNote_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
