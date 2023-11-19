@@ -36,7 +36,6 @@
                     android:id="@+id/textView_date_notesFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="4dp"
                     android:text="@string/app_name"
@@ -50,7 +49,6 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
                     android:layout_marginTop="4dp"
                     android:text="@string/app_name"
                     android:textColor="@color/text_primary"
@@ -65,57 +63,59 @@
                     android:id="@+id/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/title"
                     android:layout_marginTop="8dp"
                     android:lineSpacingExtra="4dp"
                     android:maxLines="2"
-                    android:text="@string/app_name"
+                    tools:text="@string/app_name"
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/_12sp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/title"
                     app:layout_constraintTop_toBottomOf="@+id/title" />
 
+                <LinearLayout
+                    android:id="@+id/reminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_date_notesFragment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView_date_notesFragment"
+                    app:layout_constraintTop_toTopOf="@+id/textView_date_notesFragment">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/reminderIc"
+                        android:layout_width="@dimen/all_16dp"
+                        android:layout_height="@dimen/all_16dp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginEnd="@dimen/all_2dp"
+                        android:insetLeft="0dp"
+                        android:insetTop="0dp"
+                        android:insetRight="0dp"
+                        android:insetBottom="0dp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        app:srcCompat="@drawable/all_alarm"
+                        app:tint="@color/Color_primary_dark" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/reminderDaeTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/_12sp"
+                        tools:text="20:35" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:id="@+id/reminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="@+id/cardView"
-            app:layout_constraintVertical_bias="1.0">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/reminderDaeTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:textSize="@dimen/_12sp"
-                android:textColor="@color/text_secondary"
-                tools:text="20:35" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/reminderIc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|end"
-                android:layout_marginEnd="4dp"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:srcCompat="@drawable/ic_bell"
-                app:tint="@color/Color_primary_dark" />
-        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
