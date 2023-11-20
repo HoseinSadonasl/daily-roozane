@@ -69,6 +69,9 @@
     <string name="weaLang">fa</string>
     <string name="ptp_time">Set remind time</string>
     <string name="pdp_date">Set remind date</string>
+    <string name="txt_today">"امروز %1$s"</string>
+    <string name="txt_xreated">"ایجاد: %1$s"</string>
+    <string name="txt_modified">"ویرایش:  %1$s"</string>
 
 
 </resources>

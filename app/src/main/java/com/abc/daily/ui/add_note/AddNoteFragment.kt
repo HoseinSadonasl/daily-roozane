@@ -83,6 +83,8 @@ class AddNoteFragment : Fragment() {
                 binding.apply {
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)
+                    textViewAddNoteCreatedDate.text = getString(R.string.txt_xreated, DateUtil.toPersianDateAndTime(it.createdAt.toString(), requireContext()))
+                    textViewAddNoteModifiedDate.text = getString(R.string.txt_modified, DateUtil.toPersianDateAndTime(it.modifiedAt.toString(), requireContext()))
                     initializeReminderButton(it)
                 }
             }
@@ -94,7 +96,7 @@ class AddNoteFragment : Fragment() {
             binding.btnAddAlarmAddNoteFragment.icon = ContextCompat.getDrawable(requireContext(), R.drawable.all_addalarm)
             setReminderButtonColorTint(R.color.btn_secondary)
         } else {
-            val formattedTime = DateUtil.toPersianDateAndTime(note.remindAt.toString())
+            val formattedTime = DateUtil.toPersianDateAndTime(note.remindAt.toString(), requireContext())
             binding.btnAddAlarmAddNoteFragment.text = formattedTime
             setReminderButtonColorTint(R.color.btn_primary)
             if (note.remindAt!!.toLong() <= calendar.timeInMillis)
@@ -154,7 +156,7 @@ class AddNoteFragment : Fragment() {
             id = noteIdArg,
             title = binding.editTextAddNoteTitle.text.toString(),
             description = binding.editTextAddNoteDescription.text.toString(),
-            createdAt = currentTime.toString(),
+            createdAt = if (noteIdArg == null) currentTime.toString() else note?.createdAt,
             modifiedAt = currentTime.toString(),
             remindAt = hasReminder
         )
