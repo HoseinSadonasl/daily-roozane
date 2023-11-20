@@ -110,7 +110,7 @@ class AddNoteFragment : Fragment() {
     private fun getArgs() {
         arguments?.let {
            val noteId = it.getInt(NOTE_ARGUMENT)
-            if (id > noteId) noteIdArg = noteId
+            if (noteId > 0) noteIdArg = noteId
         }
     }
 
