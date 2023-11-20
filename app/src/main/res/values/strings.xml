@@ -71,5 +71,7 @@
     <string name="reminder_btn_addNoteFragment">Reminder</string>
     <string name="textView_remindat">Remind at</string>
     <string name="addrReminder_addNoteFragment">Add reminder</string>
+    <string name="ptp_time">Set remind time</string>
+    <string name="pdp_date">Set remind date</string>
 
 </resources>

@@ -67,8 +67,8 @@
     <string name="about_daily">درباره روزانه</string>
     <string name="please_enter_city_name">لطفا نام یک شهر را وارد کنید</string>
     <string name="weaLang">fa</string>
-
-
+    <string name="ptp_time">Set remind time</string>
+    <string name="pdp_date">Set remind date</string>
 
 
 </resources>

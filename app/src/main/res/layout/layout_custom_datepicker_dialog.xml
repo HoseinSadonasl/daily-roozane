@@ -2,13 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/all_16dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/window_background"
         android:padding="@dimen/med_dp"
         app:cardCornerRadius="@dimen/high_dp"
         app:cardElevation="0dp">
@@ -17,16 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/all_20dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/alertTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/med_dp"
                 android:gravity="center_vertical"
-                android:text="@string/app_name"
-                android:textColor="@color/Second_black"
+                android:text="@string/pdp_date"
+                android:textColor="@color/text_primary"
                 android:textSize="@dimen/med_TextSize"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -39,7 +41,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="64dp"
                 android:visibility="visible"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -47,63 +48,72 @@
 
                 <NumberPicker
                     android:id="@+id/numberPicker_year_addNotesFragment"
+                    style="@style/AppTheme.Picker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/white" />
+                    android:solidColor="@color/window_background" />
 
                 <NumberPicker
                     android:id="@+id/numberPicker_month_addNotesFragment"
+                    style="@style/AppTheme.Picker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/white" />
+                    android:solidColor="@color/window_background" />
 
                 <NumberPicker
                     android:id="@+id/numberPicker_day_addNotesFragment"
+                    style="@style/AppTheme.Picker"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/white" />
+                    android:solidColor="@color/window_background" />
 
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_positive_timePicker"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:backgroundTint="@color/white"
-                android:elevation="0dp"
-                android:shadowColor="@android:color/transparent"
-                android:text="@string/dialog_ok"
-                android:textColor="@color/black"
-                app:elevation="0dp"
-                app:iconTint="@color/black"
+                android:orientation="horizontal"
+                android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_negative_timePicker"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_negative_timePicker"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:backgroundTint="@color/white"
-                android:elevation="0dp"
-                android:shadowColor="@android:color/transparent"
-                android:text="@string/Dialog_cancel"
-                android:textColor="@color/black"
-                app:elevation="0dp"
-                app:iconTint="@color/black"
-                app:layout_constraintEnd_toStartOf="@+id/button_positive_timePicker"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_positive_timePicker"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    app:cornerRadius="@dimen/all_16dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/dialog_ok"
+                    app:elevation="0dp"
+                    tools:text="add alarm" />
+
+                <View
+                    android:layout_width="@dimen/padding_8dp"
+                    android:layout_height="match_parent"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_negative_timePicker"
+                    android:layout_width="0dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="1"
+                    app:cornerRadius="@dimen/all_16dp"
+                    android:elevation="0dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/Dialog_cancel"
+                    app:backgroundTint="@color/btn_primary"
+                    app:elevation="0dp"
+                    tools:text="add alarm" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

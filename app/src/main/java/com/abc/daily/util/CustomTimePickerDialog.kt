@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.view.View
 import android.widget.NumberPicker
 import com.abc.daily.R
@@ -24,7 +25,10 @@ class CustomTimePickerDialog(
     lateinit var amPmNumberPicker: NumberPicker
 
     init {
-        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window!!.apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setGravity(Gravity.BOTTOM)
+        }
         setContentView(R.layout.layout_custom_timepicker_dialog)
         init()
     }

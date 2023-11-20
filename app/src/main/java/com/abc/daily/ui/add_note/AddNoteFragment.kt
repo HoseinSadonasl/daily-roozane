@@ -65,7 +65,7 @@ class AddNoteFragment : Fragment() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
             hasReminder = it.second.toString()
             if(it.first)  {
-                setReminderForNote(it.second)
+               // setReminderForNote(it.second)
                 setReminderButtonColorTint(R.color.btn_primary)
             } else {
                 setReminderButtonColorTint(R.color.btn_secondary)
