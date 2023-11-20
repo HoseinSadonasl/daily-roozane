@@ -28,9 +28,10 @@
     <color name="view_background_secondary">#F9F9F9</color>
 
     <color name="btn_primary">#2FAAD1</color>
-    <color name="btn_secondary">#F4F4F4</color>
+    <color name="btn_secondary">#E1E1E1</color>
     <color name="btn_text_primary">#FFFFFF</color>
     <color name="btn_text_secondary">#373737</color>
+    <color name="btn_alarm_state">#7E7E7E</color>
 
     <color name="text_primary">#373737</color>
     <color name="text_secondary">#838383</color>

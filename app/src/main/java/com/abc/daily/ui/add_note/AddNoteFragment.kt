@@ -69,8 +69,9 @@ class AddNoteFragment : Fragment() {
                 setReminderButtonColorTint(R.color.btn_primary)
             } else {
                 setReminderButtonColorTint(R.color.btn_secondary)
-                val color = ContextCompat.getColor(requireContext(), R.color.btn_text_secondary)
+                val color = ContextCompat.getColor(requireContext(), R.color.btn_alarm_state)
                 binding.btnAddAlarmAddNoteFragment.setTextColor(color)
+                binding.btnAddAlarmAddNoteFragment.iconTint = ColorStateList.valueOf(color)
             }
         }
     }
