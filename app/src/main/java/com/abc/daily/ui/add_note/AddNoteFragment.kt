@@ -96,7 +96,7 @@ class AddNoteFragment : Fragment() {
             binding.btnAddAlarmAddNoteFragment.icon = ContextCompat.getDrawable(requireContext(), R.drawable.all_addalarm)
             setReminderButtonColorTint(R.color.btn_secondary)
         } else {
-            val formattedTime = DateUtil.toPersianDateAndTime(note.remindAt.toString(), requireContext())
+            val formattedTime = DateUtil.alarmToPersianDateAndTime(note.remindAt.toString(), requireContext())
             binding.btnAddAlarmAddNoteFragment.text = formattedTime
             setReminderButtonColorTint(R.color.btn_primary)
             if (note.remindAt!!.toLong() <= calendar.timeInMillis)

@@ -21,10 +21,10 @@ class NoteViewHolder(
                     text = it.description
                 }
             }
-            binding.textViewDateNotesFragment.text = DateUtil.toPersianDateAndTime(item.modifiedAt.toString(), binding.root.context)
+            binding.textViewDateNotesFragment.text = DateUtil.alarmToPersianDateAndTime(item.modifiedAt.toString(), binding.root.context)
             it.remindAt?.let {
                 binding.reminderIc.visibility = View.VISIBLE
-                binding.reminderDaeTime.text = DateUtil.toPersianDateAndTime(item.remindAt.toString(), binding.root.context)
+                binding.reminderDaeTime.text = DateUtil.alarmToPersianDateAndTime(item.remindAt.toString(), binding.root.context)
             }
         }
     }
