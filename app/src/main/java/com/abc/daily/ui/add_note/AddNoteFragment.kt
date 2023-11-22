@@ -81,6 +81,7 @@ class AddNoteFragment : Fragment() {
             note?.let {
                 this@AddNoteFragment.note = note
                 binding.apply {
+                    textViewAddNoteAppbarTitle.setText(it.title)
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)
                     textViewAddNoteCreatedDate.text = getString(R.string.txt_xreated, DateUtil.toPersianDateAndTime(it.createdAt.toString(), requireContext()))

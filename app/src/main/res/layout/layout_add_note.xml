@@ -32,7 +32,7 @@
                     android:layout_height="56dp"
                     app:icon="@drawable/all_back"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:iconTint="@color/icon_color_primary" />
 
