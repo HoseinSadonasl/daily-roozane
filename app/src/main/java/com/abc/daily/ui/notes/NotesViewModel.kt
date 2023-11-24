@@ -30,7 +30,7 @@ class NotesViewModel @Inject constructor(
 
     init {
         getNotes(NoteOrder.ByDate(OrderType.Descending))
-        getWeather("tehran")
+//        getWeather("tehran" )
     }
 
     fun getNotes(sort: NoteOrder) = notesDomain.getNotesList(sort)
@@ -39,9 +39,9 @@ class NotesViewModel @Inject constructor(
         }.launchIn(viewModelScope)
 
 
-    fun getWeather(location: String) {
+    fun getWeather(city: String, location: Pair<String, String>) {
         viewModelScope.launch {
-            weatherDomain.getWeather(location).flowOn(Dispatchers.IO).collect {
+            weatherDomain.getWeather(city, location).flowOn(Dispatchers.IO).collect {
                 weather.postValue(it.body())
                 Log.e(::getWeather.name, "getWeather: ${it.body()}")
             }

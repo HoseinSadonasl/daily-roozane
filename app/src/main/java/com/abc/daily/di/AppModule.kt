@@ -1,6 +1,7 @@
 package com.abc.daily.di
 
 import android.content.Context
+import android.location.LocationManager
 import com.abc.daily.app.Application
 import com.abc.daily.data.repository.WeatherRepositoryImpl
 import com.abc.daily.data.util.WeatherApi
@@ -55,6 +56,10 @@ object AppModule {
         WeatherDomain(
             getWeather = GetWeather(weatherRepository)
         )
+
+    @Provides
+    @Singleton
+    fun providesLocationServices( @ApplicationContext context: Context): LocationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
 
 }

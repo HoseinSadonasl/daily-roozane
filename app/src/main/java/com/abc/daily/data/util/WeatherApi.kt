@@ -13,7 +13,9 @@ interface WeatherApi {
     @Headers("Content-Type: application/json; charset=utf-8")
     @GET("weather?appid=${Constants.API_KEY}")
     suspend fun getWeatherUsingCityName(
-        @Query("q") cityName: String,
+        @Query("q") cityName: String?,
+        @Query("lat") lat: String?,
+        @Query("lon") lon: String?,
     ): Response<CurrentWeather>
 
 }
