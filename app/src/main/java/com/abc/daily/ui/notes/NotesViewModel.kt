@@ -8,6 +8,8 @@ import com.abc.daily.domain.model.note.Note
 import com.abc.daily.domain.model.weather.CurrentWeather
 import com.abc.daily.domain.use_case.NotesDomain
 import com.abc.daily.domain.use_case.WeatherDomain
+import com.abc.daily.domain.util.NoteOrder
+import com.abc.daily.domain.util.OrderType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -27,11 +29,11 @@ class NotesViewModel @Inject constructor(
     val weather = MutableLiveData<CurrentWeather>()
 
     init {
-        getNotes()
+        getNotes(NoteOrder.ByDate(OrderType.Descending))
         getWeather("tehran")
     }
 
-    fun getNotes() = notesDomain.getNotesList()
+    fun getNotes(sort: NoteOrder) = notesDomain.getNotesList(sort)
         .onEach {
             notesList.value = it
         }.launchIn(viewModelScope)

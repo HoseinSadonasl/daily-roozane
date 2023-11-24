@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/all_16dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/view_background_primary"
+        android:padding="@dimen/med_dp"
+        app:cardCornerRadius="@dimen/high_dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/all_16dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/alertTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/med_dp"
+                android:gravity="center_vertical"
+                android:text="@string/sort_list"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/med_TextSize"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/sort_order_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/sortrb_byname_notesFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="By Namr" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/sortrb_bydate_notesFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="By Date" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/searchCard_bg"
+                android:layout_marginVertical="@dimen/padding_8dp"/>
+
+            <RadioGroup
+                android:id="@+id/type_order_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/sortrb_ascending_notesFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ascending" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/sortrb_descending_notesFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descending"/>
+
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sort_submit_notesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/all_16dp"
+                app:cornerRadius="@dimen/all_16dp"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:text="@string/dialog_ok"
+                app:elevation="0dp"
+                tools:text="add alarm" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

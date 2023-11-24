@@ -78,5 +78,7 @@
     <string name="txt_today">"Today %1$s"</string>
     <string name="txt_xreated">"Created: %1$s"</string>
     <string name="txt_modified">"Modified: %1$s"</string>
+    <string name="submit">submit</string>
+    <string name="sort_list">Sort Notes</string>
 
 </resources>

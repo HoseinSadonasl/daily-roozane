@@ -14,6 +14,7 @@ import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.interfaces.DialogInterface
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateTimePickerDialog
+import com.abc.daily.util.NoteSortDialog
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -50,7 +51,7 @@ class NotesFragment : Fragment(), DialogInterface {
 
     private fun initUiComponents() {
         binding.textViewScreenTitleNotesFragment.text = getString(R.string.app_name)
-        notesAdapter = NotesFragmentAdapter(){
+        notesAdapter = NotesFragmentAdapter() {
             navigateToNoteFragment(it)
         }
         binding.recyclerViewNotesListNotesFragment.apply {
@@ -62,6 +63,13 @@ class NotesFragment : Fragment(), DialogInterface {
     private fun initListeners() {
         binding.fabAddNoteNotesFragment.setOnClickListener {
             navigateToNoteFragment()
+        }
+
+        binding.buttonSortNotesFragment.setOnClickListener {
+            val  dialog = NoteSortDialog(requireActivity()) {sort ->
+                viewModel.getNotes(sort)
+            }
+            dialog.show()
         }
     }
 
@@ -90,7 +98,8 @@ class NotesFragment : Fragment(), DialogInterface {
         }
     }
 
-    private fun navigateToNoteFragment(id: Int = 0) = findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
+    private fun navigateToNoteFragment(id: Int = 0) =
+        findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
 
 
     override fun onPositiveClick() {

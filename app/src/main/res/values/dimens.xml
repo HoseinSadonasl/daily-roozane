@@ -41,4 +41,5 @@
     <dimen name="all_4dp">4dp</dimen>
     <dimen name="all_2dp">2dp</dimen>
     <dimen name="all_20dp">20dp</dimen>
+    <dimen name="all_48dp">48dp</dimen>
 </resources>
