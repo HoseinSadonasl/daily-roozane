@@ -1,5 +1,6 @@
 package com.abc.daily.ui.notes
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateTimePickerDialog
 import com.abc.daily.util.NoteSortDialog
+import com.abc.daily.util.PermissionHelper
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -42,6 +44,7 @@ class NotesFragment : Fragment() {
 
         initUiComponents()
         initListeners()
+        checkPermissions()
         observeDData()
 
         return binding.root
@@ -68,6 +71,15 @@ class NotesFragment : Fragment() {
                 viewModel.getNotes(sort)
             }
             dialog.show()
+        }
+    }
+
+    private fun checkPermissions() {
+        val permissions = listOf(
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        if (!PermissionHelper.hasLocationPermission(requireContext())) {
+            PermissionHelper.requestPermission(requireActivity(), permissions, PermissionHelper.ACCESS_FINE_LOCATION_REQUEST_CODE)
         }
     }
 
@@ -99,4 +111,11 @@ class NotesFragment : Fragment() {
     private fun navigateToNoteFragment(id: Int = 0) =
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+
+    }
 }
