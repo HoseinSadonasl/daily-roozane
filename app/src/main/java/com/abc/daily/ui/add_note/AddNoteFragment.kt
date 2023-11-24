@@ -23,7 +23,7 @@ import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class AddNoteFragment : Fragment() {

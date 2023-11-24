@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.abc.daily.domain.model.note.Note
 import com.abc.daily.domain.use_case.NotesDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

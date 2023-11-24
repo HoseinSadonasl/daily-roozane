@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
-import com.abc.daily.interfaces.DialogInterface
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateTimePickerDialog
 import com.abc.daily.util.NoteSortDialog
@@ -20,9 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NotesFragment : Fragment(), DialogInterface {
+class NotesFragment : Fragment() {
 
-    private lateinit var dialog: DateTimePickerDialog
     private lateinit var binding: LayoutNotesFragmentBinding
     private lateinit var notesAdapter: NotesFragmentAdapter
     private val viewModel: NotesViewModel by viewModels()
@@ -100,14 +98,5 @@ class NotesFragment : Fragment(), DialogInterface {
 
     private fun navigateToNoteFragment(id: Int = 0) =
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
-
-
-    override fun onPositiveClick() {
-        dialog.getDate()
-    }
-
-    override fun onNegativeClick() {
-        TODO("Not yet implemented")
-    }
 
 }
