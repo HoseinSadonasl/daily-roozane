@@ -2,7 +2,6 @@ package com.abc.daily.di
 
 import android.content.Context
 import android.location.LocationManager
-import com.abc.daily.app.Application
 import com.abc.daily.data.repository.WeatherRepositoryImpl
 import com.abc.daily.data.util.WeatherApi
 import com.abc.daily.domain.repository.WeatherRepository
@@ -11,6 +10,8 @@ import com.abc.daily.domain.use_case.WeatherDomain
 import com.abc.daily.util.Constants
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -59,7 +60,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesLocationServices( @ApplicationContext context: Context): LocationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    fun provideFusedLocationProviderClient ( @ApplicationContext context: Context): FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
 
 
 }

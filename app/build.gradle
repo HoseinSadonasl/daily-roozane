@@ -93,4 +93,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    def play_services_location = "21.0.1"
+    implementation "com.google.android.gms:play-services-location:$play_services_location"
+
 }

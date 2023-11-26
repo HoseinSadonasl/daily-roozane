@@ -3,15 +3,12 @@ package com.abc.daily.ui.notes
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.location.LocationListenerCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,22 +20,30 @@ import com.abc.daily.util.Constants
 import com.abc.daily.util.NoteSortDialog
 import com.abc.daily.util.PermissionHelper
 import com.bumptech.glide.RequestManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.Priority
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class NotesFragment : Fragment(), LocationListenerCompat {
+class NotesFragment : Fragment() {
 
     private lateinit var binding: LayoutNotesFragmentBinding
     private lateinit var notesAdapter: NotesFragmentAdapter
     private val viewModel: NotesViewModel by viewModels()
 
-    @Inject
-    lateinit var locationManager: LocationManager
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
     @Inject
     lateinit var glide: RequestManager
+
+    @Inject
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,13 +94,12 @@ class NotesFragment : Fragment(), LocationListenerCompat {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
         if (!PermissionHelper.hasLocationPermission(requireContext())) {
-            PermissionHelper.requestPermission(
-                requireActivity(),
-                permissions,
-                PermissionHelper.ACCESS_COARSE_LOCATION_REQUEST_CODE
-            )
-        } else
-            getCurrentLocation()
+            PermissionHelper.requestPermission(permissions, registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted->
+                if (isGranted) {
+                    getCurrentLocation()
+                }
+            })
+        } else getCurrentLocation()
     }
 
     private fun observeDData() {
@@ -126,37 +130,20 @@ class NotesFragment : Fragment(), LocationListenerCompat {
     private fun navigateToNoteFragment(id: Int = 0) =
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            PermissionHelper.ACCESS_COARSE_LOCATION_REQUEST_CODE -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getCurrentLocation()
-                }
-            }
-        }
-    }
-
     @SuppressLint("MissingPermission")
     private fun getCurrentLocation() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, requireActivity().mainExecutor) { location ->
-                val loc = location.latitude.toString() to location.longitude.toString()
-                viewModel.getWeather("", location = loc)
+        locationRequest = LocationRequest
+            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY,10000L)
+            .setMaxUpdates(10)
+            .build()
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                locationResult.locations.map { location ->
+                    Log.w(::getCurrentLocation.name, "getCurrentLocation: $location")
+                    val loc = location.latitude.toString() to location.longitude.toString()
+                    viewModel.getWeather("", location = loc)
+                }
             }
-        } else {
-            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
-                this, requireActivity().mainLooper
-            )
-        }
+        }, requireActivity().mainLooper)
     }
-
-    override fun onLocationChanged(location: Location) {
-        val loc = location.latitude.toString() to location.longitude.toString()
-        viewModel.getWeather("", location = loc)
-    }
-
 }
