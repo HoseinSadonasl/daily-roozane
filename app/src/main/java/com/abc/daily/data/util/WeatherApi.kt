@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface WeatherApi {
 
     @Headers("Content-Type: application/json; charset=utf-8")
-    @GET("weather?appid=${Constants.API_KEY}")
+    @GET("weather?appid=${Constants.API_KEY}&lang=fa")
     suspend fun getWeatherUsingCityName(
         @Query("q") cityName: String?,
         @Query("lat") lat: String?,

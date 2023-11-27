@@ -14,12 +14,17 @@ object DateUtil {
 
     private val isToday: String = " امروز"
     private val datePattern = "Y F d"
+    private val fullDatePattern = "l j F Y"
     private val timePattern = "H:i"
     private val fullDateTimePattern = "Y/m/d H:i"
 
     fun toPersianDate(timestamp: String): String {
         val persianDate = PersianDate(timestamp.toLong())
         return formattedDateTime(persianDate, datePattern)
+    }
+    fun toFullPersianDate(timestamp: String): String {
+        val persianDate = PersianDate(timestamp.toLong())
+        return formattedDateTime(persianDate, fullDatePattern)
     }
 
     fun toPersianTime(timestamp: String): String {

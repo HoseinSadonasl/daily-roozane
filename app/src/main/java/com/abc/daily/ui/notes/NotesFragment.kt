@@ -17,6 +17,7 @@ import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.util.Constants
+import com.abc.daily.util.DateUtil
 import com.abc.daily.util.NoteSortDialog
 import com.abc.daily.util.PermissionHelper
 import com.bumptech.glide.RequestManager
@@ -26,6 +27,8 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.Priority
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 
 
@@ -37,7 +40,6 @@ class NotesFragment : Fragment() {
     private val viewModel: NotesViewModel by viewModels()
 
     private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
 
     @Inject
     lateinit var glide: RequestManager
@@ -56,7 +58,6 @@ class NotesFragment : Fragment() {
             container,
             false
         )
-
         initUiComponents()
         initListeners()
         checkPermissions()
@@ -66,6 +67,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun initUiComponents() {
+        initDate()
         binding.textViewScreenTitleNotesFragment.text = getString(R.string.app_name)
         notesAdapter = NotesFragmentAdapter() {
             navigateToNoteFragment(it)
@@ -74,6 +76,12 @@ class NotesFragment : Fragment() {
             setNestedScrollingEnabled(true)
             adapter = notesAdapter
         }
+    }
+
+    private fun initDate() {
+        val date = DateUtil.toFullPersianDate(Date().time.toString())
+        binding.textViewDateNotesFragment.text = date
+
     }
 
     private fun initListeners() {
