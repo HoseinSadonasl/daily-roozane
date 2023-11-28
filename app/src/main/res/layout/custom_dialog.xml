@@ -1,124 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
+        app:cardBackgroundColor="@color/window_background"
         app:cardCornerRadius="@dimen/med_dp"
-        app:cardElevation="0dp"
-        android:backgroundTint="@color/white"
-        android:padding="@dimen/med_dp">
+        app:cardElevation="0dp">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/alertTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/med_TextSize"
-                    android:text="@string/app_name"
-                    android:textStyle="bold"
-                    android:layout_margin="@dimen/med_dp"
-                    android:textColor="@color/Second_black"
-                    android:gravity="center_vertical"/>
-
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:visibility="gone"
-                android:id="@+id/image_view"
-                android:layout_width="130dp"
-                android:layout_height="130dp"/>
+            android:layout_height="match_parent"
+            android:padding="@dimen/med_dp">
 
             <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/alertSubtitle"
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/Gray_c"
-                    android:gravity="center"
-                    android:layout_marginLeft="@dimen/med_dp"
-                    android:layout_marginRight="@dimen/med_dp"
-                    android:layout_marginBottom="@dimen/med_dp"
-                    android:layout_marginStart="@dimen/med_dp"
-                    android:layout_marginEnd="@dimen/med_dp" />
-
-            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/alertTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="@string/app_name"
+                android:textColor="@color/Second_black"
+                android:textSize="@dimen/med_TextSize"
+                android:textStyle="bold"
                 android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/alertSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/med_dp"
-                android:layout_marginRight="@dimen/med_dp"
-                android:layout_marginBottom="@dimen/med_dp"
-                android:hint="@string/city_name"
+                android:layout_marginTop="@dimen/padding_12dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/Second_black"
+                android:textSize="@dimen/low_TextSize"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/alertTitle"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="@dimen/padding_12dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alertSubtitle"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_12dp"
                 android:background="@null"
-                android:maxLines="1"
-                android:inputType="text"
+                android:descendantFocusability="blocksDescendants"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:descendantFocusability="blocksDescendants"
                 android:gravity="center"
-                android:id="@+id/textInput"
-                android:layout_marginEnd="@dimen/med_dp"
-                android:layout_marginStart="@dimen/med_dp" />
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:background="@color/btn_grey"
-                android:layout_marginRight="@dimen/med_dp"
-                android:layout_marginLeft="@dimen/med_dp"
-                android:layout_marginEnd="@dimen/med_dp"
-                android:layout_marginStart="@dimen/med_dp" />
+                android:hint="@string/city_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view"
+                tools:visibility="visible" />
 
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_marginTop="@dimen/padding_12dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textInput">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/negative"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:text="@string/negativeBtnTxt"
-                    android:textAllCaps="false"
-                    android:textColor="@color/Second_black"
-                    android:background="?selectableItemBackground"/>
+                    app:cornerRadius="@dimen/padding_12dp"
+                    app:elevation="0dp"
+                    tools:visibility="visible"
+                    style="@style/dialog_btn_style" />
 
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/positive"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:text="@string/positiveBtnTxt"
-                    android:textAllCaps="false"
-                    android:textColor="@color/Second_black"
-                    android:background="?selectableItemBackground" />
-
+                    app:cornerRadius="@dimen/padding_12dp"
+                    app:elevation="0dp"
+                    tools:visibility="visible"
+                    style="@style/dialog_btn_style" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-
 
 </FrameLayout>

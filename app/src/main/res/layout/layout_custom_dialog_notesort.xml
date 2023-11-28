@@ -85,11 +85,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/all_16dp"
-                app:cornerRadius="@dimen/all_16dp"
-                android:elevation="0dp"
+                app:cornerRadius="@dimen/padding_8dp"
                 android:stateListAnimator="@null"
-                android:text="@string/dialog_ok"
+                android:elevation="0dp"
                 app:elevation="0dp"
+                android:text="@string/dialog_ok"
                 tools:text="add alarm" />
 
         </LinearLayout>

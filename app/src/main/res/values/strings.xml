@@ -80,5 +80,7 @@
     <string name="txt_modified">"Modified: %1$s"</string>
     <string name="submit">submit</string>
     <string name="sort_list">Sort Notes</string>
+    <string name="deleteNoteTitle_warning">WARNING!</string>
+    <string name="deleteNoteTitle_description">Do you really want to delete this note?</string>
 
 </resources>

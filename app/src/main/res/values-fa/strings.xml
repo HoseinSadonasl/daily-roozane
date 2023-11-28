@@ -74,6 +74,8 @@
     <string name="txt_today">"امروز %1$s"</string>
     <string name="txt_xreated">"ایجاد: %1$s"</string>
     <string name="txt_modified">"ویرایش:  %1$s"</string>
+    <string name="deleteNoteTitle_warning">WARNING!</string>
+    <string name="deleteNoteTitle_description">Do you really want to delete this note?</string>
 
 
 </resources>

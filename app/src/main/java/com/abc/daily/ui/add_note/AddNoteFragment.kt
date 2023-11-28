@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.abc.daily.Dialog
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutAddNoteBinding
 import com.abc.daily.domain.model.note.Note
@@ -190,7 +191,19 @@ class AddNoteFragment : Fragment() {
         alarm.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
     }
 
-    private fun deleteNote(note: Note) = addNoteViewModel.deleteNote(note)
+    private fun deleteNote(note: Note) = Dialog(requireContext(),
+        onPositiveCallback = {dialog ->
+            addNoteViewModel.deleteNote(note)
+            dialog.dismiss()
+            popFragmrnt()
+        },
+        onNegativeCallback = {dialog -> dialog.dismiss() }
+    ).apply {
+        setTitle(getString(R.string.deleteNoteTitle_warning))
+        setDescription(getString(R.string.deleteNoteTitle_description))
+        setPositiveButtonText(getString(R.string.ok))
+        setNegativeButtonText(getString(R.string.cancel))
+    }.show()
 
     private fun getTimeForReminder() {
         CustomTimePickerDialog(
