@@ -12,7 +12,7 @@ class NoteViewHolder(
 ) : ViewHolder(binding.root) {
 
     fun bind(item: Note) {
-        item.let {
+        item?.let {
             binding.root.setOnClickListener { item.id?.let { it1 -> onItemClick(it1) } }
             binding.title.text = item.title
             if (it.description.isNotBlank()) {
@@ -21,10 +21,10 @@ class NoteViewHolder(
                     text = it.description
                 }
             }
-            binding.textViewDateNotesFragment.text = DateUtil.alarmToPersianDateAndTime(item.modifiedAt.toString(), binding.root.context)
+            binding.textViewDateNotesFragment.text = DateUtil.toPersianDateAndTime(item.modifiedAt.toString(), binding.root.context)
             it.remindAt?.let {
                 binding.reminderIc.visibility = View.VISIBLE
-                binding.reminderDaeTime.text = DateUtil.alarmToPersianDateAndTime(item.remindAt.toString(), binding.root.context)
+                binding.reminderDaeTime.text = DateUtil.toFullPersianDate(item.remindAt.toString())
             }
         }
     }
