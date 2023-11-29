@@ -12,7 +12,11 @@
         tools:layout="@layout/layout_notes_fragment">
         <action
             android:id="@+id/action_notesFragment_to_addNoteFragment"
-            app:destination="@id/addNoteFragment" />
+            app:destination="@id/addNoteFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
