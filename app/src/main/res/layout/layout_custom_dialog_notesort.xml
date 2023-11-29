@@ -3,31 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/all_16dp"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    android:layout_marginBottom="@dimen/all_16dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:backgroundTint="@color/view_background_primary"
-        android:padding="@dimen/med_dp"
-        app:cardCornerRadius="@dimen/high_dp"
+        app:cardBackgroundColor="@color/window_background"
+        app:cardCornerRadius="@dimen/med_dp"
         app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/all_16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/all_16dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/alertTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/med_dp"
                 android:gravity="center_vertical"
                 android:text="@string/sort_list"
                 android:textColor="@color/text_primary"
@@ -57,8 +53,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/searchCard_bg"
-                android:layout_marginVertical="@dimen/padding_8dp"/>
+                android:layout_marginVertical="@dimen/padding_8dp"
+                android:background="@color/searchCard_bg" />
 
             <RadioGroup
                 android:id="@+id/type_order_notes"
@@ -76,21 +72,16 @@
                     android:id="@+id/sortrb_descending_notesFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Descending"/>
+                    android:text="Descending" />
 
             </RadioGroup>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/sort_submit_notesFragment"
+            <include
+                android:id="@+id/layout_dialogbtns"
+                layout="@layout/layout_dialogbtns"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/all_16dp"
-                app:cornerRadius="@dimen/padding_8dp"
-                android:stateListAnimator="@null"
-                android:elevation="0dp"
-                app:elevation="0dp"
-                android:text="@string/dialog_ok"
-                tools:text="add alarm" />
+                android:layout_marginTop="@dimen/all_16dp" />
 
         </LinearLayout>
 

@@ -21,6 +21,7 @@ class NoteSortDialog(
     lateinit var sortRbName: RadioButton
     lateinit var sortRbDate: RadioButton
     lateinit var sortSubmit: MaterialButton
+    lateinit var sortCancel: MaterialButton
 
     init {
         window!!.apply {
@@ -37,28 +38,36 @@ class NoteSortDialog(
         sortRbDsc = findViewById(R.id.sortrb_descending_notesFragment)
         sortRbName = findViewById(R.id.sortrb_byname_notesFragment)
         sortRbDate = findViewById(R.id.sortrb_bydate_notesFragment)
-        sortSubmit = findViewById(R.id.sort_submit_notesFragment)
+        sortSubmit = findViewById(R.id.positive)
+        sortCancel = findViewById(R.id.negative)
+        sortSubmit.text = context.getString(R.string.ok)
+        sortCancel.text = context.getString(R.string.cancel)
     }
 
     private fun initListeners() {
         sortSubmit.setOnClickListener {
-            if (sortRbAsc.isChecked) {
-                if (sortRbName.isChecked) {
-                    noteOrder(NoteOrder.ByName(OrderType.Ascending))
-                }
-                if (sortRbDate.isChecked) {
-                    noteOrder(NoteOrder.ByDate(OrderType.Ascending))
-                }
-            }
-            if (sortRbDsc.isChecked) {
-                if (sortRbName.isChecked) {
-                    noteOrder(NoteOrder.ByName(OrderType.Descending))
-                }
-                if (sortRbDate.isChecked) {
-                    noteOrder(NoteOrder.ByName(OrderType.Descending))
-                }
-            }
+            sortNotes()
             this.dismiss()
+        }
+        sortCancel.setOnClickListener { this.dismiss() }
+    }
+
+    private fun sortNotes() {
+        if (sortRbAsc.isChecked) {
+            if (sortRbName.isChecked) {
+                noteOrder(NoteOrder.ByName(OrderType.Ascending))
+            }
+            if (sortRbDate.isChecked) {
+                noteOrder(NoteOrder.ByDate(OrderType.Ascending))
+            }
+        }
+        if (sortRbDsc.isChecked) {
+            if (sortRbName.isChecked) {
+                noteOrder(NoteOrder.ByName(OrderType.Descending))
+            }
+            if (sortRbDate.isChecked) {
+                noteOrder(NoteOrder.ByName(OrderType.Descending))
+            }
         }
     }
 }

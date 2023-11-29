@@ -34,14 +34,20 @@ class CustomDatePickerDialog(
     }
 
     private fun init() {
-        positive = findViewById(R.id.button_positive_timePicker)
-        negative = findViewById(R.id.button_negative_timePicker)
+        positive = findViewById(R.id.positive)
+        negative = findViewById(R.id.negative)
         yearNumberPicker = findViewById(R.id.numberPicker_year_addNotesFragment)
         monthNumberPicker = findViewById(R.id.numberPicker_month_addNotesFragment)
         dayNumberPicker = findViewById(R.id.numberPicker_day_addNotesFragment)
 
-        positive.setOnClickListener(this)
-        negative.setOnClickListener(this)
+        positive.apply {
+            text = context.getString(R.string.ok)
+            setOnClickListener(this@CustomDatePickerDialog)
+        }
+        negative.apply {
+            text = context.getString(R.string.cancel)
+            setOnClickListener(this@CustomDatePickerDialog)
+        }
 
         initCalendar()
         initPersianDate()

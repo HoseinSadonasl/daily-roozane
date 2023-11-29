@@ -8,12 +8,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        tools:layout_height="300dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:backgroundTint="@color/window_background"
-        android:padding="@dimen/med_dp"
-        app:cardCornerRadius="@dimen/high_dp"
+        app:cardBackgroundColor="@color/window_background"
+        app:cardCornerRadius="@dimen/med_dp"
         app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,45 +74,15 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <include
+                android:id="@+id/layout_dialogbtns"
+                layout="@layout/layout_dialogbtns"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
+                android:layout_marginTop="@dimen/all_16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout_time_dateTimePickerDialog">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_positive_timePicker"
-                    android:layout_width="0dp"
-                    android:layout_height="54dp"
-                    android:layout_weight="1"
-                    app:cornerRadius="@dimen/all_16dp"
-                    android:elevation="0dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/dialog_ok"
-                    app:elevation="0dp"
-                    tools:text="add alarm" />
-
-                <View
-                    android:layout_width="@dimen/padding_8dp"
-                    android:layout_height="match_parent"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_negative_timePicker"
-                    android:layout_width="0dp"
-                    android:layout_height="54dp"
-                    android:layout_weight="1"
-                    app:cornerRadius="@dimen/all_16dp"
-                    android:elevation="0dp"
-                    android:stateListAnimator="@null"
-                    android:text="@string/Dialog_cancel"
-                    app:backgroundTint="@color/btn_primary"
-                    app:elevation="0dp"
-                    tools:text="add alarm" />
-
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_time_dateTimePickerDialog" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -34,14 +34,20 @@ class CustomTimePickerDialog(
     }
 
     private fun init() {
-        positive = findViewById(R.id.button_positive_timePicker)
-        negative = findViewById(R.id.button_negative_timePicker)
+        positive = findViewById(R.id.positive)
+        negative = findViewById(R.id.negative)
         hourNumberPicker = findViewById(R.id.numberPicker_hour_addNotesFragment)
         minuteNumberPicker = findViewById(R.id.numberPicker_minute_addNotesFragment)
         amPmNumberPicker = findViewById(R.id.numberPicker_amPm_addNotesFragment)
 
-        positive.setOnClickListener(this)
-        negative.setOnClickListener(this)
+        positive.apply {
+            text = context.getString(R.string.ok)
+            setOnClickListener(this@CustomTimePickerDialog)
+        }
+        negative.apply {
+            text = context.getString(R.string.cancel)
+            setOnClickListener(this@CustomTimePickerDialog)
+        }
 
         initTime()
     }
