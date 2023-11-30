@@ -2,7 +2,6 @@ package com.abc.daily.ui.notes
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,7 +17,7 @@ import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
-import com.abc.daily.util.NoteSortDialog
+import com.abc.daily.util.OrderDialog
 import com.abc.daily.util.PermissionHelper
 import com.bumptech.glide.RequestManager
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,7 +27,6 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.Priority
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 
 
@@ -90,11 +88,15 @@ class NotesFragment : Fragment() {
         }
 
         binding.buttonSortNotesFragment.setOnClickListener {
-            val dialog = NoteSortDialog(requireActivity()) { sort ->
-                viewModel.getNotes(sort)
-            }
-            dialog.show()
+            showOrderDialog()
         }
+    }
+
+    private fun showOrderDialog() {
+        val dialog = OrderDialog(requireActivity(), viewModel.orderNotes) { order ->
+            viewModel.setOrderPrefs(order)
+        }
+        dialog.show()
     }
 
     private fun checkPermissions() {

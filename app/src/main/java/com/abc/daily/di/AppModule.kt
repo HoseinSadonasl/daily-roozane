@@ -1,11 +1,18 @@
 package com.abc.daily.di
 
 import android.content.Context
-import android.location.LocationManager
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStoreFile
+import com.abc.daily.data.repository.AppPreferencesImpl
 import com.abc.daily.data.repository.WeatherRepositoryImpl
 import com.abc.daily.data.util.WeatherApi
+import com.abc.daily.domain.repository.AppPreferencesRepository
 import com.abc.daily.domain.repository.WeatherRepository
 import com.abc.daily.domain.use_case.GetWeather
+import com.abc.daily.domain.use_case.AppPrefsDataStore
+import com.abc.daily.domain.use_case.PrefsDataStoreDomain
 import com.abc.daily.domain.use_case.WeatherDomain
 import com.abc.daily.util.Constants
 import com.bumptech.glide.Glide
@@ -24,7 +31,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    
+
+    @Provides
+    @Singleton
+    fun provideDataStore(
+        @ApplicationContext context: Context
+    ) = PreferenceDataStoreFactory.create{ context.preferencesDataStoreFile(Constants.DATASTORE_DAILY) }
+
+
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -57,6 +71,16 @@ object AppModule {
         WeatherDomain(
             getWeather = GetWeather(weatherRepository)
         )
+
+    @Provides
+    @Singleton
+    fun providesAppPreferencesRepository(appPref: DataStore<Preferences>): AppPreferencesRepository = AppPreferencesImpl(appPref)
+
+    @Provides
+    @Singleton
+    fun providesAppPreferencesUseCases(appPreferencesRepository: AppPreferencesRepository): PrefsDataStoreDomain = PrefsDataStoreDomain(
+        appPrefsDataStore = AppPrefsDataStore(appPreferencesRepository)
+    )
 
     @Provides
     @Singleton
