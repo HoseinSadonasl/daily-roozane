@@ -78,7 +78,7 @@ class NotesFragment : Fragment() {
 
     private fun initDate() {
         val date = DateUtil.toFullPersianDate(Date().time.toString())
-        binding.textViewDateNotesFragment.text = date
+        binding.layoutNotesfragmentCard.textViewDateNotesFragment.text = date
 
     }
 
@@ -121,12 +121,12 @@ class NotesFragment : Fragment() {
         viewModel.weather.observe(viewLifecycleOwner) { currentWeather ->
             currentWeather.let {
                 val temp = it.main.temp.toInt() - 273
-                binding.textViewTempNotesFragment.text =
+                binding.layoutNotesfragmentCard.textViewTempNotesFragment.text =
                     (getString(R.string.dgree_notesFragment, temp.toString()))
                 glide.load(
                     Constants.ICON_URL + it.weather.get(0).icon + "@2x.png"
-                ).into(binding.imageViewWeatherImageNotesFragment)
-                binding.textViewLocationNotesFragment.text = it.name
+                ).into(binding.layoutNotesfragmentCard.imageViewWeatherImageNotesFragment)
+                binding.layoutNotesfragmentCard.textViewLocationNotesFragment.text = it.name
             }
         }
     }

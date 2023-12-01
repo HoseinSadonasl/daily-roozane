@@ -62,202 +62,50 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
+        <include android:id="@+id/layout_notesfragment_card"
+            layout="@layout/layout_notesfragment_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginHorizontal="@dimen/all_16dp"
+            app:layout_constraintTop_toBottomOf="@id/appBar_notesFragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editText_searchNote_notesFragment"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:cardBackgroundColor="@color/Color_primary"
-            app:cardCornerRadius="16dp"
+            app:boxBackgroundColor="@color/searchCard_bg"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxStrokeWidth="0dp"
+            app:hintAnimationEnabled="false"
+            app:expandedHintEnabled="false"
+            app:hintEnabled="false"
+            app:contentPadding="0dp"
+            app:boxCollapsedPaddingTop="0dp"
+            app:boxStrokeWidthFocused="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBar_notesFragment">
+            app:layout_constraintTop_toBottomOf="@+id/layout_notesfragment_card"
+            app:startIconCheckable="true"
+            app:startIconDrawable="@drawable/ic_baseline_search"
+            app:startIconTint="@color/icon_color_primary">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout_weatherParent_notesFragment"
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageView_weatherImage_notesFragment"
-                    android:layout_width="@dimen/_64dp"
-                    android:layout_height="@dimen/_64dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_temp_notesFragment"
-                    app:layout_constraintStart_toEndOf="@+id/textView_temp_notesFragment"
-                    app:layout_constraintTop_toTopOf="@+id/textView_temp_notesFragment"
-                    tools:visibility="visible" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textView_temp_notesFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/imageView_weatherImage_notesFragment"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/white"
-                    android:textSize="56sp"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
-                    app:firstBaselineToTopHeight="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="A26"
-                    tools:visibility="visible" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView_date_notesFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/med_TextSize"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_weekDay_notesFragment"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="26/12/1399" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView_weekDay_notesFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/textView_date_notesFragment"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/low_TextSize"
-                    app:layout_constraintBottom_toTopOf="@+id/locationImg"
-                    app:layout_constraintEnd_toEndOf="@+id/textView_date_notesFragment"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_date_notesFragment"
-                    tools:text="@string/app_name" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/locationImg"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:src="@drawable/ic_location"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/textView_weekDay_notesFragment"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_weekDay_notesFragment"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:ignore="RtlSymmetry" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textView_location_notesFragment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?selectableItemBackground"
-                    android:text="@string/location"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/low_TextSize"
-                    app:layout_constraintBottom_toBottomOf="@+id/locationImg"
-                    app:layout_constraintEnd_toStartOf="@+id/locationImg"
-                    app:layout_constraintTop_toTopOf="@+id/locationImg" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/searchParent"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="8dp"-->
-        <!--            android:gravity="center_horizontal"-->
-        <!--            android:orientation="horizontal"-->
-        <!--            android:visibility="gone"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/linearLayout">-->
-
-        <!--            <androidx.cardview.widget.CardView-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="32dp"-->
-        <!--                android:layout_marginStart="16dp"-->
-        <!--                android:layout_marginTop="16dp"-->
-        <!--                android:layout_marginEnd="16dp"-->
-        <!--                android:layout_marginBottom="8dp"-->
-        <!--                android:layout_weight="6"-->
-        <!--                app:cardBackgroundColor="@android:color/white"-->
-        <!--                app:cardCornerRadius="@dimen/med_dp"-->
-        <!--                app:cardElevation="0dp">-->
-
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="32dp"-->
-        <!--                    android:gravity="start|center_vertical"-->
-        <!--                    android:orientation="horizontal">-->
-
-        <!--                    <androidx.appcompat.widget.AppCompatEditText-->
-        <!--                        android:id="@+id/editText_searchNote_notesFragment"-->
-        <!--                        android:layout_width="0dp"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_marginStart="@dimen/med_dp"-->
-        <!--                        android:layout_weight="9"-->
-        <!--                        android:background="@null"-->
-        <!--                        android:hint="@string/search_note_hint"-->
-        <!--                        android:inputType="text"-->
-        <!--                        android:maxLines="1"-->
-        <!--                        android:textColorHint="@color/Gray_c"-->
-        <!--                        android:textDirection="rtl"-->
-        <!--                        android:textSize="@dimen/med_TextSize" />-->
-
-        <!--                    <androidx.appcompat.widget.AppCompatImageView-->
-        <!--                        android:id="@+id/imageView_searchIcon_notesFragment"-->
-        <!--                        android:layout_width="16dp"-->
-        <!--                        android:layout_height="16dp"-->
-        <!--                        android:layout_weight="1"-->
-        <!--                        android:background="?selectableItemBackgroundBorderless"-->
-        <!--                        android:rotation="270"-->
-        <!--                        app:srcCompat="@drawable/ic_search"-->
-        <!--                        app:tint="@color/Gray_c" />-->
-
-        <!--                </LinearLayout>-->
-
-        <!--            </androidx.cardview.widget.CardView>-->
-
-        <!--            <com.google.android.material.button.MaterialButton-->
-        <!--                android:id="@+id/button_sortItems_notesFragment"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="32dp"-->
-        <!--                android:layout_marginStart="0dp"-->
-        <!--                android:layout_marginTop="16dp"-->
-        <!--                android:layout_marginEnd="@dimen/med_dp"-->
-        <!--                android:layout_marginBottom="8dp"-->
-        <!--                android:elevation="0dp"-->
-        <!--                android:gravity="center_horizontal"-->
-        <!--                android:includeFontPadding="false"-->
-        <!--                android:insetLeft="0dp"-->
-        <!--                android:insetTop="0dp"-->
-        <!--                android:insetRight="0dp"-->
-        <!--                android:insetBottom="0dp"-->
-        <!--                android:lineSpacingExtra="0pt"-->
-        <!--                android:lineSpacingMultiplier="0"-->
-        <!--                android:padding="@dimen/low_dp"-->
-        <!--                android:stateListAnimator="@null"-->
-        <!--                android:textAllCaps="false"-->
-        <!--                android:textColor="@color/Gray_c"-->
-        <!--                android:textSize="12sp"-->
-        <!--                app:backgroundTint="@color/white"-->
-        <!--                app:cornerRadius="@dimen/high_dp"-->
-        <!--                app:elevation="0dp"-->
-        <!--                app:icon="@drawable/ic_dateascldpi"-->
-        <!--                app:iconGravity="textStart"-->
-        <!--                app:iconSize="@dimen/regulaar_sp"-->
-        <!--                app:iconTint="@color/Gray_c"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/dateTxt"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintHorizontal_bias="1.0"-->
-        <!--                app:layout_constraintStart_toEndOf="@+id/dateTxt"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/dateTxt"-->
-        <!--                tools:text="@string/app_name" />-->
-
-        <!--        </LinearLayout>-->
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                android:hint="Search note"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_notesList_notesFragment"
@@ -283,41 +131,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_write" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editText_searchNote_notesFragment"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:boxBackgroundColor="@color/searchCard_bg"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxStrokeWidth="0dp"
-            app:hintAnimationEnabled="false"
-            app:expandedHintEnabled="false"
-            app:hintEnabled="false"
-            app:contentPadding="0dp"
-            app:boxCollapsedPaddingTop="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            app:startIconCheckable="true"
-            app:startIconDrawable="@drawable/ic_baseline_search"
-            app:startIconTint="@color/icon_color_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="0dp"
-                android:hint="Search note"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

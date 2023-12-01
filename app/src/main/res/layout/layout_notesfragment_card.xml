@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@color/Color_primary"
+        tools:background="@color/Back_white"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar_notesFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_weatherParent_notesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_weatherImage_notesFragment"
+                android:layout_width="@dimen/_64dp"
+                android:layout_height="@dimen/_64dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_temp_notesFragment"
+                app:layout_constraintStart_toEndOf="@+id/textView_temp_notesFragment"
+                app:layout_constraintTop_toTopOf="@+id/textView_temp_notesFragment"
+                tools:visibility="visible" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_temp_notesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/imageView_weatherImage_notesFragment"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                tools:textColor="@color/black"
+                android:textSize="56sp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:firstBaselineToTopHeight="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="A26"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_date_notesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/med_TextSize"
+                app:layout_constraintBottom_toTopOf="@+id/textView_weekDay_notesFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="26/12/1399" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_weekDay_notesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_date_notesFragment"
+                android:textColor="@color/white"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/low_TextSize"
+                app:layout_constraintBottom_toTopOf="@+id/locationImg"
+                app:layout_constraintEnd_toEndOf="@+id/textView_date_notesFragment"
+                app:layout_constraintTop_toBottomOf="@+id/textView_date_notesFragment"
+                tools:text="@string/app_name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/locationImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:src="@drawable/ic_location"
+                android:tint="@color/white"
+                tools:tint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView_weekDay_notesFragment"
+                app:layout_constraintTop_toBottomOf="@+id/textView_weekDay_notesFragment"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="RtlSymmetry" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView_location_notesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:text="@string/location"
+                android:textColor="@color/white"
+                tools:textColor="@color/black"
+                android:textSize="@dimen/low_TextSize"
+                app:layout_constraintBottom_toBottomOf="@+id/locationImg"
+                app:layout_constraintEnd_toStartOf="@+id/locationImg"
+                app:layout_constraintTop_toTopOf="@+id/locationImg" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
+
+
+        
