@@ -118,7 +118,54 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_searchNote_notesFragment"
-            tools:listitem="@layout/notes_list_item" />
+            tools:listitem="@layout/notes_list_item"
+            android:visibility="gone"
+            tools:visibility="gone"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_noNotes_notesFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_searchNote_notesFragment">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_weatherImage_notesFragment"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/no_notes"
+                tools:visibility="visible" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_noNotes_notesFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/noNotes_notestFragment_text"
+                android:textAlignment="center"
+                android:lineSpacingExtra="@dimen/tiny_TextSize"
+                android:textColor="@color/text_third"
+                android:textSize="@dimen/low_TextSize"
+                app:firstBaselineToTopHeight="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_weatherImage_notesFragment"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_weatherImage_notesFragment"
+                app:layout_constraintStart_toStartOf="@+id/imageView_weatherImage_notesFragment"
+                app:layout_constraintTop_toTopOf="@+id/imageView_weatherImage_notesFragment"
+                app:layout_constraintVertical_bias="0.65"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_addNote_notesFragment"
@@ -129,6 +176,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:elevation="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_write" />

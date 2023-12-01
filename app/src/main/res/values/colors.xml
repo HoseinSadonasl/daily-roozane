@@ -35,6 +35,7 @@
 
     <color name="text_primary">#373737</color>
     <color name="text_secondary">#838383</color>
+    <color name="text_third">#AEAEAE</color>
 
     <color name="searchCard_bg">#EDEDED</color>
     <color name="divider_color">#878787</color>

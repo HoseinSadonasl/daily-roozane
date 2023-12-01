@@ -34,6 +34,7 @@
 
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#ACACAC</color>
+    <color name="text_third">#4C4C4C</color>
 
     <color name="searchCard_bg">#0D313C</color>
     <color name="icon_color_primary">#FFFFFF</color>

@@ -42,4 +42,6 @@
     <dimen name="all_2dp">2dp</dimen>
     <dimen name="all_20dp">20dp</dimen>
     <dimen name="all_48dp">48dp</dimen>
+    <dimen name="_180dp">180dp</dimen>
+    <dimen name="tiny_TextSize">8sp</dimen>
 </resources>

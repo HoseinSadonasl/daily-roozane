@@ -110,6 +110,8 @@ class NotesFragment : Fragment() {
         binding.buttonSortNotesFragment.setOnClickListener {
             showOrderDialog()
         }
+
+        binding.layoutNoNotesNotesFragment.setOnClickListener { navigateToNoteFragment() }
     }
 
     private fun showOrderDialog() {
@@ -153,7 +155,16 @@ class NotesFragment : Fragment() {
 
     private fun observeNotes() {
         viewModel.notesList.observe(viewLifecycleOwner) { notes ->
-            notesAdapter.submitList(notes)
+            if (notes.isNotEmpty()) {
+                binding.recyclerViewNotesListNotesFragment.visibility = View.VISIBLE
+                binding.fabAddNoteNotesFragment.visibility = View.VISIBLE
+                notesAdapter.submitList(notes)
+                binding.layoutNoNotesNotesFragment.visibility = View.GONE
+            } else {
+                binding.layoutNoNotesNotesFragment.apply {
+                    visibility = View.VISIBLE
+                }
+            }
         }
     }
 
