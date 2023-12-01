@@ -3,12 +3,16 @@ package com.abc.daily.ui.notes
 import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -74,6 +78,22 @@ class NotesFragment : Fragment() {
             setNestedScrollingEnabled(true)
             adapter = notesAdapter
         }
+        initTextInput()
+    }
+
+    private fun initTextInput() {
+        binding.textInputNotesFragment.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.orderNotes(text.toString())
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+
+
     }
 
     private fun initDate() {

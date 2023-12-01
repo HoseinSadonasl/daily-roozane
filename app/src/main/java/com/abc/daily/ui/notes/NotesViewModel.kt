@@ -68,16 +68,16 @@ class NotesViewModel @Inject constructor(
         }
     }
 
-    fun orderNotes() {
+    fun orderNotes(chars: String = "") {
         val orderNotesType: OrderType = if (orderNotes.first == OrderDialog.ORDER_DSC) OrderType.Descending else OrderType.Ascending
         when (orderNotes.second) {
-            OrderDialog.ORDER_BY_DATE -> getNotes(NoteOrder.ByDate(orderNotesType))
-            OrderDialog.ORDER_BY_NAME -> getNotes(NoteOrder.ByName(orderNotesType))
+            OrderDialog.ORDER_BY_DATE -> getNotes(NoteOrder.ByDate(orderNotesType), chars)
+            OrderDialog.ORDER_BY_NAME -> getNotes(NoteOrder.ByName(orderNotesType), chars)
         }
     }
 
-    fun getNotes(order: NoteOrder) {
-        notesDomain.getNotesList(order).onEach {
+    fun getNotes(order: NoteOrder, chars: String) {
+        notesDomain.getNotesList(order, chars).onEach {
             notesList.value = it
         }.launchIn(viewModelScope)
     }
