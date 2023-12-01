@@ -7,7 +7,7 @@
     <string name="positiveBtnTxt">Positive</string>
     <string name="negativeBtnTxt">Negative</string>
     <string name="location">موقعیت مکانی</string>
-    <string name="search_note_hint">جستجوی یادداشت...</string>
+    <string name="search_note_hint">جستجوی یادداشت…</string>
     <string name="todo">TODO</string>
     <string name="write_note">نوشتن یادداشت</string>
     <string name="title">عنوان</string>
@@ -15,9 +15,9 @@
     <string name="reminder">یاد آور</string>
     <string name="at">ساعت:</string>
     <string name="today">امروز</string>
-    <string name="ok">باشه</string>
+    <string name="ok">بله</string>
     <string name="city_name">نام شهر</string>
-    <string name="cancel">بی خیال</string>
+    <string name="cancel">خیر</string>
     <string name="At">ساعت: </string>
     <string name="dialog_delete">پاک شود</string>
     <string name="Dialog_cancel">بی خیال</string>
@@ -74,8 +74,17 @@
     <string name="txt_today">"امروز %1$s"</string>
     <string name="txt_xreated">"ایجاد: %1$s"</string>
     <string name="txt_modified">"ویرایش:  %1$s"</string>
-    <string name="deleteNoteTitle_warning">WARNING!</string>
-    <string name="deleteNoteTitle_description">Do you really want to delete this note?</string>
-
-
+    <string name="sort_list">مرتب سازی یادداشت ها</string>
+    <string name="deleteNoteTitle_warning">اخطار!</string>
+    <string name="deleteNoteTitle_description">آیا مطمئنید که میخواهید این یادداشت را حذف کنید؟</string>
+    <string name="orderDialog_byName">به ترتیب الفبا</string>
+    <string name="orderDialog_byDate">به ترتیب تاریخ</string>
+    <string name="orderDialog_asc">صعودی</string>
+    <string name="orderDialog_dsc">نزولی</string>
+    <string name="orderDialog_submitBtn">تایید</string>
+    <string name="orderDialog_cancelBtn">انصراف</string>
+    <string name="timePickerDialog_submitBtn">بعدی</string>
+    <string name="timePickerDialog_cancelBtn">انصراف</string>
+    <string name="datePickerDialog_submitBtn">تایید</string>
+    <string name="datePickerDialog_cancelBtn">انصراف</string>
 </resources>

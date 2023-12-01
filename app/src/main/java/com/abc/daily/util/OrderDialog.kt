@@ -43,8 +43,8 @@ class OrderDialog(activity: Activity, defaultValues: Pair<Int, Int>, var orderCa
         sortRbDate = findViewById(R.id.sortrb_bydate_notesFragment)
         sortSubmit = findViewById(R.id.positive)
         sortCancel = findViewById(R.id.negative)
-        sortSubmit.text = context.getString(R.string.ok)
-        sortCancel.text = context.getString(R.string.cancel)
+        sortSubmit.text = context.getString(R.string.orderDialog_submitBtn)
+        sortCancel.text = context.getString(R.string.orderDialog_cancelBtn)
 
     }
 

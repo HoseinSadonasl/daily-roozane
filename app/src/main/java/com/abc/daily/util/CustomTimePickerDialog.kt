@@ -41,11 +41,11 @@ class CustomTimePickerDialog(
         amPmNumberPicker = findViewById(R.id.numberPicker_amPm_addNotesFragment)
 
         positive.apply {
-            text = context.getString(R.string.ok)
+            text = context.getString(R.string.timePickerDialog_submitBtn)
             setOnClickListener(this@CustomTimePickerDialog)
         }
         negative.apply {
-            text = context.getString(R.string.cancel)
+            text = context.getString(R.string.timePickerDialog_cancelBtn)
             setOnClickListener(this@CustomTimePickerDialog)
         }
 

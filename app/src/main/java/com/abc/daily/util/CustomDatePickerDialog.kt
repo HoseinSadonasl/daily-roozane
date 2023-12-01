@@ -41,11 +41,11 @@ class CustomDatePickerDialog(
         dayNumberPicker = findViewById(R.id.numberPicker_day_addNotesFragment)
 
         positive.apply {
-            text = context.getString(R.string.ok)
+            text = context.getString(R.string.datePickerDialog_submitBtn)
             setOnClickListener(this@CustomDatePickerDialog)
         }
         negative.apply {
-            text = context.getString(R.string.cancel)
+            text = context.getString(R.string.datePickerDialog_cancelBtn)
             setOnClickListener(this@CustomDatePickerDialog)
         }
 

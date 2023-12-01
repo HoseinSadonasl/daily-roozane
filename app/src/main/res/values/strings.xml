@@ -78,9 +78,17 @@
     <string name="txt_today">"Today %1$s"</string>
     <string name="txt_xreated">"Created: %1$s"</string>
     <string name="txt_modified">"Modified: %1$s"</string>
-    <string name="submit">submit</string>
     <string name="sort_list">Sort Notes</string>
     <string name="deleteNoteTitle_warning">WARNING!</string>
     <string name="deleteNoteTitle_description">Do you really want to delete this note?</string>
-
+    <string name="orderDialog_byName">By Name</string>
+    <string name="orderDialog_byDate">By Date</string>
+    <string name="orderDialog_asc">Ascending</string>
+    <string name="orderDialog_dsc">Descending</string>
+    <string name="orderDialog_submitBtn">OK</string>
+    <string name="orderDialog_cancelBtn">Cancel</string>
+    <string name="timePickerDialog_submitBtn">Next</string>
+    <string name="timePickerDialog_cancelBtn">Cancel</string>
+    <string name="datePickerDialog_submitBtn">Ok</string>
+    <string name="datePickerDialog_cancelBtn">Cancel</string>
 </resources>
