@@ -44,7 +44,7 @@ class NotesViewModel @Inject constructor(
             else -> Constants.NOTES_ORDER_DATE
         }
         viewModelScope.launch {
-            appPrefsDataStoreDomain.appPrefsDataStore.invoke(orderType, orderBy)
+            appPrefsDataStoreDomain.orderNotesPrefsDataStore.invoke(orderType, orderBy)
         }
         getOrderPrefs()
     }
@@ -53,7 +53,7 @@ class NotesViewModel @Inject constructor(
         var orderType: Int
         var orderBy: Int
         viewModelScope.launch {
-            appPrefsDataStoreDomain.appPrefsDataStore.invoke().onEach { orderSet ->
+            appPrefsDataStoreDomain.orderNotesPrefsDataStore.invoke().onEach { orderSet ->
                 orderType = if (orderSet.first() == Constants.NOTES_ORDER_DSC) OrderDialog.ORDER_DSC else OrderDialog.ORDER_ASC
                 orderSet.toList()[1].let { order ->
                     orderBy = when (order) {

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
-class AppPrefsDataStore @Inject constructor(
+class OrderNotesPrefsDataStore @Inject constructor(
     private val appPreferencesRepository: AppPreferencesRepository
 ) {
     suspend fun invoke(orderType: String, noteOrder: String) {
