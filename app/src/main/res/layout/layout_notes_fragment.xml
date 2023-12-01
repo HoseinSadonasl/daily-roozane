@@ -96,6 +96,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_notesfragment_card"
             app:startIconCheckable="true"
+            app:endIconDrawable="@drawable/all_close_small"
+            app:endIconTint="@color/icon_color_primary"
+            app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/ic_baseline_search"
             app:startIconTint="@color/icon_color_primary">
 
@@ -104,7 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="0dp"
-                android:hint="Search note"
+                android:textAlignment="viewStart"
+                android:hint="@string/search_note"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 

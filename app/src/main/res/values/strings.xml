@@ -92,4 +92,5 @@
     <string name="datePickerDialog_submitBtn">Ok</string>
     <string name="datePickerDialog_cancelBtn">Cancel</string>
     <string name="noNotes_notestFragment_text">You have no notes yet \nTap to add one</string>
+    <string name="search_note">Search note</string>
 </resources>

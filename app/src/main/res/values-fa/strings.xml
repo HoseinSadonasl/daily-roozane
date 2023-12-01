@@ -88,5 +88,6 @@
     <string name="datePickerDialog_submitBtn">تایید</string>
     <string name="datePickerDialog_cancelBtn">انصراف</string>
     <string name="noNotes_notestFragment_text">هنوز یادداشتی ندارید\nجهت افزودن لمس کنید</string>
+    <string name="search_note">جستجوی یادداشت</string>
 
 </resources>
