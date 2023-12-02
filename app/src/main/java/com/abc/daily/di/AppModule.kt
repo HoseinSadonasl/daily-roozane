@@ -1,5 +1,6 @@
 package com.abc.daily.di
 
+import android.app.AlarmManager
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
@@ -16,6 +17,7 @@ import com.abc.daily.domain.use_case.OrderNotesPrefsDataStore
 import com.abc.daily.domain.use_case.PrefsDataStoreDomain
 import com.abc.daily.domain.use_case.WeatherDomain
 import com.abc.daily.util.Constants
+import com.abc.daily.util.NotificationUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -59,6 +61,19 @@ object AppModule {
     fun provideGlide(
         @ApplicationContext context: Context
     ): RequestManager = Glide.with(context)
+
+    @Provides
+    @Singleton
+    fun provideAlarmManager(
+        @ApplicationContext context: Context
+    ): AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+
+    @Provides
+    @Singleton
+    fun provideNotificationUtil(
+        @ApplicationContext context: Context
+    ): NotificationUtil = NotificationUtil(context)
 
     @Provides
     @Singleton

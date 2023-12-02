@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,11 +24,16 @@ import com.abc.daily.util.CustomDatePickerDialog
 import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
+import com.abc.daily.util.PersianDate
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AddNoteFragment : Fragment() {
+
+    @Inject
+    lateinit var alarmManager: AlarmManager
 
     private lateinit var binding: LayoutAddNoteBinding
     private val addNoteViewModel: AddNoteViewModel by viewModels()
@@ -163,6 +169,9 @@ class AddNoteFragment : Fragment() {
             remindAt = hasReminder
         )
         addNoteViewModel.saveNote(note)
+        hasReminder?.let {
+            setReminderForNote(it.toLong())
+        }
         popFragmrnt()
     }
 
@@ -172,23 +181,13 @@ class AddNoteFragment : Fragment() {
 
 
     private fun setReminderForNote(timeInMillis: Long) {
-        val alarm = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(requireContext(), GlobalReceiver::class.java)
-        val requestCode = System.currentTimeMillis().toInt()
+        val requestCode = timeInMillis.toInt()
         val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getBroadcast(
-                requireContext(),
-                requestCode,
-                intent,
-                PendingIntent.FLAG_IMMUTABLE
-            )
-        } else {
-            PendingIntent.getBroadcast(
-                requireContext(), requestCode, intent,
-                PendingIntent.FLAG_IMMUTABLE
-            )
-        }
-        alarm.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent);
+            PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+        } else PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
     }
 
     private fun deleteNote(note: Note) = Dialog(requireContext(),
@@ -211,7 +210,10 @@ class AddNoteFragment : Fragment() {
             dialogInterface = object : CustomTimePickerDialog.DialogInterface {
                 override fun onPositiveClick(timePickerDialog: CustomTimePickerDialog) {
                     timePickerDialog.let {
-                        calendar = it.getTime()
+                        calendar.set(Calendar.HOUR_OF_DAY, it.getTime().get(Calendar.HOUR_OF_DAY))
+                        calendar.set(Calendar.MINUTE, it.getTime().get(Calendar.MINUTE))
+                        calendar.set(Calendar.SECOND,0)
+                        calendar.set(Calendar.AM_PM, it.getTime().get(Calendar.AM_PM))
                         it.dismiss()
                         getDateForReminder()
                     }
@@ -230,10 +232,13 @@ class AddNoteFragment : Fragment() {
             requireContext(),
             dialogInterface = object : CustomDatePickerDialog.DialogInterface {
                 override fun onPositiveClick(datePickerDialog: CustomDatePickerDialog) {
-                    datePickerDialog.apply {
-                        calendar = getDate()
+                    datePickerDialog.let {
+                        calendar.set(Calendar.YEAR, it.getDate().get(Calendar.YEAR))
+                        calendar.set(Calendar.MONTH, it.getDate().get(Calendar.MONTH))
+                        calendar.set(Calendar.DAY_OF_MONTH, it.getDate().get(Calendar.DAY_OF_MONTH))
+                        Log.d(::getTimeForReminder.name, "onPositiveClick: ${PersianDate(calendar.timeInMillis)}")
                         addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
-                        dismiss()
+                        it.dismiss()
                     }
                 }
 

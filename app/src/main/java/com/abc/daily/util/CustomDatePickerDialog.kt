@@ -85,7 +85,7 @@ class CustomDatePickerDialog(
     private fun initMonthNumberPicker(shMonth: Int) {
         val values = mutableListOf<String>()
         for (i in 0..11) {
-            values.add(i.toString())
+            values.add((i + 1).toString())
         }
         monthNumberPicker.apply {
             maxValue = 11

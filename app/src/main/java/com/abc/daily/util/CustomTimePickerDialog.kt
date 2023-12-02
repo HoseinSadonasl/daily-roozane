@@ -103,6 +103,7 @@ class CustomTimePickerDialog(
         calendar.apply {
             set(Calendar.HOUR_OF_DAY, hourNumberPicker.value)
             set(Calendar.MINUTE, minuteNumberPicker.value)
+            set(Calendar.SECOND, 0)
             set(Calendar.AM_PM, amPmNumberPicker.value)
         }
         return calendar

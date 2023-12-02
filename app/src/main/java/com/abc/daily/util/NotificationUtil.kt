@@ -1,4 +1,4 @@
-package com.abc.daily.app
+package com.abc.daily.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,15 +8,12 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.abc.daily.R
+import com.abc.daily.app.db
 import com.abc.daily.ui.add_note.AddNoteFragment
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class NotificationUtil {
-
-    @Inject
-    @ApplicationContext
-    lateinit var context: Context
+class NotificationUtil @Inject constructor(@ApplicationContext private val context: Context) {
 
     companion object {
         const val CHANNEL_ID = "daily"
@@ -53,7 +50,8 @@ class NotificationUtil {
         val pIntent = Intent(context, AddNoteFragment::class.java).apply {
             putExtra(db.Note.NOTE_ID, id)
         }
-        return PendingIntent.getActivity(context, 0, pIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getActivity(context, 0, pIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
 
