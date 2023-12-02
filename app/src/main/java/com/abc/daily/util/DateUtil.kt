@@ -42,7 +42,7 @@ object DateUtil {
             }
         } else formattedDateTime(persianDate, fullDateTimePattern)
     }
-    fun alarmToPersianDateAndTime(milliseconds: String, context: Context): String {
+    fun alarmToPersianDateAndTime(milliseconds: String): String {
         val persianDate = PersianDate(milliseconds.toLong())
         return  formattedDateTime(persianDate, fullDateTimePattern)
     }
