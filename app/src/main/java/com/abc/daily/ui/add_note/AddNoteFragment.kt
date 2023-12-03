@@ -84,10 +84,10 @@ class AddNoteFragment : Fragment() {
 
     private fun observeNoteData() {
         addNoteViewModel.noteLiveData.observe(viewLifecycleOwner) { note ->
-            Log.d("AddNoteViewModel", "observeNoteData: $note")
             note?.let {
                 this@AddNoteFragment.note = note
                 if (noteIdArg == null) noteIdArg = note.id
+                it.remindAt?.let { hasReminder = it }
                 binding.apply {
                     textViewAddNoteAppbarTitle.setText(it.title)
                     editTextAddNoteTitle.setText(it.title)

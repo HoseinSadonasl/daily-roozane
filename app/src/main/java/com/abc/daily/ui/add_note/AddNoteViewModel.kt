@@ -21,15 +21,12 @@ class AddNoteViewModel @Inject constructor(
     fun saveNote(note: Note) = viewModelScope.launch {
         val newNote = notesDomain.saveNote(note)
         getNote(newNote.toInt())
-        Log.d("AddNoteViewModel", "saveNote: $newNote")
-
     }
 
     fun getNote(id: Int) {
         viewModelScope.launch {
             val note = notesDomain.getNote.invoke(id)
             noteLiveData.postValue(note)
-            Log.d("AddNoteViewModel", "getNote: $note")
         }
     }
 
