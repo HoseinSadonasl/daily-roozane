@@ -7,12 +7,8 @@ class SaveNote(
     private val noteRepository: NoteRepository
 ) {
 
-    suspend operator fun invoke(note: Note) {
-        if (note.title.isBlank()) {
-            // TODO: Throw Exeption
-        } else {
-            noteRepository.saveNote(note)
-        }
+    suspend operator fun invoke(note: Note): Long = note.title.isNotBlank().let {
+        noteRepository.saveNote(note)
     }
 
 }

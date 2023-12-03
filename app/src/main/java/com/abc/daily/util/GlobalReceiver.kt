@@ -14,11 +14,16 @@ class GlobalReceiver: BroadcastReceiver() {
     @Inject
     lateinit var notificationUtil: NotificationUtil
 
+    companion object {
+        const val NOTIFICATION_NOTE_ID = "notification_note_id"
+        const val NOTIFICATION_NOTE_TITLE = "notification_note_title"
+    }
+
     override fun onReceive(context: Context?, intent: Intent?) {
-        Toast.makeText(context, "RECEIVED", Toast.LENGTH_SHORT).show()
-        val notificationIntentId = intent!!.getIntExtra("ntId", 0)
-        val notificationTitle = intent.getStringExtra("ntStr")
-        val randomId = (Date().time / 1000L % Int.MAX_VALUE).toInt()
-        notificationUtil.createNotification(randomId, notificationTitle)
+        intent?.let {
+            val notificationTitle = it.getStringExtra("ntStr")
+            val randomId = (Date().time / 1000L % Int.MAX_VALUE).toInt()
+            notificationUtil.createNotification(randomId, notificationTitle)
+        }
     }
 }

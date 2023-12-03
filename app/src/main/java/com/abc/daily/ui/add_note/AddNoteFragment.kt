@@ -84,8 +84,10 @@ class AddNoteFragment : Fragment() {
 
     private fun observeNoteData() {
         addNoteViewModel.noteLiveData.observe(viewLifecycleOwner) { note ->
+            Log.d("AddNoteViewModel", "observeNoteData: $note")
             note?.let {
                 this@AddNoteFragment.note = note
+                if (noteIdArg == null) noteIdArg = note.id
                 binding.apply {
                     textViewAddNoteAppbarTitle.setText(it.title)
                     editTextAddNoteTitle.setText(it.title)
@@ -145,6 +147,10 @@ class AddNoteFragment : Fragment() {
     private fun initListeners() {
         binding.fabAddNoteSave.setOnClickListener {
             saveNote()
+            hasReminder?.let {
+                handleReminderForNote(it.toLong())
+            }
+            popFragmrnt()
         }
 
         binding.imageViewAddNoteDelete.setOnClickListener {
@@ -152,7 +158,10 @@ class AddNoteFragment : Fragment() {
         }
 
         binding.btnAddAlarmAddNoteFragment.setOnClickListener {
-            handleReminder()
+            if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
+                saveNote()
+                handleReminder()
+            }
         }
 
         binding.buttonAddNoteBackward.setOnClickListener { popFragmrnt() }
@@ -165,7 +174,6 @@ class AddNoteFragment : Fragment() {
 
     private fun saveNote() {
         val currentTime = System.currentTimeMillis()
-
         val note = Note(
             id = noteIdArg,
             title = binding.editTextAddNoteTitle.text.toString(),
@@ -175,10 +183,6 @@ class AddNoteFragment : Fragment() {
             remindAt = hasReminder
         )
         addNoteViewModel.saveNote(note)
-        hasReminder?.let {
-            handleReminderForNote(it.toLong())
-        }
-        popFragmrnt()
     }
 
     private fun popFragmrnt() {
@@ -188,6 +192,7 @@ class AddNoteFragment : Fragment() {
 
     private fun handleReminderForNote(timeInMillis: Long, cancelReminder: Boolean = false) {
         val intent = Intent(requireContext(), GlobalReceiver::class.java)
+
         val requestCode = timeInMillis.toInt()
         val pendingIntent: PendingIntent = createPendingIntent(requestCode, intent)
         Log.d(::getTimeForReminder.name, "handleReminderForNote: ${PersianDate(timeInMillis)}")

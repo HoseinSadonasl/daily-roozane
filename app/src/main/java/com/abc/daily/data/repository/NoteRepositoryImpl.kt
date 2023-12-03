@@ -10,7 +10,7 @@ class NoteRepositoryImpl @Inject constructor(
     private val noteDao: NoteDao
 ): NoteRepository {
 
-    override suspend fun saveNote(note: Note) = noteDao.save(note)
+    override suspend fun saveNote(note: Note): Long = noteDao.save(note)
 
     override suspend fun deleteNote(note: Note) = noteDao.delete(note)
 

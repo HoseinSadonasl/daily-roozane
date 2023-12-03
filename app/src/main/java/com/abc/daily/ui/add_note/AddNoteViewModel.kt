@@ -1,5 +1,6 @@
 package com.abc.daily.ui.add_note
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,13 +19,17 @@ class AddNoteViewModel @Inject constructor(
     val noteReminderLiveData = MutableLiveData<Pair<Boolean, Long>>()
 
     fun saveNote(note: Note) = viewModelScope.launch {
-        notesDomain.saveNote(note)
+        val newNote = notesDomain.saveNote(note)
+        getNote(newNote.toInt())
+        Log.d("AddNoteViewModel", "saveNote: $newNote")
+
     }
 
     fun getNote(id: Int) {
         viewModelScope.launch {
             val note = notesDomain.getNote.invoke(id)
             noteLiveData.postValue(note)
+            Log.d("AddNoteViewModel", "getNote: $note")
         }
     }
 

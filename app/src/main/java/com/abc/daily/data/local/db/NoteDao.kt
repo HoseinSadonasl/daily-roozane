@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun save(note: Note)
+    suspend fun save(note: Note): Long
 
     @Delete
     suspend fun delete(note: Note)

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
 
-    suspend fun saveNote(note: Note)
+    suspend fun saveNote(note: Note): Long
 
     suspend fun deleteNote(note: Note)
 
