@@ -146,7 +146,7 @@ class AddNoteFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabAddNoteSave.setOnClickListener {
-            saveNote()
+            if (binding.editTextAddNoteTitle.text!!.isNotBlank()) saveNote()
             hasReminder?.let {
                 handleReminderForNote(it.toLong())
             }
