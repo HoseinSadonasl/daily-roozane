@@ -3,6 +3,7 @@ package com.abc.daily.util
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
@@ -20,10 +21,13 @@ class GlobalReceiver: BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
+        val randomId = (Date().time / 1000L % Int.MAX_VALUE).toInt()
         intent?.let {
-            val notificationTitle = it.getStringExtra("ntStr")
-            val randomId = (Date().time / 1000L % Int.MAX_VALUE).toInt()
-            notificationUtil.createNotification(randomId, notificationTitle)
+            val notificationId = it.getIntExtra(NOTIFICATION_NOTE_ID, randomId)
+            val notificationTitle = it.getStringExtra(NOTIFICATION_NOTE_TITLE)
+            notificationId.let {
+                notificationUtil.createNotification(notificationId, notificationTitle)
+            }
         }
     }
 }

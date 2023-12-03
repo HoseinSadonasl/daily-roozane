@@ -191,8 +191,10 @@ class AddNoteFragment : Fragment() {
 
 
     private fun handleReminderForNote(timeInMillis: Long, cancelReminder: Boolean = false) {
-        val intent = Intent(requireContext(), GlobalReceiver::class.java)
-
+        val intent = Intent(requireContext(), GlobalReceiver::class.java).apply {
+            putExtra(GlobalReceiver.NOTIFICATION_NOTE_ID, note?.id)
+            putExtra(GlobalReceiver.NOTIFICATION_NOTE_TITLE, note?.title)
+        }
         val requestCode = timeInMillis.toInt()
         val pendingIntent: PendingIntent = createPendingIntent(requestCode, intent)
         Log.d(::getTimeForReminder.name, "handleReminderForNote: ${PersianDate(timeInMillis)}")
@@ -206,7 +208,7 @@ class AddNoteFragment : Fragment() {
     private fun createPendingIntent(requestCode: Int, intent: Intent): PendingIntent =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
-        } else PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
+        } else PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
     private fun deleteNote(note: Note) = Dialog(requireContext(),
         onPositiveCallback = { dialog ->

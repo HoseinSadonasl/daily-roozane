@@ -8,7 +8,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.abc.daily.R
-import com.abc.daily.app.db
+import com.abc.daily.ui.MainActivity
 import com.abc.daily.ui.add_note.AddNoteFragment
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -47,11 +47,10 @@ class NotificationUtil @Inject constructor(@ApplicationContext private val conte
     }
 
     private fun createPendingIntent(id: Int): PendingIntent? {
-        val pIntent = Intent(context, AddNoteFragment::class.java).apply {
-            putExtra(db.Note.NOTE_ID, id)
+        val pIntent = Intent(context, MainActivity::class.java).apply {
+            putExtra(AddNoteFragment.NOTE_ARGUMENT, id)
         }
-        return PendingIntent.getActivity(context, 0, pIntent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        return PendingIntent.getActivity(context, 0, pIntent,  PendingIntent.FLAG_IMMUTABLE)
     }
 
 

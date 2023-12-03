@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
+import com.abc.daily.ui.add_note.AddNoteFragment
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.OrderDialog
@@ -63,9 +64,18 @@ class NotesFragment : Fragment() {
         initUiComponents()
         initListeners()
         checkPermissions()
+        initIntentData()
         observeDData()
 
         return binding.root
+    }
+
+    private fun initIntentData() {
+        if (requireActivity().intent.hasExtra(AddNoteFragment.NOTE_ARGUMENT))
+           requireActivity().intent.extras?.run {
+               val id = getInt(AddNoteFragment.NOTE_ARGUMENT)
+               navigateToNoteFragment(id)
+           }
     }
 
     private fun initUiComponents() {
