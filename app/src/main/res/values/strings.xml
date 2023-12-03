@@ -93,4 +93,10 @@
     <string name="datePickerDialog_cancelBtn">Cancel</string>
     <string name="noNotes_notestFragment_text">You have no notes yet \nTap to add one</string>
     <string name="search_note">Search note</string>
+    <string name="settings_themetv">Theme</string>
+    <string name="settings_systemdefault">System default</string>
+    <string name="settings_report">Feedback</string>
+    <string name="settings_reportbug">Report a bug</string>
+    <string name="settings_sendemail">Send e-mail</string>
+    <string name="settings_contact">Contact developer</string>
 </resources>

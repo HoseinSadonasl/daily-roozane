@@ -17,6 +17,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_notesFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -32,5 +35,10 @@
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.abc.daily.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/layout_settings_fragment"/>
 
 </navigation>

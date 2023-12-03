@@ -122,6 +122,8 @@ class NotesFragment : Fragment() {
         }
 
         binding.layoutNoNotesNotesFragment.setOnClickListener { navigateToNoteFragment() }
+
+        binding.buttonSettingsNotesFragment.setOnClickListener { navigateToSettingsFragment() }
     }
 
     private fun showOrderDialog() {
@@ -180,6 +182,9 @@ class NotesFragment : Fragment() {
 
     private fun navigateToNoteFragment(id: Int = 0) =
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
+
+    private fun navigateToSettingsFragment() =
+        findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToSettingsFragment())
 
     @SuppressLint("MissingPermission")
     private fun getCurrentLocation() {
