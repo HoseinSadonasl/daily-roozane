@@ -19,7 +19,11 @@
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_notesFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment

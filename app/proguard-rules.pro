@@ -18,4 +18,5 @@
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile
+#-renamesourcefileattribute SourceFil
+# Please add these rules to your existing keep rules in order to suppress warnings

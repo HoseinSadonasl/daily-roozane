@@ -13,10 +13,10 @@ import javax.inject.Inject
 class DarkModePrefsDataStore @Inject constructor(
     private val appPreferencesRepository: AppPreferencesRepository
 ) {
-    suspend fun invoke(isNight: Boolean) {
+    suspend fun invoke(isDark: Boolean) {
         try {
             appPreferencesRepository.getDataStorePreferences().edit { preferences ->
-                preferences[Constants.NIGHT_MODE] = isNight
+                preferences[Constants.DARK_MODE] = isDark
             }
         } catch (exception: IOException) {
             exception.printStackTrace()
@@ -32,7 +32,7 @@ class DarkModePrefsDataStore @Inject constructor(
                 throw it
             }
         }.map { preferences ->
-            preferences[Constants.NIGHT_MODE] ?: false
+            preferences[Constants.DARK_MODE] ?: false
         }
 
 }

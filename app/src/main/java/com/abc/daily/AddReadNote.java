@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.abc.daily.Objects.NoteObjects;
-import com.abc.daily.fragments.BottomSheetFragment;
 import com.abc.daily.interfaces.DialogInterface;
 import com.abc.daily.interfaces.ModifyObject;
 import com.abc.daily.interfaces.NotificationObject;
@@ -173,20 +172,20 @@ public class AddReadNote extends MainActivity implements
     }
 
     NotificationObject notificationObject;
-    private void noteReminder() {
-        if (titleEdtTxt.getText().toString().isEmpty()) {
-            return;
-        }
-        addToDb(false);
-        BottomSheetFragment fragment = new BottomSheetFragment();
-        fragment.notificationExtras = new NotificationObject() {
-            @Override
-            public NoteObjects getObject() {
-                return objects;
-            }
-        };
-        fragment.show(getSupportFragmentManager(), app.TAG);
-    }
+//    private void noteReminder() {
+//        if (titleEdtTxt.getText().toString().isEmpty()) {
+//            return;
+//        }
+//        addToDb(false);
+//        BottomSheetFragment fragment = new BottomSheetFragment();
+//        fragment.notificationExtras = new NotificationObject() {
+//            @Override
+//            public NoteObjects getObject() {
+//                return objects;
+//            }
+//        };
+//        fragment.show(getSupportFragmentManager(), app.TAG);
+//    }
 
     @Override
     public void onBackPressed() {

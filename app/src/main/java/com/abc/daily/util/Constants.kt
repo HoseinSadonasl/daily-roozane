@@ -1,13 +1,12 @@
 package com.abc.daily.util
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 
 object Constants {
 
     const val DATASTORE_DAILY = "dailyappdata"
-    val NIGHT_MODE = booleanPreferencesKey("nightMode")
+    val DARK_MODE = booleanPreferencesKey("nightMode")
     val NOTES_ORDER = stringSetPreferencesKey("order")
     val NOTES_ORDER_DSC = "dsc"
     val NOTES_ORDER_ASC = "asc"

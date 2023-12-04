@@ -99,4 +99,6 @@
     <string name="settings_reportbug">Report a bug</string>
     <string name="settings_sendemail">Send e-mail</string>
     <string name="settings_contact">Contact developer</string>
+    <string name="tvappbar_settings">Settings</string>
+    <string name="settings_darkmode">Dark mode</string>
 </resources>
