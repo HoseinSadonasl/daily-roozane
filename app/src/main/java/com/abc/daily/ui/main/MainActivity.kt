@@ -1,4 +1,4 @@
-package com.abc.daily.ui
+package com.abc.daily.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -39,7 +39,7 @@
             android:name=".AddReadNote"
             android:theme="@style/Theme.DailyNoActionbar" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.DailyNoActionbar"
             android:windowSoftInputMode="adjustPan|adjustResize">

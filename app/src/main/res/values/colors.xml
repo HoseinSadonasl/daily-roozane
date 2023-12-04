@@ -26,6 +26,7 @@
     <color name="window_background">#F9F9F9</color>
     <color name="view_background_primary">#FFFFFF</color>
     <color name="view_background_secondary">#F9F9F9</color>
+    <color name="view_background_slash">#2FAAD1</color>
 
     <color name="btn_primary">#2FAAD1</color>
     <color name="btn_secondary">#E1E1E1</color>

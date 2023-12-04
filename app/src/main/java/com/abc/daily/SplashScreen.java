@@ -29,7 +29,7 @@ public class SplashScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.layout_splash);
         parent = findViewById(R.id.parent);
         logo = findViewById(R.id.logo);
 
