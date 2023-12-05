@@ -44,14 +44,5 @@
         android:name="com.abc.daily.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/layout_settings_fragment"/>
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.abc.daily.ui.splash.SplashFragment"
-        android:label="SplashFragment"
-        tools:layout="@layout/layout_splash">
-        <action
-            android:id="@+id/action_splashFragment_to_notesFragment"
-            app:destination="@id/notesFragment" />
-    </fragment>
 
 </navigation>
