@@ -34,7 +34,7 @@ class SplashFragment: Fragment() {
 
         lifecycleScope.async {
             async { observeData() }.await()
-            delay(3000L)
+            delay(100L)
             findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToNotesFragment())
         }
 

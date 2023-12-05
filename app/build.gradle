@@ -104,5 +104,7 @@ dependencies {
     def data_store_version = "1.0.0"
     implementation "androidx.datastore:datastore-preferences:$data_store_version"
 
+    def splashscreen_version = "1.0.1"
+    implementation "androidx.core:core-splashscreen:$splashscreen_version"
 
 }
