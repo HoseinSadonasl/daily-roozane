@@ -1,6 +1,7 @@
 package com.abc.daily.di
 
 import android.app.AlarmManager
+import android.app.UiModeManager
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
@@ -67,6 +68,12 @@ object AppModule {
     fun provideAlarmManager(
         @ApplicationContext context: Context
     ): AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    @Provides
+    @Singleton
+    fun provideUiModeManager(
+        @ApplicationContext context: Context
+    ): UiModeManager =context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
 
 
     @Provides

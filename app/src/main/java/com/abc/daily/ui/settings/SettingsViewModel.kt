@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abc.daily.domain.use_case.PrefsDataStoreDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -16,8 +17,7 @@ class SettingsViewModell @Inject constructor(
     private val appPrefsDataStoreDomain: PrefsDataStoreDomain
 ): ViewModel() {
 
-    // TODO: stateFlow
-    var isDarkMode:Boolean? = null
+    var isDarkMode = MutableSharedFlow<Boolean>()
 
     init {
         getDarkMode()
@@ -26,7 +26,7 @@ class SettingsViewModell @Inject constructor(
     fun getDarkMode() {
         viewModelScope.launch {
             appPrefsDataStoreDomain.darkModePrefsDataStore.invoke().onEach { isDark ->
-                isDarkMode = isDark
+                isDarkMode.emit(isDark)
             }.launchIn(viewModelScope)
         }
     }
@@ -35,5 +35,4 @@ class SettingsViewModell @Inject constructor(
             appPrefsDataStoreDomain.darkModePrefsDataStore.invoke(isDarkMode)
         }
     }
-
 }
