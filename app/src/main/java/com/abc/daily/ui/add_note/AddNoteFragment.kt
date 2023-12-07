@@ -57,8 +57,8 @@ class AddNoteFragment : Fragment() {
             false
         )
 
-        initComponents()
         getArgs()
+        initComponents()
         initNote()
         observeNoteData()
         observeNoteReminderData()
@@ -134,6 +134,7 @@ class AddNoteFragment : Fragment() {
 
     private fun initComponents() {
         binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
+        binding.imageViewAddNoteDelete.visibility = if (noteIdArg != null) View.VISIBLE else View.GONE
         setReminderButtonColorTint(R.color.btn_secondary)
         calendar = Calendar.getInstance()
     }
