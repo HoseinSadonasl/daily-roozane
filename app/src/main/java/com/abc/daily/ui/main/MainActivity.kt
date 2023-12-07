@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -43,6 +44,12 @@ class MainActivity : AppCompatActivity() {
            setThemeDarkMode(isDark)
         }
         keepSplashOnScreen = false
+    }
+
+
+    fun requestMultiplePermissions(callBack: (Pair<String, Boolean>) -> Unit) = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        permissions.entries.forEach { callBack(it.key to it.value) }
     }
 
     private fun setThemeDarkMode(isNight: Boolean) {

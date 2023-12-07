@@ -2,6 +2,7 @@ package com.abc.daily.ui.notes
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,10 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.widget.addTextChangedListener
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,6 +19,7 @@ import com.abc.daily.Adapters.NotesFragmentAdapter
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.ui.add_note.AddNoteFragment
+import com.abc.daily.ui.main.MainActivity
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.OrderDialog
@@ -132,17 +132,24 @@ class NotesFragment : Fragment() {
     }
 
     private fun checkPermissions() {
-        val permissions = listOf(
+        val permissions = mutableListOf(
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
-        if (!PermissionHelper.hasLocationPermission(requireContext())) {
-            PermissionHelper.requestPermission(
-                permissions,
-                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                    if (isGranted) {
-                        getCurrentLocation()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS)
+
+        if (PermissionHelper.hasPermission(requireContext(), permissions).isEmpty().not()) {
+            val activity = requireActivity() as MainActivity
+            activity.requestMultiplePermissions {permission ->
+                when(permission.first) {
+                    Manifest.permission.ACCESS_COARSE_LOCATION -> {
+                        if (permission.second)  getCurrentLocation()
                     }
-                })
+                    Manifest.permission.POST_NOTIFICATIONS -> {
+                        if (!permission.second) Toast.makeText(requireContext(), getString(R.string.toast_notificationpermission), Toast.LENGTH_LONG).show()
+                    }
+                }
+            }.launch(permissions.toTypedArray())
         } else getCurrentLocation()
     }
 

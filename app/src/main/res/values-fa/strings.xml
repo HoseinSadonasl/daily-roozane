@@ -89,5 +89,6 @@
     <string name="datePickerDialog_cancelBtn">انصراف</string>
     <string name="noNotes_notestFragment_text">هنوز یادداشتی ندارید</string>
     <string name="search_note">جستجوی یادداشت</string>
+    <string name="toast_notificationpermission">برای دریافت یادآوری‌ها باید مجوز اعلان بدهید</string>
 
 </resources>
