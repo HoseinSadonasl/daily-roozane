@@ -47,6 +47,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_lunch</item>
         <item name="windowSplashScreenBackground">@color/view_background_slash</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/view_background_slash</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/daily_logo</item>
         <item name="splashScreenIconSize">@dimen/all_48dp</item>
         <item name="postSplashScreenTheme">@style/Theme.DailyNoActionbar</item>
