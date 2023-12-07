@@ -72,10 +72,10 @@ class NotesFragment : Fragment() {
 
     private fun initIntentData() {
         if (requireActivity().intent.hasExtra(AddNoteFragment.NOTE_ARGUMENT))
-           requireActivity().intent.extras?.run {
-               val id = getInt(AddNoteFragment.NOTE_ARGUMENT)
-               navigateToNoteFragment(id)
-           }
+            requireActivity().intent.extras?.run {
+                val id = getInt(AddNoteFragment.NOTE_ARGUMENT)
+                navigateToNoteFragment(id)
+            }
     }
 
     private fun initUiComponents() {
@@ -100,7 +100,6 @@ class NotesFragment : Fragment() {
 
             override fun afterTextChanged(p0: Editable?) {}
         })
-
 
 
     }
@@ -137,11 +136,13 @@ class NotesFragment : Fragment() {
             Manifest.permission.ACCESS_COARSE_LOCATION,
         )
         if (!PermissionHelper.hasLocationPermission(requireContext())) {
-            PermissionHelper.requestPermission(permissions, registerForActivityResult(ActivityResultContracts.RequestPermission()) {isGranted->
-                if (isGranted) {
-                    getCurrentLocation()
-                }
-            })
+            PermissionHelper.requestPermission(
+                permissions,
+                registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                    if (isGranted) {
+                        getCurrentLocation()
+                    }
+                })
         } else getCurrentLocation()
     }
 
@@ -172,7 +173,10 @@ class NotesFragment : Fragment() {
                 binding.editTextSearchNoteNotesFragment.visibility = View.VISIBLE
                 notesAdapter.submitList(notes)
             } else {
-                binding.editTextSearchNoteNotesFragment.visibility = View.GONE
+                if (binding.textInputNotesFragment.text.isNullOrBlank()) {
+                    binding.editTextSearchNoteNotesFragment.visibility = View.GONE
+                }
+                binding.recyclerViewNotesListNotesFragment.visibility = View.GONE
                 binding.layoutNoNotesNotesFragment.visibility = View.VISIBLE
             }
         }
@@ -187,17 +191,21 @@ class NotesFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private fun getCurrentLocation() {
         locationRequest = LocationRequest
-            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY,10000L)
+            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10000L)
             .setMaxUpdates(10)
             .build()
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                locationResult.locations.map { location ->
-                    Log.w(::getCurrentLocation.name, "getCurrentLocation: $location")
-                    val loc = location.latitude.toString() to location.longitude.toString()
-                    viewModel.getWeather("", location = loc)
+        fusedLocationProviderClient.requestLocationUpdates(
+            locationRequest,
+            object : LocationCallback() {
+                override fun onLocationResult(locationResult: LocationResult) {
+                    locationResult.locations.map { location ->
+                        Log.w(::getCurrentLocation.name, "getCurrentLocation: $location")
+                        val loc = location.latitude.toString() to location.longitude.toString()
+                        viewModel.getWeather("", location = loc)
+                    }
                 }
-            }
-        }, requireActivity().mainLooper)
+            },
+            requireActivity().mainLooper
+        )
     }
 }
