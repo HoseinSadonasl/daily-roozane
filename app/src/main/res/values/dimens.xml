@@ -48,4 +48,5 @@
     <dimen name="all_1dp">1dp</dimen>
     <dimen name="all_12dp">12dp</dimen>
     <dimen name="all_140dp">140dp</dimen>
+    <dimen name="all_100dp">100dp</dimen>
 </resources>

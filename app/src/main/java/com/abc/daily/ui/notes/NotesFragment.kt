@@ -85,7 +85,6 @@ class NotesFragment : Fragment() {
             navigateToNoteFragment(it)
         }
         binding.recyclerViewNotesListNotesFragment.apply {
-            setNestedScrollingEnabled(true)
             adapter = notesAdapter
         }
         initTextInput()
@@ -168,14 +167,13 @@ class NotesFragment : Fragment() {
     private fun observeNotes() {
         viewModel.notesList.observe(viewLifecycleOwner) { notes ->
             if (notes.isNotEmpty()) {
-                binding.recyclerViewNotesListNotesFragment.visibility = View.VISIBLE
-                binding.fabAddNoteNotesFragment.visibility = View.VISIBLE
-                notesAdapter.submitList(notes)
                 binding.layoutNoNotesNotesFragment.visibility = View.GONE
+                binding.recyclerViewNotesListNotesFragment.visibility = View.VISIBLE
+                binding.editTextSearchNoteNotesFragment.visibility = View.VISIBLE
+                notesAdapter.submitList(notes)
             } else {
-                binding.layoutNoNotesNotesFragment.apply {
-                    visibility = View.VISIBLE
-                }
+                binding.editTextSearchNoteNotesFragment.visibility = View.GONE
+                binding.layoutNoNotesNotesFragment.visibility = View.VISIBLE
             }
         }
     }
