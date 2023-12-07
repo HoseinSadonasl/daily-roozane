@@ -40,7 +40,7 @@
                     android:layout_marginBottom="4dp"
                     android:text="@string/app_name"
                     android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/_12sp"
+                    android:textSize="@dimen/_10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/content"
                     app:layout_constraintTop_toBottomOf="@+id/content" />
@@ -108,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/_12sp"
+                        android:textSize="@dimen/_10sp"
                         tools:text="20:35" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

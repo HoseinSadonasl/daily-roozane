@@ -50,7 +50,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:layout_constraintStart_toEndOf="@id/button_addNote_backward"
                     app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/_20sp" />
 
 
                 <com.google.android.material.button.MaterialButton
@@ -90,13 +90,12 @@
             android:id="@+id/editText_addNote_description"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/padding_12dp"
-            android:layout_marginBottom="142dp"
+            android:layout_marginVertical="@dimen/padding_12dp"
             android:background="@null"
             android:gravity="start"
             android:hint="@string/content"
             android:textColor="@color/text_primary"
-            app:layout_constraintBottom_toTopOf="@+id/fab_addNote_save"
+            app:layout_constraintBottom_toTopOf="@+id/textView_addNote_modifiedDate"
             app:layout_constraintEnd_toEndOf="@id/editText_addNote_title"
             app:layout_constraintStart_toStartOf="@+id/editText_addNote_title"
             app:layout_constraintTop_toBottomOf="@id/editText_addNote_title" />
@@ -109,6 +108,7 @@
             android:text="@string/modified"
             android:textColor="@color/Gray_c"
             android:textSize="@dimen/low_TextSize"
+            android:layout_marginHorizontal="@dimen/all_16dp"
             app:layout_constraintBottom_toTopOf="@+id/textView_addNote_createdDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -121,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/_4dp"
             android:text="@string/created"
             android:textColor="@color/Gray_c"
             android:textSize="@dimen/low_TextSize"

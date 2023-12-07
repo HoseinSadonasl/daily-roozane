@@ -49,4 +49,5 @@
     <dimen name="all_12dp">12dp</dimen>
     <dimen name="all_140dp">140dp</dimen>
     <dimen name="all_100dp">100dp</dimen>
+    <dimen name="_10sp">10sp</dimen>
 </resources>
