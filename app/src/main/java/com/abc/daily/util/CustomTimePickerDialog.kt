@@ -90,7 +90,7 @@ class CustomTimePickerDialog(
     }
 
     private fun initAmPm() {
-        val values = mutableListOf("AM", "PM")
+        val values = mutableListOf(context.getString(R.string.timepicker_am), context.getString(R.string.timepicker_pm))
         amPmNumberPicker.apply {
             maxValue = 1
             minValue = 0

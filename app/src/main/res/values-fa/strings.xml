@@ -90,5 +90,7 @@
     <string name="noNotes_notestFragment_text">هنوز یادداشتی ندارید</string>
     <string name="search_note">جستجوی یادداشت</string>
     <string name="toast_notificationpermission">برای دریافت یادآوری‌ها باید مجوز اعلان بدهید</string>
+    <string name="timepicker_am">قبل از ظهر</string>
+    <string name="timepicker_pm">بعد از ظهر</string>
 
 </resources>

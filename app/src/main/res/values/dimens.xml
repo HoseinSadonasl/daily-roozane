@@ -50,4 +50,6 @@
     <dimen name="all_140dp">140dp</dimen>
     <dimen name="all_100dp">100dp</dimen>
     <dimen name="_10sp">10sp</dimen>
+    <dimen name="all_56sp">56sp</dimen>
+    <dimen name="all_64sp">64sp</dimen>
 </resources>

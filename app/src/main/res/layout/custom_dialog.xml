@@ -15,14 +15,13 @@
         android:padding="@dimen/med_dp">
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/MediumTextBold"
             android:id="@+id/alertTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/app_name"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/med_TextSize"
-            android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,14 +30,13 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/alertSubtitle"
+            style="@style/MediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_12dp"
             android:gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/low_TextSize"
-            android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +56,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/textInput"
+            style="@style/MediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_12dp"

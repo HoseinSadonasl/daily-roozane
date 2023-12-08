@@ -102,4 +102,6 @@
     <string name="tvappbar_settings">Settings</string>
     <string name="settings_darkmode">Dark mode</string>
     <string name="toast_notificationpermission">You have to grant notification permissions to receive Reminders</string>
+    <string name="timepicker_am">AM</string>
+    <string name="timepicker_pm">PM</string>
 </resources>

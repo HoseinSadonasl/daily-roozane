@@ -38,6 +38,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/BigText"
                     android:id="@+id/textView_addNote_appbarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -49,8 +50,7 @@
                     android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="@id/button_addNote_backward"
                     app:layout_constraintStart_toEndOf="@id/button_addNote_backward"
-                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward"
-                    android:textSize="@dimen/_20sp" />
+                    app:layout_constraintTop_toTopOf="@id/button_addNote_backward" />
 
 
                 <com.google.android.material.button.MaterialButton
@@ -71,6 +71,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editText_addNote_title"
+            style="@style/MediumTextBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_32dp"
@@ -80,14 +81,13 @@
             android:minHeight="@dimen/_32dp"
             android:hint="@string/title"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/text_16sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/editText_addNote_description"
+            style="@style/MediumText"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginVertical="@dimen/padding_12dp"
@@ -102,12 +102,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_addNote_modifiedDate"
+            style="@style/TinyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="@string/modified"
             android:textColor="@color/Gray_c"
-            android:textSize="@dimen/low_TextSize"
             android:layout_marginHorizontal="@dimen/all_16dp"
             app:layout_constraintBottom_toTopOf="@+id/textView_addNote_createdDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +117,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView_addNote_createdDate"
+            style="@style/TinyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -124,7 +125,6 @@
             android:layout_marginTop="@dimen/_4dp"
             android:text="@string/created"
             android:textColor="@color/Gray_c"
-            android:textSize="@dimen/low_TextSize"
             app:layout_constraintBottom_toTopOf="@+id/fab_addNote_save"
             app:layout_constraintEnd_toEndOf="@+id/textView_addNote_modifiedDate"
             app:layout_constraintHorizontal_bias="1.0" />
@@ -152,6 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_64dp"
             tools:text="add alarm"
+            android:fontFamily="@font/iranyekanregular"
             android:stateListAnimator="@null"
             app:icon="@drawable/all_alarm"
             android:elevation="0dp"

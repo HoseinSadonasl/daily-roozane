@@ -22,13 +22,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/alertTitle"
+                style="@style/MediumTextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/sort_list"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/med_TextSize"
-                android:textStyle="bold" />
+                android:textColor="@color/text_primary" />
 
             <RadioGroup
                 android:id="@+id/sort_order_notes"
@@ -39,12 +38,14 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_byname_notesFragment"
+                    style="@style/ReqularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_byName" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_bydate_notesFragment"
+                    style="@style/ReqularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_byDate" />
@@ -65,12 +66,14 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_ascending_notesFragment"
+                    style="@style/ReqularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_asc" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_descending_notesFragment"
+                    style="@style/ReqularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_dsc" />
