@@ -36,6 +36,7 @@
                     app:iconTint="@color/icon_color_primary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/BigText"
                     android:id="@+id/textView_addNote_appbarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -55,12 +56,12 @@
 
         <TextView
             android:id="@+id/tv_settings_theme"
+            style="@style/MediumText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/all_16dp"
             android:layout_marginTop="@dimen/all_8dp"
-            android:text="@string/settings_themetv"
-            android:textSize="@dimen/med_TextSize" />
+            android:text="@string/settings_themetv" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_settings_theme"
@@ -80,8 +81,10 @@
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switch_settings_darkmode"
+                    style="@style/MediumText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
                     android:text="@string/settings_darkmode"
                     tools:visibility="visible"/>
 
@@ -91,12 +94,12 @@
 
         <TextView
             android:id="@+id/tv_settings_reportandconnect"
+            style="@style/MediumText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/all_16dp"
             android:layout_marginTop="@dimen/all_12dp"
-            android:text="@string/settings_report"
-            android:textSize="@dimen/med_TextSize" />
+            android:text="@string/settings_report" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_settings_report"
@@ -116,11 +119,11 @@
 
                 <TextView
                     android:id="@+id/tv_settings_reportbug"
+                    style="@style/MediumText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="@dimen/all_12dp"
                     android:text="@string/settings_reportbug"
-                    android:textSize="@dimen/low_TextSize"
                     android:textAlignment="viewStart"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
@@ -131,12 +134,12 @@
 
                 <TextView
                     android:id="@+id/tv_settings_connect"
+                    style="@style/MediumText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/all_8dp"
                     android:paddingVertical="@dimen/all_12dp"
                     android:text="@string/settings_contact"
-                    android:textSize="@dimen/low_TextSize"
                     android:textAlignment="viewStart"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"

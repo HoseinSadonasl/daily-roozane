@@ -92,5 +92,11 @@
     <string name="toast_notificationpermission">برای دریافت یادآوری‌ها باید مجوز اعلان بدهید</string>
     <string name="timepicker_am">قبل از ظهر</string>
     <string name="timepicker_pm">بعد از ظهر</string>
-
+    <string name="settings_themetv">پوسته</string>
+    <string name="settings_report">بازخورد</string>
+    <string name="settings_reportbug">گزارش باگ</string>
+    <string name="settings_sendemail">ارسال ایمیل</string>
+    <string name="settings_contact">ارتباط با توسعه دهنده</string>
+    <string name="tvappbar_settings">تنظیمات</string>
+    <string name="settings_darkmode">حالت شب</string>
 </resources>
