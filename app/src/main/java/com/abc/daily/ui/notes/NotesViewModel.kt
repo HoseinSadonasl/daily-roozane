@@ -1,6 +1,5 @@
 package com.abc.daily.ui.notes
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,12 +27,14 @@ class NotesViewModel @Inject constructor(
     private val appPrefsDataStoreDomain: PrefsDataStoreDomain
 ) : ViewModel() {
 
-    val notesList = MutableLiveData<List<Note>>()
-    val weather = MutableLiveData<CurrentWeather>()
+    val notesListLiveData = MutableLiveData<List<Note>>()
+    val weatherLiveData = MutableLiveData<CurrentWeather>()
     var orderNotes: Pair<Int, Int> = OrderDialog.ORDER_DSC to OrderDialog.ORDER_BY_DATE
+    var defaultCity: String? = null
 
     init {
         getOrderPrefs()
+        gettingIfHasDefaultCity()
     }
 
     fun setOrderPrefs(order: Pair<Int, Int>) {
@@ -78,24 +79,48 @@ class NotesViewModel @Inject constructor(
 
     fun getNotes(order: NoteOrder, chars: String) {
         notesDomain.getNotesList(order, chars).onEach {
-            notesList.value = it
+            notesListLiveData.value = it
         }.launchIn(viewModelScope)
     }
 
 
-    fun getWeather(city: String?, location: Pair<String, String>?) {
-        val hashMap: HashMap<String, String> = HashMap<String, String>().apply {
-            put("appid", Constants.API_KEY)
-            city?.let { put("q", city) }
+    fun fillWeatherParams(city: String?, location: Pair<String, String>?) {
+        val params: HashMap<String, String> = HashMap()
+        params["appid"] = Constants.API_KEY
+        if (defaultCity.isNullOrBlank().not() || city.isNullOrBlank().not()) {
+            defaultCity?.let {
+                params.put("q", it)
+            }
+            city?.let {
+                saveDefaultCity(city)
+                params.put("q", city)
+            }
+        } else {
             location?.let {
-                put("lat", location.first)
-                put("lon", location.second)
+                params.put("lat", location.first)
+                params.put("lon", location.second)
             }
         }
+        requestCurrentWeatherFromApi(params)
+    }
+
+    private fun gettingIfHasDefaultCity() {
         viewModelScope.launch {
-            weatherDomain.getWeather.invoke(hashMap).flowOn(Dispatchers.IO).collect {
-                weather.postValue(it.body())
+            appPrefsDataStoreDomain.defaultCityPrefsDataStore.invoke().collect { defaultCity = it }
+        }
+    }
+
+    private fun requestCurrentWeatherFromApi(params: HashMap<String, String>) {
+        viewModelScope.launch {
+            weatherDomain.getWeather.invoke(params).flowOn(Dispatchers.IO).collect {
+                weatherLiveData.postValue(it.body())
             }
+        }
+    }
+
+    private fun saveDefaultCity(city: String) {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.defaultCityPrefsDataStore.invoke(city)
         }
     }
 

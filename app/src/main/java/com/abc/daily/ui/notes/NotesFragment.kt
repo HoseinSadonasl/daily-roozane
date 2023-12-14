@@ -142,7 +142,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun updateWeather(cityName: String) {
-        viewModel.getWeather(cityName, null)
+        viewModel.fillWeatherParams(cityName, null)
     }
 
     private fun showOrderDialog() {
@@ -180,7 +180,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun observeWeather() {
-        viewModel.weather.observe(viewLifecycleOwner) { currentWeather ->
+        viewModel.weatherLiveData.observe(viewLifecycleOwner) { currentWeather ->
             currentWeather?.let {
                 val temp = it.main.temp.toInt() - 273
                 binding.layoutNotesfragmentCard.textViewTempNotesFragment.text =
@@ -194,7 +194,7 @@ class NotesFragment : Fragment() {
     }
 
     private fun observeNotes() {
-        viewModel.notesList.observe(viewLifecycleOwner) { notes ->
+        viewModel.notesListLiveData.observe(viewLifecycleOwner) { notes ->
             if (notes.isNotEmpty()) {
                 binding.layoutNoNotesNotesFragment.visibility = View.GONE
                 binding.recyclerViewNotesListNotesFragment.visibility = View.VISIBLE
@@ -229,7 +229,7 @@ class NotesFragment : Fragment() {
                     locationResult.locations.map { location ->
                         Log.w(::getCurrentLocation.name, "getCurrentLocation: $location")
                         val loc = location.latitude.toString() to location.longitude.toString()
-                        viewModel.getWeather(null, location = loc)
+                        viewModel.fillWeatherParams(null, location = loc)
                     }
                 }
             },
