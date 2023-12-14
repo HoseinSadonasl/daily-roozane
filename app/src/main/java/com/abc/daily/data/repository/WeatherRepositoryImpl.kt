@@ -8,7 +8,7 @@ class WeatherRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi
 ) : WeatherRepository {
 
-    override suspend fun getWeather(city: String?, location: Pair<String, String>?) =
-        weatherApi.getWeatherUsingCityName(city, location!!.first, location!!.second)
+    override suspend fun getWeather(hashMap: HashMap<String, String>?) =
+        weatherApi.getWeather(hashMap)
 
 }

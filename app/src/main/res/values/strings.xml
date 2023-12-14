@@ -104,4 +104,8 @@
     <string name="toast_notificationpermission">You have to grant notification permissions to receive Reminders</string>
     <string name="timepicker_am">AM</string>
     <string name="timepicker_pm">PM</string>
+    <string name="notesfragment_entercityname">Enter city name</string>
+    <string name="all_submit">Submit</string>
+    <string name="all_cancel">Cancel</string>
+    <string name="dialog_citytextinputtitle">Change city</string>
 </resources>

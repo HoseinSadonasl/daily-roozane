@@ -8,6 +8,8 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.addTextChangedListener
+import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import com.google.android.material.button.MaterialButton
 
 class Dialog(
@@ -20,7 +22,7 @@ class Dialog(
     private lateinit var negative: MaterialButton
     private lateinit var alertTitle: AppCompatTextView
     private lateinit var alertSubtitle: AppCompatTextView
-    private lateinit var textInput: AppCompatEditText
+    lateinit var textInput: AppCompatEditText
     private lateinit var imageView: AppCompatImageView
 
     init {
@@ -77,8 +79,6 @@ class Dialog(
             textInput.hint = hint
         }
     }
-
-    val inputText: String = textInput.text.toString().ifEmpty { "" }
 
     fun setLogoImg(resId: Int?) {
         resId?.let {

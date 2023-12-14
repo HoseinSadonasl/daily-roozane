@@ -10,11 +10,11 @@ class GetWeather @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) {
 
-    suspend operator fun invoke(city: String?, location: Pair<String, String>?) = flow {
+    suspend operator fun invoke(hashMap: HashMap<String, String>?) = flow {
         try {
-            emit(weatherRepository.getWeather(city, location))
+            emit(weatherRepository.getWeather(hashMap))
         } catch (exeption: IOException) {
-            // TODO: handle exeptions
+            exeption.printStackTrace()
         }
     }
 

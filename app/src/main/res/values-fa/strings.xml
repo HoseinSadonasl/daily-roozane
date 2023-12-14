@@ -99,4 +99,8 @@
     <string name="settings_contact">ارتباط با توسعه دهنده</string>
     <string name="tvappbar_settings">تنظیمات</string>
     <string name="settings_darkmode">حالت شب</string>
+    <string name="notesfragment_entercityname">نام شهر خود را وارد کنید</string>
+    <string name="all_submit">تایید</string>
+    <string name="all_cancel">انصراف</string>
+    <string name="dialog_citytextinputtitle">تغییر شهر</string>
 </resources>

@@ -83,14 +83,20 @@ class NotesViewModel @Inject constructor(
     }
 
 
-    fun getWeather(city: String, location: Pair<String, String>) {
+    fun getWeather(city: String?, location: Pair<String, String>?) {
+        val hashMap: HashMap<String, String> = HashMap<String, String>().apply {
+            put("appid", Constants.API_KEY)
+            city?.let { put("q", city) }
+            location?.let {
+                put("lat", location.first)
+                put("lon", location.second)
+            }
+        }
         viewModelScope.launch {
-            weatherDomain.getWeather(city, location).flowOn(Dispatchers.IO).collect {
+            weatherDomain.getWeather.invoke(hashMap).flowOn(Dispatchers.IO).collect {
                 weather.postValue(it.body())
-                Log.e(::getWeather.name, "getWeather: ${it.body()}")
             }
         }
     }
-
 
 }

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.abc.daily.Adapters.NotesFragmentAdapter
+import com.abc.daily.Dialog
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.ui.add_note.AddNoteFragment
@@ -122,6 +123,26 @@ class NotesFragment : Fragment() {
         binding.layoutNoNotesNotesFragment.setOnClickListener { navigateToNoteFragment() }
 
         binding.buttonSettingsNotesFragment.setOnClickListener { navigateToSettingsFragment() }
+
+        binding.layoutNotesfragmentCard.textViewLocationNotesFragment.setOnClickListener { showSearchCityDialog() }
+    }
+
+    private fun showSearchCityDialog() {
+        Dialog(requireContext(),
+            onPositiveCallback = {dialog ->
+                updateWeather(dialog.textInput.text.toString())
+                dialog.dismiss() },
+            onNegativeCallback = {dialog -> dialog.dismiss() }
+        ).apply {
+            setTitle(getString(R.string.dialog_citytextinputtitle))
+            setPositiveButtonText(getString(R.string.all_submit))
+            setNegativeButtonText(getString(R.string.all_cancel))
+            textInput(getString(R.string.notesfragment_entercityname))
+        }.show()
+    }
+
+    private fun updateWeather(cityName: String) {
+        viewModel.getWeather(cityName, null)
     }
 
     private fun showOrderDialog() {
@@ -160,7 +181,7 @@ class NotesFragment : Fragment() {
 
     private fun observeWeather() {
         viewModel.weather.observe(viewLifecycleOwner) { currentWeather ->
-            currentWeather.let {
+            currentWeather?.let {
                 val temp = it.main.temp.toInt() - 273
                 binding.layoutNotesfragmentCard.textViewTempNotesFragment.text =
                     (getString(R.string.dgree_notesFragment, temp.toString()))
@@ -208,7 +229,7 @@ class NotesFragment : Fragment() {
                     locationResult.locations.map { location ->
                         Log.w(::getCurrentLocation.name, "getCurrentLocation: $location")
                         val loc = location.latitude.toString() to location.longitude.toString()
-                        viewModel.getWeather("", location = loc)
+                        viewModel.getWeather(null, location = loc)
                     }
                 }
             },

@@ -5,6 +5,6 @@ import retrofit2.Response
 
 interface WeatherRepository {
 
-    suspend fun getWeather(city: String?, location: Pair<String, String>?): Response<CurrentWeather>
+    suspend fun getWeather(hashMap: HashMap<String, String>?): Response<CurrentWeather>
 
 }
