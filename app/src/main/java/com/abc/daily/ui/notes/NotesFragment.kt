@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -50,6 +51,10 @@ class NotesFragment : Fragment() {
 
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    companion object {
+        const val REQUEST_INTERVAL_MILLIS: Long = 60000L
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -127,17 +132,25 @@ class NotesFragment : Fragment() {
         binding.layoutNotesfragmentCard.textViewLocationNotesFragment.setOnClickListener { showSearchCityDialog() }
     }
 
+    @SuppressLint("MissingPermission")
     private fun showSearchCityDialog() {
         Dialog(requireContext(),
-            onPositiveCallback = {dialog ->
+            onPositiveCallback = { dialog ->
+                viewModel.saveDefaultCity("")
+                getCurrentLocation()
+                dialog.dismiss()
+            },
+            onNegativeCallback = { dialog ->
                 updateWeather(dialog.textInput.text.toString())
-                dialog.dismiss() },
-            onNegativeCallback = {dialog -> dialog.dismiss() }
+                dialog.dismiss()
+            }
         ).apply {
             setTitle(getString(R.string.dialog_citytextinputtitle))
-            setPositiveButtonText(getString(R.string.all_submit))
-            setNegativeButtonText(getString(R.string.all_cancel))
+            setLogoImg(R.drawable.all_location)
+            setPositiveButtonText(getString(R.string.dialog_currentlocationbtn))
+            setNegativeButtonText(getString(R.string.all_submit))
             textInput(getString(R.string.notesfragment_entercityname))
+            setButtonsOrientation(LinearLayout.VERTICAL)
         }.show()
     }
 
@@ -161,13 +174,18 @@ class NotesFragment : Fragment() {
 
         if (PermissionHelper.hasPermission(requireContext(), permissions).isEmpty().not()) {
             val activity = requireActivity() as MainActivity
-            activity.requestMultiplePermissions {permission ->
-                when(permission.first) {
+            activity.requestMultiplePermissions { permission ->
+                when (permission.first) {
                     Manifest.permission.ACCESS_COARSE_LOCATION -> {
-                        if (permission.second)  getCurrentLocation()
+                        if (permission.second) getCurrentLocation()
                     }
+
                     Manifest.permission.POST_NOTIFICATIONS -> {
-                        if (!permission.second) Toast.makeText(requireContext(), getString(R.string.toast_notificationpermission), Toast.LENGTH_LONG).show()
+                        if (!permission.second) Toast.makeText(
+                            requireContext(),
+                            getString(R.string.toast_notificationpermission),
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }.launch(permissions.toTypedArray())
@@ -219,7 +237,7 @@ class NotesFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private fun getCurrentLocation() {
         locationRequest = LocationRequest
-            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10000L)
+            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, REQUEST_INTERVAL_MILLIS)
             .setMaxUpdates(10)
             .build()
         fusedLocationProviderClient.requestLocationUpdates(
@@ -236,4 +254,5 @@ class NotesFragment : Fragment() {
             requireActivity().mainLooper
         )
     }
+
 }

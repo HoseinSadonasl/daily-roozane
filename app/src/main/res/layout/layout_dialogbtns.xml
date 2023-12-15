@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/window_background"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textInput">
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/negative"
-        style="@style/dialog_btn_style"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/dialogbtns_linearlayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/negativeBtnTxt"
-        app:cornerRadius="@dimen/padding_12dp"
-        app:elevation="0dp" />
+        android:background="@color/window_background"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/negative"
+            style="@style/dialog_btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/negativeBtnTxt"
+            app:cornerRadius="@dimen/padding_12dp"
+            app:elevation="0dp" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/positive"
-        style="@style/dialog_btn_style"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/positiveBtnTxt"
-        app:cornerRadius="@dimen/padding_12dp"
-        app:elevation="0dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/positive"
+            style="@style/dialog_btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/positiveBtnTxt"
+            app:cornerRadius="@dimen/padding_12dp"
+            app:elevation="0dp" />
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>
 
         

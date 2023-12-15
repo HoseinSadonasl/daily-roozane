@@ -118,7 +118,7 @@ class NotesViewModel @Inject constructor(
         }
     }
 
-    private fun saveDefaultCity(city: String) {
+    fun saveDefaultCity(city: String) {
         viewModelScope.launch {
             appPrefsDataStoreDomain.defaultCityPrefsDataStore.invoke(city)
         }

@@ -5,11 +5,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.widget.addTextChangedListener
-import androidx.databinding.adapters.TextViewBindingAdapter.OnTextChanged
 import com.google.android.material.button.MaterialButton
 
 class Dialog(
@@ -18,6 +17,7 @@ class Dialog(
     val onNegativeCallback: (dialog: com.abc.daily.Dialog) -> Unit,
 ) : Dialog(context) {
 
+    private lateinit var buttonsParent: LinearLayout
     private lateinit var positive: MaterialButton
     private lateinit var negative: MaterialButton
     private lateinit var alertTitle: AppCompatTextView
@@ -32,6 +32,7 @@ class Dialog(
     }
 
     private fun init() {
+        buttonsParent = findViewById(R.id.dialogbtns_linearlayout)
         positive = findViewById(R.id.positive)
         negative = findViewById(R.id.negative)
         alertTitle = findViewById(R.id.alertTitle)
@@ -55,6 +56,12 @@ class Dialog(
         description?.let {
             alertSubtitle.visibility = View.VISIBLE
             alertSubtitle.text = it
+        }
+    }
+
+    fun setButtonsOrientation(orientation: Int?) {
+        orientation?.let {
+            buttonsParent.orientation = orientation
         }
     }
 

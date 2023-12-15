@@ -103,4 +103,5 @@
     <string name="all_submit">تایید</string>
     <string name="all_cancel">انصراف</string>
     <string name="dialog_citytextinputtitle">تغییر شهر</string>
+    <string name="dialog_currentlocationbtn">مکان فعلی</string>
 </resources>

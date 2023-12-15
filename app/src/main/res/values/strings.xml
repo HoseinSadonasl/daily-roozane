@@ -108,4 +108,5 @@
     <string name="all_submit">Submit</string>
     <string name="all_cancel">Cancel</string>
     <string name="dialog_citytextinputtitle">Change city</string>
+    <string name="dialog_currentlocationbtn">Current Location</string>
 </resources>
