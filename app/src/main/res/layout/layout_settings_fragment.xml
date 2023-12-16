@@ -151,5 +151,17 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_settings_about"
+            style="@style/TinyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/all_16dp"
+            android:layout_gravity="bottom"
+            android:text="@string/settings_about"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
     </LinearLayout>
 </layout>

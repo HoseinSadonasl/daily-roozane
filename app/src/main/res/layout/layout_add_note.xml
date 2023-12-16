@@ -146,22 +146,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_check" />
 
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_addAlarm_addNoteFragment"
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_64dp"
-            tools:text="add alarm"
-            android:fontFamily="@font/iranyekanregular"
-            android:stateListAnimator="@null"
-            app:icon="@drawable/all_alarm"
-            android:elevation="0dp"
-            app:elevation="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="@dimen/padding_16dp"
-            app:backgroundTint="@color/btn_secondary"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="@dimen/all_16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/fab_addNote_save"
-            app:layout_constraintTop_toTopOf="@+id/fab_addNote_save" />
+            app:layout_constraintTop_toTopOf="@+id/fab_addNote_save">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_addAlarm_addNoteFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    tools:text="add alarm"
+                    app:cornerRadius="0dp"
+                    android:fontFamily="@font/iranyekanregular"
+                    android:stateListAnimator="@null"
+                    app:icon="@drawable/all_alarm"
+                    app:backgroundTint="@color/btn_secondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_removeAlarm_addNoteFragment"
+                    android:layout_width="@dimen/_64dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/iranyekanregular"
+                    app:cornerRadius="0dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:stateListAnimator="@null"
+                    app:icon="@drawable/all_close_small"
+                    app:iconPadding="0dp"
+                    app:iconGravity="textStart"
+                    app:backgroundTint="#E57373"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

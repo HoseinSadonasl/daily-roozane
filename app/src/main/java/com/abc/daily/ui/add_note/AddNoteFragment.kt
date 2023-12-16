@@ -24,6 +24,7 @@ import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import com.abc.daily.util.PersianDate
+import com.abc.daily.util.requestCodeFromTimeMillis
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import javax.inject.Inject
@@ -71,7 +72,6 @@ class AddNoteFragment : Fragment() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
             hasReminder = it.second.toString()
             if (it.first) {
-                // setReminderForNote(it.second)
                 setReminderButtonColorTint(R.color.btn_primary)
             } else {
                 setReminderButtonColorTint(R.color.btn_secondary)
@@ -87,7 +87,11 @@ class AddNoteFragment : Fragment() {
             note?.let {
                 this@AddNoteFragment.note = note
                 if (noteIdArg == null) noteIdArg = note.id
-                it.remindAt?.let { hasReminder = it }
+                it.remindAt?.let {
+                    hasReminder = it
+                    if (it.toLong() >= System.currentTimeMillis())
+                        binding.btnRemoveAlarmAddNoteFragment.visibility = View.VISIBLE
+                }
                 binding.apply {
                     textViewAddNoteAppbarTitle.setText(it.title)
                     editTextAddNoteTitle.setText(it.title)
@@ -134,7 +138,8 @@ class AddNoteFragment : Fragment() {
 
     private fun initComponents() {
         binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
-        binding.imageViewAddNoteDelete.visibility = if (noteIdArg != null) View.VISIBLE else View.GONE
+        binding.imageViewAddNoteDelete.visibility =
+            if (noteIdArg != null) View.VISIBLE else View.GONE
         setReminderButtonColorTint(R.color.btn_secondary)
         calendar = Calendar.getInstance()
     }
@@ -166,6 +171,35 @@ class AddNoteFragment : Fragment() {
         }
 
         binding.buttonAddNoteBackward.setOnClickListener { popFragmrnt() }
+
+        binding.btnRemoveAlarmAddNoteFragment.setOnClickListener { showRemoveReminderDialog() }
+    }
+
+    private fun showRemoveReminderDialog() {
+        Dialog(requireContext(),
+            onNegativeCallback = { it.dismiss() },
+            onPositiveCallback = {
+                removeAlarmFromNote()
+                it.dismiss() }
+        ).apply {
+            setTitle(getString(R.string.addnote_removereminder))
+            setDescription(getString(R.string.addnote_removereminderdesc))
+            setPositiveButtonText(getString(R.string.all_submit))
+            setNegativeButtonText(getString(R.string.all_cancel))
+            show()
+        }
+    }
+
+    private fun removeAlarmFromNote() {
+        hasReminder?.let {
+            val intent = Intent(requireContext(), GlobalReceiver::class.java)
+            val requestCode = requestCodeFromTimeMillis(it.toLong())
+            val pendingIntent = createPendingIntent(requestCode, intent)
+            alarmManager.cancel(pendingIntent)
+            hasReminder = null
+            saveNote()
+            binding.btnRemoveAlarmAddNoteFragment.visibility = View.GONE
+        }
     }
 
     private fun handleReminder() {
@@ -196,7 +230,7 @@ class AddNoteFragment : Fragment() {
             putExtra(GlobalReceiver.NOTIFICATION_NOTE_ID, note?.id)
             putExtra(GlobalReceiver.NOTIFICATION_NOTE_TITLE, note?.title)
         }
-        val requestCode = timeInMillis.toInt()
+        val requestCode = requestCodeFromTimeMillis(timeInMillis)
         val pendingIntent: PendingIntent = createPendingIntent(requestCode, intent)
         Log.d(::getTimeForReminder.name, "handleReminderForNote: ${PersianDate(timeInMillis)}")
 
@@ -208,8 +242,18 @@ class AddNoteFragment : Fragment() {
 
     private fun createPendingIntent(requestCode: Int, intent: Intent): PendingIntent =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE)
-        } else PendingIntent.getBroadcast(requireContext(), requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(
+                requireContext(),
+                requestCode,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        } else PendingIntent.getBroadcast(
+            requireContext(),
+            requestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
     private fun deleteNote(note: Note) = Dialog(requireContext(),
         onPositiveCallback = { dialog ->
@@ -264,7 +308,10 @@ class AddNoteFragment : Fragment() {
                         calendar.set(Calendar.YEAR, it.getDate().get(Calendar.YEAR))
                         calendar.set(Calendar.MONTH, it.getDate().get(Calendar.MONTH))
                         calendar.set(Calendar.DAY_OF_MONTH, it.getDate().get(Calendar.DAY_OF_MONTH))
-                        Log.d(::getTimeForReminder.name, "onPositiveClick: ${PersianDate(calendar.timeInMillis)}")
+                        Log.d(
+                            ::getTimeForReminder.name,
+                            "onPositiveClick: ${PersianDate(calendar.timeInMillis)}"
+                        )
                         addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
                         it.dismiss()
                     }
