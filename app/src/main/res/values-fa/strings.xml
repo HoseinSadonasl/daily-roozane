@@ -109,4 +109,8 @@
     <string name="settings_about">روزانه v2.0.0\nroozaneapp.ir</string>
     <string name="addnote_removereminder">حذف یادآور</string>
     <string name="addnote_removereminderdesc">آیا مطمئنید که میخواهید یادآور این یادداشت را حذف کنید؟</string>
+    <string name="welcomedialog_title">به اپلیکیشن روزانه خوش آمدید 📝</string>
+    <string name="welcomedialog_decription">با کمک "روزانه" می‌توانید از هر روز خود به بهترین شکل استفاده کنید و مدیریت وظایف و رسیدن به اهدافتان را آسان کنید. 🌟</string>
+    <string name="welcomedialog_whatsnew">🎨 رابط کاربری جدید \n 🌙 حالت تاریک \n ☀️ پشتیبانی کامل از تقویم شمسی \n 🚀 بهبود عملکرد اپلیکیشن \n 🔧 رفع مشکلات گزارش شده</string>
+    <string name="welcomedialog_btncontinue">ادامه</string>
 </resources>

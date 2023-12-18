@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton
 class Dialog(
     context: Context,
     val onPositiveCallback: (dialog: com.abc.daily.Dialog) -> Unit,
-    val onNegativeCallback: (dialog: com.abc.daily.Dialog) -> Unit,
+    val onNegativeCallback: (dialog: com.abc.daily.Dialog) -> Unit = {},
 ) : Dialog(context) {
 
     private lateinit var buttonsParent: LinearLayout
@@ -67,9 +67,7 @@ class Dialog(
 
     fun setPositiveButtonText(text: String?) {
         text?.let {
-            positive.visibility = View.VISIBLE
             positive.text = it
-
         }
     }
 

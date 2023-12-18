@@ -69,11 +69,26 @@ class NotesFragment : Fragment() {
         )
         initUiComponents()
         initListeners()
+        showWelcomeDialog()
         checkPermissions()
         initIntentData()
         observeDData()
 
+
         return binding.root
+    }
+
+    private fun showWelcomeDialog() {
+        Dialog(
+            requireContext(),
+            onPositiveCallback = { it.dismiss() }
+        ).apply {
+            setTitle(getString(R.string.welcomedialog_title))
+            setDescription(getString(R.string.welcomedialog_decription) + "\n\n" + getString(R.string.welcomedialog_whatsnew))
+            setPositiveButtonText(getString(R.string.welcomedialog_btncontinue))
+            setLogoImg(R.drawable.all_dailylogo_colored)
+            show()
+        }
     }
 
     private fun initIntentData() {

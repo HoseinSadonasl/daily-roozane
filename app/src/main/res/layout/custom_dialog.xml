@@ -40,18 +40,17 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/alertTitle"
+            app:layout_constraintTop_toBottomOf="@id/image_view"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="@dimen/padding_16dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alertSubtitle"
+            app:layout_constraintTop_toBottomOf="@+id/alertTitle"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -71,7 +70,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_view"
+            app:layout_constraintTop_toBottomOf="@+id/alertSubtitle"
             tools:visibility="visible" />
 
         <include

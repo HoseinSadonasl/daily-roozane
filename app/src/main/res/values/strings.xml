@@ -112,4 +112,8 @@
     <string name="settings_about">Roozane v2.0.0\nroozaneapp.ir</string>
     <string name="addnote_removereminder">Remove Reminder!</string>
     <string name="addnote_removereminderdesc">Are you sure to remove reminder for this note?</string>
+    <string name="welcomedialog_title">Welcome to Daily 📝</string>
+    <string name="welcomedialog_decription">With "Daily," you can make the most of your day and effortlessly manage tasks to achieve your goals. 🌟</string>
+    <string name="welcomedialog_whatsnew">🎨 New UI\n🌙 Dark Mode\n☀️ Full Persian Calendar Support\n🚀 Application Performance Enhancement\n🔧 Fixing Reported Issues</string>
+    <string name="welcomedialog_btncontinue">Continue</string>
 </resources>
