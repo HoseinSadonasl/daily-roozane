@@ -93,6 +93,8 @@ class AddNoteFragment : Fragment() {
                         binding.btnRemoveAlarmAddNoteFragment.visibility = View.VISIBLE
                 }
                 binding.apply {
+                    textViewAddNoteCreatedDate.visibility = View.VISIBLE
+                    textViewAddNoteModifiedDate.visibility = View.VISIBLE
                     textViewAddNoteAppbarTitle.setText(it.title)
                     editTextAddNoteTitle.setText(it.title)
                     editTextAddNoteDescription.setText(it.description)

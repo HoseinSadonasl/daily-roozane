@@ -108,6 +108,8 @@
             android:layout_gravity="end"
             android:text="@string/modified"
             android:textColor="@color/Gray_c"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:layout_marginHorizontal="@dimen/all_16dp"
             app:layout_constraintBottom_toTopOf="@+id/textView_addNote_createdDate"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,6 +127,8 @@
             android:layout_marginTop="@dimen/_4dp"
             android:text="@string/created"
             android:textColor="@color/Gray_c"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/fab_addNote_save"
             app:layout_constraintEnd_toEndOf="@+id/textView_addNote_modifiedDate"
             app:layout_constraintHorizontal_bias="1.0" />
