@@ -104,4 +104,6 @@
     <string name="all_cancel">انصراف</string>
     <string name="dialog_citytextinputtitle">تغییر شهر</string>
     <string name="dialog_currentlocationbtn">مکان فعلی</string>
+    <string name="reminder_btn_addNoteFragment">یادآور</string>
+    <string name="addrReminder_addNoteFragment">تفزودن یادآور</string>
 </resources>

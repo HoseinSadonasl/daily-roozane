@@ -82,7 +82,7 @@ class CustomTimePickerDialog(
             values.add(i.toString())
         }
         minuteNumberPicker.apply {
-            maxValue = 60
+            maxValue = 59
             minValue = 0
             value = calendar.get(Calendar.MINUTE)
             displayedValues = values.toTypedArray()

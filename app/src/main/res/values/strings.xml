@@ -71,8 +71,8 @@
     <string name="reminder_btn_addNoteFragment">Reminder</string>
     <string name="textView_remindat">Remind at</string>
     <string name="addrReminder_addNoteFragment">Add reminder</string>
-    <string name="ptp_time">Set remind time</string>
-    <string name="pdp_date">Set remind date</string>
+    <string name="ptp_time">Set reminder time</string>
+    <string name="pdp_date">Set reminder date</string>
     <string name="txt_minutes_ago">"%1$s minutes ago"</string>
     <string name="txt_hours_ago">"%1$s hours ago"</string>
     <string name="txt_today">"Today %1$s"</string>
