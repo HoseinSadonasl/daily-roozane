@@ -31,11 +31,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/alertSubtitle"
             style="@style/MediumText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_12dp"
             android:gravity="center"
             android:text="@string/app_name"
+            android:textAlignment="center"
             android:textColor="@color/text_primary"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"

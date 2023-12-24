@@ -59,6 +59,10 @@ class Dialog(
         }
     }
 
+    fun setDescriptionTextDirection(textAlignment: Int) {
+        alertSubtitle.textAlignment = textAlignment
+    }
+
     fun setButtonsOrientation(orientation: Int?) {
         orientation?.let {
             buttonsParent.orientation = orientation

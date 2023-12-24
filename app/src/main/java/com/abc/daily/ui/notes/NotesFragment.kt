@@ -85,6 +85,7 @@ class NotesFragment : Fragment() {
         ).apply {
             setTitle(getString(R.string.welcomedialog_title))
             setDescription(getString(R.string.welcomedialog_decription) + "\n\n" + getString(R.string.welcomedialog_whatsnew))
+            setDescriptionTextDirection(View.TEXT_ALIGNMENT_TEXT_START)
             setPositiveButtonText(getString(R.string.welcomedialog_btncontinue))
             setLogoImg(R.drawable.all_dailylogo_colored)
             show()
