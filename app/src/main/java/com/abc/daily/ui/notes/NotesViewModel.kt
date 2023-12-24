@@ -27,6 +27,7 @@ class NotesViewModel @Inject constructor(
     private val appPrefsDataStoreDomain: PrefsDataStoreDomain
 ) : ViewModel() {
 
+    val isFirstLunchLiveData = MutableLiveData<Boolean>()
     val notesListLiveData = MutableLiveData<List<Note>>()
     val weatherLiveData = MutableLiveData<CurrentWeather>()
     var orderNotes: Pair<Int, Int> = OrderDialog.ORDER_DSC to OrderDialog.ORDER_BY_DATE
@@ -35,6 +36,20 @@ class NotesViewModel @Inject constructor(
     init {
         getOrderPrefs()
         gettingIfHasDefaultCity()
+        checkIfFirstLunch()
+    }
+
+    private fun checkIfFirstLunch() {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.firstLunchPrefsDataStore.invoke().onEach { isFirstLunch ->
+                isFirstLunchLiveData.postValue(isFirstLunch)
+            }.launchIn(viewModelScope)
+        }
+    }
+    fun setFirstLunch(isFirstLunch: Boolean) {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.firstLunchPrefsDataStore.invoke(isFirstLunch)
+        }
     }
 
     fun setOrderPrefs(order: Pair<Int, Int>) {

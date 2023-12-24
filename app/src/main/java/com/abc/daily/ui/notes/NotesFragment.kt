@@ -69,7 +69,6 @@ class NotesFragment : Fragment() {
         )
         initUiComponents()
         initListeners()
-        showWelcomeDialog()
         checkPermissions()
         initIntentData()
         observeDData()
@@ -81,7 +80,10 @@ class NotesFragment : Fragment() {
     private fun showWelcomeDialog() {
         Dialog(
             requireContext(),
-            onPositiveCallback = { it.dismiss() }
+            onPositiveCallback = {
+                viewModel.setFirstLunch(false)
+                it.dismiss()
+            }
         ).apply {
             setTitle(getString(R.string.welcomedialog_title))
             setDescription(getString(R.string.welcomedialog_decription) + "\n\n" + getString(R.string.welcomedialog_whatsnew))
@@ -197,11 +199,10 @@ class NotesFragment : Fragment() {
                     }
 
                     Manifest.permission.POST_NOTIFICATIONS -> {
-                        if (!permission.second) Toast.makeText(
-                            requireContext(),
-                            getString(R.string.toast_notificationpermission),
-                            Toast.LENGTH_LONG
-                        ).show()
+                        if (!permission.second) {
+                            Toast.makeText(requireContext(), getString(R.string.toast_notificationpermission), Toast.LENGTH_LONG).show()
+                        }
+                        viewModel.setFirstLunch(true)
                     }
                 }
             }.launch(permissions.toTypedArray())
@@ -209,8 +210,15 @@ class NotesFragment : Fragment() {
     }
 
     private fun observeDData() {
+        observefirtLunchLiveData()
         observeNotes()
         observeWeather()
+    }
+
+    private fun observefirtLunchLiveData() {
+        viewModel.isFirstLunchLiveData.observe(viewLifecycleOwner) { isFirstLunch ->
+            if (isFirstLunch) showWelcomeDialog()
+        }
     }
 
     private fun observeWeather() {

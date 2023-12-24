@@ -14,6 +14,7 @@ import com.abc.daily.domain.repository.AppPreferencesRepository
 import com.abc.daily.domain.repository.WeatherRepository
 import com.abc.daily.domain.use_case.DarkModePrefsDataStore
 import com.abc.daily.domain.use_case.DefaultCityPrefsDataStore
+import com.abc.daily.domain.use_case.FirstLunchPrefsDataStore
 import com.abc.daily.domain.use_case.GetWeather
 import com.abc.daily.domain.use_case.OrderNotesPrefsDataStore
 import com.abc.daily.domain.use_case.PrefsDataStoreDomain
@@ -105,7 +106,8 @@ object AppModule {
     fun providesAppPreferencesUseCases(appPreferencesRepository: AppPreferencesRepository): PrefsDataStoreDomain = PrefsDataStoreDomain(
         orderNotesPrefsDataStore = OrderNotesPrefsDataStore(appPreferencesRepository),
         darkModePrefsDataStore = DarkModePrefsDataStore(appPreferencesRepository),
-        defaultCityPrefsDataStore = DefaultCityPrefsDataStore(appPreferencesRepository)
+        defaultCityPrefsDataStore = DefaultCityPrefsDataStore(appPreferencesRepository),
+        firstLunchPrefsDataStore = FirstLunchPrefsDataStore(appPreferencesRepository)
     )
 
     @Provides

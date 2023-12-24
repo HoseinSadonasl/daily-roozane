@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 object Constants {
 
     const val DATASTORE_DAILY = "dailyappdata"
+    val FIRST_LUNCH = booleanPreferencesKey("firstLunch")
     val DEFAULT_CITY = stringPreferencesKey("")
     val DARK_MODE = booleanPreferencesKey("nightMode")
     val NOTES_ORDER = stringSetPreferencesKey("order")
