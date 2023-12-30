@@ -1,5 +1,6 @@
-package com.abc.daily.app
+package com.abc.daily
 
+import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

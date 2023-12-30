@@ -10,7 +10,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.abc.daily.R
-import com.abc.daily.interfaces.DialogInterface
 import com.google.android.material.button.MaterialButton
 import java.util.*
 

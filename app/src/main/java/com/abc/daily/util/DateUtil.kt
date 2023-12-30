@@ -1,14 +1,7 @@
 package com.abc.daily.util
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import com.abc.daily.R
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 object DateUtil {
 
