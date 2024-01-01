@@ -105,7 +105,7 @@
     <string name="dialog_citytextinputtitle">تغییر شهر</string>
     <string name="dialog_currentlocationbtn">مکان فعلی</string>
     <string name="reminder_btn_addNoteFragment">یادآور</string>
-    <string name="addrReminder_addNoteFragment">تفزودن یادآور</string>
+    <string name="addrReminder_addNoteFragment">افزودن یادآور</string>
     <string name="settings_about">روزانه v2.0.0\nroozaneapp.ir</string>
     <string name="addnote_removereminder">حذف یادآور</string>
     <string name="addnote_removereminderdesc">آیا مطمئنید که میخواهید یادآور این یادداشت را حذف کنید؟</string>
