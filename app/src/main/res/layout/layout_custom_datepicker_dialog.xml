@@ -11,7 +11,7 @@
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        app:cardBackgroundColor="@color/window_background"
+        app:cardBackgroundColor="@color/windowBackgroundColor"
         app:cardCornerRadius="@dimen/med_dp"
         app:cardElevation="0dp">
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/window_background" />
+                    android:solidColor="@color/windowBackgroundColor" />
 
                 <NumberPicker
                     android:id="@+id/numberPicker_month_addNotesFragment"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/window_background" />
+                    android:solidColor="@color/windowBackgroundColor" />
 
                 <NumberPicker
                     android:id="@+id/numberPicker_day_addNotesFragment"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fadeScrollbars="true"
-                    android:solidColor="@color/window_background" />
+                    android:solidColor="@color/windowBackgroundColor" />
 
             </LinearLayout>
 

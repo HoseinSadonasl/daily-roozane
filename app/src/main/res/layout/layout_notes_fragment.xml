@@ -5,14 +5,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/window_background">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar_notesFragment"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/window_background"
+            android:backgroundTint="@android:color/transparent"
             app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,6 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
-                    android:textColor="@color/text_primary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +72,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editText_searchNote_notesFragment"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginStart="16dp"
@@ -82,7 +80,6 @@
             android:layout_marginEnd="16dp"
             android:visibility="gone"
             tools:visibility="visible"
-            app:boxBackgroundColor="@color/searchCard_bg"
             app:boxCornerRadiusBottomEnd="16dp"
             app:boxCornerRadiusBottomStart="16dp"
             app:boxCornerRadiusTopEnd="16dp"
@@ -99,10 +96,8 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_notesfragment_card"
             app:startIconCheckable="true"
             app:endIconDrawable="@drawable/all_close_small"
-            app:endIconTint="@color/icon_color_primary"
             app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/ic_baseline_search"
-            app:startIconTint="@color/icon_color_primary">
+            app:startIconDrawable="@drawable/ic_baseline_search">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInput_notesFragment"
@@ -165,7 +160,6 @@
                 android:lineSpacingExtra="@dimen/tiny_TextSize"
                 android:text="@string/noNotes_notestFragment_text"
                 android:textAlignment="center"
-                android:textColor="@color/text_third"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/imageView_weatherImage_notesFragment"
                 app:layout_constraintStart_toStartOf="@+id/imageView_weatherImage_notesFragment"
