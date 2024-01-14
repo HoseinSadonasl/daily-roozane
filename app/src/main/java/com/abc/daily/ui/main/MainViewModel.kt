@@ -1,5 +1,6 @@
 package com.abc.daily.ui.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,14 +17,35 @@ class MainViewModel @Inject constructor(
 ): ViewModel()  {
 
     val isDarkMode = MutableLiveData<Boolean>()
+    val themeColorLiveData = MutableLiveData<Int>()
+
     init {
         getDarkMode()
+        getThemeColor()
     }
+
+    
 
     fun getDarkMode() {
         viewModelScope.launch {
-            appPrefsDataStoreDomain.darkModePrefsDataStore.invoke().onEach { isDark ->
+            appPrefsDataStoreDomain.themePrefsDataStore.invoke().onEach { isDark ->
                 isDarkMode.postValue(isDark)
+            }.launchIn(viewModelScope)
+        }
+    }
+
+
+
+    fun setThemeColor(themeColor: Int) {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.themePrefsDataStore.invoke(themeColor)
+        }
+    }
+
+    fun getThemeColor() {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.themePrefsDataStore.invokeThemeColor().onEach { themeColor ->
+                themeColorLiveData.postValue(themeColor)
             }.launchIn(viewModelScope)
         }
     }

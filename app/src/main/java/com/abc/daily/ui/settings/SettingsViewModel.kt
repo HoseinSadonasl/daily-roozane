@@ -16,21 +16,33 @@ class SettingsViewModell @Inject constructor(
 ): ViewModel() {
 
     var isDarkMode = MutableSharedFlow<Boolean>()
+    var currentTheme = MutableSharedFlow<Int>()
 
     init {
         getDarkMode()
+        getThemeMode()
     }
 
     fun getDarkMode() {
         viewModelScope.launch {
-            appPrefsDataStoreDomain.darkModePrefsDataStore.invoke().onEach { isDark ->
+            appPrefsDataStoreDomain.themePrefsDataStore.invoke().onEach { isDark ->
                 isDarkMode.emit(isDark)
             }.launchIn(viewModelScope)
         }
     }
-    fun setDarkMode(isDarkMode: Boolean) {
+
+    fun getThemeMode() {
         viewModelScope.launch {
-            appPrefsDataStoreDomain.darkModePrefsDataStore.invoke(isDarkMode)
+            appPrefsDataStoreDomain.themePrefsDataStore.invokeThemeColor().onEach { themeColor ->
+                currentTheme.emit(themeColor)
+            }.launchIn(viewModelScope)
         }
     }
+
+    fun setDarkMode(isDarkMode: Boolean) {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.themePrefsDataStore.invoke(isDarkMode)
+        }
+    }
+
 }

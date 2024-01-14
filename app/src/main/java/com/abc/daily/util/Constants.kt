@@ -1,6 +1,7 @@
 package com.abc.daily.util
 
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 
@@ -10,6 +11,13 @@ object Constants {
     val FIRST_LUNCH = booleanPreferencesKey("firstLunch")
     val DEFAULT_CITY = stringPreferencesKey("")
     val DARK_MODE = booleanPreferencesKey("nightMode")
+    const val THEME_PRIMARY = 0
+    const val THEME_BLUE = 1
+    const val THEME_GREEN = 2
+    const val THEME_RED = 3
+    const val THEME_PURPLE = 4
+    const val THEME_YELLOW = 5
+    val THEME_COLOR = intPreferencesKey("themeColor")
     val NOTES_ORDER = stringSetPreferencesKey("order")
     val NOTES_ORDER_DSC = "dsc"
     val NOTES_ORDER_ASC = "asc"

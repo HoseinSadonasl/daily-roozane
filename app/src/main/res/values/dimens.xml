@@ -52,4 +52,6 @@
     <dimen name="_10sp">10sp</dimen>
     <dimen name="all_56sp">56sp</dimen>
     <dimen name="all_64sp">64sp</dimen>
+    <dimen name="all_3dp">3dp</dimen>
+    <dimen name="all_6dp">6dp</dimen>
 </resources>

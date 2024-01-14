@@ -29,12 +29,109 @@
         <item name="colorOnSecondary">@color/onSecondaryVariantColor</item>
         <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="colorSurface">@color/surfaceColor</item>
-        <item name="colorError">@color/erroreColor</item>
         <item name="colorOnBackground">@color/onBackgroundColor</item>
         <item name="colorOnSurface">@color/onSurfaceColor</item>
-        <item name="colorOnError">@color/onErrorColor</item>
         <item name="android:navigationBarColor">@color/backgroundColor</item>
         <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColor</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <style name="PurpleTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorPurple</item>
+        <item name="colorPrimaryVariant">@color/primaryVariantColorPurple</item>
+        <item name="colorOnPrimary">@color/onPrimaryColorPurple</item>
+        <item name="android:colorAccent">@color/text_primary</item>
+        <item name="colorSecondary">@color/secondaryColorPurple</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariantColorPurple</item>
+        <item name="colorOnSecondary">@color/onSecondaryVariantColorPurple</item>
+        <item name="android:colorBackground">@color/backgroundColorPurple</item>
+        <item name="colorSurface">@color/surfaceColorPurple</item>
+        <item name="colorOnBackground">@color/onBackgroundColorPurple</item>
+        <item name="colorOnSurface">@color/onSurfaceColorPurple</item>
+        <item name="android:navigationBarColor">@color/backgroundColorPurple</item>
+        <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColorPurple</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <style name="BlueTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorBlue</item>
+        <item name="colorPrimaryVariant">@color/primaryVariantColorBlue</item>
+        <item name="colorOnPrimary">@color/onPrimaryColorBlue</item>
+        <item name="android:colorAccent">@color/text_primary</item>
+        <item name="colorSecondary">@color/secondaryColorBlue</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariantColorBlue</item>
+        <item name="colorOnSecondary">@color/onSecondaryVariantColorBlue</item>
+        <item name="android:colorBackground">@color/backgroundColorBlue</item>
+        <item name="colorSurface">@color/surfaceColorBlue</item>
+        <item name="colorOnBackground">@color/onBackgroundColorBlue</item>
+        <item name="colorOnSurface">@color/onSurfaceColorBlue</item>
+        <item name="android:navigationBarColor">@color/backgroundColorBlue</item>
+        <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColorBlue</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+    <style name="RedTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorRed</item>
+        <item name="colorPrimaryVariant">@color/primaryVariantColorRed</item>
+        <item name="colorOnPrimary">@color/onPrimaryColorRed</item>
+        <item name="android:colorAccent">@color/text_primary</item>
+        <item name="colorSecondary">@color/secondaryColorRed</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariantColorRed</item>
+        <item name="colorOnSecondary">@color/onSecondaryVariantColorRed</item>
+        <item name="android:colorBackground">@color/backgroundColorRed</item>
+        <item name="colorSurface">@color/surfaceColorRed</item>
+        <item name="colorOnBackground">@color/onBackgroundColorRed</item>
+        <item name="colorOnSurface">@color/onSurfaceColorRed</item>
+        <item name="android:navigationBarColor">@color/backgroundColorRed</item>
+        <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColorRed</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <style name="YellowTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorYellow</item>
+        <item name="colorPrimaryVariant">@color/primaryVariantColorYellow</item>
+        <item name="colorOnPrimary">@color/onPrimaryColorYellow</item>
+        <item name="android:colorAccent">@color/text_primary</item>
+        <item name="colorSecondary">@color/secondaryColorYellow</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariantColorYellow</item>
+        <item name="colorOnSecondary">@color/onSecondaryVariantColorYellow</item>
+        <item name="android:colorBackground">@color/backgroundColorYellow</item>
+        <item name="colorSurface">@color/surfaceColorYellow</item>
+        <item name="colorOnBackground">@color/onBackgroundColorYellow</item>
+        <item name="colorOnSurface">@color/onSurfaceColorYellow</item>
+        <item name="android:navigationBarColor">@color/backgroundColorYellow</item>
+        <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColorYellow</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <style name="GreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorGreen</item>
+        <item name="colorPrimaryVariant">@color/primaryVariantColorGreen</item>
+        <item name="colorOnPrimary">@color/onPrimaryColorGreen</item>
+        <item name="android:colorAccent">@color/text_primary</item>
+        <item name="colorSecondary">@color/secondaryColorGreen</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariantColorGreen</item>
+        <item name="colorOnSecondary">@color/onSecondaryVariantColorGreen</item>
+        <item name="android:colorBackground">@color/backgroundColorGreen</item>
+        <item name="colorSurface">@color/surfaceColorGreen</item>
+        <item name="colorOnBackground">@color/onBackgroundColorGreen</item>
+        <item name="colorOnSurface">@color/onSurfaceColorGreen</item>
+        <item name="android:navigationBarColor">@color/backgroundColorGreen</item>
+        <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/backgroundColorGreen</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>

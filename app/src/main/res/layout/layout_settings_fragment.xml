@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/windowBackgroundColor"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -14,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:elevation="0dp"
-            android:background="@color/view_background_primary"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -70,7 +69,6 @@
             android:layout_marginHorizontal="@dimen/all_16dp"
             android:layout_marginTop="@dimen/all_8dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/view_background_primary"
             app:cardCornerRadius="@dimen/all_12dp">
 
             <LinearLayout
@@ -87,6 +85,76 @@
                     android:textAlignment="viewStart"
                     android:text="@string/settings_darkmode"
                     tools:visibility="visible"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_settingsfragment_themecolor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="6"
+                    android:layout_marginTop="@dimen/all_8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_yellowrb"
+                        android:tag="yellow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/all_8dp"
+                        android:button="@null"
+                        android:background="@drawable/settingsfragment_yellowrbselector" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_redrb"
+                        android:tag="red"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/all_8dp"
+                        android:button="@null"
+                        android:background="@drawable/settingsfragment_redrbselector" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_purplerb"
+                        android:tag="purple"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/all_8dp"
+                        android:button="@null"
+                        tools:checked="true"
+                        android:background="@drawable/settingsfragment_purplerbselector" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_bluerb"
+                        android:tag="blue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/all_8dp"
+                        android:button="@null"
+                        android:background="@drawable/settingsfragment_blueselector" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_tealrb"
+                        android:tag="primary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/all_8dp"
+                        android:button="@null"
+                        android:background="@drawable/settingsfragment_primaryselector" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rb_settingsfragment_greenrb"
+                        android:tag="green"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:background="@drawable/settingsfragment_greenrbselector" />
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -108,7 +176,6 @@
             android:layout_marginHorizontal="@dimen/all_16dp"
             android:layout_marginTop="@dimen/all_8dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/view_background_primary"
             app:cardCornerRadius="@dimen/all_12dp">
 
             <LinearLayout

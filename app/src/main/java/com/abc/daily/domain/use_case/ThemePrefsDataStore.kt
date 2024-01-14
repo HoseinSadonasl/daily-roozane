@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
-class DarkModePrefsDataStore @Inject constructor(
+class ThemePrefsDataStore @Inject constructor(
     private val appPreferencesRepository: AppPreferencesRepository
 ) {
     suspend fun invoke(isDark: Boolean) {
@@ -22,6 +22,28 @@ class DarkModePrefsDataStore @Inject constructor(
             exception.printStackTrace()
         }
     }
+    suspend fun invoke(themeColor: Int) {
+        try {
+            appPreferencesRepository.getDataStorePreferences().edit { preferences ->
+                preferences[Constants.THEME_COLOR] = themeColor
+            }
+        } catch (exception: IOException) {
+            exception.printStackTrace()
+        }
+    }
+
+    suspend fun invokeThemeColor(): Flow<Int> =
+        appPreferencesRepository.getDataStorePreferences().data.catch {
+            if (it is IOException) {
+                it.printStackTrace()
+                emit(emptyPreferences())
+            } else {
+                throw it
+            }
+        }.map { preferences ->
+            preferences[Constants.THEME_COLOR] ?: Constants.THEME_PRIMARY
+        }
+
 
     suspend fun invoke(): Flow<Boolean> =
         appPreferencesRepository.getDataStorePreferences().data.catch {
