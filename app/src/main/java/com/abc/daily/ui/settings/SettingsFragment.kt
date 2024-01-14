@@ -11,14 +11,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutSettingsFragmentBinding
-import com.abc.daily.ui.main.MainActivity
-import com.abc.daily.ui.main.MainViewModel
+import com.abc.daily.ui.common.MainActivity
+import com.abc.daily.ui.common.CommonViewModel
 import com.abc.daily.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,8 +31,7 @@ class SettingsFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
 
     lateinit var binding: LayoutSettingsFragmentBinding
-    private val settingsViewModel: SettingsViewModell by viewModels()
-    private val mainViewModel: MainViewModel by viewModels()
+    private val commonViewModel: CommonViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,27 +55,28 @@ class SettingsFragment : Fragment() {
     private fun initUiComponents() {
         binding.buttonAddNoteBackward.setOnClickListener { findNavController().popBackStack() }
 
-        binding.switchSettingsDarkmode.setOnCheckedChangeListener { compoundButton, isChecked ->
-            setPrefsTheme(isChecked)
+        binding.switchSettingsDarkmode.setOnClickListener {
+            setThemeColor()
         }
 
         binding.tvSettingsReportbug.setOnClickListener { openEmailApp() }
 
         binding.tvSettingsConnect.setOnClickListener { openEmailApp() }
 
-        initThemeRadioButtons(mainActivity.applicationInfo.theme)
         initChangeThemeRadioButtons()
 
     }
 
-    private fun initThemeRadioButtons(currentTheme: Any) {
-        when(currentTheme) {
-            R.style.PrimaryTheme -> binding.rbSettingsfragmentTealrb.isChecked = true
-            R.style.BlueTheme -> binding.rbSettingsfragmentBluerb.isChecked = true
-            R.style.RedTheme -> binding.rbSettingsfragmentRedrb.isChecked = true
-            R.style.YellowTheme -> binding.rbSettingsfragmentYellowrb.isChecked = true
-            R.style.GreenTheme -> binding.rbSettingsfragmentGreenrb.isChecked = true
-            R.style.PurpleTheme -> binding.rbSettingsfragmentPurplerb.isChecked = true
+    private fun setThemeColor() = setPrefsTheme(binding.switchSettingsDarkmode.isChecked)
+
+    private fun initThemeRadioButtons(currentTheme: Int) {
+        when (currentTheme) {
+            Constants.THEME_PRIMARY -> binding.rbSettingsfragmentTealrb.isChecked = true
+            Constants.THEME_BLUE -> binding.rbSettingsfragmentBluerb.isChecked = true
+            Constants.THEME_RED -> binding.rbSettingsfragmentRedrb.isChecked = true
+            Constants.THEME_YELLOW -> binding.rbSettingsfragmentYellowrb.isChecked = true
+            Constants.THEME_GREEN -> binding.rbSettingsfragmentGreenrb.isChecked = true
+            Constants.THEME_PURPLE -> binding.rbSettingsfragmentPurplerb.isChecked = true
             else -> {}
         }
     }
@@ -119,7 +117,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setPrefsTheme(isDark: Boolean)  {
-        settingsViewModel.setDarkMode(isDark)
+        commonViewModel.setDarkMode(isDark)
     }
 
     private fun observeData() {
@@ -129,22 +127,17 @@ class SettingsFragment : Fragment() {
 
     private fun observeDarkMode() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                settingsViewModel.isDarkMode.collect { isDark ->
-                    binding.switchSettingsDarkmode.isChecked = isDark
-                }
+            commonViewModel.isDarkMode.observe(viewLifecycleOwner) { isDark ->
+                binding.switchSettingsDarkmode.isChecked = isDark
             }
         }
     }
 
     private fun observeThemeColor() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                settingsViewModel.currentTheme.collect { themeColor ->
-//                    initThemeRadioButtons(themeColor)
-                }
-            }
+        commonViewModel.themeColorLiveData.observe(viewLifecycleOwner) { themeColor ->
+            initThemeRadioButtons(themeColor)
         }
     }
 
 }
+

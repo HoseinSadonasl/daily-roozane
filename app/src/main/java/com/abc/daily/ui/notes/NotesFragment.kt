@@ -21,7 +21,7 @@ import com.abc.daily.Dialog
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.ui.add_note.AddNoteFragment
-import com.abc.daily.ui.main.MainActivity
+import com.abc.daily.ui.common.MainActivity
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.OrderDialog

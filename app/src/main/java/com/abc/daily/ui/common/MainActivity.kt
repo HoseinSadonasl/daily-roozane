@@ -1,4 +1,4 @@
-package com.abc.daily.ui.main
+package com.abc.daily.ui.common
 
 import android.app.UiModeManager
 import android.os.Build
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var uiModeManager: UiModeManager
 
     private lateinit var binding: LayoutMainBinding
-    private val mainViewModel: MainViewModel by viewModels()
+    private val commonViewModel: CommonViewModel by viewModels()
     private var keepSplashOnScreen = true
     private var isLunched: Boolean = false
 
@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeDarkMode() {
-        mainViewModel.isDarkMode.observe(this) { isDark ->
+        commonViewModel.isDarkMode.observe(this) { isDark ->
             setThemeDarkMode(isDark)
         }
     }
 
     private fun observeColorTheme() {
-        mainViewModel.themeColorLiveData.observe(this) { themeColor ->
+        commonViewModel.themeColorLiveData.observe(this) { themeColor ->
             when (themeColor) {
                 Constants.THEME_PRIMARY -> setTheme(R.style.PrimaryTheme)
                 Constants.THEME_BLUE -> setTheme(R.style.BlueTheme)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setThemeColor(themeColor: Int) {
-        mainViewModel.setThemeColor(themeColor)
+        commonViewModel.setThemeColor(themeColor)
     }
 
     fun requestMultiplePermissions(callBack: (Pair<String, Boolean>) -> Unit) =

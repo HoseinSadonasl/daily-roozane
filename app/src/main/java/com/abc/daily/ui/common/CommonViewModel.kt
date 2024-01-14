@@ -1,6 +1,5 @@
-package com.abc.daily.ui.main
+package com.abc.daily.ui.common
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class CommonViewModel @Inject constructor(
     private val appPrefsDataStoreDomain: PrefsDataStoreDomain
 ): ViewModel()  {
 
@@ -24,7 +23,6 @@ class MainViewModel @Inject constructor(
         getThemeColor()
     }
 
-    
 
     fun getDarkMode() {
         viewModelScope.launch {
@@ -34,7 +32,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-
+    fun setDarkMode(isDarkMode: Boolean) {
+        viewModelScope.launch {
+            appPrefsDataStoreDomain.themePrefsDataStore.invoke(isDarkMode)
+        }
+    }
 
     fun setThemeColor(themeColor: Int) {
         viewModelScope.launch {
