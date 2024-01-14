@@ -116,4 +116,5 @@
     <string name="welcomedialog_decription">With "Daily," you can make the most of your day and effortlessly manage tasks to achieve your goals. 🌟</string>
     <string name="welcomedialog_whatsnew">🎨 New UI\n🌙 Dark Mode\n☀️ Full Persian Calendar Support\n🚀 Application Performance Enhancement\n🔧 Fixing Reported Issues</string>
     <string name="welcomedialog_btncontinue">Continue</string>
+    <string name="settings_themecolor">Theme color</string>
 </resources>
