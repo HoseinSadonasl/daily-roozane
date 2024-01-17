@@ -18,122 +18,91 @@
     <color name="red_500">#EF5350</color>
     <color name="orange_400">#FFA726</color>
     <color name="blue_500">#42A5F5</color>
-    <color name="surfaceTealColor">#0D313C</color>
     <color name="green_500">#66BB6A</color>
 
-    <!--  primary Colors  -->
-    <color name="tealColor">#2FAAD1</color>
-    <color name="windowSurfaceColor">#0D313D</color>
-    <color name="windowBackgroundColor">#0B2832</color>
+    <color name="onPrimaryColor">#212121</color>
+    <color name="windowBackgroundColor">#121212</color>
     <color name="onWindowBackgroundColor">#FFFFFF</color>
+    <color name="surfaceColor">#000000</color>
+    <color name="colorAccent">#121212</color>
 
-    <color name="backgroundColor">@color/windowBackgroundColor</color>
-    <color name="onBackgroundColor">@color/onWindowBackgroundColor</color>
-    <color name="primaryColor">@color/windowBackgroundColor</color>
-    <color name="onPrimaryColor">@color/onWindowBackgroundColor</color>
-    <color name="secondaryColor">@color/tealColor</color>
-    <color name="onSecondaryColor">@color/windowBackgroundColor</color>
-    <color name="primaryVariantColor">@color/backgroundColor</color>
-    <color name="onPrimaryVariantColor">@color/onBackgroundColor</color>
-    <color name="secondaryVariantColor">@color/windowBackgroundColor</color>
-    <color name="onSecondaryVariantColor">@color/windowBackgroundColor</color>
-    <color name="surfaceColor">@color/windowSurfaceColor</color>
-    <color name="onSurfaceColor">@color/onWindowBackgroundColor</color>
+    <!--  primary Colors  -->
+    <color name="primaryTealColor">#2FAAD1</color>
+    <color name="onPrimaryTealColor">#FFFFFF</color>
+    <color name="primaryVariantTealColor">#2FAAD1</color>
+    <color name="onPrimaryVariantTealColor">#FFFFFF</color>
+    <color name="secondaryTealColor">#2FAAD1</color>
+    <color name="onSecondaryTealColor">#FFFFFF</color>
+    <color name="tealColorLight">#80DFFD</color>
+    <color name="windowSurfaceColor">#FFFFFF</color>
 
     <!--  purple Colors  -->
-    <color name="purpleColor">#985AE8</color>
-    <color name="windowSurfaceColorPurple">#231536</color>
-    <color name="windowBackgroundColorPurple">#1C112B</color>
-    <color name="onWindowBackgroundColorPurple">#FFFFFF</color>
-
-    <color name="backgroundColorPurple">@color/windowBackgroundColorPurple</color>
-    <color name="onBackgroundColorPurple">@color/onWindowBackgroundColorPurple</color>
-    <color name="primaryColorPurple">@color/windowBackgroundColorPurple</color>
-    <color name="onPrimaryColorPurple">@color/onWindowBackgroundColorPurple</color>
-    <color name="secondaryColorPurple">@color/purpleColor</color>
-    <color name="onSecondaryColorPurple">@color/windowBackgroundColorPurple</color>
-    <color name="primaryVariantColorPurple">@color/backgroundColorPurple</color>
-    <color name="onPrimaryVariantColorPurple">@color/onBackgroundColorPurple</color>
-    <color name="secondaryVariantColorPurple">@color/windowBackgroundColorPurple</color>
-    <color name="onSecondaryVariantColorPurple">@color/windowBackgroundColorPurple</color>
-    <color name="surfaceColorPurple">@color/windowSurfaceColorPurple</color>
-    <color name="onSurfaceColorPurple">@color/onWindowBackgroundColorPurple</color>
-
-    <!--  Red Colors  -->
-    <color name="redColor">#E2446A</color>
-    <color name="windowSurfaceColorRed">#42131F</color>
-    <color name="windowBackgroundColorRed">#2F0E16</color>
-    <color name="onWindowBackgroundColorRed">#FFFFFF</color>
-
-    <color name="backgroundColorRed">@color/windowBackgroundColorRed</color>
-    <color name="onBackgroundColorRed">@color/onWindowBackgroundColorRed</color>
-    <color name="primaryColorRed">@color/windowBackgroundColorRed</color>
-    <color name="onPrimaryColorRed">@color/onWindowBackgroundColorRed</color>
-    <color name="secondaryColorRed">@color/redColor</color>
-    <color name="onSecondaryColorRed">@color/windowBackgroundColorRed</color>
-    <color name="primaryVariantColorRed">@color/backgroundColorRed</color>
-    <color name="onPrimaryVariantColorRed">@color/onBackgroundColorRed</color>
-    <color name="secondaryVariantColorRed">@color/windowBackgroundColorRed</color>
-    <color name="onSecondaryVariantColorRed">@color/windowBackgroundColorRed</color>
-    <color name="surfaceColorRed">@color/windowBackgroundColorRed</color>
-    <color name="onSurfaceColorRed">@color/onWindowBackgroundColorRed</color>
+    <color name="primaryPurpleColor">#7E57C2</color>
+    <color name="onPrimaryPurpleColor">#FFFFFF</color>
+    <color name="primaryVariantPurpleColor">#7E57C2</color>
+    <color name="onPrimaryVariantPurpleColor">#FFFFFF</color>
+    <color name="secondaryPurpleColor">#7E57C2</color>
+    <color name="onSecondaryPurpleColor">#FFFFFF</color>
+    <color name="purpleColor">#7E57C2</color>
+    <color name="purpleColorLight">#A073F1</color>
+    <color name="windowSurfaceColorPurple">#FFFFFF</color>
+    <color name="windowBackgroundColorPurple">#F9F9F9</color>
+    <color name="onWindowBackgroundColorPurple">#262626</color>
 
     <!--  Yellow Colors  -->
+    <color name="primaryYellowColor">#FFDC25</color>
+    <color name="onPrimaryYellowColor">#FFFFFF</color>
+    <color name="primaryVariantYellowColor">#FFDC25</color>
+    <color name="onPrimaryVariantYellowColor">#FFFFFF</color>
+    <color name="secondaryYellowColor">#FFDC25</color>
+    <color name="onSecondaryYellowColor">#FFFFFF</color>
     <color name="yellowColor">#FFDC25</color>
-    <color name="windowSurfaceColorYellow">#352E08</color>
-    <color name="windowBackgroundColorYellow">#212007</color>
-    <color name="onWindowBackgroundColorYellow">#FFFFFF</color>
+    <color name="yellowColorLight">#FFEA7F</color>
+    <color name="windowSurfaceColorYellow">#FFFFFF</color>
+    <color name="windowBackgroundColorYellow">#F9F9F9</color>
+    <color name="onWindowBackgroundColorYellow">#262626</color>
 
-    <color name="backgroundColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="onBackgroundColorYellow">@color/onWindowBackgroundColorYellow</color>
-    <color name="primaryColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="onPrimaryColorYellow">@color/onWindowBackgroundColorYellow</color>
-    <color name="secondaryColorYellow">@color/yellowColor</color>
-    <color name="onSecondaryColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="primaryVariantColorYellow">@color/backgroundColorYellow</color>
-    <color name="onPrimaryVariantColorYellow">@color/onBackgroundColorYellow</color>
-    <color name="secondaryVariantColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="onSecondaryVariantColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="surfaceColorYellow">@color/windowBackgroundColorYellow</color>
-    <color name="onSurfaceColorYellow">@color/onWindowBackgroundColorYellow</color>
 
     <!--  Green Colors  -->
+    <color name="primaryGreenColor">#2FD183</color>
+    <color name="onPrimaryGreenColor">#FFFFFF</color>
+    <color name="primaryVariantGreenColor">#2FD183</color>
+    <color name="onPrimaryVariantGreenColor">#FFFFFF</color>
+    <color name="secondaryGreenColor">#2FD183</color>
+    <color name="onSecondaryGreenColor">#FFFFFF</color>
     <color name="greenColor">#2FD183</color>
-    <color name="windowSurfaceColorGreen">#0A2C1B</color>
-    <color name="windowBackgroundColorGreen">#072014</color>
-    <color name="onWindowBackgroundColorGreen">#FFFFFF</color>
+    <color name="greenColorLight">#7DFABE</color>
+    <color name="windowSurfaceColorGreen">#FFFFFF</color>
+    <color name="windowBackgroundColorGreen">#F9F9F9</color>
+    <color name="onWindowBackgroundColorGreen">#262626</color>
 
-    <color name="backgroundColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="onBackgroundColorGreen">@color/onWindowBackgroundColorGreen</color>
-    <color name="primaryColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="onPrimaryColorGreen">@color/onWindowBackgroundColorGreen</color>
-    <color name="secondaryColorGreen">@color/greenColor</color>
-    <color name="onSecondaryColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="primaryVariantColorGreen">@color/backgroundColorGreen</color>
-    <color name="onPrimaryVariantColorGreen">@color/onBackgroundColorGreen</color>
-    <color name="secondaryVariantColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="onSecondaryVariantColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="surfaceColorGreen">@color/windowBackgroundColorGreen</color>
-    <color name="onSurfaceColorGreen">@color/onWindowBackgroundColorGreen</color>
 
     <!--  Blue Colors  -->
+    <color name="primaryBlueColor">#3B6DEE</color>
+    <color name="onPrimaryBlueColor">#FFFFFF</color>
+    <color name="primaryVariantBlueColor">#3B6DEE</color>
+    <color name="onPrimaryVariantBlueColor">#FFFFFF</color>
+    <color name="secondaryBlueColor">#3B6DEE</color>
+    <color name="onSecondaryBlueColor">#FFFFFF</color>
     <color name="blueColor">#3B6DEE</color>
-    <color name="windowSurfaceColorBlue">#0E1935</color>
-    <color name="windowBackgroundColorBlue">#091125</color>
+    <color name="blueColorLight">#8BACFF</color>
+    <color name="windowSurfaceColorBlue">#FFFFFF</color>
+    <color name="windowBackgroundColorBlue">#F9F9F9</color>
     <color name="onWindowBackgroundColorBlue">#262626</color>
 
-    <color name="backgroundColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="onBackgroundColorBlue">@color/onWindowBackgroundColorBlue</color>
-    <color name="primaryColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="onPrimaryColorBlue">@color/onWindowBackgroundColorBlue</color>
-    <color name="secondaryColorBlue">@color/blueColor</color>
-    <color name="onSecondaryColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="primaryVariantColorBlue">@color/backgroundColorBlue</color>
-    <color name="onPrimaryVariantColorBlue">@color/onBackgroundColorBlue</color>
-    <color name="secondaryVariantColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="onSecondaryVariantColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="surfaceColorBlue">@color/windowBackgroundColorBlue</color>
-    <color name="onSurfaceColorBlue">@color/onWindowBackgroundColorBlue</color>
+    <!--  Red Colors  -->
+    <color name="primaryRedColor">#E2446A</color>
+    <color name="onPrimaryRedColor">#FFFFFF</color>
+    <color name="primaryVariantRedColor">#E2446A</color>
+    <color name="onPrimaryVariantRedColor">#FFFFFF</color>
+    <color name="secondaryRedColor">#E2446A</color>
+    <color name="onSecondaryRedColor">#FFFFFF</color>
+    <color name="redColor">#E2446A</color>
+    <color name="redColorLight">#FF91AB</color>
+    <color name="windowSurfaceColorRed">#FFFFFF</color>
+    <color name="windowBackgroundColorRed">#F9F9F9</color>
+    <color name="onWindowBackgroundColorRed">#262626</color>
+
     <!--  New Colors  -->
     <color name="color_on_primary">#FFFFFF</color>
     <color name="view_background_primary">#0D313C</color>

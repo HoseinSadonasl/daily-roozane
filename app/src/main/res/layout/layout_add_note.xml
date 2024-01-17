@@ -6,24 +6,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:chainUseRtl="true"
-        android:background="@color/windowBackgroundColor"
-        tools:context=".AddReadNote">
+        app:chainUseRtl="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:elevation="0dp"
-            android:background="@color/view_background_primary"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/windowBackgroundColor">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/iconButton_toolbar"
@@ -176,8 +173,7 @@
                     app:cornerRadius="0dp"
                     android:fontFamily="@font/iranyekanregular"
                     android:stateListAnimator="@null"
-                    app:icon="@drawable/all_alarm"
-                    app:backgroundTint="@color/btn_secondary" />
+                    app:icon="@drawable/all_alarm"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_removeAlarm_addNoteFragment"
