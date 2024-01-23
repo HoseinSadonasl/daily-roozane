@@ -21,7 +21,7 @@
     <color name="green_500">#66BB6A</color>
 
     <color name="onPrimaryColor">#FFFFFF</color>
-    <color name="windowBackgroundColor">#FFFFFF</color>
+    <color name="windowBackgroundColor">#FAFAFA</color>
     <color name="onWindowBackgroundColor">#262626</color>
     <color name="surfaceColor">#FFFFFF</color>
     <color name="colorAccent">#121212</color>

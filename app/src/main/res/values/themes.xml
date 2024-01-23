@@ -5,7 +5,7 @@
         <item name="colorPrimaryVariant">@color/Color_primary_dark</item>
         <item name="colorOnPrimary">@color/onPrimaryColor</item>
         <item name="android:colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/windowBackgroundColor</item>
+        <item name="android:windowBackground">@color/windowBackgroundColor</item>
         <item name="colorOnBackground">@color/onWindowBackgroundColor</item>
         <item name="colorSurface">@color/surfaceColor</item>
         <!-- Secondary brand color. -->
@@ -14,7 +14,7 @@
         <item name="colorOnSecondary">@color/onPrimaryColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/windowBackgroundColor</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@color/windowBackgroundColor</item>
         <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/windowBackgroundColor</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
@@ -25,55 +25,55 @@
     <style name="PrimaryTheme" parent="Theme.DailyNoActionbar">
         <item name="colorPrimary">@color/primaryTealColor</item>
         <item name="colorPrimaryVariant">@color/primaryVariantTealColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryTealColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryTealColor</item>-->
         <item name="colorSecondary">@color/secondaryTealColor</item>
         <item name="colorSecondaryVariant">@color/secondaryTealColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryTealColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryTealColor</item>-->
     </style>
 
     <style name="PurpleTheme" parent="Theme.DailyNoActionbar">
         <item name="colorPrimary">@color/primaryPurpleColor</item>
         <item name="colorPrimaryVariant">@color/primaryVariantPurpleColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryPurpleColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryPurpleColor</item>-->
         <item name="colorSecondary">@color/secondaryPurpleColor</item>
         <item name="colorSecondaryVariant">@color/secondaryPurpleColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryPurpleColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryPurpleColor</item>-->
     </style>
 
     <style name="BlueTheme" parent="Theme.DailyNoActionbar">
         <item name="colorPrimary">@color/primaryBlueColor</item>
         <item name="colorPrimaryVariant">@color/primaryVariantBlueColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryBlueColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryBlueColor</item>-->
         <item name="colorSecondary">@color/secondaryBlueColor</item>
         <item name="colorSecondaryVariant">@color/secondaryBlueColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryBlueColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryBlueColor</item>-->
     </style>
 
     <style name="RedTheme" parent="Theme.DailyNoActionbar">
         <item name="colorPrimary">@color/primaryRedColor</item>
         <item name="colorPrimaryVariant">@color/primaryVariantRedColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryRedColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryRedColor</item>-->
         <item name="colorSecondary">@color/secondaryRedColor</item>
         <item name="colorSecondaryVariant">@color/secondaryRedColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryRedColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryRedColor</item>-->
     </style>
 
     <style name="YellowTheme" parent="Theme.DailyNoActionbar">
-        <item name="colorPrimary">@color/primaryYellowColor</item>
+        <item name="colorPrimary">@color/primaryYellowColor</item>z
         <item name="colorPrimaryVariant">@color/primaryVariantYellowColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryYellowColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryYellowColor</item>-->
         <item name="colorSecondary">@color/secondaryYellowColor</item>
         <item name="colorSecondaryVariant">@color/secondaryYellowColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryYellowColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryYellowColor</item>-->
     </style>
 
     <style name="GreenTheme" parent="Theme.DailyNoActionbar">
         <item name="colorPrimary">@color/primaryGreenColor</item>
         <item name="colorPrimaryVariant">@color/primaryVariantGreenColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryGreenColor</item>
+<!--        <item name="colorOnPrimary">@color/onPrimaryGreenColor</item>-->
         <item name="colorSecondary">@color/secondaryGreenColor</item>
         <item name="colorSecondaryVariant">@color/secondaryGreenColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryGreenColor</item>
+<!--        <item name="colorOnSecondary">@color/onSecondaryGreenColor</item>-->
     </style>
 
     <style name="WindowAnimationTransition">
@@ -104,7 +104,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_lunch</item>
         <item name="windowSplashScreenBackground">?colorSecondary</item>
-        <item name="windowSplashScreenIconBackgroundColor">?colorSecondary</item>
+        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/daily_logo</item>
         <item name="splashScreenIconSize">@dimen/all_48dp</item>
         <item name="postSplashScreenTheme">@style/Theme.DailyNoActionbar</item>
