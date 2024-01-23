@@ -19,6 +19,7 @@ import com.abc.daily.domain.use_case.GetWeather
 import com.abc.daily.domain.use_case.OrderNotesPrefsDataStore
 import com.abc.daily.domain.use_case.PrefsDataStoreDomain
 import com.abc.daily.domain.use_case.WeatherDomain
+import com.abc.daily.ui.common.CommonViewModel
 import com.abc.daily.util.Constants
 import com.abc.daily.util.NotificationUtil
 import com.bumptech.glide.Glide
@@ -113,6 +114,10 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFusedLocationProviderClient ( @ApplicationContext context: Context): FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+
+    @Provides
+    @Singleton
+    fun provideCommonViewModel (appPrefsDataStoreDomain: PrefsDataStoreDomain): CommonViewModel = CommonViewModel(appPrefsDataStoreDomain)
 
 
 }

@@ -15,6 +15,7 @@ class CommonViewModel @Inject constructor(
     private val appPrefsDataStoreDomain: PrefsDataStoreDomain
 ): ViewModel()  {
 
+    val locationPermissionLiveData = MutableLiveData<Boolean>()
     val isDarkMode = MutableLiveData<Boolean>()
     val themeColorLiveData = MutableLiveData<Int>()
 
@@ -23,6 +24,9 @@ class CommonViewModel @Inject constructor(
         getThemeColor()
     }
 
+    fun fillLocationPermissionLiveData(isGranted: Boolean) {
+        locationPermissionLiveData.value = isGranted
+    }
 
     fun getDarkMode() {
         viewModelScope.launch {

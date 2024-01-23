@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +20,7 @@ import com.abc.daily.Dialog
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutNotesFragmentBinding
 import com.abc.daily.ui.add_note.AddNoteFragment
+import com.abc.daily.ui.common.CommonViewModel
 import com.abc.daily.ui.common.MainActivity
 import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
@@ -51,6 +51,9 @@ class NotesFragment : Fragment() {
 
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    @Inject
+    lateinit var commonViewModel: CommonViewModel
 
     companion object {
         const val REQUEST_INTERVAL_MILLIS: Long = 60000L
@@ -192,27 +195,21 @@ class NotesFragment : Fragment() {
 
         if (PermissionHelper.hasPermission(requireContext(), permissions).isEmpty().not()) {
             val activity = requireActivity() as MainActivity
-            activity.requestMultiplePermissions { permission ->
-                when (permission.first) {
-                    Manifest.permission.ACCESS_COARSE_LOCATION -> {
-                        if (permission.second) getCurrentLocation()
-                    }
-
-                    Manifest.permission.POST_NOTIFICATIONS -> {
-                        if (!permission.second) {
-                            Toast.makeText(requireContext(), getString(R.string.toast_notificationpermission), Toast.LENGTH_LONG).show()
-                        }
-                        viewModel.setFirstLunch(true)
-                    }
-                }
-            }.launch(permissions.toTypedArray())
+            activity.resultLauncher.launch(permissions.toTypedArray())
         } else getCurrentLocation()
     }
 
     private fun observeDData() {
+        observeLocationPermissionLiveData()
         observefirtLunchLiveData()
         observeNotes()
         observeWeather()
+    }
+
+    private fun observeLocationPermissionLiveData() {
+        commonViewModel.locationPermissionLiveData.observe(viewLifecycleOwner) { isGranted ->
+            if (isGranted) getCurrentLocation()
+        }
     }
 
     private fun observefirtLunchLiveData() {
