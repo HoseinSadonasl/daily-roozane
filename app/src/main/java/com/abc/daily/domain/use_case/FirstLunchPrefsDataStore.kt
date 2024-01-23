@@ -32,7 +32,7 @@ class FirstLunchPrefsDataStore @Inject constructor(
                 throw it
             }
         }.map { preferences ->
-            preferences[Constants.FIRST_LUNCH] ?: false
+            preferences[Constants.FIRST_LUNCH] ?: true
         }
 
 }
