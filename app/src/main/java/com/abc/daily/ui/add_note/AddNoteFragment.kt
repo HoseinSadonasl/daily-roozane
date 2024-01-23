@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -25,12 +26,14 @@ import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import com.abc.daily.util.PersianDate
 import com.abc.daily.util.requestCodeFromTimeMillis
+import com.google.android.material.color.MaterialColors
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class AddNoteFragment : Fragment() {
+
 
     @Inject
     lateinit var alarmManager: AlarmManager
@@ -41,6 +44,7 @@ class AddNoteFragment : Fragment() {
     private lateinit var calendar: Calendar
     private var noteIdArg: Int? = null
     private var hasReminder: String? = null
+    private var themePrimaryColor: Int? = null
 
     companion object {
         const val NOTE_ARGUMENT = "noteId"
@@ -72,7 +76,7 @@ class AddNoteFragment : Fragment() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
             hasReminder = it.second.toString()
             if (it.first) {
-                setReminderButtonColorTint(R.color.btn_primary)
+                themePrimaryColor?.let { color -> setReminderButtonColorTint(color) }
             } else {
                 setReminderButtonColorTint(R.color.btn_secondary)
                 val color = ContextCompat.getColor(requireContext(), R.color.btn_alarm_state)
@@ -120,7 +124,7 @@ class AddNoteFragment : Fragment() {
         } else {
             val formattedTime = DateUtil.alarmToPersianDateAndTime(note.remindAt.toString())
             binding.btnAddAlarmAddNoteFragment.text = formattedTime
-            setReminderButtonColorTint(R.color.btn_primary)
+            themePrimaryColor?.let { color -> setReminderButtonColorTint(color) }
             if (note.remindAt!!.toLong() <= calendar.timeInMillis)
                 addNoteViewModel.setReminderNoteLiveData(note.remindAt!!.toLong(), false)
         }
@@ -139,6 +143,8 @@ class AddNoteFragment : Fragment() {
     }
 
     private fun initComponents() {
+        themePrimaryColor = MaterialColors.getColor(requireContext(), R.attr.colorPrimary, Color.TRANSPARENT)
+
         binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
         binding.imageViewAddNoteDelete.visibility =
             if (noteIdArg != null) View.VISIBLE else View.GONE

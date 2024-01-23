@@ -21,9 +21,9 @@
     <color name="green_500">#66BB6A</color>
 
     <color name="onPrimaryColor">#212121</color>
-    <color name="windowBackgroundColor">#121212</color>
+    <color name="windowBackgroundColor">#131313</color>
     <color name="onWindowBackgroundColor">#FFFFFF</color>
-    <color name="surfaceColor">#000000</color>
+    <color name="surfaceColor">#212121</color>
     <color name="colorAccent">#121212</color>
 
     <!--  primary Colors  -->

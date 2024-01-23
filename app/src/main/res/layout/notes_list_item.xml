@@ -19,7 +19,7 @@
             android:elevation="0dp"
             android:padding="@dimen/low_dp"
             android:foreground="?attr/selectableItemBackground"
-            app:cardBackgroundColor="?colorOnBackground"
+            app:cardBackgroundColor="?colorSurface"
             app:cardCornerRadius="@dimen/med_dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
                         android:insetBottom="0dp"
                         android:visibility="gone"
                         app:srcCompat="@drawable/all_alarm"
-                        app:tint="@color/Color_primary_dark"
+                        app:tint="?colorPrimary"
                         tools:visibility="visible" />
 
                     <com.google.android.material.textview.MaterialTextView
