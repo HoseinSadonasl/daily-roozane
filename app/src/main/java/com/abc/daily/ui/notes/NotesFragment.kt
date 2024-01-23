@@ -93,6 +93,7 @@ class NotesFragment : Fragment() {
             setDescriptionTextDirection(View.TEXT_ALIGNMENT_TEXT_START)
             setPositiveButtonText(getString(R.string.welcomedialog_btncontinue))
             setLogoImg(R.drawable.all_dailylogo_colored)
+            setCancelable(false)
             show()
         }
     }
@@ -171,7 +172,6 @@ class NotesFragment : Fragment() {
             setPositiveButtonText(getString(R.string.dialog_currentlocationbtn))
             setNegativeButtonText(getString(R.string.all_submit))
             textInput(getString(R.string.notesfragment_entercityname))
-            setButtonsOrientation(LinearLayout.VERTICAL)
         }.show()
     }
 

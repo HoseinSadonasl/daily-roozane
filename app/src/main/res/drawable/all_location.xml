@@ -6,7 +6,7 @@
     android:viewportHeight="324.84">
     <path
         android:fillAlpha="0.2"
-        android:fillColor="#2faad1"
+        android:fillColor="?colorPrimary"
         android:pathData="m153.73,291.92h0S30.47,228.08 30.47,123.26h0C30.47,55.19 85.66,0 153.73,0h0c68.08,0 123.26,55.19 123.26,123.26h0c0,104.82 -123.26,168.66 -123.26,168.66Z"
         android:strokeAlpha="0.2" />
     <path
@@ -24,7 +24,7 @@
                     android:color="#002FAAD1"
                     android:offset="0" />
                 <item
-                    android:color="#FF2FAAD1"
+                    android:color="?colorPrimary"
                     android:offset="1" />
             </gradient>
         </aapt:attr>

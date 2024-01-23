@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/med_dp">
+        android:padding="@dimen/all_12dp">
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/MediumTextBold"
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/app_name"
+            android:padding="@dimen/_4dp"
             android:textColor="@color/text_primary"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +50,8 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:visibility="gone"
+            android:padding="@dimen/all_12dp"
+            app:srcCompat="@drawable/all_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/alertTitle"
