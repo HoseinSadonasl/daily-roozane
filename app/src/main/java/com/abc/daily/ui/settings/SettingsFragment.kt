@@ -56,7 +56,7 @@ class SettingsFragment : Fragment() {
         binding.buttonAddNoteBackward.setOnClickListener { findNavController().popBackStack() }
 
         binding.switchSettingsDarkmode.setOnClickListener {
-            setThemeColor()
+            setThemeDarkMode()
         }
 
         binding.tvSettingsReportbug.setOnClickListener { openEmailApp() }
@@ -67,7 +67,7 @@ class SettingsFragment : Fragment() {
 
     }
 
-    private fun setThemeColor() = setPrefsTheme(binding.switchSettingsDarkmode.isChecked)
+    private fun setThemeDarkMode() = setPrefsThemeDarkMode(binding.switchSettingsDarkmode.isChecked)
 
     private fun initThemeRadioButtons(currentTheme: Int) {
         when (currentTheme) {
@@ -116,7 +116,7 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setPrefsTheme(isDark: Boolean)  {
+    private fun setPrefsThemeDarkMode(isDark: Boolean)  {
         commonViewModel.setDarkMode(isDark)
     }
 
