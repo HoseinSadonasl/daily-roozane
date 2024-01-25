@@ -97,14 +97,14 @@
         <item name="cornerSizeTopRight">16dp</item>
     </style>
 
-    <style name="Theme.AppSplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AppSplashScreen" parent="Theme.SplashScreen">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_lunch</item>
-        <item name="windowSplashScreenBackground">?colorSecondary</item>
-        <item name="windowSplashScreenIconBackgroundColor">@android:color/transparent</item>
+        <item name="windowSplashScreenBackground">@color/view_background_slash</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/view_background_slash</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/daily_logo</item>
         <item name="splashScreenIconSize">@dimen/all_48dp</item>
         <item name="postSplashScreenTheme">@style/Theme.DailyNoActionbar</item>
