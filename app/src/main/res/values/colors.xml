@@ -110,7 +110,7 @@
     <color name="view_background_slash">#2FAAD1</color>
 
     <color name="btn_primary">#2FAAD1</color>
-    <color name="btn_secondary">#E1E1E1</color>
+    <color name="btn_secondary">#DFDFDF</color>
     <color name="btn_text_primary">#FFFFFF</color>
     <color name="btn_text_secondary">#373737</color>
     <color name="btn_alarm_state">#7E7E7E</color>

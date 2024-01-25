@@ -173,7 +173,7 @@
                     app:cornerRadius="0dp"
                     android:fontFamily="@font/iranyekanregular"
                     android:stateListAnimator="@null"
-                    app:icon="@drawable/all_alarm"/>
+                    app:icon="@drawable/all_addalarm"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_removeAlarm_addNoteFragment"
