@@ -31,7 +31,9 @@ class SettingsFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
 
     lateinit var binding: LayoutSettingsFragmentBinding
-    private val commonViewModel: CommonViewModel by viewModels()
+
+    @Inject
+    lateinit var commonViewModel: CommonViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
