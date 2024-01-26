@@ -114,5 +114,7 @@
     <string name="welcomedialog_whatsnew">🎨 رابط کاربری جدید \n 🌙 حالت تاریک \n ☀️ پشتیبانی کامل از تقویم شمسی \n 🚀 بهبود عملکرد اپلیکیشن \n 🔧 رفع مشکلات گزارش شده</string>
     <string name="welcomedialog_btncontinue">ادامه</string>
     <string name="settings_themecolor">رنگ پوسته</string>
+    <string name="savenotedialogdesc_addeditnotefragment">عنوان یادداشت نباید خالی باشد</string>
+    <string name="gotit_all">Got it</string>
 
 </resources>

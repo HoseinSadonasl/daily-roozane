@@ -117,4 +117,6 @@
     <string name="welcomedialog_whatsnew">🎨 New UI\n🌙 Dark Mode\n☀️ Full Persian Calendar Support\n🚀 Application Performance Enhancement\n🔧 Fixing Reported Issues</string>
     <string name="welcomedialog_btncontinue">Continue</string>
     <string name="settings_themecolor">Theme color</string>
+    <string name="savenotedialogdesc_addeditnotefragment">Note title should not be empty</string>
+    <string name="gotit_all">Got it</string>
 </resources>

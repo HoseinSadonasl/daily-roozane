@@ -162,13 +162,19 @@ class AddNoteFragment : Fragment() {
         }
 
         binding.imageViewAddNoteDelete.setOnClickListener {
-            note?.let { note -> deleteNote(note) }
+            note?.let { note -> showDeleteNoteDialog(note) }
         }
 
         binding.btnAddAlarmAddNoteFragment.setOnClickListener {
             if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
                 saveNote()
                 handleReminder()
+            } else {
+                Dialog(requireContext(), onPositiveCallback = { it.dismiss() }).apply {
+                    setTitle(getString(R.string.app_name))
+                    setDescription(getString(R.string.savenotedialogdesc_addeditnotefragment))
+                    setPositiveButtonText(getString(R.string.gotit_all))
+                }.show()
             }
         }
 
@@ -257,7 +263,7 @@ class AddNoteFragment : Fragment() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-    private fun deleteNote(note: Note) = Dialog(requireContext(),
+    private fun showDeleteNoteDialog(note: Note) = Dialog(requireContext(),
         onPositiveCallback = { dialog ->
             addNoteViewModel.deleteNote(note)
             dialog.dismiss()
