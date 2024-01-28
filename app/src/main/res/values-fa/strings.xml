@@ -116,5 +116,6 @@
     <string name="settings_themecolor">رنگ پوسته</string>
     <string name="savenotedialogdesc_addeditnotefragment">عنوان یادداشت نباید خالی باشد</string>
     <string name="gotit_all">Got it</string>
+    <string name="pastTimeAlertMessage_addNoteFragment">شما نمیتوانید زمان گذشته را برای یاداور انتخاب کنید</string>
 
 </resources>

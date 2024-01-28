@@ -119,4 +119,5 @@
     <string name="settings_themecolor">Theme color</string>
     <string name="savenotedialogdesc_addeditnotefragment">Note title should not be empty</string>
     <string name="gotit_all">Got it</string>
+    <string name="pastTimeAlertMessage_addNoteFragment">You cannot set past time for reminder</string>
 </resources>

@@ -25,6 +25,7 @@ import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import com.abc.daily.util.PersianDate
 import com.abc.daily.util.requestCodeFromTimeMillis
+import com.abc.daily.util.showMessageDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import javax.inject.Inject
@@ -169,13 +170,7 @@ class AddNoteFragment : Fragment() {
             if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
                 saveNote()
                 handleReminder()
-            } else {
-                Dialog(requireContext(), onPositiveCallback = { it.dismiss() }).apply {
-                    setTitle(getString(R.string.app_name))
-                    setDescription(getString(R.string.savenotedialogdesc_addeditnotefragment))
-                    setPositiveButtonText(getString(R.string.gotit_all))
-                }.show()
-            }
+            } else showMessageDialog(requireContext(), getString(R.string.savenotedialogdesc_addeditnotefragment))
         }
 
         binding.buttonAddNoteBackward.setOnClickListener { popFragmrnt() }
@@ -316,11 +311,11 @@ class AddNoteFragment : Fragment() {
                         calendar.set(Calendar.YEAR, it.getDate().get(Calendar.YEAR))
                         calendar.set(Calendar.MONTH, it.getDate().get(Calendar.MONTH))
                         calendar.set(Calendar.DAY_OF_MONTH, it.getDate().get(Calendar.DAY_OF_MONTH))
-                        Log.d(
-                            ::getTimeForReminder.name,
-                            "onPositiveClick: ${PersianDate(calendar.timeInMillis)}"
-                        )
-                        addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
+
+                        if (calendar.timeInMillis <= System.currentTimeMillis()) {
+                            showMessageDialog(requireContext(), getString(R.string.pastTimeAlertMessage_addNoteFragment))
+                        } else addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
+
                         it.dismiss()
                     }
                 }
