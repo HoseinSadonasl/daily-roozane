@@ -15,7 +15,7 @@ class AddNoteViewModel @Inject constructor(
 ) : ViewModel() {
 
     val noteLiveData = MutableLiveData<Note?>()
-    val noteReminderLiveData = MutableLiveData<Pair<Boolean, Long>>()
+    val noteReminderLiveData = MutableLiveData<Pair<Boolean, Long?>>()
 
     fun saveNote(note: Note) = viewModelScope.launch {
         val newNote = notesDomain.saveNote(note)
@@ -33,7 +33,7 @@ class AddNoteViewModel @Inject constructor(
         notesDomain.deleteNote(note)
     }
 
-    fun setReminderNoteLiveData(timeStamp: Long, fromPast: Boolean) {
+    fun setReminderNoteLiveData(timeStamp: Long?, fromPast: Boolean) {
         noteReminderLiveData.value = fromPast to timeStamp
     }
 }

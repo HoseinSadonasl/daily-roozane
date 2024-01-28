@@ -74,15 +74,20 @@ class AddNoteFragment : Fragment() {
     private fun observeNoteReminderData() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
             if (it.first) {
-                setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
-                binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
-                binding.btnRemoveAlarmAddNoteFragment.visibility = View.GONE
+                resetReminderButton()
             }
-            hasReminder = it.second.toString()
-            note?.remindAt = hasReminder
-            initializeReminderButton(it.second)
-
+            it.second?.let { timeStamp ->
+                hasReminder = timeStamp.toString()
+                note?.remindAt = hasReminder
+                if (!it.first) initializeReminderButton(timeStamp)
+            }
         }
+    }
+
+    private fun resetReminderButton() {
+        setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
+        binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
+        binding.btnRemoveAlarmAddNoteFragment.visibility = View.GONE
     }
 
     private fun observeNoteData() {
@@ -94,7 +99,9 @@ class AddNoteFragment : Fragment() {
                     hasReminder = it
                     val fromPast = it.toLong() <= System.currentTimeMillis()
                     addNoteViewModel.setReminderNoteLiveData(it.toLong(), fromPast)
-                } ?: run {setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm) }
+                } ?: run {
+                    resetReminderButton()
+                }
                 binding.apply {
                     textViewAddNoteCreatedDate.visibility = View.VISIBLE
                     textViewAddNoteModifiedDate.visibility = View.VISIBLE
@@ -199,7 +206,7 @@ class AddNoteFragment : Fragment() {
             alarmManager.cancel(pendingIntent)
             hasReminder = null
             saveNote()
-            binding.btnRemoveAlarmAddNoteFragment.visibility = View.GONE
+            addNoteViewModel.setReminderNoteLiveData(null, true)
         }
     }
 
