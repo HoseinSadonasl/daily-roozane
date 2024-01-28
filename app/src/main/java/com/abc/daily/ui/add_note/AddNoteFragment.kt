@@ -73,13 +73,15 @@ class AddNoteFragment : Fragment() {
 
     private fun observeNoteReminderData() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
-            hasReminder = it.second.toString()
-            if (!it.first) {
-                setReminderButtonColorTint(R.color.btn_secondary)
-                val color = ContextCompat.getColor(requireContext(), R.color.btn_alarm_state)
-                binding.btnAddAlarmAddNoteFragment.setTextColor(color)
-                binding.btnAddAlarmAddNoteFragment.iconTint = ColorStateList.valueOf(color)
+            if (it.first) {
+                setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
+                binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
+                binding.btnRemoveAlarmAddNoteFragment.visibility = View.GONE
             }
+            hasReminder = it.second.toString()
+            note?.remindAt = hasReminder
+            initializeReminderButton(it.second)
+
         }
     }
 
@@ -90,9 +92,9 @@ class AddNoteFragment : Fragment() {
                 if (noteIdArg == null) noteIdArg = note.id
                 it.remindAt?.let {
                     hasReminder = it
-                    if (it.toLong() >= System.currentTimeMillis())
-                        binding.btnRemoveAlarmAddNoteFragment.visibility = View.VISIBLE
-                }
+                    val fromPast = it.toLong() <= System.currentTimeMillis()
+                    addNoteViewModel.setReminderNoteLiveData(it.toLong(), fromPast)
+                } ?: run {setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm) }
                 binding.apply {
                     textViewAddNoteCreatedDate.visibility = View.VISIBLE
                     textViewAddNoteModifiedDate.visibility = View.VISIBLE
@@ -107,30 +109,23 @@ class AddNoteFragment : Fragment() {
                         R.string.txt_modified,
                         DateUtil.toPersianDateAndTime(it.modifiedAt.toString(), requireContext())
                     )
-                    initializeReminderButton(it)
                 }
             }
         }
     }
 
-    private fun initializeReminderButton(note: Note?) {
-        note?.let {
-            if (note.remindAt.isNullOrBlank()) {
-                binding.btnAddAlarmAddNoteFragment.icon =
-                        ContextCompat.getDrawable(requireContext(), R.drawable.all_addalarm)
-                setReminderButtonColorTint(R.color.btn_secondary)
-            } else {
-                val formattedTime = DateUtil.alarmToPersianDateAndTime(note.remindAt.toString())
-                binding.btnAddAlarmAddNoteFragment.text = formattedTime
-                if (note.remindAt!!.toLong() <= calendar.timeInMillis)
-                    addNoteViewModel.setReminderNoteLiveData(note.remindAt!!.toLong(), false)
-            }
-        }
+    private fun initializeReminderButton(timeStamp: Long) {
+        binding.btnRemoveAlarmAddNoteFragment.visibility = View.VISIBLE
+        val formattedTime = DateUtil.alarmToPersianDateAndTime(timeStamp.toString())
+        binding.btnAddAlarmAddNoteFragment.text = formattedTime
     }
 
-    private fun setReminderButtonColorTint(colorIdd: Int) {
+    private fun setReminderButtonColorTintAndIcon(colorIdd: Int, iconId: Int) {
         val color = ContextCompat.getColor(requireContext(), colorIdd)
-        binding.btnAddAlarmAddNoteFragment.backgroundTintList = ColorStateList.valueOf(color)
+        binding.btnAddAlarmAddNoteFragment.apply {
+            backgroundTintList = ColorStateList.valueOf(color)
+            icon =  ContextCompat.getDrawable(requireContext(), iconId)
+        }
     }
 
     private fun getArgs() {
@@ -142,8 +137,11 @@ class AddNoteFragment : Fragment() {
 
     private fun initComponents() {
         binding.btnAddAlarmAddNoteFragment.text = getString(R.string.addrReminder_addNoteFragment)
-        binding.imageViewAddNoteDelete.visibility =
-            if (noteIdArg != null) View.VISIBLE else View.GONE
+        noteIdArg?.let {
+            binding.imageViewAddNoteDelete.visibility = View.VISIBLE
+        } ?: run {
+            setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
+        }
         calendar = Calendar.getInstance()
     }
 
@@ -314,7 +312,7 @@ class AddNoteFragment : Fragment() {
 
                         if (calendar.timeInMillis <= System.currentTimeMillis()) {
                             showMessageDialog(requireContext(), getString(R.string.pastTimeAlertMessage_addNoteFragment))
-                        } else addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, true)
+                        } else addNoteViewModel.setReminderNoteLiveData(calendar.timeInMillis, false)
 
                         it.dismiss()
                     }

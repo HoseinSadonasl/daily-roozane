@@ -33,7 +33,7 @@ class AddNoteViewModel @Inject constructor(
         notesDomain.deleteNote(note)
     }
 
-    fun setReminderNoteLiveData(timeStamp: Long, hasReminder: Boolean) {
-        noteReminderLiveData.value = hasReminder to timeStamp
+    fun setReminderNoteLiveData(timeStamp: Long, fromPast: Boolean) {
+        noteReminderLiveData.value = fromPast to timeStamp
     }
 }
