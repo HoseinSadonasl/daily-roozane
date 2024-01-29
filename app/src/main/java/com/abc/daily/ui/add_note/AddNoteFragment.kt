@@ -24,6 +24,7 @@ import com.abc.daily.util.CustomTimePickerDialog
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.GlobalReceiver
 import com.abc.daily.util.PersianDate
+import com.abc.daily.util.getColorFromAttr
 import com.abc.daily.util.requestCodeFromTimeMillis
 import com.abc.daily.util.showMessageDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,14 +74,16 @@ class AddNoteFragment : Fragment() {
 
     private fun observeNoteReminderData() {
         addNoteViewModel.noteReminderLiveData.observe(viewLifecycleOwner) {
-            if (it.first) {
-                resetReminderButton()
-            }
-            it.second?.let { timeStamp ->
-                hasReminder = timeStamp.toString()
-                note?.remindAt = hasReminder
-                if (!it.first) initializeReminderButton(timeStamp)
-            }
+            initializeButton(it)
+        }
+    }
+
+    private fun initializeButton(reminder: Pair<Boolean, Long?>) {
+        if (reminder.first) resetReminderButton()
+        reminder.second?.let { timeStamp ->
+            hasReminder = timeStamp.toString()
+            note?.remindAt = hasReminder
+            if (!reminder.first) handleAvailableReminder(timeStamp)
         }
     }
 
@@ -121,10 +124,13 @@ class AddNoteFragment : Fragment() {
         }
     }
 
-    private fun initializeReminderButton(timeStamp: Long) {
+    private fun handleAvailableReminder(timeStamp: Long) {
         binding.btnRemoveAlarmAddNoteFragment.visibility = View.VISIBLE
         val formattedTime = DateUtil.alarmToPersianDateAndTime(timeStamp.toString())
-        binding.btnAddAlarmAddNoteFragment.text = formattedTime
+        binding.btnAddAlarmAddNoteFragment.apply {
+            text = formattedTime
+            setReminderButtonColorTintAndIcon(requireContext().getColorFromAttr(R.attr.colorSecondary), R.drawable.all_alarm)
+        }
     }
 
     private fun setReminderButtonColorTintAndIcon(colorIdd: Int, iconId: Int) {

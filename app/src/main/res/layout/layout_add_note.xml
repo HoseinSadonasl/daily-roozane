@@ -169,6 +169,7 @@
                     android:insetTop="0dp"
                     android:insetRight="0dp"
                     android:insetBottom="0dp"
+                    android:backgroundTint="?colorPrimary"
                     tools:text="add alarm"
                     app:cornerRadius="0dp"
                     android:fontFamily="@font/iranyekanregular"
