@@ -26,9 +26,10 @@ class NoteViewHolder(
             }
             binding.textViewDateNotesFragment.text = DateUtil.toPersianDateAndTime(item.modifiedAt.toString(), binding.root.context)
             it.remindAt?.let {
-                binding.reminderIc.visibility = View.VISIBLE
-                binding.reminderDaeTime.text = DateUtil.alarmToPersianDateAndTime(it)
-                if (it.toLong() < Date().time) binding.reminderIc.imageTintList = ColorStateList.valueOf(binding.root.context.getColor(R.color.text_secondary))
+                if (it.toLong() > Date().time) {
+                    binding.reminderIc.visibility = View.VISIBLE
+                    binding.reminderDaeTime.text = DateUtil.alarmToPersianDateAndTime(it)
+                }
             }
         }
     }
