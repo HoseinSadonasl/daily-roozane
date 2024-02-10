@@ -39,12 +39,14 @@ class AddNoteFragment : Fragment() {
     lateinit var alarmManager: AlarmManager
 
     private lateinit var binding: LayoutAddNoteBinding
+
     private val addNoteViewModel: AddNoteViewModel by viewModels()
     private var note: Note? = null
     private lateinit var calendar: Calendar
     private var noteIdArg: Int? = null
     private var fromNotificationArg: Boolean = false
     private var hasReminder: String? = null
+    private var fromPast: Boolean = false
 //    private var themePrimaryColor: Int? = null
 
     companion object {
@@ -102,7 +104,7 @@ class AddNoteFragment : Fragment() {
                 if (noteIdArg == null) noteIdArg = note.id
                 it.remindAt?.let {
                     hasReminder = it
-                    val fromPast = it.toLong() <= System.currentTimeMillis()
+                    fromPast = it.toLong() <= System.currentTimeMillis()
                     addNoteViewModel.setReminderNoteLiveData(it.toLong(), fromPast)
                 } ?: run {
                     resetReminderButton()
@@ -175,9 +177,7 @@ class AddNoteFragment : Fragment() {
                 return@setOnClickListener
             }
             if (binding.editTextAddNoteTitle.text!!.isNotBlank()) saveNote()
-            hasReminder?.let {
-                handleReminderForNote(it.toLong())
-            }
+            if (!hasReminder.isNullOrBlank() && !fromPast) handleReminderForNote(hasReminder!!.toLong())
             popFragmrnt()
         }
 
