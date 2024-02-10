@@ -102,7 +102,7 @@ class NotesFragment : Fragment() {
         if (requireActivity().intent.hasExtra(AddNoteFragment.NOTE_ARGUMENT))
             requireActivity().intent.extras?.run {
                 val id = getInt(AddNoteFragment.NOTE_ARGUMENT)
-                navigateToNoteFragment(id)
+                navigateToNoteFragment(id = id, fromNotification = true)
             }
     }
 
@@ -249,8 +249,8 @@ class NotesFragment : Fragment() {
         }
     }
 
-    private fun navigateToNoteFragment(id: Int = 0) =
-        findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id))
+    private fun navigateToNoteFragment(id: Int = 0, fromNotification: Boolean = false) =
+        findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToAddNoteFragment(id, fromNotification))
 
     private fun navigateToSettingsFragment() =
         findNavController().navigate(NotesFragmentDirections.actionNotesFragmentToSettingsFragment())

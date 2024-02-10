@@ -43,11 +43,13 @@ class AddNoteFragment : Fragment() {
     private var note: Note? = null
     private lateinit var calendar: Calendar
     private var noteIdArg: Int? = null
+    private var fromNotificationArg: Boolean = false
     private var hasReminder: String? = null
 //    private var themePrimaryColor: Int? = null
 
     companion object {
         const val NOTE_ARGUMENT = "noteId"
+        const val FROM_NOTIFICATION = "fromNotification"
     }
 
     override fun onCreateView(
@@ -145,6 +147,7 @@ class AddNoteFragment : Fragment() {
         arguments?.let {
             val noteId = it.getInt(NOTE_ARGUMENT)
             if (noteId > 0) noteIdArg = noteId
+            fromNotificationArg = it.getBoolean(FROM_NOTIFICATION)
         }
     }
 
@@ -155,6 +158,7 @@ class AddNoteFragment : Fragment() {
         } ?: run {
             setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
         }
+        if (fromNotificationArg) binding.buttonAddNoteBackward.visibility = View.GONE
         calendar = Calendar.getInstance()
     }
 
@@ -166,6 +170,10 @@ class AddNoteFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabAddNoteSave.setOnClickListener {
+            if (fromNotificationArg) {
+                requireActivity().finish()
+                return@setOnClickListener
+            }
             if (binding.editTextAddNoteTitle.text!!.isNotBlank()) saveNote()
             hasReminder?.let {
                 handleReminderForNote(it.toLong())
