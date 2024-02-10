@@ -87,6 +87,7 @@ class AddNoteFragment : Fragment() {
         reminder.second?.let { timeStamp ->
             hasReminder = timeStamp.toString()
             note?.remindAt = hasReminder
+            fromPast = timeStamp <= System.currentTimeMillis()
             if (!reminder.first) handleAvailableReminder(timeStamp)
         }
     }
@@ -176,8 +177,11 @@ class AddNoteFragment : Fragment() {
                 requireActivity().finish()
                 return@setOnClickListener
             }
-            if (binding.editTextAddNoteTitle.text!!.isNotBlank()) saveNote()
-            if (!hasReminder.isNullOrBlank() && !fromPast) handleReminderForNote(hasReminder!!.toLong())
+            if (binding.editTextAddNoteTitle.text!!.isNotBlank()){
+                if (!hasReminder.isNullOrBlank() && !fromPast)
+                    handleReminderForNote(hasReminder!!.toLong())
+                saveNote()
+            }
             popFragmrnt()
         }
 
@@ -187,7 +191,6 @@ class AddNoteFragment : Fragment() {
 
         binding.btnAddAlarmAddNoteFragment.setOnClickListener {
             if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
-                saveNote()
                 handleReminder()
             } else showMessageDialog(requireContext(), getString(R.string.savenotedialogdesc_addeditnotefragment))
         }
@@ -260,6 +263,7 @@ class AddNoteFragment : Fragment() {
             alarmManager.cancel(pendingIntent)
         else
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+//        popFragmrnt()
     }
 
     private fun createPendingIntent(requestCode: Int, intent: Intent): PendingIntent =
