@@ -173,16 +173,7 @@ class AddNoteFragment : Fragment() {
 
     private fun initListeners() {
         binding.fabAddNoteSave.setOnClickListener {
-            if (fromNotificationArg) {
-                requireActivity().finish()
-                return@setOnClickListener
-            }
-            if (binding.editTextAddNoteTitle.text!!.isNotBlank()){
-                if (!hasReminder.isNullOrBlank() && !fromPast)
-                    handleReminderForNote(hasReminder!!.toLong())
-                saveNote()
-            }
-            popFragmrnt()
+            handleOnSaveFabClick()
         }
 
         binding.imageViewAddNoteDelete.setOnClickListener {
@@ -198,6 +189,18 @@ class AddNoteFragment : Fragment() {
         binding.buttonAddNoteBackward.setOnClickListener { popFragmrnt() }
 
         binding.btnRemoveAlarmAddNoteFragment.setOnClickListener { showRemoveReminderDialog() }
+    }
+
+    private fun handleOnSaveFabClick() {
+        if (fromNotificationArg) {
+            requireActivity().finish()
+            return
+        }
+        if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
+            if (!hasReminder.isNullOrBlank() && !fromPast) handleReminderForNote(hasReminder!!.toLong())
+            saveNote()
+            popFragmrnt()
+        } else showMessageDialog(requireContext(), getString(R.string.savenotedialogdesc_addeditnotefragment))
     }
 
     private fun showRemoveReminderDialog() {
