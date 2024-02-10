@@ -1,0 +1,71 @@
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"deploymentTargetDropDown\">\n    <value>\n      <entry key=\"app\">\n        <State>\n          <targetSelectedWithDropDown>\n            <Target>\n              <type value=\"QUICK_BOOT_TARGET\" />\n              <deviceKey>\n                <Key>\n                  <type value=\"VIRTUAL_DEVICE_PATH\" />\n                  <value value=\"$USER_HOME$/.android/avd/Pixel_7_API_34.avd\" />\n                </Key>\n              </deviceKey>\n            </Target>\n          </targetSelectedWithDropDown>\n          <timeTargetWasSelectedWithDropDown value=\"2024-01-25T21:48:26.443442765Z\" />\n        </State>\n      </entry>\n    </value>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	(revision 0916dfe5454f11ba3297bed716c0da72d08d603c)
++++ b/.idea/deploymentTargetDropDown.xml	(date 1706681833235)
+@@ -15,7 +15,7 @@
+               </deviceKey>
+             </Target>
+           </targetSelectedWithDropDown>
+-          <timeTargetWasSelectedWithDropDown value="2024-01-25T21:48:26.443442765Z" />
++          <timeTargetWasSelectedWithDropDown value="2024-01-30T19:23:22.558831755Z" />
+         </State>
+       </entry>
+     </value>
+Index: app/src/main/java/com/abc/daily/ui/common/CommonViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.abc.daily.ui.common\n\nimport androidx.lifecycle.MutableLiveData\nimport androidx.lifecycle.ViewModel\nimport androidx.lifecycle.viewModelScope\nimport com.abc.daily.domain.use_case.PrefsDataStoreDomain\nimport dagger.hilt.android.lifecycle.HiltViewModel\nimport kotlinx.coroutines.flow.launchIn\nimport kotlinx.coroutines.flow.onEach\nimport kotlinx.coroutines.launch\nimport javax.inject.Inject\n\n@HiltViewModel\nclass CommonViewModel @Inject constructor(\n    private val appPrefsDataStoreDomain: PrefsDataStoreDomain\n): ViewModel()  {\n\n    val locationPermissionLiveData = MutableLiveData<Boolean>()\n    val isDarkMode = MutableLiveData<Boolean>()\n    val themeColorLiveData = MutableLiveData<Int>()\n\n    init {\n        getDarkMode()\n        getThemeColor()\n    }\n\n    fun fillLocationPermissionLiveData(isGranted: Boolean) {\n        locationPermissionLiveData.value = isGranted\n    }\n\n    fun getDarkMode() {\n        viewModelScope.launch {\n            appPrefsDataStoreDomain.themePrefsDataStore.invoke().onEach { isDark ->\n                isDarkMode.postValue(isDark)\n            }.launchIn(viewModelScope)\n        }\n    }\n\n    fun setDarkMode(isDarkMode: Boolean) {\n        viewModelScope.launch {\n            appPrefsDataStoreDomain.themePrefsDataStore.invoke(isDarkMode)\n        }\n    }\n\n    fun setThemeColor(themeColor: Int) {\n        viewModelScope.launch {\n            appPrefsDataStoreDomain.themePrefsDataStore.invoke(themeColor)\n        }\n    }\n\n    fun getThemeColor() {\n        viewModelScope.launch {\n            appPrefsDataStoreDomain.themePrefsDataStore.invokeThemeColor().onEach { themeColor ->\n                themeColorLiveData.postValue(themeColor)\n            }.launchIn(viewModelScope)\n        }\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/abc/daily/ui/common/CommonViewModel.kt b/app/src/main/java/com/abc/daily/ui/common/CommonViewModel.kt
+--- a/app/src/main/java/com/abc/daily/ui/common/CommonViewModel.kt	(revision 0916dfe5454f11ba3297bed716c0da72d08d603c)
++++ b/app/src/main/java/com/abc/daily/ui/common/CommonViewModel.kt	(date 1706645629090)
+@@ -19,10 +19,10 @@
+     val isDarkMode = MutableLiveData<Boolean>()
+     val themeColorLiveData = MutableLiveData<Int>()
+ 
+-    init {
+-        getDarkMode()
+-        getThemeColor()
+-    }
++//    init {
++//        getDarkMode()
++//        getThemeColor()
++//    }
+ 
+     fun fillLocationPermissionLiveData(isGranted: Boolean) {
+         locationPermissionLiveData.value = isGranted
+Index: app/src/main/java/com/abc/daily/ui/common/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.abc.daily.ui.common\n\nimport android.Manifest\nimport android.app.UiModeManager\nimport android.os.Build\nimport android.os.Bundle\nimport android.widget.Toast\nimport androidx.activity.result.ActivityResultLauncher\nimport androidx.activity.result.contract.ActivityResultContracts\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.appcompat.app.AppCompatDelegate\nimport androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen\nimport androidx.databinding.DataBindingUtil\nimport com.abc.daily.R\nimport com.abc.daily.databinding.LayoutMainBinding\nimport com.abc.daily.util.Constants\nimport dagger.hilt.android.AndroidEntryPoint\nimport javax.inject.Inject\n\n@AndroidEntryPoint\nclass MainActivity : AppCompatActivity() {\n\n    var resultLauncher: ActivityResultLauncher<Array<String>> =\n        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->\n            permissions.entries.forEach { permission ->\n                when (permission.key) {\n                    Manifest.permission.ACCESS_COARSE_LOCATION -> {\n                        if (permission.value) commonViewModel.fillLocationPermissionLiveData(permission.value)\n                    }\n                    Manifest.permission.POST_NOTIFICATIONS -> {\n                        if (!permission.value) {\n                            Toast.makeText(this, getString(R.string.toast_notificationpermission), Toast.LENGTH_LONG).show()\n                        }\n                    }\n                }\n            }\n        }\n\n    @Inject\n    lateinit var uiModeManager: UiModeManager\n\n    @Inject\n    lateinit var commonViewModel: CommonViewModel\n\n    private lateinit var binding: LayoutMainBinding\n    private var keepSplashOnScreen = true\n    private var isLunched: Boolean = false\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        observeData()\n        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }\n    }\n\n\n    private fun observeData() {\n        observeColorTheme()\n        observeDarkMode()\n    }\n\n    private fun observeDarkMode() {\n        commonViewModel.isDarkMode.observe(this) { isDark ->\n            setThemeDarkMode(isDark)\n        }\n    }\n\n    private fun observeColorTheme() {\n        commonViewModel.themeColorLiveData.observe(this) { themeColor ->\n            when (themeColor) {\n                Constants.THEME_PRIMARY -> setTheme(R.style.PrimaryTheme)\n                Constants.THEME_BLUE -> setTheme(R.style.BlueTheme)\n                Constants.THEME_GREEN -> setTheme(R.style.GreenTheme)\n                Constants.THEME_RED -> setTheme(R.style.RedTheme)\n                Constants.THEME_PURPLE -> setTheme(R.style.PurpleTheme)\n                Constants.THEME_YELLOW -> setTheme(R.style.YellowTheme)\n                else -> {}\n            }\n            if (isLunched) recreate()\n            else initMainActivityView()\n        }\n    }\n\n    private fun initMainActivityView() {\n        binding = DataBindingUtil.setContentView(this, R.layout.layout_main)\n        isLunched = true\n        keepSplashOnScreen = false\n    }\n\n    fun setThemeColor(themeColor: Int) {\n        commonViewModel.setThemeColor(themeColor)\n    }\n\n    private fun setThemeDarkMode(isNight: Boolean) {\n        val modeUiModeManager = if (isNight) UiModeManager.MODE_NIGHT_YES else UiModeManager.MODE_NIGHT_NO\n        val modeAppCompatDelegate = if (isNight) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO\n        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {\n            uiModeManager.setApplicationNightMode(modeUiModeManager)\n        } else AppCompatDelegate.setDefaultNightMode(modeAppCompatDelegate)\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/abc/daily/ui/common/MainActivity.kt b/app/src/main/java/com/abc/daily/ui/common/MainActivity.kt
+--- a/app/src/main/java/com/abc/daily/ui/common/MainActivity.kt	(revision 0916dfe5454f11ba3297bed716c0da72d08d603c)
++++ b/app/src/main/java/com/abc/daily/ui/common/MainActivity.kt	(date 1706645629094)
+@@ -48,10 +48,16 @@
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
++        getThemeData()
+         observeData()
+         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
+     }
+ 
++    private fun getThemeData() {
++        commonViewModel.getDarkMode()
++        commonViewModel.getThemeColor()
++    }
++
+ 
+     private fun observeData() {
+         observeColorTheme()
