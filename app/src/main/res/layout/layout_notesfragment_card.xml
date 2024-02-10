@@ -89,6 +89,17 @@
                 app:layout_constraintEnd_toStartOf="@+id/locationImg"
                 app:layout_constraintTop_toTopOf="@+id/locationImg" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView_changeLocation_notesFragment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:src="@drawable/all_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/locationImg"
+                app:layout_constraintEnd_toStartOf="@+id/textView_location_notesFragment"
+                app:layout_constraintTop_toTopOf="@+id/locationImg" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

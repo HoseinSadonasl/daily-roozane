@@ -152,6 +152,8 @@ class NotesFragment : Fragment() {
         binding.buttonSettingsNotesFragment.setOnClickListener { navigateToSettingsFragment() }
 
         binding.layoutNotesfragmentCard.textViewLocationNotesFragment.setOnClickListener { showSearchCityDialog() }
+
+        binding.layoutNotesfragmentCard.imageViewChangeLocationNotesFragment.setOnClickListener { showSearchCityDialog() }
     }
 
     @SuppressLint("MissingPermission")
