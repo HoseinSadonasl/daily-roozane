@@ -109,7 +109,7 @@
     <string name="all_cancel">Cancel</string>
     <string name="dialog_citytextinputtitle">Change city</string>
     <string name="dialog_currentlocationbtn">Current Location</string>
-    <string name="settings_about">Roozane v2.0.0\nroozaneapp.ir</string>
+    <string name="settings_about">Roozane v%1$s\nroozaneapp.ir</string>
     <string name="addnote_removereminder">Remove Reminder!</string>
     <string name="addnote_removereminderdesc">Are you sure to remove reminder for this note?</string>
     <string name="welcomedialog_title">Welcome to Daily 📝</string>

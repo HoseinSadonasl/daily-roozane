@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.abc.daily.BuildConfig
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutSettingsFragmentBinding
 import com.abc.daily.ui.common.MainActivity
@@ -64,6 +65,8 @@ class SettingsFragment : Fragment() {
         binding.tvSettingsReportbug.setOnClickListener { openEmailApp() }
 
         binding.tvSettingsConnect.setOnClickListener { openEmailApp() }
+
+        binding.tvSettingsAbout.text = requireContext().getString(R.string.settings_about, BuildConfig.VERSION_NAME)
 
         initChangeThemeRadioButtons()
 
