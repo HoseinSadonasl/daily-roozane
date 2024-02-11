@@ -50,13 +50,13 @@
     <color name="onWindowBackgroundColorPurple">#262626</color>
 
     <!--  Yellow Colors  -->
-    <color name="primaryYellowColor">#FFDC25</color>
+    <color name="primaryYellowColor">#FFC837</color>
     <color name="onPrimaryYellowColor">#FFFFFF</color>
-    <color name="primaryVariantYellowColor">#FFDC25</color>
+    <color name="primaryVariantYellowColor">#FFC837</color>
     <color name="onPrimaryVariantYellowColor">#FFFFFF</color>
-    <color name="secondaryYellowColor">#FFDC25</color>
+    <color name="secondaryYellowColor">#FFC837</color>
     <color name="onSecondaryYellowColor">#FFFFFF</color>
-    <color name="yellowColor">#FFDC25</color>
+    <color name="yellowColor">#FFC837</color>
     <color name="yellowColorLight">#FFEA7F</color>
     <color name="windowSurfaceColorYellow">#FFFFFF</color>
     <color name="windowBackgroundColorYellow">#F9F9F9</color>
@@ -64,13 +64,13 @@
 
 
     <!--  Green Colors  -->
-    <color name="primaryGreenColor">#2FD183</color>
+    <color name="primaryGreenColor">#3CD278</color>
     <color name="onPrimaryGreenColor">#FFFFFF</color>
-    <color name="primaryVariantGreenColor">#2FD183</color>
+    <color name="primaryVariantGreenColor">#3CD278</color>
     <color name="onPrimaryVariantGreenColor">#FFFFFF</color>
-    <color name="secondaryGreenColor">#2FD183</color>
+    <color name="secondaryGreenColor">#3CD278</color>
     <color name="onSecondaryGreenColor">#FFFFFF</color>
-    <color name="greenColor">#2FD183</color>
+    <color name="greenColor">#3CD278</color>
     <color name="greenColorLight">#7DFABE</color>
     <color name="windowSurfaceColorGreen">#FFFFFF</color>
     <color name="windowBackgroundColorGreen">#F9F9F9</color>
@@ -91,13 +91,13 @@
     <color name="onWindowBackgroundColorBlue">#262626</color>
 
     <!--  Red Colors  -->
-    <color name="primaryRedColor">#E2446A</color>
+    <color name="primaryRedColor">#F0323C</color>
     <color name="onPrimaryRedColor">#FFFFFF</color>
-    <color name="primaryVariantRedColor">#E2446A</color>
+    <color name="primaryVariantRedColor">#F0323C</color>
     <color name="onPrimaryVariantRedColor">#FFFFFF</color>
-    <color name="secondaryRedColor">#E2446A</color>
+    <color name="secondaryRedColor">#F0323C</color>
     <color name="onSecondaryRedColor">#FFFFFF</color>
-    <color name="redColor">#E2446A</color>
+    <color name="redColor">#F0323C</color>
     <color name="redColorLight">#FF91AB</color>
     <color name="windowSurfaceColorRed">#FFFFFF</color>
     <color name="windowBackgroundColorRed">#F9F9F9</color>
