@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,6 +25,7 @@ import com.abc.daily.util.Constants
 import com.abc.daily.util.DateUtil
 import com.abc.daily.util.OrderDialog
 import com.abc.daily.util.PermissionHelper
+import com.abc.daily.util.showMessageDialog
 import com.bumptech.glide.RequestManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
@@ -160,8 +160,12 @@ class NotesFragment : Fragment() {
     private fun showSearchCityDialog() {
         Dialog(requireContext(),
             onPositiveCallback = { dialog ->
-                viewModel.saveDefaultCity("")
-                getCurrentLocation()
+                if (PermissionHelper.checkIfPermissionNotGranted(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    showMessageDialog(requireContext(), getString(R.string.nopermissiondialog_noteFragment))
+                } else {
+                    viewModel.saveDefaultCity("")
+                    getCurrentLocation()
+                }
                 dialog.dismiss()
             },
             onNegativeCallback = { dialog ->
