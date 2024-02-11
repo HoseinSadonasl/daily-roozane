@@ -69,8 +69,8 @@
     <string name="weaLang">fa</string>
     <string name="ptp_time">انتخاب ساعت یادآور</string>
     <string name="pdp_date">انتخاب روز یادآور</string>
-    <string name="txt_minutes_ago">"دقیقه پیش %1$s"</string>
-    <string name="txt_hours_ago">"ساعت پیش %1$s"</string>
+    <string name="txt_minutes_ago">"%1$s دقیقه پیش "</string>
+    <string name="txt_hours_ago">"%1$s ساعت پیش "</string>
     <string name="txt_today">"امروز %1$s"</string>
     <string name="txt_xreated">"ایجاد: %1$s"</string>
     <string name="txt_modified">"ویرایش:  %1$s"</string>
