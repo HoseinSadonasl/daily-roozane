@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import com.abc.daily.R
 import com.abc.daily.databinding.LayoutMainBinding
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: LayoutMainBinding
     private var keepSplashOnScreen = true
     private var isLunched: Boolean = false
+    private var isDark: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeDarkMode() {
         commonViewModel.isDarkMode.observe(this) { isDark ->
             setThemeDarkMode(isDark)
+            this.isDark = isDark
         }
     }
 
@@ -77,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
             if (isLunched) recreate()
             else initMainActivityView()
+            WindowInsetsControllerCompat(window, binding.root).isAppearanceLightStatusBars = !isDark
         }
     }
 
