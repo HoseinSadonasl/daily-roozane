@@ -14,7 +14,7 @@
         <item name="colorOnSecondary">@color/onPrimaryColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/windowBackgroundColor</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar"></item>
         <item name="android:navigationBarColor">@color/windowBackgroundColor</item>
         <item name="android:navigationBarColor" tools:ignore="DuplicateDefinition">@color/windowBackgroundColor</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>

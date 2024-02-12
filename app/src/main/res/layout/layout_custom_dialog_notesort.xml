@@ -38,14 +38,14 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_byname_notesFragment"
-                    style="@style/ReqularText"
+                    style="@style/RegularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_byName" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_bydate_notesFragment"
-                    style="@style/ReqularText"
+                    style="@style/RegularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_byDate" />
@@ -66,14 +66,14 @@
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_ascending_notesFragment"
-                    style="@style/ReqularText"
+                    style="@style/RegularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_asc" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/sortrb_descending_notesFragment"
-                    style="@style/ReqularText"
+                    style="@style/RegularText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/orderDialog_dsc" />

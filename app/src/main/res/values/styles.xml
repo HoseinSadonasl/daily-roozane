@@ -29,7 +29,7 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="ReqularText">
+    <style name="RegularText">
         <item name="android:fontFamily">@font/iranyekanregular</item>
         <item name="android:textSize">@dimen/_14sp</item>
     </style>
