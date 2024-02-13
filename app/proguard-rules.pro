@@ -46,4 +46,3 @@
 -if interface * { @retrofit2.http.* public *** *(...); }
 -keep,allowoptimization,allowshrinking,allowobfuscation class <3>
 -keep class kotlin.coroutines.Continuation
-

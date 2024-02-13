@@ -39,15 +39,12 @@ class AddNoteFragment : Fragment() {
     lateinit var alarmManager: AlarmManager
 
     private lateinit var binding: LayoutAddNoteBinding
-
     private val addNoteViewModel: AddNoteViewModel by viewModels()
     private var note: Note? = null
     private lateinit var calendar: Calendar
     private var noteIdArg: Int? = null
     private var fromNotificationArg: Boolean = false
     private var hasReminder: String? = null
-    private var fromPast: Boolean = false
-//    private var themePrimaryColor: Int? = null
 
     companion object {
         const val NOTE_ARGUMENT = "noteId"
@@ -87,7 +84,6 @@ class AddNoteFragment : Fragment() {
         reminder.second?.let { timeStamp ->
             hasReminder = timeStamp.toString()
             note?.remindAt = hasReminder
-            fromPast = timeStamp <= System.currentTimeMillis()
             if (!reminder.first) handleAvailableReminder(timeStamp)
         }
     }
@@ -105,7 +101,7 @@ class AddNoteFragment : Fragment() {
                 if (noteIdArg == null) noteIdArg = note.id
                 it.remindAt?.let {
                     hasReminder = it
-                    fromPast = it.toLong() <= System.currentTimeMillis()
+                    val fromPast = it.toLong() <= System.currentTimeMillis()
                     addNoteViewModel.setReminderNoteLiveData(it.toLong(), fromPast)
                 } ?: run {
                     resetReminderButton()
@@ -161,7 +157,7 @@ class AddNoteFragment : Fragment() {
         } ?: run {
             setReminderButtonColorTintAndIcon(R.color.btn_secondary, R.drawable.all_addalarm)
         }
-        if (fromNotificationArg) binding.buttonAddNoteBackward.visibility = View.GONE
+        if (fromNotificationArg) binding.buttonAddNoteBackward.visibility = View.INVISIBLE
         calendar = Calendar.getInstance()
     }
 
@@ -197,8 +193,10 @@ class AddNoteFragment : Fragment() {
             return
         }
         if (binding.editTextAddNoteTitle.text!!.isNotBlank()) {
-            if (!hasReminder.isNullOrBlank() && !fromPast) handleReminderForNote(hasReminder!!.toLong())
             saveNote()
+            hasReminder?.let {
+                handleReminderForNote(it.toLong())
+            }
             popFragmrnt()
         } else showMessageDialog(requireContext(), getString(R.string.savenotedialogdesc_addeditnotefragment))
     }
@@ -266,7 +264,6 @@ class AddNoteFragment : Fragment() {
             alarmManager.cancel(pendingIntent)
         else
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-//        popFragmrnt()
     }
 
     private fun createPendingIntent(requestCode: Int, intent: Intent): PendingIntent =
